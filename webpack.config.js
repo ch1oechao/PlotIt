@@ -1,10 +1,17 @@
+var webpack = require('webpack');
 var path = require('path');
+
+var publicPath = 'http://localhost:3000/';
+var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+
 var config = {
-  entry: path.resolve(__dirname, './components/app.js'),
+  entry: ['./app/components/home/index.js', hotMiddlewareScript],
   output: {
-    path: path.resolve(__dirname, './public/scripts/'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: path.resolve('./app/public/scripts/'),
+    publicPath: publicPath
   },
+  devtool: 'source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -22,7 +29,12 @@ var config = {
       test: /\.html$/,
       loader: 'raw'
     }]
-  }
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };
 
 module.exports = config;

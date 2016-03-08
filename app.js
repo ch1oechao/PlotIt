@@ -4,15 +4,47 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressLayout = require('express3-ejs-layout');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+
+var route = require('./server/route');
 
 var app = express();
 
+// webpack
+var webpack = require('webpack'),
+    webpackDevMiddleware = require('webpack-dev-middleware'),
+    webpackHotMiddleware = require('webpack-hot-middleware'),
+    webpackDevConfig = require('./webpack.config.js');
+
+var compiler = webpack(webpackDevConfig);
+
+// attach to the compiler & the server
+app.use(webpackDevMiddleware(compiler, {
+
+    // public path should be the same with webpack config
+    publicPath: webpackDevConfig.output.publicPath,
+    noInfo: true,
+    stats: {
+        colors: true
+    }
+}));
+app.use(webpackHotMiddleware(compiler));
+
+
+// reload
+var reload = require('reload');
+var http = require('http');
+ 
+var server = http.createServer(app);
+reload(server, app);
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
+app.use(expressLayout);
+app.set('layout', 'layout');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -20,10 +52,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'app/public')));
 
-app.use('/', routes);
-app.use('/users', users);
+
+//init route
+route(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,6 +89,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
