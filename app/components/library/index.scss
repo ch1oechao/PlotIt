@@ -1,0 +1,84 @@
+@import '../../public/styles/color';
+
+library {
+  width: 72%;
+  height: 100%;
+  background-color: $second-dark;
+  overflow: hidden;
+}
+
+.row {
+  margin: 0;
+}
+
+.col-md-4 {
+  padding: 0 10px;
+}
+
+.library-container {
+  width: 86%;
+  height: 84%;
+  max-height: 560px;
+  margin: 8% auto;
+  overflow-y: scroll;
+}
+
+.library-item {
+  position: relative;
+  margin: 0 auto 18px;
+  height: 170px;
+  background-color: $primary-dark;
+  overflow: hidden;
+  background-image: url(http://7xr6bj.com1.z0.glb.clouddn.com/11.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-attachment: scroll;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .3);
+  cursor: pointer;
+
+  &:hover {
+    .item-detail {
+      opacity: 1;
+    }
+  }
+}
+
+.item-detail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 3em; 
+  opacity: 0;
+  background: linear-gradient(to top, $primary-dark, transparent);  
+  transition: all 120ms linear;
+}
+
+.item-name {
+  position: absolute;
+  top: 1.5em;
+  left: 1em;
+  line-height: 1em;
+  width: 80%;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.item-setting {
+  position: absolute;
+  bottom: .2em;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+
+  .fa-fw {
+    margin: 0 .3em;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

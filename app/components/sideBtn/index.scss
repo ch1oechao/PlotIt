@@ -1,0 +1,33 @@
+@import '../../public/styles/color';
+
+side-btn {
+  position: absolute;
+  bottom: 2em;
+  left: -1.5em;
+}
+
+
+
+.sidebtn {
+  margin: .8em 0;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .6);
+  
+  &.add {
+    background-color: $red;
+  }
+
+  &.download {
+    background-color: $green;
+  }
+
+  &.share {
+    background-color: $orange;
+  }
+
+}
