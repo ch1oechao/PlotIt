@@ -2,27 +2,23 @@ import angular from 'angular';
 import template from './index.html';
 import './index.scss';
 
-let sideBtnTpl = () => {
+let paletteTpl = () => {
   return {
     template: template,
-    controller: 'sideBtnCtrl',
-    controllerAs: 'sideBtn',
+    controller: 'paletteCtrl',
+    controllerAs: 'palette',
     bindToController: true,
     restrict: 'E'
   }
 };
 
-class sideBtnCtrl {
+class paletteCtrl {
   constructor() {
-    this.isHome = true;
-  }
-
-  turnToCanvas() {
-    this.isHome = false;
+    this.brand = 'PlotIt';
   }
 }
 
 export default {
-  tpl: sideBtnTpl,
-  controller: sideBtnCtrl
+  tpl: paletteTpl,
+  controller: paletteCtrl
 };

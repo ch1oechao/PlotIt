@@ -1,11 +1,14 @@
 import angular from 'angular';
+import template from './index.html';
 import './index.scss';
 
 let libraryTpl = () => {
   return {
-    template: require('./index.html'),
+    template: template,
     controller: 'libraryCtrl',
-    controllerAs: 'library'
+    controllerAs: 'library',
+    bindToController: true,
+    restrict: 'E'
   }
 };
 

@@ -1,0 +1,23 @@
+@import '../../public/styles/color';
+
+panel {
+  width: 72%;
+  height: 100%;
+  background-color: $second-dark;
+  overflow: hidden;
+}
+
+.panel-container {
+  width: 86%;
+  height: 84%;
+  max-height: 560px;
+  margin: 8% auto;
+  background: $primary-dark;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
+}
+
+#plotitCanvas {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}

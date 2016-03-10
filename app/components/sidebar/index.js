@@ -1,17 +1,20 @@
 import angular from 'angular';
+import template from './index.html';
 import './index.scss';
 
 let sidebarTpl = () => {
   return {
-    template: require('./index.html'),
+    template: template,
     controller: 'sidebarCtrl',
-    controllerAs: 'sidebar'
+    controllerAs: 'sidebar',
+    bindToController: true,
+    restrict: 'E'
   }
 };
 
 class sidebarCtrl {
   constructor() {
-    // this.title = 'plotit';
+    this.brand = 'PlotIt';
   }
 }
 
