@@ -1,11 +1,10 @@
 (function() {
   'use strict';
-  var ctrl = require('./controller');
+  var api = require('./api');
 
   module.exports = function(app) {
 
-    app.get('/', ctrl.home.index);
-    app.get('/item', ctrl.canvas.index);
+    app.get('/', api.index);
 
     app.get('/*', (req, res) => {
       res.redirect('/');

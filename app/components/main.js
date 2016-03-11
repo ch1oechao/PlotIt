@@ -1,4 +1,7 @@
 import angular from 'angular';
+import uiRouter from 'angular-ui-router';
+import ngRoute from 'angular-route';
+import routes from './main.routes';
 
 import '../public/styles/main.scss';
 
@@ -9,7 +12,10 @@ import panel from './panel';
 import palette from './palette';
 
 const MODULE_NAME = 'plotit';
-const plotitApp = angular.module(MODULE_NAME, []);
+const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute]);
+
+// config
+plotitApp.config(routes);
 
 // directive
 plotitApp

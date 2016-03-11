@@ -43,8 +43,6 @@ reload(server, app);
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
-app.use(expressLayout);
-app.set('layout', 'layout');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

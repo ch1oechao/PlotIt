@@ -14,11 +14,7 @@ let sideBtnTpl = () => {
 
 class sideBtnCtrl {
   constructor() {
-    this.isHome = true;
-  }
-
-  turnToCanvas() {
-    this.isHome = false;
+    
   }
 }
 
