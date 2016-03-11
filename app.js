@@ -6,10 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressLayout = require('express3-ejs-layout');
 
+var app = express();
+
+// mongoBD
+var mongoose = require('mongoose');
+var dbUrl = 'mongodb://localhost/plotit';
+
+mongoose.connect(dbUrl);
+require('./server/model');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {
+  console.log('MongoDB is connected !');
+});
 
 var route = require('./server/route');
-
-var app = express();
 
 // webpack
 var webpack = require('webpack'),
