@@ -2,6 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngRoute from 'angular-route';
 import routes from './main.routes';
+import ngFileUpload from 'ng-file-upload';
 
 import '../public/styles/main.scss';
 
@@ -12,7 +13,7 @@ import panel from './panel';
 import palette from './palette';
 
 const MODULE_NAME = 'plotit';
-const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute]);
+const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute, ngFileUpload]);
 
 // config
 plotitApp.config(routes);

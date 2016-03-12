@@ -13,10 +13,23 @@ let sideBtnTpl = () => {
 };
 
 class sideBtnCtrl {
-  constructor() {
-    
+  constructor($location) {
+    this.location = $location;
+    this.isPlot = false;
+  }
+
+  turnToCanvas() {
+    this.isPlot = true;
+    this.location.url('/plot');
+  }
+
+  turnToHome() {
+    this.isPlot = false;
+    this.location.url('/');
   }
 }
+
+sideBtnCtrl.$inject = ['$location'];
 
 export default {
   tpl: sideBtnTpl,

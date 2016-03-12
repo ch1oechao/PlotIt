@@ -1,3 +1,12 @@
-<div class="panel-container">
-	<canvas id="plotitCanvas">您的浏览器暂不支持 Canvas</canvas>
+<div class="panel-container" ng-controller="panelCtrl">
+  <div class="panel-upload" ng-show="!panel.hasPic">
+    <div ngf-drop ngf-select ng-model="panel.files" class="drop-box" 
+        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf" 
+        ngf-pattern="'image/*,application/pdf'">拖拽图片或者点击上传</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+  </div>
+  <div class="panel-canvas" ng-show="panel.hasPic">
+    <canvas id="plotitCanvas">您的浏览器暂不支持 Canvas</canvas>  
+  </div>
 </div>

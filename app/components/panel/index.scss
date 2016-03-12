@@ -8,12 +8,28 @@ panel {
 }
 
 .panel-container {
+  position: relative;
   width: 86%;
   height: 84%;
   max-height: 560px;
-  margin: 8% auto;
-  background: $primary-dark;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
+  margin: 7.5% auto;
+  background: transparent;
+}
+
+.panel-upload,
+.panel-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.panel-upload {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 #plotitCanvas {

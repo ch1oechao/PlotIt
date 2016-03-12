@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "webpack --progress --colors --watch -d",
-    "build": "webpack --progress --colors -p"
+    "build": "webpack --progress -d"
   },
   "dependencies": {
     "angular": "^1.5.0",
@@ -18,6 +18,7 @@
     "jade": "~1.11.0",
     "mongoose": "^4.4.6",
     "morgan": "~1.6.1",
+    "ng-file-upload": "^12.0.4",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
