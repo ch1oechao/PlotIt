@@ -1,5 +1,7 @@
 import angular from 'angular';
 import template from './index.html';
+import Canvas2image from '../../libs/canvas2image';
+
 import './index.scss';
 
 let sideBtnTpl = () => {
@@ -13,20 +15,29 @@ let sideBtnTpl = () => {
 };
 
 class sideBtnCtrl {
-  constructor($location) {
-    this.location = $location;
+  constructor($location, $http) {
+    this.$location = $location;
+    this.$http = $http;
     this.isPlot = false;
   }
 
   turnToCanvas() {
     this.isPlot = true;
-    this.location.url('/plot');
+    this.$location.url('/plot');
   }
 
   turnToHome() {
     this.isPlot = false;
-    this.location.url('/');
+    this.$location.url('/');
   }
+
+  saveToImage() {
+    var canvas = document.getElementById('plotitCanvas'),
+        context = canvas.getContext('2d');
+
+    Canvas2image.saveAsPNG(canvas);
+  }
+
 }
 
 sideBtnCtrl.$inject = ['$location'];

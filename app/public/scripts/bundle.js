@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1abb85691c1f0239e363"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6fe911b6a00252da0ba1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -576,7 +576,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./app/components/main.js */12);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */49);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */50);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 21);
+	__webpack_require__(/*! ./angular */ 22);
 	module.exports = angular;
 
 /***/ },
@@ -1223,11 +1223,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 36);
+	var _index = __webpack_require__(/*! ./index.html */ 37);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 43);
+	__webpack_require__(/*! ./index.scss */ 44);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1271,11 +1271,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 20);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 21);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 19);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 20);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
@@ -1283,11 +1283,11 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 28);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 29);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ../public/styles/main.scss */ 48);
+	__webpack_require__(/*! ../public/styles/main.scss */ 49);
 	
 	var _library = __webpack_require__(/*! ./library */ 11);
 	
@@ -1350,13 +1350,13 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ../views/index.display.html */ 41),
+	    template: __webpack_require__(/*! ../views/index.display.html */ 42),
 	    onEnter: function onEnter() {
 	      console.log('enter HOME');
 	    }
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ../views/index.plot.html */ 42),
+	    template: __webpack_require__(/*! ../views/index.plot.html */ 43),
 	    onEnter: function onEnter() {
 	      console.log('enter CANVAS');
 	    }
@@ -1380,11 +1380,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 37);
+	var _index = __webpack_require__(/*! ./index.html */ 38);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 44);
+	__webpack_require__(/*! ./index.scss */ 45);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1430,11 +1430,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 38);
+	var _index = __webpack_require__(/*! ./index.html */ 39);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 45);
+	__webpack_require__(/*! ./index.scss */ 46);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1466,7 +1466,8 @@
 	  _createClass(panelCtrl, [{
 	    key: 'upload',
 	    value: function upload(files) {
-	      var self = this;
+	      var self = this,
+	          reader = new FileReader();
 	
 	      return function (files) {
 	        if (files && files.length) {
@@ -1474,9 +1475,9 @@
 	          for (var i = 0; i < files.length; i++) {
 	            var file = files[i];
 	            if (!file.$error) {
-	              self.imgUrl = window.URL.createObjectURL(file);
+	              self.imgSrc = window.URL.createObjectURL(file);
 	              self.hasPic = true;
-	              self.renderToCanvas(self.imgUrl);
+	              self.renderToCanvas(self.imgSrc);
 	            }
 	          }
 	        }
@@ -1484,14 +1485,39 @@
 	    }
 	  }, {
 	    key: 'renderToCanvas',
-	    value: function renderToCanvas(imgUrl) {
+	    value: function renderToCanvas(imgSrc) {
 	      var canvas = document.getElementById('plotitCanvas'),
 	          context = canvas.getContext('2d'),
 	          image = new Image();
-	      image.src = imgUrl;
+	      image.src = imgSrc;
 	
 	      image.onload = function () {
-	        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+	
+	        var $panel = document.getElementsByClassName('panel-canvas')[0],
+	            panelW = $panel.clientWidth,
+	            panelH = $panel.clientHeight,
+	            imageW = image.width,
+	            imageH = image.height,
+	            scale;
+	
+	        context.clearRect(0, 0, canvas.width, canvas.height);
+	
+	        canvas.width = panelW;
+	        canvas.height = panelH;
+	
+	        if (imageW > imageH) {
+	          scale = imageW / panelW;
+	        } else {
+	          scale = imageH / panelH;
+	        }
+	
+	        imageW = imageW / scale;
+	        imageH = imageH / scale;
+	
+	        var dx = (panelW - imageW) / 2,
+	            dy = (panelH - imageH) / 2;
+	
+	        context.drawImage(image, dx, dy, imageW, imageH);
 	      };
 	    }
 	  }]);
@@ -1525,11 +1551,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 39);
+	var _index = __webpack_require__(/*! ./index.html */ 40);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 46);
+	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 18);
+	
+	var _canvas2image2 = _interopRequireDefault(_canvas2image);
+	
+	__webpack_require__(/*! ./index.scss */ 47);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1546,10 +1576,11 @@
 	};
 	
 	var sideBtnCtrl = function () {
-	  function sideBtnCtrl($location) {
+	  function sideBtnCtrl($location, $http) {
 	    _classCallCheck(this, sideBtnCtrl);
 	
-	    this.location = $location;
+	    this.$location = $location;
+	    this.$http = $http;
 	    this.isPlot = false;
 	  }
 	
@@ -1557,13 +1588,21 @@
 	    key: 'turnToCanvas',
 	    value: function turnToCanvas() {
 	      this.isPlot = true;
-	      this.location.url('/plot');
+	      this.$location.url('/plot');
 	    }
 	  }, {
 	    key: 'turnToHome',
 	    value: function turnToHome() {
 	      this.isPlot = false;
-	      this.location.url('/');
+	      this.$location.url('/');
+	    }
+	  }, {
+	    key: 'saveToImage',
+	    value: function saveToImage() {
+	      var canvas = document.getElementById('plotitCanvas'),
+	          context = canvas.getContext('2d');
+	
+	      _canvas2image2.default.saveAsPNG(canvas);
 	    }
 	  }]);
 	
@@ -1594,11 +1633,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 40);
+	var _index = __webpack_require__(/*! ./index.html */ 41);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 47);
+	__webpack_require__(/*! ./index.scss */ 48);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1627,6 +1666,287 @@
 
 /***/ },
 /* 18 */
+/*!**********************************!*\
+  !*** ./app/libs/canvas2image.js ***!
+  \**********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	/**
+	 * covert canvas to image
+	 * and save the image file
+	 */
+	
+	// check if support sth.
+	var $support = function () {
+	    var canvas = document.createElement('canvas'),
+	        ctx = canvas.getContext('2d');
+	
+	    return {
+	        canvas: !!ctx,
+	        imageData: !!ctx.getImageData,
+	        dataURL: !!canvas.toDataURL,
+	        btoa: !!window.btoa
+	    };
+	}();
+	
+	var downloadMime = 'image/octet-stream';
+	
+	function scaleCanvas(canvas, width, height) {
+	    var w = canvas.width,
+	        h = canvas.height;
+	    if (width == undefined) {
+	        width = w;
+	    }
+	    if (height == undefined) {
+	        height = h;
+	    }
+	
+	    var retCanvas = document.createElement('canvas');
+	    var retCtx = retCanvas.getContext('2d');
+	    retCanvas.width = width;
+	    retCanvas.height = height;
+	    retCtx.drawImage(canvas, 0, 0, w, h, 0, 0, width, height);
+	    return retCanvas;
+	}
+	
+	function getDataURL(canvas, type, width, height) {
+	    canvas = scaleCanvas(canvas, width, height);
+	    return canvas.toDataURL(type);
+	}
+	
+	function saveFile(strData) {
+	    document.location.href = strData;
+	}
+	
+	function genImage(strData) {
+	    var img = document.createElement('img');
+	    img.src = strData;
+	    return img;
+	}
+	
+	function fixType(type) {
+	    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+	    var r = type.match(/png|jpeg|bmp|gif/)[0];
+	    return 'image/' + r;
+	}
+	
+	function encodeData(data) {
+	    if (!window.btoa) {
+	        throw 'btoa undefined';
+	    }
+	    var str = '';
+	    if (typeof data == 'string') {
+	        str = data;
+	    } else {
+	        for (var i = 0; i < data.length; i++) {
+	            str += String.fromCharCode(data[i]);
+	        }
+	    }
+	
+	    return btoa(str);
+	}
+	
+	function getImageData(canvas) {
+	    var w = canvas.width,
+	        h = canvas.height;
+	    return canvas.getContext('2d').getImageData(0, 0, w, h);
+	}
+	
+	function makeURI(strData, type) {
+	    return 'data:' + type + ';base64,' + strData;
+	}
+	
+	/**
+	 * create bitmap image
+	 * 按照规则生成图片响应头和响应体
+	 */
+	var genBitmapImage = function genBitmapImage(oData) {
+	
+	    //
+	    // BITMAPFILEHEADER: http://msdn.microsoft.com/en-us/library/windows/desktop/dd183374(v=vs.85).aspx
+	    // BITMAPINFOHEADER: http://msdn.microsoft.com/en-us/library/dd183376.aspx
+	    //
+	
+	    var biWidth = oData.width;
+	    var biHeight = oData.height;
+	    var biSizeImage = biWidth * biHeight * 3;
+	    var bfSize = biSizeImage + 54; // total header size = 54 bytes
+	
+	    //
+	    //  typedef struct tagBITMAPFILEHEADER {
+	    //    WORD bfType;
+	    //    DWORD bfSize;
+	    //    WORD bfReserved1;
+	    //    WORD bfReserved2;
+	    //    DWORD bfOffBits;
+	    //  } BITMAPFILEHEADER;
+	    //
+	    var BITMAPFILEHEADER = [
+	    // WORD bfType -- The file type signature; must be "BM"
+	    0x42, 0x4D,
+	    // DWORD bfSize -- The size, in bytes, of the bitmap file
+	    bfSize & 0xff, bfSize >> 8 & 0xff, bfSize >> 16 & 0xff, bfSize >> 24 & 0xff,
+	    // WORD bfReserved1 -- Reserved; must be zero
+	    0, 0,
+	    // WORD bfReserved2 -- Reserved; must be zero
+	    0, 0,
+	    // DWORD bfOffBits -- The offset, in bytes, from the beginning of the BITMAPFILEHEADER structure to the bitmap bits.
+	    54, 0, 0, 0];
+	
+	    //
+	    //  typedef struct tagBITMAPINFOHEADER {
+	    //    DWORD biSize;
+	    //    LONG  biWidth;
+	    //    LONG  biHeight;
+	    //    WORD  biPlanes;
+	    //    WORD  biBitCount;
+	    //    DWORD biCompression;
+	    //    DWORD biSizeImage;
+	    //    LONG  biXPelsPerMeter;
+	    //    LONG  biYPelsPerMeter;
+	    //    DWORD biClrUsed;
+	    //    DWORD biClrImportant;
+	    //  } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
+	    //
+	    var BITMAPINFOHEADER = [
+	    // DWORD biSize -- The number of bytes required by the structure
+	    40, 0, 0, 0,
+	    // LONG biWidth -- The width of the bitmap, in pixels
+	    biWidth & 0xff, biWidth >> 8 & 0xff, biWidth >> 16 & 0xff, biWidth >> 24 & 0xff,
+	    // LONG biHeight -- The height of the bitmap, in pixels
+	    biHeight & 0xff, biHeight >> 8 & 0xff, biHeight >> 16 & 0xff, biHeight >> 24 & 0xff,
+	    // WORD biPlanes -- The number of planes for the target device. This value must be set to 1
+	    1, 0,
+	    // WORD biBitCount -- The number of bits-per-pixel, 24 bits-per-pixel -- the bitmap
+	    // has a maximum of 2^24 colors (16777216, Truecolor)
+	    24, 0,
+	    // DWORD biCompression -- The type of compression, BI_RGB (code 0) -- uncompressed
+	    0, 0, 0, 0,
+	    // DWORD biSizeImage -- The size, in bytes, of the image. This may be set to zero for BI_RGB bitmaps
+	    biSizeImage & 0xff, biSizeImage >> 8 & 0xff, biSizeImage >> 16 & 0xff, biSizeImage >> 24 & 0xff,
+	    // LONG biXPelsPerMeter, unused
+	    0, 0, 0, 0,
+	    // LONG biYPelsPerMeter, unused
+	    0, 0, 0, 0,
+	    // DWORD biClrUsed, the number of color indexes of palette, unused
+	    0, 0, 0, 0,
+	    // DWORD biClrImportant, unused
+	    0, 0, 0, 0];
+	
+	    var iPadding = (4 - biWidth * 3 % 4) % 4;
+	
+	    var aImgData = oData.data;
+	
+	    var strPixelData = '';
+	    var biWidth4 = biWidth << 2;
+	    var y = biHeight;
+	    var fromCharCode = String.fromCharCode;
+	
+	    do {
+	        var iOffsetY = biWidth4 * (y - 1);
+	        var strPixelRow = '';
+	        for (var x = 0; x < biWidth; x++) {
+	            var iOffsetX = x << 2;
+	            strPixelRow += fromCharCode(aImgData[iOffsetY + iOffsetX + 2]) + fromCharCode(aImgData[iOffsetY + iOffsetX + 1]) + fromCharCode(aImgData[iOffsetY + iOffsetX]);
+	        }
+	
+	        for (var c = 0; c < iPadding; c++) {
+	            strPixelRow += String.fromCharCode(0);
+	        }
+	
+	        strPixelData += strPixelRow;
+	    } while (--y);
+	
+	    var strEncoded = encodeData(BITMAPFILEHEADER.concat(BITMAPINFOHEADER)) + encodeData(strPixelData);
+	
+	    return strEncoded;
+	};
+	
+	/**
+	 * saveAsImage
+	 * @param canvasElement
+	 * @param {String} image type
+	 * @param {Number} [optional] png width
+	 * @param {Number} [optional] png height
+	 */
+	var saveAsImage = function saveAsImage(canvas, width, height, type) {
+	    if ($support.canvas && $support.dataURL) {
+	        if (typeof canvas == "string") {
+	            canvas = document.getElementById(canvas);
+	        }
+	        if (type == undefined) {
+	            type = 'png';
+	        }
+	        type = fixType(type);
+	        if (/bmp/.test(type)) {
+	            var data = getImageData(scaleCanvas(canvas, width, height));
+	            var strData = genBitmapImage(data);
+	            saveFile(makeURI(strData, downloadMime));
+	        } else {
+	            var strData = getDataURL(canvas, type, width, height);
+	            saveFile(strData.replace(type, downloadMime));
+	        }
+	    }
+	};
+	
+	var convertToImage = function convertToImage(canvas, width, height, type) {
+	    if ($support.canvas && $support.dataURL) {
+	        if (typeof canvas == "string") {
+	            canvas = document.getElementById(canvas);
+	        }
+	        if (type == undefined) {
+	            type = 'png';
+	        }
+	        type = fixType(type);
+	
+	        if (/bmp/.test(type)) {
+	            var data = getImageData(scaleCanvas(canvas, width, height));
+	            var strData = genBitmapImage(data);
+	            return genImage(makeURI(strData, 'image/bmp'));
+	        } else {
+	            var strData = getDataURL(canvas, type, width, height);
+	            return genImage(strData);
+	        }
+	    }
+	};
+	
+	exports.default = {
+	    saveAsImage: saveAsImage,
+	    saveAsPNG: function saveAsPNG(canvas, width, height) {
+	        return saveAsImage(canvas, width, height, 'png');
+	    },
+	    saveAsJPEG: function saveAsJPEG(canvas, width, height) {
+	        return saveAsImage(canvas, width, height, 'jpeg');
+	    },
+	    saveAsGIF: function saveAsGIF(canvas, width, height) {
+	        return saveAsImage(canvas, width, height, 'gif');
+	    },
+	    saveAsBMP: function saveAsBMP(canvas, width, height) {
+	        return saveAsImage(canvas, width, height, 'bmp');
+	    },
+	
+	    convertToImage: convertToImage,
+	    convertToPNG: function convertToPNG(canvas, width, height) {
+	        return convertToImage(canvas, width, height, 'png');
+	    },
+	    convertToJPEG: function convertToJPEG(canvas, width, height) {
+	        return convertToImage(canvas, width, height, 'jpeg');
+	    },
+	    convertToGIF: function convertToGIF(canvas, width, height) {
+	        return convertToImage(canvas, width, height, 'gif');
+	    },
+	    convertToBMP: function convertToBMP(canvas, width, height) {
+	        return convertToImage(canvas, width, height, 'bmp');
+	    }
+	};
+
+/***/ },
+/* 19 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -2616,7 +2936,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 19 */
+/* 20 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -2624,11 +2944,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 18);
+	__webpack_require__(/*! ./angular-route */ 19);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 20 */
+/* 21 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -4905,7 +5225,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 21 */
+/* 22 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -20716,7 +21036,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 22 */
+/* 23 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -20896,7 +21216,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -20910,7 +21230,7 @@
 	};
 
 /***/ },
-/* 24 */
+/* 25 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -20919,14 +21239,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 26),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 25),
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 27),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 26),
 	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 10),
 	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 10)
 	};
 
 /***/ },
-/* 25 */
+/* 26 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -21081,7 +21401,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 26 */
+/* 27 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -21244,7 +21564,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -24009,7 +24329,7 @@
 	}]);
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -24017,11 +24337,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 27);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 28);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -24113,7 +24433,7 @@
 	};
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -24185,7 +24505,7 @@
 	};
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -24193,11 +24513,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 29);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 30);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 30);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 31);
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -24205,14 +24525,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 23)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 24)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -24248,7 +24568,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 22);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 23);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -24263,7 +24583,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 24).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 25).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -24294,7 +24614,7 @@
 	}
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -24410,7 +24730,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -24430,7 +24750,7 @@
 	};
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -24439,7 +24759,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <div class=\"library-item\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\">NamehahahahahaNamehahahahaha</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-magic\"></i>\n            <i class=\"fa fa-fw fa-trash\"></i>\n            <i class=\"fa fa-fw fa-share\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -24448,7 +24768,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn></side-btn>\n"
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -24457,16 +24777,16 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasPic\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasPic\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>"
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn back\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-arrow-left\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\">\n  <i class=\"fa fa-check\"></i>\n</div>\n<div class=\"sidebtn share\" ng-show=\"sideBtn.isPlot\">\n  <i class=\"fa fa-share-alt\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn back\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-arrow-left\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.saveToImage()\">\n  <i class=\"fa fa-check\"></i>\n</div>\n<div class=\"sidebtn share\" ng-show=\"sideBtn.isPlot\">\n  <i class=\"fa fa-share-alt\"></i>\n</div>\n"
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -24475,7 +24795,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn></side-btn>\n"
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -24484,7 +24804,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n</div>\n"
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
@@ -24493,7 +24813,7 @@
 	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n</div>\n"
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -24522,7 +24842,7 @@
 	}
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -24551,7 +24871,7 @@
 	}
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -24580,7 +24900,7 @@
 	}
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -24609,7 +24929,7 @@
 	}
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -24638,7 +24958,7 @@
 	}
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -24667,7 +24987,7 @@
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -24685,7 +25005,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 31);
+	  var querystring = __webpack_require__(/*! querystring */ 32);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -24753,11 +25073,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 32);
+	var strip = __webpack_require__(/*! strip-ansi */ 33);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 33);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 34);
 	}
 	
 	function problems(type, obj) {
@@ -24774,7 +25094,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 34);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 35);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -24806,7 +25126,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 35)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 36)(module)))
 
 /***/ }
 /******/ ]);
