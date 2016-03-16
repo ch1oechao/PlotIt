@@ -1,5 +1,6 @@
 import angular from 'angular';
 import template from './index.html';
+import CanvasUtil from '../../libs/canvas.util';
 import Canvas2image from '../../libs/canvas2image';
 import qiniuC from '../../libs/qiniu.client';
 import './index.scss';
@@ -25,7 +26,9 @@ class sideBtnCtrl {
   constructor($location, Service) {
     this.$location = $location;
     this.Service = Service;
+    this.CanvasUtil = new CanvasUtil();
     this.isPlot = false;
+    this.isChange = false;
   }
 
   turnToCanvas() {
@@ -36,25 +39,48 @@ class sideBtnCtrl {
     this.$location.url('/');
   }
 
-  saveToImage() {
-    var canvas = document.getElementById('plotitCanvas'),
-        context = canvas.getContext('2d');
-
-    var imageBase64 = this._convertCanvasToBase64(canvas);
-
-    // upload to Qiniu
-    
-
-    // save to  mongoDB
-    var img = {
-      name: '',
-      imageSrc: ''
+  undoImage() {
+    var self = this;
+    if (this.isPlot) {
+      var paths = (this.$location.$$path).split('/'),
+          id = paths[paths.length - 1];
+      // 判断 id 是否正确
+      if (id.length === 24) {
+        this.Service.findPic(id, (res) => {
+          if (res) {
+            this.CanvasUtil.render(res.imageSrc);
+          }
+        });
+      }
     }
-    this.Service.savePic(img, (res) => {
-      console.log(res);
-    });
+  }
 
-    // Canvas2image.saveAsPNG(canvas);
+  updateImage() {
+    var canvas = this.CanvasUtil.$canvas;
+
+    // 是否更改
+    if (canvas && this.isChange) {
+
+      var imageBase64 = this._convertCanvasToBase64(canvas);
+
+      // upload to Qiniu
+      
+
+      // save to  mongoDB
+      var img = {
+        name: '',
+        imageSrc: ''
+      }
+      this.Service.savePic(img, (res) => {
+        console.log(res);
+      });
+
+      // Canvas2image.saveAsPNG(canvas);
+      
+    } else {
+      this.turnToHome();
+    }
+
   }
 
   _convertCanvasToBase64(canvas) {

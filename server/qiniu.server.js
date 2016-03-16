@@ -52,7 +52,7 @@
   exports.deleteFile = function(key) {
     client.remove(config.bucket, key, function(err, res) {
       if (!err) {
-        console.log('OK');
+        console.log('Qiniu delete file... is OK !');
       } else {
         console.log(err);
       }

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import CanvasUtil from '../../libs/canvas.util';
 import qiniuC from '../../libs/qiniu.client';
 import template from './index.html';
 import './index.scss';
@@ -18,6 +19,7 @@ class panelCtrl {
     this.$scope = $scope;
     this.Service = Service;
     this.$stateParams = $stateParams;
+    this.CanvasUtil = new CanvasUtil();
     this.hasImage = false;
     
     this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
@@ -31,7 +33,7 @@ class panelCtrl {
       this.Service.findPic(id, (res) => {
         if (res) {
           self.hasImage = true;
-          self.renderToCanvas(res.imageSrc);
+          this.CanvasUtil.render(res.imageSrc);
         }
       });
     }
@@ -49,7 +51,7 @@ class panelCtrl {
           // render image
           self.imgSrc = window.URL.createObjectURL(file);
           self.hasImage = true;
-          self.renderToCanvas(self.imgSrc);
+          this.CanvasUtil.render(self.imgSrc);
 
           // upload to qiniu
           self.uploadImageToQiniu(file);
@@ -77,41 +79,6 @@ class panelCtrl {
     });
   }
 
-  renderToCanvas(imgSrc) {
-    var canvas = document.getElementById('plotitCanvas'),
-        context = canvas.getContext('2d'),
-        image = new Image()
-        image.src = imgSrc;
-
-    image.onload = () => {
-
-      var $panel = document.getElementsByClassName('panel-canvas')[0],
-          panelW = $panel.clientWidth,
-          panelH = $panel.clientHeight,
-          imageW = image.width,
-          imageH = image.height,
-          scale;
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-
-      canvas.width = panelW;
-      canvas.height = panelH;
-
-      if (imageW > imageH) {
-        scale = imageW / panelW;
-      } else {
-        scale = imageH / panelH;
-      }
-
-      imageW = imageW / scale;
-      imageH = imageH / scale;
-
-      var dx = (panelW - imageW) / 2,
-          dy = (panelH - imageH) / 2;
-
-      context.drawImage(image, dx, dy, imageW, imageH);
-    } 
-  }
 }
 
 panelCtrl.$inject = ['$scope', 'Service', '$stateParams'];

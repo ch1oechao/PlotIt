@@ -29,11 +29,11 @@ side-btn {
   }
 
   &.complete {
-    background-color: $orange;
+    background-color: $green;
   }
 
-  &.share {
-    background-color: $green;
+  &.undo {
+    background-color: $orange;
   }
 
 }
