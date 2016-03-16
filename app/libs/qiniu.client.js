@@ -1,6 +1,4 @@
-import jquery from 'jquery';
-
-(function($) {
+(function() {
   var config = {
     ACCESS_KEY: '-L7HvCAanSlX7WOP-9w0UzRmzUddhgC2Sgmj__Km',
     SECRET_KEY: 'y0DwGOrEO-1sAop0QGpLqI0zXPRGSUQgR8JB7Le1',
@@ -57,4 +55,4 @@ import jquery from 'jquery';
     xhr.send(formData);
   };
 
-})(jquery);
+})();
