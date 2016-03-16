@@ -14,67 +14,30 @@ let panelTpl = () => {
 };
 
 class panelCtrl {
-  constructor($scope, Upload, $timeout, $http, $stateParams) {
+  constructor($scope, Service, $stateParams) {
     this.$scope = $scope;
-    this.Upload = Upload;
-    this.$timeout = $timeout;
-    this.$http = $http;
+    this.Service = Service;
     this.$stateParams = $stateParams;
-    this.hasPic = false;
+    this.hasImage = false;
     
-    this.$scope.$watch('panel.files', this.upload(this.files));
-    this.$scope.$watch('panel.$stateParams', this.find(this.$stateParams));
+    this.$scope.$watch('panel.files', this.uploadImage(this.files));
+    this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
   }
 
-  _getToken(fn) {
-    this.$http({
-      method: 'get',
-      url: '/uptoken',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success((res) => {
-      var token = res.uptoken;
-      if (fn) {
-        fn(token)
-      } else {
-        return token;
-      }
-    }).error((err) => {
-      console.log(err);
-    })
-  }
-
-  find(item) {
+  renderImages(item) {
     var self = this;
     return (item) => {
       var id = item.id;
-      this.$http({
-        method: 'post',
-        url: '/item',
-        data: {id: id},
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (obj) => {
-          var str = [];
-          for (var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        }
-      }).success((res) => {
+      this.Service.findPic(id, (res) => {
         if (res) {
-          self.hasPic = true;
-          self.renderToCanvas(res.imageSrc);  
+          self.hasImage = true;
+          self.renderToCanvas(res.imageSrc);
         }
-      }).error((err) => {
-        console.log(err);
       });
     }
   }
 
-  upload(files) {
+  uploadImage(files) {
     var self = this,
         reader = new FileReader(),
         domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
@@ -88,18 +51,21 @@ class panelCtrl {
 
             // render image
             self.imgSrc = window.URL.createObjectURL(file);
-            self.hasPic = true;
+            self.hasImage = true;
             self.renderToCanvas(self.imgSrc);
 
-            // save image to mongoDB
-            self._getToken((token) => {
+            // gen Qiniu token
+            self.Service.genToken((token) => {
+              // uploadImage image to Qiniu
               qiniuC.uploadImage(file, token, file.name, (imgSrc) => {
-                // save fileName & imgSrc
+                // save file to MongoDB
                 var img = {
                   name: file.name,
                   imageSrc: imgSrc
                 }
-                self.saveToMongoDB(img);
+                self.Service.savePic(img, (res) => {
+                  console.log(res);
+                });
               });
             });
 
@@ -107,28 +73,6 @@ class panelCtrl {
         }
       }
     }
-  }
-
-  saveToMongoDB(img) {
-    this.$http({
-      method: 'post',
-      url: '/save',
-      data: img,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      transformRequest: (obj) => {
-        var str = [];
-        for (var p in obj) {
-          str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-        }
-        return str.join('&');
-      }
-    }).success((res) => {
-      console.log(res);
-    }).error((err) => {
-      console.log(err);
-    });
   }
 
   renderToCanvas(imgSrc) {
@@ -168,7 +112,7 @@ class panelCtrl {
   }
 }
 
-panelCtrl.$inject = ['$scope', 'Upload', '$timeout', '$http', '$stateParams'];
+panelCtrl.$inject = ['$scope', 'Service', '$stateParams'];
 
 export default {
   tpl: panelTpl,

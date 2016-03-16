@@ -16,47 +16,23 @@ let libraryTpl = () => {
 };
 
 class libraryCtrl {
-  constructor($http, $location) {
-    this.$http = $http;
+  constructor($location, Service) {
     this.$location = $location;
+    this.Service = Service;
     this.pics = [];
   }
 
   getImages() {
-    this.$http({
-      method: 'get',
-      url: '/images',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success((res) => {
+    this.Service.getPics((res) => {
       this.pics = res.list;
-    }).error((err) => {
-      console.log(err);
-    })
+    });
   }
 
   findImage(id) {
     var self = this;
-    this.$http({
-      method: 'post',
-      url: '/item',
-      data: {id: id},
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      transformRequest: (obj) => {
-        var str = [];
-        for (var p in obj) {
-          str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-        }
-        return str.join('&');
-      }
-    }).success((res) => {
-      self.$location.url('/plot/' + res._id)
-    }).error((err) => {
-      console.log(err);
-    });
+    this.Service.findPic(id, (res) => {
+      self.$location.url('/plot/' + res._id);
+    })
   }
 
   deleteImage(id) {
@@ -69,7 +45,7 @@ class libraryCtrl {
 
 }
 
-libraryCtrl.$inject = ['$http', '$location'];
+libraryCtrl.$inject = ['$location', 'Service'];
 
 export default {
   tpl: libraryTpl,

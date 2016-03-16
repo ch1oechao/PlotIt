@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4" ng-repeat="item in library.pics">
       <div class="library-item">
-        <img src={{item.imageSrc}} class="item-img">
+        <img ng-src="{{item.imageSrc}}?imageView2/2/w/420" class="item-img">
         <div class="item-detail">
           <p class="item-name">{{item.name}}</p>
           <div class="item-setting">

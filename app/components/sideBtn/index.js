@@ -22,9 +22,9 @@ let sideBtnTpl = () => {
 };
 
 class sideBtnCtrl {
-  constructor($location, $http) {
+  constructor($location, Service) {
     this.$location = $location;
-    this.$http = $http;
+    this.Service = Service;
     this.isPlot = false;
   }
 
@@ -36,59 +36,24 @@ class sideBtnCtrl {
     this.$location.url('/');
   }
 
-  _getToken(fn) {
-    this.$http({
-      method: 'get',
-      url: '/uptoken',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success((res) => {
-      var token = res.uptoken;
-      if (fn) {
-        fn(token)
-      } else {
-        return token;
-      }
-    }).error((err) => {
-      console.log(err);
-    })
-  }
-
   saveToImage() {
     var canvas = document.getElementById('plotitCanvas'),
         context = canvas.getContext('2d');
 
     var imageBase64 = this._convertCanvasToBase64(canvas);
 
-    console.log(canvas);
-
-    // this.$http({
-    //   method: 'post',
-    //   url: '/save',
-    //   data: {
-    //     imgBase: 'imageBase64'
-    //   },
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    //   },
-    //   transformRequest: (obj) => {
-    //     var str = [];
-    //     for (var p in obj) {
-    //       str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-    //     }
-    //     return str.join('&');
-    //   }
-    // }).success((res) => {
-    //   console.log(res);
-    // }).error((err) => {
-    //   console.log(err);
-    // });
-
-    // this._getToken((token) => {
-    //   qiniuC.uploadImage(image, token, '12345.png');
-    // });
+    // upload to Qiniu
     
+
+    // save to  mongoDB
+    var img = {
+      name: '',
+      imageSrc: ''
+    }
+    this.Service.savePic(img, (res) => {
+      console.log(res);
+    });
+
     // Canvas2image.saveAsPNG(canvas);
   }
 
@@ -98,7 +63,7 @@ class sideBtnCtrl {
 
 }
 
-sideBtnCtrl.$inject = ['$location', '$http'];
+sideBtnCtrl.$inject = ['$location', 'Service'];
 
 export default {
   tpl: sideBtnTpl,

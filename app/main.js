@@ -2,6 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngRoute from 'angular-route';
 import routes from './main.routes';
+import services from './main.services';
 import ngFileUpload from 'ng-file-upload';
 
 import './public/styles/main.scss';
@@ -17,6 +18,9 @@ const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute, ngFileUpload])
 
 // config
 plotitApp.config(routes);
+
+// services
+plotitApp.service('Service', services);
 
 // directive
 plotitApp

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "97266c08158c3a63d2dd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "95ee6c72985395e1921e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -576,7 +576,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./app/main.js */20);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */52);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */53);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 25);
+	__webpack_require__(/*! ./angular */ 26);
 	module.exports = angular;
 
 /***/ },
@@ -918,7 +918,7 @@
 	
 	
 	// module
-	exports.push([module.id, "library {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 130%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 20%;\n  transform: translate(-50%, -20%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
+	exports.push([module.id, "library {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 562px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
 	
 	// exports
 
@@ -1017,7 +1017,7 @@
 
 	'use strict';
 	
-	var _jquery = __webpack_require__(/*! jquery */ 31);
+	var _jquery = __webpack_require__(/*! jquery */ 32);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -1324,11 +1324,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 40);
+	var _index = __webpack_require__(/*! ./index.html */ 41);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 46);
+	__webpack_require__(/*! ./index.scss */ 47);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1348,11 +1348,11 @@
 	};
 	
 	var libraryCtrl = function () {
-	  function libraryCtrl($http, $location) {
+	  function libraryCtrl($location, Service) {
 	    _classCallCheck(this, libraryCtrl);
 	
-	    this.$http = $http;
 	    this.$location = $location;
+	    this.Service = Service;
 	    this.pics = [];
 	  }
 	
@@ -1361,40 +1361,16 @@
 	    value: function getImages() {
 	      var _this = this;
 	
-	      this.$http({
-	        method: 'get',
-	        url: '/images',
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded'
-	        }
-	      }).success(function (res) {
+	      this.Service.getPics(function (res) {
 	        _this.pics = res.list;
-	      }).error(function (err) {
-	        console.log(err);
 	      });
 	    }
 	  }, {
 	    key: 'findImage',
 	    value: function findImage(id) {
 	      var self = this;
-	      this.$http({
-	        method: 'post',
-	        url: '/item',
-	        data: { id: id },
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	        },
-	        transformRequest: function transformRequest(obj) {
-	          var str = [];
-	          for (var p in obj) {
-	            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	          }
-	          return str.join('&');
-	        }
-	      }).success(function (res) {
+	      this.Service.findPic(id, function (res) {
 	        self.$location.url('/plot/' + res._id);
-	      }).error(function (err) {
-	        console.log(err);
 	      });
 	    }
 	  }, {
@@ -1412,7 +1388,7 @@
 	  return libraryCtrl;
 	}();
 	
-	libraryCtrl.$inject = ['$http', '$location'];
+	libraryCtrl.$inject = ['$location', 'Service'];
 	
 	exports.default = {
 	  tpl: libraryTpl,
@@ -1436,11 +1412,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 41);
+	var _index = __webpack_require__(/*! ./index.html */ 42);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 47);
+	__webpack_require__(/*! ./index.scss */ 48);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1490,11 +1466,11 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 42);
+	var _index = __webpack_require__(/*! ./index.html */ 43);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 48);
+	__webpack_require__(/*! ./index.scss */ 49);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1511,75 +1487,37 @@
 	};
 	
 	var panelCtrl = function () {
-	  function panelCtrl($scope, Upload, $timeout, $http, $stateParams) {
+	  function panelCtrl($scope, Service, $stateParams) {
 	    _classCallCheck(this, panelCtrl);
 	
 	    this.$scope = $scope;
-	    this.Upload = Upload;
-	    this.$timeout = $timeout;
-	    this.$http = $http;
+	    this.Service = Service;
 	    this.$stateParams = $stateParams;
-	    this.hasPic = false;
+	    this.hasImage = false;
 	
-	    this.$scope.$watch('panel.files', this.upload(this.files));
-	    this.$scope.$watch('panel.$stateParams', this.find(this.$stateParams));
+	    this.$scope.$watch('panel.files', this.uploadImage(this.files));
+	    this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
 	  }
 	
 	  _createClass(panelCtrl, [{
-	    key: '_getToken',
-	    value: function _getToken(fn) {
-	      this.$http({
-	        method: 'get',
-	        url: '/uptoken',
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded'
-	        }
-	      }).success(function (res) {
-	        var token = res.uptoken;
-	        if (fn) {
-	          fn(token);
-	        } else {
-	          return token;
-	        }
-	      }).error(function (err) {
-	        console.log(err);
-	      });
-	    }
-	  }, {
-	    key: 'find',
-	    value: function find(item) {
+	    key: 'renderImages',
+	    value: function renderImages(item) {
 	      var _this = this;
 	
 	      var self = this;
 	      return function (item) {
 	        var id = item.id;
-	        _this.$http({
-	          method: 'post',
-	          url: '/item',
-	          data: { id: id },
-	          headers: {
-	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	          },
-	          transformRequest: function transformRequest(obj) {
-	            var str = [];
-	            for (var p in obj) {
-	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	            }
-	            return str.join('&');
-	          }
-	        }).success(function (res) {
+	        _this.Service.findPic(id, function (res) {
 	          if (res) {
-	            self.hasPic = true;
+	            self.hasImage = true;
 	            self.renderToCanvas(res.imageSrc);
 	          }
-	        }).error(function (err) {
-	          console.log(err);
 	        });
 	      };
 	    }
 	  }, {
-	    key: 'upload',
-	    value: function upload(files) {
+	    key: 'uploadImage',
+	    value: function uploadImage(files) {
 	      var self = this,
 	          reader = new FileReader(),
 	          domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
@@ -1593,47 +1531,27 @@
 	
 	              // render image
 	              self.imgSrc = window.URL.createObjectURL(file);
-	              self.hasPic = true;
+	              self.hasImage = true;
 	              self.renderToCanvas(self.imgSrc);
 	
-	              // save image to mongoDB
-	              self._getToken(function (token) {
+	              // gen Qiniu token
+	              self.Service.genToken(function (token) {
+	                // uploadImage image to Qiniu
 	                _qiniu2.default.uploadImage(file, token, file.name, function (imgSrc) {
-	                  // save fileName & imgSrc
+	                  // save file to MongoDB
 	                  var img = {
 	                    name: file.name,
 	                    imageSrc: imgSrc
 	                  };
-	                  self.saveToMongoDB(img);
+	                  self.Service.savePic(img, function (res) {
+	                    console.log(res);
+	                  });
 	                });
 	              });
 	            }
 	          }
 	        }
 	      };
-	    }
-	  }, {
-	    key: 'saveToMongoDB',
-	    value: function saveToMongoDB(img) {
-	      this.$http({
-	        method: 'post',
-	        url: '/save',
-	        data: img,
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	        },
-	        transformRequest: function transformRequest(obj) {
-	          var str = [];
-	          for (var p in obj) {
-	            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	          }
-	          return str.join('&');
-	        }
-	      }).success(function (res) {
-	        console.log(res);
-	      }).error(function (err) {
-	        console.log(err);
-	      });
 	    }
 	  }, {
 	    key: 'renderToCanvas',
@@ -1677,7 +1595,7 @@
 	  return panelCtrl;
 	}();
 	
-	panelCtrl.$inject = ['$scope', 'Upload', '$timeout', '$http', '$stateParams'];
+	panelCtrl.$inject = ['$scope', 'Service', '$stateParams'];
 	
 	exports.default = {
 	  tpl: panelTpl,
@@ -1703,7 +1621,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 43);
+	var _index = __webpack_require__(/*! ./index.html */ 44);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -1715,7 +1633,7 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 49);
+	__webpack_require__(/*! ./index.scss */ 50);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1739,11 +1657,11 @@
 	};
 	
 	var sideBtnCtrl = function () {
-	  function sideBtnCtrl($location, $http) {
+	  function sideBtnCtrl($location, Service) {
 	    _classCallCheck(this, sideBtnCtrl);
 	
 	    this.$location = $location;
-	    this.$http = $http;
+	    this.Service = Service;
 	    this.isPlot = false;
 	  }
 	
@@ -1758,26 +1676,6 @@
 	      this.$location.url('/');
 	    }
 	  }, {
-	    key: '_getToken',
-	    value: function _getToken(fn) {
-	      this.$http({
-	        method: 'get',
-	        url: '/uptoken',
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded'
-	        }
-	      }).success(function (res) {
-	        var token = res.uptoken;
-	        if (fn) {
-	          fn(token);
-	        } else {
-	          return token;
-	        }
-	      }).error(function (err) {
-	        console.log(err);
-	      });
-	    }
-	  }, {
 	    key: 'saveToImage',
 	    value: function saveToImage() {
 	      var canvas = document.getElementById('plotitCanvas'),
@@ -1785,33 +1683,16 @@
 	
 	      var imageBase64 = this._convertCanvasToBase64(canvas);
 	
-	      console.log(canvas);
+	      // upload to Qiniu
 	
-	      // this.$http({
-	      //   method: 'post',
-	      //   url: '/save',
-	      //   data: {
-	      //     imgBase: 'imageBase64'
-	      //   },
-	      //   headers: {
-	      //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	      //   },
-	      //   transformRequest: (obj) => {
-	      //     var str = [];
-	      //     for (var p in obj) {
-	      //       str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	      //     }
-	      //     return str.join('&');
-	      //   }
-	      // }).success((res) => {
-	      //   console.log(res);
-	      // }).error((err) => {
-	      //   console.log(err);
-	      // });
-	
-	      // this._getToken((token) => {
-	      //   qiniuC.uploadImage(image, token, '12345.png');
-	      // });
+	      // save to  mongoDB
+	      var img = {
+	        name: '',
+	        imageSrc: ''
+	      };
+	      this.Service.savePic(img, function (res) {
+	        console.log(res);
+	      });
 	
 	      // Canvas2image.saveAsPNG(canvas);
 	    }
@@ -1825,7 +1706,7 @@
 	  return sideBtnCtrl;
 	}();
 	
-	sideBtnCtrl.$inject = ['$location', '$http'];
+	sideBtnCtrl.$inject = ['$location', 'Service'];
 	
 	exports.default = {
 	  tpl: sideBtnTpl,
@@ -1849,11 +1730,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 44);
+	var _index = __webpack_require__(/*! ./index.html */ 45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 50);
+	__webpack_require__(/*! ./index.scss */ 51);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2178,11 +2059,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 24);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 25);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 23);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 24);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
@@ -2190,11 +2071,15 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 33);
+	var _main3 = __webpack_require__(/*! ./main.services */ 22);
+	
+	var _main4 = _interopRequireDefault(_main3);
+	
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 34);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 51);
+	__webpack_require__(/*! ./public/styles/main.scss */ 52);
 	
 	var _library = __webpack_require__(/*! ./components/library */ 14);
 	
@@ -2223,6 +2108,9 @@
 	
 	// config
 	plotitApp.config(_main2.default);
+	
+	// services
+	plotitApp.service('Service', _main4.default);
 	
 	// directive
 	plotitApp.directive('library', _library2.default.tpl).directive('sidebar', _sidebar2.default.tpl).directive('sideBtn', _sideBtn2.default.tpl).directive('panel', _panel2.default.tpl).directive('palette', _palette2.default.tpl);
@@ -2257,7 +2145,7 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 45)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 46)
 	  }).state('plot', {
 	    url: '/plot',
 	    template: __webpack_require__(/*! ./views/index.plot.html */ 13)
@@ -2269,6 +2157,137 @@
 
 /***/ },
 /* 22 */
+/*!******************************!*\
+  !*** ./app/main.services.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var service = function () {
+	  function service($http) {
+	    _classCallCheck(this, service);
+	
+	    this.$http = $http;
+	  }
+	
+	  _createClass(service, [{
+	    key: 'genToken',
+	    value: function genToken(fn) {
+	      this.$http({
+	        method: 'get',
+	        url: '/uptoken',
+	        headers: {
+	          'Content-Type': 'application/x-www-form-urlencoded'
+	        }
+	      }).success(function (res) {
+	        var token = res.uptoken;
+	        if (fn) {
+	          fn(token);
+	        } else {
+	          return token;
+	        }
+	      }).error(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
+	    key: 'getPics',
+	    value: function getPics(fn) {
+	      this.$http({
+	        method: 'get',
+	        url: '/images',
+	        headers: {
+	          'Content-Type': 'application/x-www-form-urlencoded'
+	        }
+	      }).success(function (res) {
+	        if (fn) {
+	          fn(res);
+	        } else {
+	          return res;
+	        }
+	      }).error(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
+	    key: 'findPic',
+	    value: function findPic(id, fn) {
+	      if (id) {
+	        this.$http({
+	          method: 'post',
+	          url: '/item',
+	          data: { id: id },
+	          headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	          },
+	          transformRequest: function transformRequest(obj) {
+	            var str = [];
+	            for (var p in obj) {
+	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	            }
+	            return str.join('&');
+	          }
+	        }).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'savePic',
+	    value: function savePic(img, fn) {
+	      if (img.name && img.imageSrc) {
+	        this.$http({
+	          method: 'post',
+	          url: '/save',
+	          data: img,
+	          headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	          },
+	          transformRequest: function transformRequest(obj) {
+	            var str = [];
+	            for (var p in obj) {
+	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	            }
+	            return str.join('&');
+	          }
+	        }).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }]);
+	
+	  return service;
+	}();
+	
+	exports.default = service;
+	
+	
+	service.$inject = ['$http'];
+
+/***/ },
+/* 23 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -3258,7 +3277,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -3266,11 +3285,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 22);
+	__webpack_require__(/*! ./angular-route */ 23);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 24 */
+/* 25 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -5547,7 +5566,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 25 */
+/* 26 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -21358,7 +21377,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 26 */
+/* 27 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -21538,7 +21557,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -21552,7 +21571,7 @@
 	};
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -21561,14 +21580,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 30),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 29),
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 31),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 30),
 	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 11),
 	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 11)
 	};
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -21723,7 +21742,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -21886,7 +21905,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!*********************************!*\
   !*** ./~/jquery/dist/jquery.js ***!
   \*********************************/
@@ -23485,7 +23504,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/module.js */ 12)(module)))
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -26250,7 +26269,7 @@
 	}]);
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -26258,11 +26277,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 32);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 33);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -26354,7 +26373,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -26426,7 +26445,7 @@
 	};
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -26434,11 +26453,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 34);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 35);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 35);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 36);
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -26446,14 +26465,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 27)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 28)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -26489,7 +26508,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 26);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 27);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -26504,7 +26523,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 28).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 29).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -26535,7 +26554,7 @@
 	}
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -26651,16 +26670,16 @@
 	};
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img src={{item.imageSrc}} class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-magic\" ng-click=\"library.findImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-magic\" ng-click=\"library.findImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -26669,16 +26688,16 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn side-state=\"plot\"></side-btn>\n"
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasPic\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasPic\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>"
+	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>"
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -26687,7 +26706,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn back\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-arrow-left\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.saveToImage()\">\n  <i class=\"fa fa-check\"></i>\n</div>\n<div class=\"sidebtn share\" ng-show=\"sideBtn.isPlot\">\n  <i class=\"fa fa-share-alt\"></i>\n</div>\n"
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -26696,7 +26715,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n"
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -26705,7 +26724,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n</div>\n"
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -26734,7 +26753,7 @@
 	}
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -26763,7 +26782,7 @@
 	}
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -26792,7 +26811,7 @@
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -26821,7 +26840,7 @@
 	}
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -26850,7 +26869,7 @@
 	}
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -26879,7 +26898,7 @@
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -26897,7 +26916,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 36);
+	  var querystring = __webpack_require__(/*! querystring */ 37);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -26965,11 +26984,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 37);
+	var strip = __webpack_require__(/*! strip-ansi */ 38);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 38);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 39);
 	}
 	
 	function problems(type, obj) {
@@ -26986,7 +27005,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 39);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 40);
 	
 	var customHandler;
 	function processMessage(obj) {

@@ -18,7 +18,7 @@ library {
 .library-container {
   width: 86%;
   height: 84%;
-  max-height: 560px;
+  max-height: 562px;
   margin: 8% auto;
   overflow-y: scroll;
 }
@@ -43,7 +43,7 @@ library {
     }
 
     .item-img {
-      width: 130%;
+      width: 136%;
     }
   }
 }
@@ -51,8 +51,8 @@ library {
 .item-img {
   position: absolute;
   left: 50%;
-  top: 20%;
-  transform: translate(-50%, -20%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 115%;
   transition: all 120ms linear;
 }
