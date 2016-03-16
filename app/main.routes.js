@@ -6,22 +6,20 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
 
   $urlRouterProvider.when('', '/home');
   $urlRouterProvider.when('/', '/home');
-  $urlRouterProvider.otherwise('/home');
+  // $urlRouterProvider.otherwise('/home');
 
   $stateProvider
     .state('home', {
       url: '/home',
-      template: require('../views/index.display.html'),
-      onEnter: () => {
-        console.log('enter HOME');
-      }
+      template: require('./views/index.display.html')
     })
     .state('plot', {
       url: '/plot',
-      template: require('../views/index.plot.html'),
-      onEnter: () => {
-        console.log('enter CANVAS');
-      }
+      template: require('./views/index.plot.html')
+    })
+    .state('/plot/:id', {
+      url: '/plot/:id',
+      template: require('./views/index.plot.html')
     })
 }
  

@@ -7,11 +7,13 @@
 
     app.get('/', api.index);
 
-    app.get('/pics', api.getPics);
+    app.get('/images', api.getImages);
 
     app.get('/uptoken', api.genToken);
 
     app.post('/save', api.saveImage);
+
+    app.post('/item', api.getItem);
 
     app.get('/*', (req, res) => {
       res.redirect('/');

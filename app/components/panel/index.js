@@ -14,14 +14,16 @@ let panelTpl = () => {
 };
 
 class panelCtrl {
-  constructor($scope, Upload, $timeout, $http) {
+  constructor($scope, Upload, $timeout, $http, $stateParams) {
     this.$scope = $scope;
     this.Upload = Upload;
     this.$timeout = $timeout;
     this.$http = $http;
+    this.$stateParams = $stateParams;
     this.hasPic = false;
     
     this.$scope.$watch('panel.files', this.upload(this.files));
+    this.$scope.$watch('panel.$stateParams', this.find(this.$stateParams));
   }
 
   _getToken(fn) {
@@ -41,6 +43,35 @@ class panelCtrl {
     }).error((err) => {
       console.log(err);
     })
+  }
+
+  find(item) {
+    var self = this;
+    return (item) => {
+      var id = item.id;
+      this.$http({
+        method: 'post',
+        url: '/item',
+        data: {id: id},
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        transformRequest: (obj) => {
+          var str = [];
+          for (var p in obj) {
+            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+          }
+          return str.join('&');
+        }
+      }).success((res) => {
+        if (res) {
+          self.hasPic = true;
+          self.renderToCanvas(res.imageSrc);  
+        }
+      }).error((err) => {
+        console.log(err);
+      });
+    }
   }
 
   upload(files) {
@@ -64,7 +95,11 @@ class panelCtrl {
             self._getToken((token) => {
               qiniuC.uploadImage(file, token, file.name, (imgSrc) => {
                 // save fileName & imgSrc
-                self.saveToMongoDB(file.name, imgSrc);
+                var img = {
+                  name: file.name,
+                  imageSrc: imgSrc
+                }
+                self.saveToMongoDB(img);
               });
             });
 
@@ -74,14 +109,11 @@ class panelCtrl {
     }
   }
 
-  saveToMongoDB(fileName, imgSrc) {
+  saveToMongoDB(img) {
     this.$http({
       method: 'post',
       url: '/save',
-      data: {
-        fileName: fileName,
-        imageSrc: imgSrc
-      },
+      data: img,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
@@ -136,7 +168,7 @@ class panelCtrl {
   }
 }
 
-panelCtrl.$inject = ['$scope', 'Upload', '$timeout', '$http'];
+panelCtrl.$inject = ['$scope', 'Upload', '$timeout', '$http', '$stateParams'];
 
 export default {
   tpl: panelTpl,

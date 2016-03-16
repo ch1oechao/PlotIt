@@ -10,7 +10,14 @@ let sideBtnTpl = () => {
     controller: 'sideBtnCtrl',
     controllerAs: 'sideBtn',
     bindToController: true,
-    restrict: 'E'
+    restrict: 'E',
+    link: (scope, element, attrs) => {
+      if (attrs.sideState === 'plot') {
+        scope.sideBtn.isPlot = true;
+      } else {
+        scope.sideBtn.isPlot = false;
+      }
+    }
   }
 };
 
@@ -22,12 +29,10 @@ class sideBtnCtrl {
   }
 
   turnToCanvas() {
-    this.isPlot = true;
     this.$location.url('/plot');
   }
 
   turnToHome() {
-    this.isPlot = false;
     this.$location.url('/');
   }
 
@@ -55,6 +60,8 @@ class sideBtnCtrl {
         context = canvas.getContext('2d');
 
     var imageBase64 = this._convertCanvasToBase64(canvas);
+
+    console.log(canvas);
 
     // this.$http({
     //   method: 'post',

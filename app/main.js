@@ -4,13 +4,13 @@ import ngRoute from 'angular-route';
 import routes from './main.routes';
 import ngFileUpload from 'ng-file-upload';
 
-import '../public/styles/main.scss';
+import './public/styles/main.scss';
 
-import library from './library';
-import sidebar from './sidebar';
-import sideBtn from './sideBtn';
-import panel from './panel';
-import palette from './palette';
+import library from './components/library';
+import sidebar from './components/sidebar';
+import sideBtn from './components/sideBtn';
+import panel from './components/panel';
+import palette from './components/palette';
 
 const MODULE_NAME = 'plotit';
 const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute, ngFileUpload]);

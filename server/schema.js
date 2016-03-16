@@ -8,10 +8,10 @@
       unique: true,
       type: String
     },
-    imageData: {
+    imageSrc: {
       type: String
     },
-    config: {
+    imageConfig: {
       type: Object
     },
     meta: {
