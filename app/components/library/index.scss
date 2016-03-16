@@ -76,9 +76,16 @@ library {
   left: 1em;
   line-height: 1em;
   width: 80%;
+  height: 75%;
+  font-weight: 700;
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
+  z-index: 2;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .item-setting {
@@ -87,6 +94,7 @@ library {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+  z-index: 4;
 
   .fa-fw {
     margin: 0 .3em;

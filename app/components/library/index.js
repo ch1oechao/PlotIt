@@ -16,9 +16,10 @@ let libraryTpl = () => {
 };
 
 class libraryCtrl {
-  constructor($location, Service) {
+  constructor($location, Service, $route) {
     this.$location = $location;
     this.Service = Service;
+    this.$route = $route;
     this.pics = [];
   }
 
@@ -35,8 +36,23 @@ class libraryCtrl {
     })
   }
 
+  downloadImage(id) {
+    var self = this;
+    this.Service.downloadPic(id, (res) => {
+      if (res.url) {
+        window.open(res.url);
+      }
+    });
+  }
+
   deleteImage(id) {
-    console.log('delete ' + id);
+    var self = this;
+    this.Service.deletePic(id, (res) => {
+      if (res.success) {
+        // reload images
+        this.getImages();
+      }
+    });
   }
 
   shareImage(id) {
@@ -45,7 +61,7 @@ class libraryCtrl {
 
 }
 
-libraryCtrl.$inject = ['$location', 'Service'];
+libraryCtrl.$inject = ['$location', 'Service', '$route'];
 
 export default {
   tpl: libraryTpl,

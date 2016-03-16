@@ -7,27 +7,9 @@
       qnServer = require('./qiniu.server'),
       Pic = mongoose.model('Pic');
 
-  exports.index = function(req, res, next) {
+  exports.index = function(req, res) {
     res.render('index');
   };
-
-  exports.getImages = function(req, res) {
-    Pic.fetch(function(err, pics) {
-      if (err) {
-        throw err;
-      }
-      res.send({
-        list: pics
-      });
-    })
-  };
-
-  exports.getItem = function(req, res) {
-    var _id = req.body.id;
-    Pic.findById(_id, function(err, item) {
-      res.send(item);
-    });
-  }
 
   exports.genToken = function(req, res) {
     var key = req.body.key;
@@ -38,6 +20,24 @@
       uptoken: qnServer.uptoken()
     });
   };
+
+  exports.getImageList = function(req, res) {
+    Pic.fetch(function(err, pics) {
+      if (err) {
+        throw err;
+      }
+      res.send({
+        list: pics
+      });
+    })
+  };
+
+  exports.getImage = function(req, res) {
+    var _id = req.body.id;
+    Pic.findById(_id, function(err, item) {
+      res.send(item);
+    });
+  }
 
   exports.saveImage = function(req, res) {
     var reqData = req.body;
@@ -57,6 +57,32 @@
 
     }
   };
+
+  exports.delImageFromQiniu = function(req, res, next) {
+    var id = req.params.id;
+    Pic.findById({_id: id}, function(err, item) {
+      qnServer.deleteFile(item.name);
+      next();
+    });
+
+  };
+
+  exports.delImageFromDB = function(req, res) {
+    var id = req.params.id;
+    Pic.remove({_id: id}, function() {
+      res.json({success: true});
+    }); 
+  };
+
+  exports.downloadImageFromQiniu = function(req, res) {
+    var id = req.body.id;
+    Pic.findById({_id: id}, function(err, item) {
+      var rqUrl = qnServer.getDownloadUrl(item.name);
+      res.json({
+        url: rqUrl
+      });
+    });
+  }
 
 })();
  

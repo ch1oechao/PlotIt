@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "08d60cc58726a2005f5b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9b9897d68d6cfdedc9f0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -918,7 +918,7 @@
 	
 	
 	// module
-	exports.push([module.id, "library {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 562px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
+	exports.push([module.id, "library {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 562px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  height: 75%;\n  font-weight: 700;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all;\n  z-index: 2; }\n  .item-name:hover {\n    color: #08D9D6; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center;\n  z-index: 4; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
 	
 	// exports
 
@@ -952,7 +952,7 @@
 	
 	
 	// module
-	exports.push([module.id, "panel {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n\n#plotitCanvas {\n  width: 100%;\n  height: 100%;\n  background: transparent; }\n", ""]);
+	exports.push([module.id, "panel {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n  .panel-upload .drop-box {\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    padding-top: 35%; }\n\n#plotitCanvas {\n  width: 100%;\n  height: 100%;\n  background: transparent; }\n", ""]);
 	
 	// exports
 
@@ -1322,11 +1322,12 @@
 	};
 	
 	var libraryCtrl = function () {
-	  function libraryCtrl($location, Service) {
+	  function libraryCtrl($location, Service, $route) {
 	    _classCallCheck(this, libraryCtrl);
 	
 	    this.$location = $location;
 	    this.Service = Service;
+	    this.$route = $route;
 	    this.pics = [];
 	  }
 	
@@ -1348,9 +1349,27 @@
 	      });
 	    }
 	  }, {
+	    key: 'downloadImage',
+	    value: function downloadImage(id) {
+	      var self = this;
+	      this.Service.downloadPic(id, function (res) {
+	        if (res.url) {
+	          window.open(res.url);
+	        }
+	      });
+	    }
+	  }, {
 	    key: 'deleteImage',
 	    value: function deleteImage(id) {
-	      console.log('delete ' + id);
+	      var _this2 = this;
+	
+	      var self = this;
+	      this.Service.deletePic(id, function (res) {
+	        if (res.success) {
+	          // reload images
+	          _this2.getImages();
+	        }
+	      });
 	    }
 	  }, {
 	    key: 'shareImage',
@@ -1362,7 +1381,7 @@
 	  return libraryCtrl;
 	}();
 	
-	libraryCtrl.$inject = ['$location', 'Service'];
+	libraryCtrl.$inject = ['$location', 'Service', '$route'];
 	
 	exports.default = {
 	  tpl: libraryTpl,
@@ -1469,7 +1488,7 @@
 	    this.$stateParams = $stateParams;
 	    this.hasImage = false;
 	
-	    this.$scope.$watch('panel.files', this.uploadImage(this.files));
+	    this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
 	    this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
 	  }
 	
@@ -1490,42 +1509,45 @@
 	      };
 	    }
 	  }, {
-	    key: 'uploadImage',
-	    value: function uploadImage(files) {
+	    key: 'uploadImageToCanvas',
+	    value: function uploadImageToCanvas(files) {
 	      var self = this,
 	          reader = new FileReader(),
 	          domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
 	
 	      return function (files) {
 	        if (files && files.length) {
+	          var file = files[0];
+	          if (!file.$error) {
+	            // render image
+	            self.imgSrc = window.URL.createObjectURL(file);
+	            self.hasImage = true;
+	            self.renderToCanvas(self.imgSrc);
 	
-	          for (var i = 0; i < files.length; i++) {
-	            var file = files[i];
-	            if (!file.$error) {
-	
-	              // render image
-	              self.imgSrc = window.URL.createObjectURL(file);
-	              self.hasImage = true;
-	              self.renderToCanvas(self.imgSrc);
-	
-	              // gen Qiniu token
-	              self.Service.genToken(function (token) {
-	                // uploadImage image to Qiniu
-	                _qiniu2.default.uploadImage(file, token, file.name, function (imgSrc) {
-	                  // save file to MongoDB
-	                  var img = {
-	                    name: file.name,
-	                    imageSrc: imgSrc
-	                  };
-	                  self.Service.savePic(img, function (res) {
-	                    console.log(res);
-	                  });
-	                });
-	              });
-	            }
+	            // upload to qiniu
+	            self.uploadImageToQiniu(file);
 	          }
 	        }
 	      };
+	    }
+	  }, {
+	    key: 'uploadImageToQiniu',
+	    value: function uploadImageToQiniu(file) {
+	      var self = this;
+	      // gen Qiniu token
+	      this.Service.genToken(function (token) {
+	        // uploadImage image to Qiniu
+	        _qiniu2.default.uploadImage(file, token, file.name, function (imgSrc) {
+	          // save file to MongoDB
+	          var img = {
+	            name: file.name,
+	            imageSrc: imgSrc
+	          };
+	          self.Service.savePic(img, function (res) {
+	            console.log(res);
+	          });
+	        });
+	      });
 	    }
 	  }, {
 	    key: 'renderToCanvas',
@@ -2178,7 +2200,7 @@
 	    value: function getPics(fn) {
 	      this.$http({
 	        method: 'get',
-	        url: '/images',
+	        url: '/list',
 	        headers: {
 	          'Content-Type': 'application/x-www-form-urlencoded'
 	        }
@@ -2198,7 +2220,7 @@
 	      if (id) {
 	        this.$http({
 	          method: 'post',
-	          url: '/item',
+	          url: '/image',
 	          data: { id: id },
 	          headers: {
 	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -2229,6 +2251,50 @@
 	          method: 'post',
 	          url: '/save',
 	          data: img,
+	          headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	          },
+	          transformRequest: function transformRequest(obj) {
+	            var str = [];
+	            for (var p in obj) {
+	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	            }
+	            return str.join('&');
+	          }
+	        }).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'deletePic',
+	    value: function deletePic(id, fn) {
+	      if (id) {
+	        this.$http.delete('/image/' + id).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'downloadPic',
+	    value: function downloadPic(id, fn) {
+	      if (id) {
+	        this.$http({
+	          method: 'post',
+	          url: '/download',
+	          data: { id: id },
 	          headers: {
 	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 	          },
@@ -25071,7 +25137,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-magic\" ng-click=\"library.findImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 41 */

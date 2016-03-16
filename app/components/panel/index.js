@@ -20,7 +20,7 @@ class panelCtrl {
     this.$stateParams = $stateParams;
     this.hasImage = false;
     
-    this.$scope.$watch('panel.files', this.uploadImage(this.files));
+    this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
     this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
   }
 
@@ -37,42 +37,44 @@ class panelCtrl {
     }
   }
 
-  uploadImage(files) {
+  uploadImageToCanvas(files) {
     var self = this,
         reader = new FileReader(),
         domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
 
     return (files) => {
       if (files && files.length) {
+        var file = files[0];
+        if (!file.$error) {
+          // render image
+          self.imgSrc = window.URL.createObjectURL(file);
+          self.hasImage = true;
+          self.renderToCanvas(self.imgSrc);
 
-        for (var i = 0; i < files.length; i++) {
-          var file = files[i];
-          if (!file.$error) {
-
-            // render image
-            self.imgSrc = window.URL.createObjectURL(file);
-            self.hasImage = true;
-            self.renderToCanvas(self.imgSrc);
-
-            // gen Qiniu token
-            self.Service.genToken((token) => {
-              // uploadImage image to Qiniu
-              qiniuC.uploadImage(file, token, file.name, (imgSrc) => {
-                // save file to MongoDB
-                var img = {
-                  name: file.name,
-                  imageSrc: imgSrc
-                }
-                self.Service.savePic(img, (res) => {
-                  console.log(res);
-                });
-              });
-            });
-
-          }
+          // upload to qiniu
+          self.uploadImageToQiniu(file);
+          
         }
       }
     }
+  }
+
+  uploadImageToQiniu(file) {
+    var self = this;
+    // gen Qiniu token
+    this.Service.genToken((token) => {
+      // uploadImage image to Qiniu
+      qiniuC.uploadImage(file, token, file.name, (imgSrc) => {
+        // save file to MongoDB
+        var img = {
+          name: file.name,
+          imageSrc: imgSrc
+        }
+        self.Service.savePic(img, (res) => {
+          console.log(res);
+        });
+      });
+    });
   }
 
   renderToCanvas(imgSrc) {

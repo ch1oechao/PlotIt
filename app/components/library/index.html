@@ -4,11 +4,11 @@
       <div class="library-item">
         <img ng-src="{{item.imageSrc}}?imageView2/2/w/420" class="item-img">
         <div class="item-detail">
-          <p class="item-name">{{item.name}}</p>
+          <p class="item-name" ng-click="library.findImage(item._id)">{{item.name}}</p>
           <div class="item-setting">
-            <i class="fa fa-fw fa-magic" ng-click="library.findImage(item._id)"></i>
+            <i class="fa fa-fw fa-cloud-download" ng-click="library.downloadImage(item._id)"></i>
             <i class="fa fa-fw fa-trash" ng-click="library.deleteImage(item._id)"></i>
-            <i class="fa fa-fw fa-share" ng-click="library.shareImage(item._id)"></i>
+            <i class="fa fa-fw fa-share-alt" ng-click="library.shareImage(item._id)"></i>
           </div>
         </div>
       </div>

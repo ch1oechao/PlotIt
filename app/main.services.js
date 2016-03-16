@@ -25,7 +25,7 @@ export default class service {
   getPics(fn) {
     this.$http({
       method: 'get',
-      url: '/images',
+      url: '/list',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -44,7 +44,7 @@ export default class service {
     if (id) {
       this.$http({
         method: 'post',
-        url: '/item',
+        url: '/image',
         data: {id: id},
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -95,6 +95,50 @@ export default class service {
       });
     }
   }
+
+  deletePic(id, fn) {
+    if (id) {
+      this.$http.delete('/image/' + id)
+      .success((res) => {
+        if (fn) {
+          fn(res);
+        } else {
+          return res;
+        }
+      }).error((err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  downloadPic(id, fn) {
+    if (id) {
+      this.$http({
+        method: 'post',
+        url: '/download',
+        data: {id: id},
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        transformRequest: (obj) => {
+          var str = [];
+          for (var p in obj) {
+            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+          }
+          return str.join('&');
+        }
+      }).success((res) => {
+        if (fn) {
+          fn(res);
+        } else {
+          return res;
+        }
+      }).error((err) => {
+        console.log(err);
+      });
+    }
+  }
+
 }
 
 service.$inject = ['$http'];

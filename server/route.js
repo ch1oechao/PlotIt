@@ -7,13 +7,17 @@
 
     app.get('/', api.index);
 
-    app.get('/images', api.getImages);
+    app.get('/list', api.getImageList);
 
     app.get('/uptoken', api.genToken);
 
+    app.post('/image', api.getImage);
+
     app.post('/save', api.saveImage);
 
-    app.post('/item', api.getItem);
+    app.delete('/image/:id', api.delImageFromQiniu, api.delImageFromDB);
+
+    app.post('/download', api.downloadImageFromQiniu);
 
     app.get('/*', (req, res) => {
       res.redirect('/');
