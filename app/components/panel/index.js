@@ -57,7 +57,7 @@ class panelCtrl {
 
         // check pics
         var hasPic = pics.filter((item) => {
-          return item.name === file.name;
+          return item.key === file.name;
         });
 
         if (hasPic[0]) {
@@ -69,7 +69,7 @@ class panelCtrl {
           // loading finish
           self.isLoading = false;
 
-        } else if (!file.$error) {
+        } else if (!file.$error && !!self.filterName(file.name)) {
           // render image
           self.imgSrc = window.URL.createObjectURL(file);
           // show canvas
@@ -78,22 +78,44 @@ class panelCtrl {
 
           // upload to qiniu
           self.uploadImageToQiniu(file); 
+
+        } else {
+          // loading finish
+          self.isLoading = false;
+          console.log('图片出错，请检查图片格式和名称是否正确！');
         }
       }
     }
   }
 
+  filterName(name) {
+    var names = name.split('.'),
+        fm = names[names.length - 1],
+        formats = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'];
+
+    if (formats.indexOf(fm) !== -1) {
+      names.pop();
+      return names.join('');
+    }
+
+    return false;
+  }
+
   uploadImageToQiniu(file) {
-    var self = this;
+    var self = this,
+        name = this.filterName(file.name),
+        key = file.name;
+
     // gen Qiniu token
     this.Service.genToken((token) => {
       // uploadImage image to Qiniu
-      qiniuC.uploadImage(file, token, file.name, (imgSrc) => {
+      qiniuC.uploadImage(file, token, key, (imgSrc) => {
         // save file to MongoDB
         var img = {
-          name: file.name,
+          name: name,
+          key: key,
           imageSrc: imgSrc
-        }
+        };
         self.Service.savePic(img, (res) => {
           if (res && res.success) {
             // loading finish
@@ -102,6 +124,7 @@ class panelCtrl {
         });
       });
     });
+
   }
 
 }

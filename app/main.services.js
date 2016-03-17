@@ -69,7 +69,7 @@ export default class service {
   }
 
   savePic(img, fn) {
-    if (img.name && img.imageSrc) {
+    if (img.name && img.key && img.imageSrc) {
       this.$http({
         method: 'post',
         url: '/save',

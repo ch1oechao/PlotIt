@@ -8,6 +8,10 @@
       unique: true,
       type: String
     },
+    key: {
+      unique: true,
+      type: String
+    },
     imageSrc: {
       type: String
     },

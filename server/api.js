@@ -42,7 +42,7 @@
 
   exports.saveImage = function(req, res) {
     var reqData = req.body;
-    if (reqData.name && reqData.imageSrc) {
+    if (reqData.name && reqData.key && reqData.imageSrc) {
       
       var pic = new picModel(reqData);
 
@@ -60,7 +60,7 @@
   exports.delImageFromQiniu = function(req, res, next) {
     var id = req.params.id;
     Pic.findById({_id: id}, function(err, item) {
-      qnServer.deleteFile(item.name);
+      qnServer.deleteFile(item.key);
       next();
     });
   };
@@ -81,7 +81,7 @@
   exports.downloadImageFromQiniu = function(req, res) {
     var id = req.body.id;
     Pic.findById({_id: id}, function(err, item) {
-      var rqUrl = qnServer.getDownloadUrl(item.name);
+      var rqUrl = qnServer.getDownloadUrl(item.key);
       res.json({
         url: rqUrl
       });

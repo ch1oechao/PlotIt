@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "34433e7ca7830dc351ad"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "987af3b5201e384b944d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -1606,7 +1606,7 @@
 	
 	          // check pics
 	          var hasPic = pics.filter(function (item) {
-	            return item.name === file.name;
+	            return item.key === file.name;
 	          });
 	
 	          if (hasPic[0]) {
@@ -1617,7 +1617,7 @@
 	            _this2.CanvasUtil.render(self.imgSrc);
 	            // loading finish
 	            self.isLoading = false;
-	          } else if (!file.$error) {
+	          } else if (!file.$error && !!self.filterName(file.name)) {
 	            // render image
 	            self.imgSrc = window.URL.createObjectURL(file);
 	            // show canvas
@@ -1626,21 +1626,43 @@
 	
 	            // upload to qiniu
 	            self.uploadImageToQiniu(file);
+	          } else {
+	            // loading finish
+	            self.isLoading = false;
+	            console.log('图片出错，请检查图片格式和名称是否正确！');
 	          }
 	        }
 	      };
 	    }
 	  }, {
+	    key: 'filterName',
+	    value: function filterName(name) {
+	      var names = name.split('.'),
+	          fm = names[names.length - 1],
+	          formats = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'];
+	
+	      if (formats.indexOf(fm) !== -1) {
+	        names.pop();
+	        return names.join('');
+	      }
+	
+	      return false;
+	    }
+	  }, {
 	    key: 'uploadImageToQiniu',
 	    value: function uploadImageToQiniu(file) {
-	      var self = this;
+	      var self = this,
+	          name = this.filterName(file.name),
+	          key = file.name;
+	
 	      // gen Qiniu token
 	      this.Service.genToken(function (token) {
 	        // uploadImage image to Qiniu
-	        _qiniu2.default.uploadImage(file, token, file.name, function (imgSrc) {
+	        _qiniu2.default.uploadImage(file, token, key, function (imgSrc) {
 	          // save file to MongoDB
 	          var img = {
-	            name: file.name,
+	            name: name,
+	            key: key,
 	            imageSrc: imgSrc
 	          };
 	          self.Service.savePic(img, function (res) {
@@ -2344,7 +2366,7 @@
 	  }, {
 	    key: 'savePic',
 	    value: function savePic(img, fn) {
-	      if (img.name && img.imageSrc) {
+	      if (img.name && img.key && img.imageSrc) {
 	        this.$http({
 	          method: 'post',
 	          url: '/save',
