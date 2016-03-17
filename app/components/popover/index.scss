@@ -1,0 +1,106 @@
+@import '../../public/styles/color';
+
+.popover-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.popover-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560px;
+  height: 280px;
+  background-color: $second-dark;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .8);
+  z-index: 9999;
+}
+
+.popover-header {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  .fa-remove {
+    float: right;
+    margin: .5em;
+    color: $third-dark;
+    cursor: pointer;
+    transition: all 200ms ease-in;
+
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
+.popover-body {
+  width: 100%;
+  height: 170px;
+  padding: 2em;
+}
+
+.popover-tip {
+  line-height: 2.5em;
+}
+
+.popover-input {
+  width: 31em;
+  padding: 5px 0;
+  font-size: 1em;
+  color: $second-color;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  background: transparent;
+
+  &[disabled=disabled] {
+    color: $primary-color;
+    border-bottom: 1px solid $third-dark;
+  }
+}
+
+.popover-footer {
+  width: 100%;
+  height: 70px;
+  padding: 1em 2em;
+  text-align: right;
+}
+
+.popover-btn {
+  display: inline-block;
+  width: 6em;
+  height: 2em;
+  line-height: 2em;
+  margin-left: .5em;
+  text-align: center;
+  border: 0;
+  outline: 0;
+  background-color: $second-color;
+  transition: all 200ms ease-in;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 3px 6px rgba(10, 10, 10, .6);
+  }
+
+  &.check {
+    color: $primary-dark;
+    background-color: $primary-color;
+  }
+  &.cancel {
+    color: $red;
+    background-color: transparent;
+  }
+}
+
+.popover-overlap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 999;
+}

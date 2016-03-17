@@ -96,6 +96,35 @@ export default class service {
     }
   }
 
+  updatePic(img, fn) {
+    if (img.id && img.key && img.imageSrc) {
+      this.$http({
+        method: 'post',
+        url: '/update',
+        data: img,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        transformRequest: (obj) => {
+          var str = [];
+          for (var p in obj) {
+            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+          }
+          return str.join('&');
+        }
+      }).success((res) => {
+        if (fn) {
+          fn(res);
+        } else {
+          return res;
+        }
+      }).error((err) => {
+        console.log(err);
+      });
+    }
+  }
+
+
   deletePic(id, fn) {
     if (id) {
       this.$http.delete('/image/' + id)
@@ -138,7 +167,6 @@ export default class service {
       });
     }
   }
-
 }
 
 service.$inject = ['$http'];

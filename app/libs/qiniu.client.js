@@ -1,4 +1,5 @@
 (function() {
+
   var config = {
     ACCESS_KEY: '-L7HvCAanSlX7WOP-9w0UzRmzUddhgC2Sgmj__Km',
     SECRET_KEY: 'y0DwGOrEO-1sAop0QGpLqI0zXPRGSUQgR8JB7Le1',
@@ -7,19 +8,23 @@
     domain: 'http://7xrwkg.com1.z0.glb.clouddn.com/'
   };
 
-  var Qiniu_UploadUrl = 'http://up.qiniu.com';
+  exports.config = config;
 
-  // 上传文件
+  // 上传图片文件
   exports.uploadImage = function(f, token, key, cb) {
-    var xhr = new XMLHttpRequest();
+    var Qiniu_UploadUrl = 'http://up.qiniu.com',
+        xhr = new XMLHttpRequest();
+
     xhr.open('POST', Qiniu_UploadUrl, true);
+
     var formData, startDate;
+
     formData = new FormData();
     if (key !== null && key !== undefined) formData.append('key', key);
     formData.append('token', token);
     formData.append('file', f);
+    
     var taking;
-
     xhr.upload.addEventListener("progress", function(evt) {
       if (evt.lengthComputable) {
         var nowDate = new Date().getTime();
@@ -44,15 +49,36 @@
             cb(config.domain + blkRet.key);
           } else {
             return config.domain + blkRet.key;  
-          }
-        
-      } else if (xhr.status != 200 && xhr.responseText) {
-
+          } 
       }
     };
 
     startDate = new Date().getTime();
     xhr.send(formData);
   };
+
+  // 上传 Base64 编码
+  exports.uploadBase64 = function(pic, token, cb) {
+    var url = 'http://up.qiniu.com/putb64/-1',
+        xhr = new XMLHttpRequest(),
+        upToken = 'UpToken ' + token;
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var blkRet = JSON.parse(xhr.responseText);
+        if (cb) {
+          cb(blkRet);
+        } else {
+          return blkRet;
+        }
+      }
+    }
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+    xhr.setRequestHeader('Authorization', upToken);
+    xhr.send(pic);
+
+  }
 
 })();

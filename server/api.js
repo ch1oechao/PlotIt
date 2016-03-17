@@ -52,22 +52,47 @@
         }
         res.json({
           success: true
-        })
+        });
       });
     }
   };
 
+  exports.updateImage = function(req, res) {
+    var reqData = req.body;
+
+    if (reqData.id && reqData.key && reqData.imageSrc) {
+      // delete origin image
+      // Pic.findById(reqData.id, function(err, item) {
+      //   // delete origin key
+      //   qnServer.deleteFile(item.key);
+      // });
+
+      // update MongoDB
+      var id = reqData.id;
+      delete reqData.id;
+      Pic.update({_id: id}, {
+        $set: reqData
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        res.json({
+          success: true
+        });
+      });
+    }
+  };
+
+
   exports.delImageFromQiniu = function(req, res, next) {
-    var id = req.params.id;
-    Pic.findById({_id: id}, function(err, item) {
+    Pic.findById(req.params.id, function(err, item) {
       qnServer.deleteFile(item.key);
       next();
     });
   };
 
   exports.delImageFromDB = function(req, res) {
-    var id = req.params.id;
-    Pic.remove({_id: id}, function(err) {
+    Pic.remove(req.params.id, function(err) {
       if (!err) {
         res.json({
           success: true
@@ -79,8 +104,7 @@
   };
 
   exports.downloadImageFromQiniu = function(req, res) {
-    var id = req.body.id;
-    Pic.findById({_id: id}, function(err, item) {
+    Pic.findById(req.body.id, function(err, item) {
       var rqUrl = qnServer.getDownloadUrl(item.key);
       res.json({
         url: rqUrl

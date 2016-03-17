@@ -15,6 +15,8 @@
 
     app.post('/save', api.saveImage);
 
+    app.post('/update', api.updateImage);
+
     app.delete('/image/:id', api.delImageFromQiniu, api.delImageFromDB);
 
     app.post('/download', api.downloadImageFromQiniu);

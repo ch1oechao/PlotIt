@@ -12,6 +12,9 @@
       unique: true,
       type: String
     },
+    size: {
+      type: Number
+    },
     imageSrc: {
       type: String
     },

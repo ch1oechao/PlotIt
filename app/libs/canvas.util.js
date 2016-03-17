@@ -1,15 +1,17 @@
 export default class CanvasUtil {
   constructor() {
-    this.$canvas = document.getElementById('plotitCanvas');
-    this.$panel = document.getElementsByClassName('panel-canvas')[0];
+    this.$canvas = document.querySelector('#plotitCanvas');
+    this.$panel = document.querySelector('.panel-canvas');
   }
 
   render(imgSrc) {
     if (this.$canvas && this.$panel) {
       var canvas = this.$canvas,
           context = canvas.getContext('2d'),
-          image = new Image()
-          image.src = imgSrc;
+          image = new Image();
+
+      image.crossOrigin = 'anonymous';
+      image.src = imgSrc;
 
       image.onload = () => {
         var $panel = this.$panel,
@@ -40,5 +42,26 @@ export default class CanvasUtil {
       } 
     }
   }
+
+
+  convertToBase64(canvas, size) {
+    if (canvas) {
+      var quality = 1,
+          maxSize = 100000000,
+          context = canvas.getContext('2d'),
+          imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+      context.putImageData(imageData, 0, 0);
+
+      if (size > maxSize) {
+        quality = Math.floor(maxSize / size);
+      }
+
+      var base64Str = canvas.toDataURL(null, quality);
+
+      return base64Str.substring(base64Str.indexOf(',') + 1);
+    }
+  }
+
 }
  

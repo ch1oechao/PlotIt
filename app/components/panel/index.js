@@ -104,24 +104,29 @@ class panelCtrl {
   uploadImageToQiniu(file) {
     var self = this,
         name = this.filterName(file.name),
-        key = file.name;
+        key = file.name,
+        size = file.size;
 
     // gen Qiniu token
     this.Service.genToken((token) => {
       // uploadImage image to Qiniu
       qiniuC.uploadImage(file, token, key, (imgSrc) => {
+        
         // save file to MongoDB
         var img = {
           name: name,
           key: key,
+          size: size,
           imageSrc: imgSrc
         };
+        
         self.Service.savePic(img, (res) => {
           if (res && res.success) {
             // loading finish
             self.isLoading = false;
           }
         });
+        
       });
     });
 

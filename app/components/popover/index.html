@@ -1,0 +1,19 @@
+<div class="popover-container" ng-if="popover.isShow">
+  <div class="popover-box">
+    <div class="popover-header">
+      <i class="fa fa-remove" ng-click="popover.close()"></i>
+    </div>
+    <div class="popover-body">
+      <div class="popover-tip">{{popover.tip}}?</div>
+      <div class="popover-name">
+        <input class="popover-input" value="asdasdasdasa" ng-disabled="popover.isEditable" />  
+      </div>
+    </div>
+    <div class="popover-footer">
+      <span class="cancel popover-btn" ng-click="popover.close()">取消</span>
+      <span class="check popover-btn">确定</span>
+    </div>
+  </div>
+  <div class="popover-overlap"></div>
+</div>
+ 

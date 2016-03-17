@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "987af3b5201e384b944d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1c276a7b55dcdfc0b10f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */20);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */53);
+	__webpack_require__(/*! ./app/main.js */22);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */57);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 26);
+	__webpack_require__(/*! ./angular */ 28);
 	module.exports = angular;
 
 /***/ },
@@ -960,6 +960,23 @@
 /***/ },
 /* 7 */
 /*!**************************************************************************!*\
+  !*** ./~/css-loader!./~/sass-loader!./app/components/popover/index.scss ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 2)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".popover-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n\n.popover-box {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 560px;\n  height: 280px;\n  background-color: #3A4750;\n  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);\n  z-index: 9999; }\n\n.popover-header {\n  width: 100%;\n  height: 40px;\n  line-height: 40px; }\n  .popover-header .fa-remove {\n    float: right;\n    margin: .5em;\n    color: #4D606E;\n    cursor: pointer;\n    transition: all 200ms ease-in; }\n    .popover-header .fa-remove:hover {\n      color: #FC5185; }\n\n.popover-body {\n  width: 100%;\n  height: 170px;\n  padding: 2em; }\n\n.popover-tip {\n  line-height: 2.5em; }\n\n.popover-input {\n  width: 31em;\n  padding: 5px 0;\n  font-size: 1em;\n  color: #EEE;\n  outline: none;\n  border: none;\n  border-bottom: 1px solid #08D9D6;\n  background: transparent; }\n  .popover-input[disabled=disabled] {\n    color: #08D9D6;\n    border-bottom: 1px solid #4D606E; }\n\n.popover-footer {\n  width: 100%;\n  height: 70px;\n  padding: 1em 2em;\n  text-align: right; }\n\n.popover-btn {\n  display: inline-block;\n  width: 6em;\n  height: 2em;\n  line-height: 2em;\n  margin-left: .5em;\n  text-align: center;\n  border: 0;\n  outline: 0;\n  background-color: #EEE;\n  transition: all 200ms ease-in; }\n  .popover-btn:hover {\n    cursor: pointer;\n    box-shadow: 2px 3px 6px rgba(10, 10, 10, 0.6); }\n  .popover-btn.check {\n    color: #303841;\n    background-color: #08D9D6; }\n  .popover-btn.cancel {\n    color: #FC5185;\n    background-color: transparent; }\n\n.popover-overlap {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 8 */
+/*!**************************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./app/components/sideBtn/index.scss ***!
   \**************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -969,13 +986,13 @@
 	
 	
 	// module
-	exports.push([module.id, "side-btn {\n  position: absolute;\n  bottom: 2em;\n  right: -1.5em;\n  z-index: 999; }\n\n.sidebtn {\n  position: relative;\n  margin: .8em 0;\n  width: 3em;\n  height: 3em;\n  line-height: 3em;\n  text-align: center;\n  border-radius: 50%;\n  cursor: pointer;\n  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }\n  .sidebtn a:link, .sidebtn a:visited, .sidebtn a:active, .sidebtn a:hover {\n    color: #FFF; }\n  .sidebtn.disable {\n    -webkit-filter: grayscale(1); }\n  .sidebtn.add, .sidebtn.back {\n    background-color: #FC5185; }\n  .sidebtn.complete {\n    background-color: #CDDC39; }\n  .sidebtn.undo {\n    background-color: #FFC107; }\n\n#plotAdd {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  width: 3em;\n  height: 3em;\n  overflow: hidden;\n  border: none;\n  outline: none;\n  opacity: 0; }\n", ""]);
+	exports.push([module.id, "side-btn {\n  position: absolute;\n  bottom: 2em;\n  right: -1.5em;\n  z-index: 99; }\n\n.sidebtn {\n  position: relative;\n  margin: .8em 0;\n  width: 3em;\n  height: 3em;\n  line-height: 3em;\n  text-align: center;\n  border-radius: 50%;\n  cursor: pointer;\n  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }\n  .sidebtn a:link, .sidebtn a:visited, .sidebtn a:active, .sidebtn a:hover {\n    color: #FFF; }\n  .sidebtn.disable {\n    -webkit-filter: grayscale(1); }\n  .sidebtn.add, .sidebtn.back {\n    background-color: #FC5185; }\n  .sidebtn.complete {\n    background-color: #CDDC39; }\n  .sidebtn.undo {\n    background-color: #FFC107; }\n\n#plotAdd {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  width: 3em;\n  height: 3em;\n  overflow: hidden;\n  border: none;\n  outline: none;\n  opacity: 0; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /*!**************************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./app/components/sidebar/index.scss ***!
   \**************************************************************************/
@@ -992,7 +1009,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /*!********************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./app/public/styles/main.scss ***!
   \********************************************************************/
@@ -1003,13 +1020,13 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 960px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666;\n  overflow: hidden; }\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nbody {\n  font-family: 'Lato', sans-serif;\n  font-weight: 300; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 960px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666;\n  overflow: hidden; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /*!*********************************!*\
   !*** ./app/libs/canvas.util.js ***!
   \*********************************/
@@ -1029,8 +1046,8 @@
 	  function CanvasUtil() {
 	    _classCallCheck(this, CanvasUtil);
 	
-	    this.$canvas = document.getElementById('plotitCanvas');
-	    this.$panel = document.getElementsByClassName('panel-canvas')[0];
+	    this.$canvas = document.querySelector('#plotitCanvas');
+	    this.$panel = document.querySelector('.panel-canvas');
 	  }
 	
 	  _createClass(CanvasUtil, [{
@@ -1042,6 +1059,8 @@
 	        var canvas = this.$canvas,
 	            context = canvas.getContext('2d'),
 	            image = new Image();
+	
+	        image.crossOrigin = 'anonymous';
 	        image.src = imgSrc;
 	
 	        image.onload = function () {
@@ -1073,6 +1092,26 @@
 	        };
 	      }
 	    }
+	  }, {
+	    key: 'convertToBase64',
+	    value: function convertToBase64(canvas, size) {
+	      if (canvas) {
+	        var quality = 1,
+	            maxSize = 100000000,
+	            context = canvas.getContext('2d'),
+	            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+	
+	        context.putImageData(imageData, 0, 0);
+	
+	        if (size > maxSize) {
+	          quality = Math.floor(maxSize / size);
+	        }
+	
+	        var base64Str = canvas.toDataURL(null, quality);
+	
+	        return base64Str.substring(base64Str.indexOf(',') + 1);
+	      }
+	    }
 	  }]);
 	
 	  return CanvasUtil;
@@ -1081,7 +1120,7 @@
 	exports.default = CanvasUtil;
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!**********************************!*\
   !*** ./app/libs/qiniu.client.js ***!
   \**********************************/
@@ -1090,6 +1129,7 @@
 	'use strict';
 	
 	(function () {
+	
 	  var config = {
 	    ACCESS_KEY: '-L7HvCAanSlX7WOP-9w0UzRmzUddhgC2Sgmj__Km',
 	    SECRET_KEY: 'y0DwGOrEO-1sAop0QGpLqI0zXPRGSUQgR8JB7Le1',
@@ -1098,19 +1138,23 @@
 	    domain: 'http://7xrwkg.com1.z0.glb.clouddn.com/'
 	  };
 	
-	  var Qiniu_UploadUrl = 'http://up.qiniu.com';
+	  exports.config = config;
 	
-	  // 上传文件
+	  // 上传图片文件
 	  exports.uploadImage = function (f, token, key, cb) {
-	    var xhr = new XMLHttpRequest();
+	    var Qiniu_UploadUrl = 'http://up.qiniu.com',
+	        xhr = new XMLHttpRequest();
+	
 	    xhr.open('POST', Qiniu_UploadUrl, true);
+	
 	    var formData, startDate;
+	
 	    formData = new FormData();
 	    if (key !== null && key !== undefined) formData.append('key', key);
 	    formData.append('token', token);
 	    formData.append('file', f);
-	    var taking;
 	
+	    var taking;
 	    xhr.upload.addEventListener("progress", function (evt) {
 	      if (evt.lengthComputable) {
 	        var nowDate = new Date().getTime();
@@ -1136,16 +1180,39 @@
 	        } else {
 	          return config.domain + blkRet.key;
 	        }
-	      } else if (xhr.status != 200 && xhr.responseText) {}
+	      }
 	    };
 	
 	    startDate = new Date().getTime();
 	    xhr.send(formData);
 	  };
+	
+	  // 上传 Base64 编码
+	  exports.uploadBase64 = function (pic, token, cb) {
+	    var url = 'http://up.qiniu.com/putb64/-1',
+	        xhr = new XMLHttpRequest(),
+	        upToken = 'UpToken ' + token;
+	
+	    xhr.onreadystatechange = function () {
+	      if (xhr.readyState == 4 && xhr.status == 200) {
+	        var blkRet = JSON.parse(xhr.responseText);
+	        if (cb) {
+	          cb(blkRet);
+	        } else {
+	          return blkRet;
+	        }
+	      }
+	    };
+	
+	    xhr.open('POST', url, true);
+	    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+	    xhr.setRequestHeader('Authorization', upToken);
+	    xhr.send(pic);
+	  };
 	})();
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html5-entities.js ***!
   \***********************************************/
@@ -1343,16 +1410,16 @@
 	module.exports = Html5Entities;
 
 /***/ },
-/* 13 */
+/* 14 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n</div>\n"
+	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!*****************************************!*\
   !*** ./app/components/library/index.js ***!
   \*****************************************/
@@ -1370,11 +1437,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 41);
+	var _index = __webpack_require__(/*! ./index.html */ 43);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 47);
+	__webpack_require__(/*! ./index.scss */ 50);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1460,7 +1527,7 @@
 	};
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!*****************************************!*\
   !*** ./app/components/palette/index.js ***!
   \*****************************************/
@@ -1476,11 +1543,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 42);
+	var _index = __webpack_require__(/*! ./index.html */ 44);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 48);
+	__webpack_require__(/*! ./index.scss */ 51);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1508,7 +1575,7 @@
 	};
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!***************************************!*\
   !*** ./app/components/panel/index.js ***!
   \***************************************/
@@ -1526,19 +1593,19 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 10);
+	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 11);
 	
 	var _canvas2 = _interopRequireDefault(_canvas);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 12);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 43);
+	var _index = __webpack_require__(/*! ./index.html */ 45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 49);
+	__webpack_require__(/*! ./index.scss */ 52);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1653,18 +1720,22 @@
 	    value: function uploadImageToQiniu(file) {
 	      var self = this,
 	          name = this.filterName(file.name),
-	          key = file.name;
+	          key = file.name,
+	          size = file.size;
 	
 	      // gen Qiniu token
 	      this.Service.genToken(function (token) {
 	        // uploadImage image to Qiniu
 	        _qiniu2.default.uploadImage(file, token, key, function (imgSrc) {
+	
 	          // save file to MongoDB
 	          var img = {
 	            name: name,
 	            key: key,
+	            size: size,
 	            imageSrc: imgSrc
 	          };
+	
 	          self.Service.savePic(img, function (res) {
 	            if (res && res.success) {
 	              // loading finish
@@ -1687,7 +1758,75 @@
 	};
 
 /***/ },
-/* 17 */
+/* 18 */
+/*!*****************************************!*\
+  !*** ./app/components/popover/index.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _angular = __webpack_require__(/*! angular */ 1);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	var _index = __webpack_require__(/*! ./index.html */ 46);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	__webpack_require__(/*! ./index.scss */ 53);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var popoverTpl = function popoverTpl() {
+	  return {
+	    template: _index2.default,
+	    controller: 'popoverCtrl',
+	    controllerAs: 'popover',
+	    bindToController: true,
+	    restrict: 'E'
+	  };
+	};
+	
+	var popoverCtrl = function () {
+	  function popoverCtrl() {
+	    _classCallCheck(this, popoverCtrl);
+	
+	    this.isShow = false;
+	    this.isEditable = true;
+	    this.tip = "是否保存该图片";
+	  }
+	
+	  _createClass(popoverCtrl, [{
+	    key: 'open',
+	    value: function open() {
+	      this.isShow = true;
+	    }
+	  }, {
+	    key: 'close',
+	    value: function close() {
+	      this.isShow = false;
+	    }
+	  }]);
+	
+	  return popoverCtrl;
+	}();
+	
+	exports.default = {
+	  tpl: popoverTpl,
+	  controller: popoverCtrl
+	};
+
+/***/ },
+/* 19 */
 /*!*****************************************!*\
   !*** ./app/components/sideBtn/index.js ***!
   \*****************************************/
@@ -1705,23 +1844,23 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 44);
+	var _index = __webpack_require__(/*! ./index.html */ 47);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 10);
+	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 11);
 	
 	var _canvas2 = _interopRequireDefault(_canvas);
 	
-	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 19);
+	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 21);
 	
 	var _canvas2image2 = _interopRequireDefault(_canvas2image);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 12);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 50);
+	__webpack_require__(/*! ./index.scss */ 54);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1789,33 +1928,52 @@
 	  }, {
 	    key: 'updateImage',
 	    value: function updateImage() {
+	      var _this2 = this;
+	
 	      var canvas = this.CanvasUtil.$canvas;
 	
-	      // 是否更改
-	      if (canvas && this.isChange) {
+	      // 是否更改 && this.isChange
+	      var paths = this.$location.$$path.split('/'),
+	          id = paths[paths.length - 1],
+	          imageSize = -1,
+	          curImage;
 	
-	        var imageBase64 = this._convertCanvasToBase64(canvas);
+	      // 判断 id 是否正确
+	      if (id.length === 24) {
+	        var pics = this.$rootScope.pics;
+	        pics.map(function (item) {
+	          if (item._id === id) {
+	            curImage = item;
+	            imageSize = item.size;
+	          }
+	        });
+	      }
+	
+	      // isNewImage
+	      if (curImage) {
+	        var imageBase64 = this.CanvasUtil.convertToBase64(canvas, imageSize);
 	
 	        // upload to Qiniu
+	        this.Service.genToken(function (token) {
+	          _qiniu2.default.uploadBase64(imageBase64, token, function (res) {
 	
-	        // save to  mongoDB
-	        var img = {
-	          name: '',
-	          imageSrc: ''
-	        };
-	        this.Service.savePic(img, function (res) {
-	          console.log(res);
+	            // save to  mongoDB
+	            var changeData = _angular2.default.extend(res, {
+	              id: curImage._id,
+	              imageSrc: _qiniu2.default.config.domain + res.key
+	            });
+	
+	            _this2.Service.updatePic(changeData, function (res) {
+	              if (res && res.success) {
+	                console.log('save');
+	                _this2.turnToHome();
+	              }
+	            });
+	          });
 	        });
-	
-	        // Canvas2image.saveAsPNG(canvas);
 	      } else {
-	          this.turnToHome();
-	        }
-	    }
-	  }, {
-	    key: '_convertCanvasToBase64',
-	    value: function _convertCanvasToBase64(canvas) {
-	      return canvas.toDataURL();
+	        this.turnToHome();
+	      }
 	    }
 	  }]);
 	
@@ -1830,7 +1988,7 @@
 	};
 
 /***/ },
-/* 18 */
+/* 20 */
 /*!*****************************************!*\
   !*** ./app/components/sidebar/index.js ***!
   \*****************************************/
@@ -1846,11 +2004,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 45);
+	var _index = __webpack_require__(/*! ./index.html */ 48);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 51);
+	__webpack_require__(/*! ./index.scss */ 55);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1878,7 +2036,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 21 */
 /*!**********************************!*\
   !*** ./app/libs/canvas2image.js ***!
   \**********************************/
@@ -2159,7 +2317,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 22 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -2175,47 +2333,51 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 25);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 27);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 24);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 26);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 21);
+	var _main = __webpack_require__(/*! ./main.routes */ 23);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 22);
+	var _main3 = __webpack_require__(/*! ./main.services */ 24);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 33);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 35);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 52);
+	__webpack_require__(/*! ./public/styles/main.scss */ 56);
 	
-	var _library = __webpack_require__(/*! ./components/library */ 14);
+	var _library = __webpack_require__(/*! ./components/library */ 15);
 	
 	var _library2 = _interopRequireDefault(_library);
 	
-	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 18);
+	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 20);
 	
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 	
-	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 17);
+	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 19);
 	
 	var _sideBtn2 = _interopRequireDefault(_sideBtn);
 	
-	var _panel = __webpack_require__(/*! ./components/panel */ 16);
+	var _panel = __webpack_require__(/*! ./components/panel */ 17);
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _palette = __webpack_require__(/*! ./components/palette */ 15);
+	var _palette = __webpack_require__(/*! ./components/palette */ 16);
 	
 	var _palette2 = _interopRequireDefault(_palette);
+	
+	var _popover = __webpack_require__(/*! ./components/popover */ 18);
+	
+	var _popover2 = _interopRequireDefault(_popover);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2229,15 +2391,15 @@
 	plotitApp.service('Service', _main4.default);
 	
 	// directive
-	plotitApp.directive('library', _library2.default.tpl).directive('sidebar', _sidebar2.default.tpl).directive('sideBtn', _sideBtn2.default.tpl).directive('panel', _panel2.default.tpl).directive('palette', _palette2.default.tpl);
+	plotitApp.directive('library', _library2.default.tpl).directive('sidebar', _sidebar2.default.tpl).directive('sideBtn', _sideBtn2.default.tpl).directive('panel', _panel2.default.tpl).directive('palette', _palette2.default.tpl).directive('popover', _popover2.default.tpl);
 	
 	// controller
-	plotitApp.controller('libraryCtrl', _library2.default.controller).controller('sidebarCtrl', _sidebar2.default.controller).controller('sideBtnCtrl', _sideBtn2.default.controller).controller('panelCtrl', _panel2.default.controller).controller('paletteCtrl', _palette2.default.controller);
+	plotitApp.controller('libraryCtrl', _library2.default.controller).controller('sidebarCtrl', _sidebar2.default.controller).controller('sideBtnCtrl', _sideBtn2.default.controller).controller('panelCtrl', _panel2.default.controller).controller('paletteCtrl', _palette2.default.controller).controller('popoverCtrl', _popover2.default.controller);
 	
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 21 */
+/* 23 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -2261,18 +2423,18 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 46)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 49)
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 13)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
 	  }).state('/plot/:id', {
 	    url: '/plot/:id',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 13)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
 	  });
 	}
 
 /***/ },
-/* 22 */
+/* 24 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -2393,6 +2555,35 @@
 	      }
 	    }
 	  }, {
+	    key: 'updatePic',
+	    value: function updatePic(img, fn) {
+	      if (img.id && img.key && img.imageSrc) {
+	        this.$http({
+	          method: 'post',
+	          url: '/update',
+	          data: img,
+	          headers: {
+	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	          },
+	          transformRequest: function transformRequest(obj) {
+	            var str = [];
+	            for (var p in obj) {
+	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	            }
+	            return str.join('&');
+	          }
+	        }).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'deletePic',
 	    value: function deletePic(id, fn) {
 	      if (id) {
@@ -2447,7 +2638,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 23 */
+/* 25 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -3437,7 +3628,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -3445,11 +3636,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 23);
+	__webpack_require__(/*! ./angular-route */ 25);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -5726,7 +5917,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 26 */
+/* 28 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -21537,7 +21728,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 27 */
+/* 29 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -21717,7 +21908,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 28 */
+/* 30 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -21731,7 +21922,7 @@
 	};
 
 /***/ },
-/* 29 */
+/* 31 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -21740,14 +21931,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 31),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 30),
-	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 12),
-	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 12)
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 33),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 32),
+	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 13),
+	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 13)
 	};
 
 /***/ },
-/* 30 */
+/* 32 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -21902,7 +22093,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 31 */
+/* 33 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -22065,7 +22256,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 32 */
+/* 34 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -24830,7 +25021,7 @@
 	}]);
 
 /***/ },
-/* 33 */
+/* 35 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -24838,11 +25029,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 32);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 34);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 34 */
+/* 36 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -24934,7 +25125,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 37 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -25006,7 +25197,7 @@
 	};
 
 /***/ },
-/* 36 */
+/* 38 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -25014,11 +25205,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 34);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 35);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 36);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 37);
 
 /***/ },
-/* 37 */
+/* 39 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -25026,14 +25217,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 28)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 30)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 38 */
+/* 40 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -25069,7 +25260,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 27);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 29);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -25084,7 +25275,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 29).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 31).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -25115,7 +25306,7 @@
 	}
 
 /***/ },
-/* 39 */
+/* 41 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -25231,7 +25422,7 @@
 	};
 
 /***/ },
-/* 40 */
+/* 42 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -25251,7 +25442,7 @@
 	};
 
 /***/ },
-/* 41 */
+/* 43 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -25260,7 +25451,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 42 */
+/* 44 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -25269,7 +25460,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 43 */
+/* 45 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -25278,7 +25469,16 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 44 */
+/* 46 */
+/*!*******************************************!*\
+  !*** ./app/components/popover/index.html ***!
+  \*******************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
+
+/***/ },
+/* 47 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -25287,7 +25487,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.updateImage()\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.undoImage()\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 45 */
+/* 48 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -25296,16 +25496,16 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 46 */
+/* 49 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n</div>\n"
+	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 47 */
+/* 50 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -25334,7 +25534,7 @@
 	}
 
 /***/ },
-/* 48 */
+/* 51 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -25363,7 +25563,7 @@
 	}
 
 /***/ },
-/* 49 */
+/* 52 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -25392,9 +25592,9 @@
 	}
 
 /***/ },
-/* 50 */
+/* 53 */
 /*!*******************************************!*\
-  !*** ./app/components/sideBtn/index.scss ***!
+  !*** ./app/components/popover/index.scss ***!
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25421,9 +25621,9 @@
 	}
 
 /***/ },
-/* 51 */
+/* 54 */
 /*!*******************************************!*\
-  !*** ./app/components/sidebar/index.scss ***!
+  !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25450,16 +25650,16 @@
 	}
 
 /***/ },
-/* 52 */
-/*!*************************************!*\
-  !*** ./app/public/styles/main.scss ***!
-  \*************************************/
+/* 55 */
+/*!*******************************************!*\
+  !*** ./app/components/sidebar/index.scss ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 9);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./index.scss */ 9);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 3)(content, {});
@@ -25468,8 +25668,8 @@
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 9, function() {
-				var newContent = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 9);
+			module.hot.accept(/*! !./../../../~/css-loader!./../../../~/sass-loader!./index.scss */ 9, function() {
+				var newContent = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./index.scss */ 9);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -25479,7 +25679,36 @@
 	}
 
 /***/ },
-/* 53 */
+/* 56 */
+/*!*************************************!*\
+  !*** ./app/public/styles/main.scss ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 10);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 3)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 10, function() {
+				var newContent = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./main.scss */ 10);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 57 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -25497,7 +25726,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 36);
+	  var querystring = __webpack_require__(/*! querystring */ 38);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -25565,11 +25794,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 37);
+	var strip = __webpack_require__(/*! strip-ansi */ 39);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 38);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 40);
 	}
 	
 	function problems(type, obj) {
@@ -25586,7 +25815,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 39);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 41);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -25618,7 +25847,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 40)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 42)(module)))
 
 /***/ }
 /******/ ]);

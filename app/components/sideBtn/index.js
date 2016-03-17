@@ -60,33 +60,52 @@ class sideBtnCtrl {
   updateImage() {
     var canvas = this.CanvasUtil.$canvas;
 
-    // 是否更改
-    if (canvas && this.isChange) {
+    // 是否更改 && this.isChange
+    var paths = (this.$location.$$path).split('/'),
+        id = paths[paths.length - 1],
+        imageSize = -1,
+        curImage;
 
-      var imageBase64 = this._convertCanvasToBase64(canvas);
+    // 判断 id 是否正确
+    if (id.length === 24) {
+      var pics = this.$rootScope.pics;
+      pics.map((item) => {
+        if (item._id === id) {
+          curImage = item;
+          imageSize = item.size;
+        }
+      });
+    }
+
+    // isNewImage
+    if (curImage) {
+      var imageBase64 = this.CanvasUtil.convertToBase64(canvas, imageSize);
 
       // upload to Qiniu
-      
+      this.Service.genToken((token) => {
+        qiniuC.uploadBase64(imageBase64, token, (res) => {
 
-      // save to  mongoDB
-      var img = {
-        name: '',
-        imageSrc: ''
-      }
-      this.Service.savePic(img, (res) => {
-        console.log(res);
+          // save to  mongoDB
+          var changeData = angular.extend(res, {
+            id: curImage._id,
+            imageSrc: qiniuC.config.domain + res.key
+          });
+
+          this.Service.updatePic(changeData, (res) => {
+            if (res && res.success) {
+              console.log('save');
+              this.turnToHome();
+            }
+          });
+
+        });
+
       });
 
-      // Canvas2image.saveAsPNG(canvas);
-      
     } else {
       this.turnToHome();
     }
-
-  }
-
-  _convertCanvasToBase64(canvas) {
-    return canvas.toDataURL();
+    
   }
 
 }
