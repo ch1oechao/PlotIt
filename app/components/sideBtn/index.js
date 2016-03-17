@@ -23,10 +23,11 @@ let sideBtnTpl = () => {
 };
 
 class sideBtnCtrl {
-  constructor($location, Service) {
+  constructor($location, Service, $rootScope) {
     this.$location = $location;
     this.Service = Service;
     this.CanvasUtil = new CanvasUtil();
+    this.$rootScope = $rootScope;
     this.isPlot = false;
     this.isChange = false;
   }
@@ -46,9 +47,10 @@ class sideBtnCtrl {
           id = paths[paths.length - 1];
       // 判断 id 是否正确
       if (id.length === 24) {
-        this.Service.findPic(id, (res) => {
-          if (res) {
-            this.CanvasUtil.render(res.imageSrc);
+        var pics = this.$rootScope.pics;
+        pics.map((item) => {
+          if (item._id === id) {
+            this.CanvasUtil.render(item.imageSrc);
           }
         });
       }
@@ -89,7 +91,7 @@ class sideBtnCtrl {
 
 }
 
-sideBtnCtrl.$inject = ['$location', 'Service'];
+sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope'];
 
 export default {
   tpl: sideBtnTpl,

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b7fc60c4a010b6c368ea"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "34433e7ca7830dc351ad"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -1394,12 +1394,13 @@
 	};
 	
 	var libraryCtrl = function () {
-	  function libraryCtrl($location, Service, $route) {
+	  function libraryCtrl($location, Service, $route, $rootScope) {
 	    _classCallCheck(this, libraryCtrl);
 	
 	    this.$location = $location;
 	    this.Service = Service;
 	    this.$route = $route;
+	    this.$rootScope = $rootScope;
 	    this.pics = [];
 	  }
 	
@@ -1410,15 +1411,13 @@
 	
 	      this.Service.getPics(function (res) {
 	        _this.pics = res.list;
+	        _this.$rootScope.pics = res.list;
 	      });
 	    }
 	  }, {
 	    key: 'findImage',
 	    value: function findImage(id) {
-	      var self = this;
-	      this.Service.findPic(id, function (res) {
-	        self.$location.url('/plot/' + res._id);
-	      });
+	      this.$location.url('/plot/' + id);
 	    }
 	  }, {
 	    key: 'downloadImage',
@@ -1453,7 +1452,7 @@
 	  return libraryCtrl;
 	}();
 	
-	libraryCtrl.$inject = ['$location', 'Service', '$route'];
+	libraryCtrl.$inject = ['$location', 'Service', '$route', '$rootScope'];
 	
 	exports.default = {
 	  tpl: libraryTpl,
@@ -1556,12 +1555,13 @@
 	};
 	
 	var panelCtrl = function () {
-	  function panelCtrl($scope, Service, $stateParams) {
+	  function panelCtrl($scope, Service, $stateParams, $rootScope) {
 	    _classCallCheck(this, panelCtrl);
 	
 	    this.$scope = $scope;
 	    this.Service = Service;
 	    this.$stateParams = $stateParams;
+	    this.$rootScope = $rootScope;
 	    this.CanvasUtil = new _canvas2.default();
 	    this.hasImage = false;
 	    this.isLoading = false;
@@ -1577,11 +1577,12 @@
 	
 	      var self = this;
 	      return function (item) {
-	        var id = item.id;
-	        _this.Service.findPic(id, function (res) {
-	          if (res) {
+	        var id = item.id,
+	            pics = _this.$rootScope.pics;
+	        pics.map(function (item) {
+	          if (item._id === id) {
 	            self.hasImage = true;
-	            _this.CanvasUtil.render(res.imageSrc);
+	            self.CanvasUtil.render(item.imageSrc);
 	          }
 	        });
 	      };
@@ -1599,8 +1600,24 @@
 	        if (files && files.length) {
 	          // loading image
 	          self.isLoading = true;
-	          var file = files[0];
-	          if (!file.$error) {
+	
+	          var file = files[0],
+	              pics = self.$rootScope.pics;
+	
+	          // check pics
+	          var hasPic = pics.filter(function (item) {
+	            return item.name === file.name;
+	          });
+	
+	          if (hasPic[0]) {
+	            // render image
+	            self.imgSrc = hasPic[0].imageSrc;
+	            // show canvas
+	            self.hasImage = true;
+	            _this2.CanvasUtil.render(self.imgSrc);
+	            // loading finish
+	            self.isLoading = false;
+	          } else if (!file.$error) {
 	            // render image
 	            self.imgSrc = window.URL.createObjectURL(file);
 	            // show canvas
@@ -1640,7 +1657,7 @@
 	  return panelCtrl;
 	}();
 	
-	panelCtrl.$inject = ['$scope', 'Service', '$stateParams'];
+	panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope'];
 	
 	exports.default = {
 	  tpl: panelTpl,
@@ -1706,12 +1723,13 @@
 	};
 	
 	var sideBtnCtrl = function () {
-	  function sideBtnCtrl($location, Service) {
+	  function sideBtnCtrl($location, Service, $rootScope) {
 	    _classCallCheck(this, sideBtnCtrl);
 	
 	    this.$location = $location;
 	    this.Service = Service;
 	    this.CanvasUtil = new _canvas2.default();
+	    this.$rootScope = $rootScope;
 	    this.isPlot = false;
 	    this.isChange = false;
 	  }
@@ -1737,9 +1755,10 @@
 	            id = paths[paths.length - 1];
 	        // 判断 id 是否正确
 	        if (id.length === 24) {
-	          this.Service.findPic(id, function (res) {
-	            if (res) {
-	              _this.CanvasUtil.render(res.imageSrc);
+	          var pics = this.$rootScope.pics;
+	          pics.map(function (item) {
+	            if (item._id === id) {
+	              _this.CanvasUtil.render(item.imageSrc);
 	            }
 	          });
 	        }
@@ -1781,7 +1800,7 @@
 	  return sideBtnCtrl;
 	}();
 	
-	sideBtnCtrl.$inject = ['$location', 'Service'];
+	sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope'];
 	
 	exports.default = {
 	  tpl: sideBtnTpl,
@@ -25216,7 +25235,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
 /* 42 */

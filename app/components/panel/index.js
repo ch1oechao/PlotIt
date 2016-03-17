@@ -15,10 +15,11 @@ let panelTpl = () => {
 };
 
 class panelCtrl {
-  constructor($scope, Service, $stateParams) {
+  constructor($scope, Service, $stateParams, $rootScope) {
     this.$scope = $scope;
     this.Service = Service;
     this.$stateParams = $stateParams;
+    this.$rootScope = $rootScope;
     this.CanvasUtil = new CanvasUtil();
     this.hasImage = false;
     this.isLoading = false;
@@ -30,11 +31,12 @@ class panelCtrl {
   renderImages(item) {
     var self = this;
     return (item) => {
-      var id = item.id;
-      this.Service.findPic(id, (res) => {
-        if (res) {
+      var id = item.id,
+          pics = this.$rootScope.pics;
+      pics.map((item) => {
+        if (item._id === id) {
           self.hasImage = true;
-          this.CanvasUtil.render(res.imageSrc);
+          self.CanvasUtil.render(item.imageSrc);
         }
       });
     }
@@ -49,8 +51,25 @@ class panelCtrl {
       if (files && files.length) {
         // loading image
         self.isLoading = true;
-        var file = files[0];
-        if (!file.$error) {
+
+        var file = files[0],
+            pics = self.$rootScope.pics;
+
+        // check pics
+        var hasPic = pics.filter((item) => {
+          return item.name === file.name;
+        });
+
+        if (hasPic[0]) {
+          // render image
+          self.imgSrc = hasPic[0].imageSrc;
+          // show canvas
+          self.hasImage = true;
+          this.CanvasUtil.render(self.imgSrc);
+          // loading finish
+          self.isLoading = false;
+
+        } else if (!file.$error) {
           // render image
           self.imgSrc = window.URL.createObjectURL(file);
           // show canvas
@@ -58,7 +77,7 @@ class panelCtrl {
           this.CanvasUtil.render(self.imgSrc);
 
           // upload to qiniu
-          self.uploadImageToQiniu(file);          
+          self.uploadImageToQiniu(file); 
         }
       }
     }
@@ -87,7 +106,7 @@ class panelCtrl {
 
 }
 
-panelCtrl.$inject = ['$scope', 'Service', '$stateParams'];
+panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope'];
 
 export default {
   tpl: panelTpl,

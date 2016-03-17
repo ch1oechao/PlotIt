@@ -16,24 +16,23 @@ let libraryTpl = () => {
 };
 
 class libraryCtrl {
-  constructor($location, Service, $route) {
+  constructor($location, Service, $route, $rootScope) {
     this.$location = $location;
     this.Service = Service;
     this.$route = $route;
+    this.$rootScope = $rootScope;
     this.pics = [];
   }
 
   getImages() {
     this.Service.getPics((res) => {
       this.pics = res.list;
+      this.$rootScope.pics = res.list;
     });
   }
 
   findImage(id) {
-    var self = this;
-    this.Service.findPic(id, (res) => {
-      self.$location.url('/plot/' + res._id);
-    })
+    this.$location.url('/plot/' + id);
   }
 
   downloadImage(id) {
@@ -61,7 +60,7 @@ class libraryCtrl {
 
 }
 
-libraryCtrl.$inject = ['$location', 'Service', '$route'];
+libraryCtrl.$inject = ['$location', 'Service', '$route', '$rootScope'];
 
 export default {
   tpl: libraryTpl,
