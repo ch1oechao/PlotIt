@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "abfc5f8f5e6410585760"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b7fc60c4a010b6c368ea"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -918,7 +918,7 @@
 	
 	
 	// module
-	exports.push([module.id, "library {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 562px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  height: 75%;\n  font-weight: 700;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all;\n  z-index: 2; }\n  .item-name:hover {\n    color: #08D9D6; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center;\n  z-index: 4; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
+	exports.push([module.id, "library {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 564px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  height: 75%;\n  font-weight: 700;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all;\n  z-index: 2; }\n  .item-name:hover {\n    color: #08D9D6; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center;\n  z-index: 4; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
 	
 	// exports
 
@@ -952,7 +952,7 @@
 	
 	
 	// module
-	exports.push([module.id, "panel {\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750;\n  overflow: hidden; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n  .panel-upload .drop-box {\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    padding-top: 35%; }\n\n#plotitCanvas {\n  width: 100%;\n  height: 100%;\n  background: transparent; }\n", ""]);
+	exports.push([module.id, "panel {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n  .panel-upload .drop-box {\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    padding-top: 35%; }\n\n#plotitCanvas {\n  width: 100%;\n  height: 100%;\n  background: transparent; }\n", ""]);
 	
 	// exports
 
@@ -969,7 +969,7 @@
 	
 	
 	// module
-	exports.push([module.id, "side-btn {\n  position: absolute;\n  bottom: 2em;\n  left: -1.5em; }\n\n.sidebtn {\n  position: relative;\n  margin: .8em 0;\n  width: 3em;\n  height: 3em;\n  line-height: 3em;\n  text-align: center;\n  border-radius: 50%;\n  cursor: pointer;\n  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }\n  .sidebtn a:link, .sidebtn a:visited, .sidebtn a:active, .sidebtn a:hover {\n    color: #FFF; }\n  .sidebtn.add, .sidebtn.back {\n    background-color: #FC5185; }\n  .sidebtn.complete {\n    background-color: #CDDC39; }\n  .sidebtn.undo {\n    background-color: #FFC107; }\n\n#plotAdd {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  width: 3em;\n  height: 3em;\n  overflow: hidden;\n  border: none;\n  outline: none;\n  opacity: 0; }\n", ""]);
+	exports.push([module.id, "side-btn {\n  position: absolute;\n  bottom: 2em;\n  right: -1.5em;\n  z-index: 999; }\n\n.sidebtn {\n  position: relative;\n  margin: .8em 0;\n  width: 3em;\n  height: 3em;\n  line-height: 3em;\n  text-align: center;\n  border-radius: 50%;\n  cursor: pointer;\n  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }\n  .sidebtn a:link, .sidebtn a:visited, .sidebtn a:active, .sidebtn a:hover {\n    color: #FFF; }\n  .sidebtn.disable {\n    -webkit-filter: grayscale(1); }\n  .sidebtn.add, .sidebtn.back {\n    background-color: #FC5185; }\n  .sidebtn.complete {\n    background-color: #CDDC39; }\n  .sidebtn.undo {\n    background-color: #FFC107; }\n\n#plotAdd {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: inline-block;\n  width: 3em;\n  height: 3em;\n  overflow: hidden;\n  border: none;\n  outline: none;\n  opacity: 0; }\n", ""]);
 	
 	// exports
 
@@ -1003,7 +1003,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 960px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666; }\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 960px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666;\n  overflow: hidden; }\n", ""]);
 	
 	// exports
 
@@ -1564,6 +1564,7 @@
 	    this.$stateParams = $stateParams;
 	    this.CanvasUtil = new _canvas2.default();
 	    this.hasImage = false;
+	    this.isLoading = false;
 	
 	    this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
 	    this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
@@ -1596,10 +1597,13 @@
 	
 	      return function (files) {
 	        if (files && files.length) {
+	          // loading image
+	          self.isLoading = true;
 	          var file = files[0];
 	          if (!file.$error) {
 	            // render image
 	            self.imgSrc = window.URL.createObjectURL(file);
+	            // show canvas
 	            self.hasImage = true;
 	            _this2.CanvasUtil.render(self.imgSrc);
 	
@@ -1623,7 +1627,10 @@
 	            imageSrc: imgSrc
 	          };
 	          self.Service.savePic(img, function (res) {
-	            console.log(res);
+	            if (res && res.success) {
+	              // loading finish
+	              self.isLoading = false;
+	            }
 	          });
 	        });
 	      });
@@ -25209,7 +25216,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/420\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
 /* 42 */
@@ -25218,7 +25225,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn side-state=\"plot\"></side-btn>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 43 */
@@ -25227,7 +25234,7 @@
   \*****************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>"
+	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
 /* 44 */
@@ -25236,7 +25243,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.updateImage()\">\n  <i class=\"fa fa-check\"></i>\n</div>\n<div class=\"sidebtn undo\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.undoImage()\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div class=\"sidebtn back\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.updateImage()\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.undoImage()\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
 /* 45 */
@@ -25245,7 +25252,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n"
+	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 46 */

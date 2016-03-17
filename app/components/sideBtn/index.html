@@ -2,11 +2,12 @@
   <i class="fa fa-plus"></i>
 </div>
 <div class="sidebtn complete" ng-show="sideBtn.isPlot" ng-click="sideBtn.updateImage()">
-  <i class="fa fa-check"></i>
+  <i class="fa fa-check" ng-if="!panel.isLoading"></i>
+  <i class="fa fa-spinner fa-pulse" ng-if="panel.isLoading"></i>
 </div>
-<div class="sidebtn undo" ng-show="sideBtn.isPlot" ng-click="sideBtn.undoImage()">
+<div ng-class="panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'" ng-show="sideBtn.isPlot" ng-click="sideBtn.undoImage()">
   <i class="fa fa-undo"></i>
 </div>
-<div class="sidebtn back" ng-show="sideBtn.isPlot" ng-click="sideBtn.turnToHome()">
+<div ng-class="panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' " ng-show="sideBtn.isPlot" ng-click="sideBtn.turnToHome()">
   <i class="fa fa-home"></i>
 </div>

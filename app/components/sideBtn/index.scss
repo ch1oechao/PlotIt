@@ -3,7 +3,8 @@
 side-btn {
   position: absolute;
   bottom: 2em;
-  left: -1.5em;
+  right: -1.5em;
+  z-index: 999;
 }
 
 .sidebtn {
@@ -21,6 +22,10 @@ side-btn {
     &:link, &:visited, &:active, &:hover {
       color: #FFF;
     }
+  }
+
+  &.disable {
+    -webkit-filter:grayscale(1);
   }
   
   &.add,

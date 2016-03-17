@@ -23,21 +23,22 @@
 
   exports.getImageList = function(req, res) {
     Pic.fetch(function(err, pics) {
-      if (err) {
-        throw err;
+      if (!err) {
+        res.json({
+          list: pics
+        });
+      } else {
+        console.log(err);
       }
-      res.send({
-        list: pics
-      });
-    })
+    });
   };
 
   exports.getImage = function(req, res) {
     var _id = req.body.id;
     Pic.findById(_id, function(err, item) {
-      res.send(item);
+      res.json(item);
     });
-  }
+  };
 
   exports.saveImage = function(req, res) {
     var reqData = req.body;
@@ -46,15 +47,13 @@
       var pic = new picModel(reqData);
 
       pic.save(function(err) {
-        if (!err) {
-          res.send({
-            status: 'OK'
-          }) 
-        } else {
+        if (err) {
           console.log(err);
         }
+        res.json({
+          success: true
+        })
       });
-
     }
   };
 
@@ -64,13 +63,18 @@
       qnServer.deleteFile(item.name);
       next();
     });
-
   };
 
   exports.delImageFromDB = function(req, res) {
     var id = req.params.id;
-    Pic.remove({_id: id}, function() {
-      res.json({success: true});
+    Pic.remove({_id: id}, function(err) {
+      if (!err) {
+        res.json({
+          success: true
+        });  
+      } else {
+        console.log(err);
+      }
     }); 
   };
 

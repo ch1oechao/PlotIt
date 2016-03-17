@@ -21,7 +21,8 @@ class panelCtrl {
     this.$stateParams = $stateParams;
     this.CanvasUtil = new CanvasUtil();
     this.hasImage = false;
-    
+    this.isLoading = false;
+
     this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
     this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
   }
@@ -46,16 +47,18 @@ class panelCtrl {
 
     return (files) => {
       if (files && files.length) {
+        // loading image
+        self.isLoading = true;
         var file = files[0];
         if (!file.$error) {
           // render image
           self.imgSrc = window.URL.createObjectURL(file);
+          // show canvas
           self.hasImage = true;
           this.CanvasUtil.render(self.imgSrc);
 
           // upload to qiniu
-          self.uploadImageToQiniu(file);
-          
+          self.uploadImageToQiniu(file);          
         }
       }
     }
@@ -73,7 +76,10 @@ class panelCtrl {
           imageSrc: imgSrc
         }
         self.Service.savePic(img, (res) => {
-          console.log(res);
+          if (res && res.success) {
+            // loading finish
+            self.isLoading = false;
+          }
         });
       });
     });
