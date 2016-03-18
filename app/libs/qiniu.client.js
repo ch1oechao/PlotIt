@@ -1,3 +1,5 @@
+import Base64 from './base64';
+
 (function() {
 
   var config = {
@@ -58,8 +60,8 @@
   };
 
   // 上传 Base64 编码
-  exports.uploadBase64 = function(pic, token, cb) {
-    var url = 'http://up.qiniu.com/putb64/-1',
+  exports.uploadBase64 = function(pic, token, key, cb) {
+    var url = 'http://up.qiniu.com/putb64/-1/key/' + Base64.encode(key),
         xhr = new XMLHttpRequest(),
         upToken = 'UpToken ' + token;
 

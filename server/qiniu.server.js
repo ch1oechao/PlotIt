@@ -18,8 +18,11 @@
   exports.config = config;
 
   // 生成 token
-  exports.uptoken = function() {
-    var putPolicy = new qiniu.rs.PutPolicy(config.bucket);
+  exports.uptoken = function(key) {
+    var putPolicy = new qiniu.rs.PutPolicy2({
+      scope: config.bucket,
+      saveKey: !!key ? key : null
+    });
     return putPolicy.token();
   }
 
@@ -49,9 +52,15 @@
   }
 
   // 删除文件
-  exports.deleteFile = function(key) {
-    client.remove(config.bucket, key, function(err, res) {
+  exports.deleteFile = function(key, fn) {
+    client.remove(config.bucket, key, function(err) {
       if (!err) {
+        var res = {success: true};
+        if (fn) {
+          fn(res);
+        } else {
+          return res;
+        }
         console.log('Qiniu delete file... is OK !');
       } else {
         console.log(err);

@@ -3,10 +3,15 @@ export default class service {
     this.$http = $http;
   }
 
-  genToken(fn) {
+  genToken(key, fn) {
+    if (key && typeof key === 'function') {
+      var fn = key,
+          key = '';
+    }
     this.$http({
-      method: 'get',
+      method: 'post',
       url: '/uptoken',
+      data: {key: key},
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -113,6 +118,21 @@ export default class service {
           return str.join('&');
         }
       }).success((res) => {
+        if (fn) {
+          fn(res);
+        } else {
+          return res;
+        }
+      }).error((err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  deletePicFromQiniu(id, fn) {
+    if (id) {
+      this.$http.delete('/qiniu/' + id)
+      .success((res) => {
         if (fn) {
           fn(res);
         } else {

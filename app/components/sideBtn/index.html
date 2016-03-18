@@ -1,13 +1,19 @@
 <div class="sidebtn add" ng-show="!sideBtn.isPlot" ng-click="sideBtn.turnToCanvas()">
   <i class="fa fa-plus"></i>
 </div>
-<div class="sidebtn complete" ng-show="sideBtn.isPlot" ng-click="sideBtn.updateImage()">
+<div class="sidebtn complete" 
+     ng-show="sideBtn.isPlot" 
+     ng-click="sideBtn.updateImage(panel.isLoading)">
   <i class="fa fa-check" ng-if="!panel.isLoading"></i>
   <i class="fa fa-spinner fa-pulse" ng-if="panel.isLoading"></i>
 </div>
-<div ng-class="panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'" ng-show="sideBtn.isPlot" ng-click="sideBtn.undoImage()">
+<div ng-class="panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'" 
+     ng-show="sideBtn.isPlot" 
+     ng-click="sideBtn.undoImage(panel.isLoading)">
   <i class="fa fa-undo"></i>
 </div>
-<div ng-class="panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' " ng-show="sideBtn.isPlot" ng-click="sideBtn.turnToHome()">
+<div ng-class="panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' " 
+     ng-show="sideBtn.isPlot" 
+     ng-click="sideBtn.turnToHome(panel.isLoading)">
   <i class="fa fa-home"></i>
 </div>

@@ -47,7 +47,7 @@ export default class CanvasUtil {
   convertToBase64(canvas, size) {
     if (canvas) {
       var quality = 1,
-          maxSize = 100000000,
+          maxSize = 50000000,
           context = canvas.getContext('2d'),
           imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 

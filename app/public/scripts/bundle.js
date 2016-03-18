@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1c276a7b55dcdfc0b10f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8891b56d4050fe4d8336"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */22);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */57);
+	__webpack_require__(/*! ./app/main.js */24);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */62);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 28);
+	__webpack_require__(/*! ./angular */ 30);
 	module.exports = angular;
 
 /***/ },
@@ -1097,7 +1097,7 @@
 	    value: function convertToBase64(canvas, size) {
 	      if (canvas) {
 	        var quality = 1,
-	            maxSize = 100000000,
+	            maxSize = 50000000,
 	            context = canvas.getContext('2d'),
 	            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	
@@ -1124,9 +1124,15 @@
 /*!**********************************!*\
   !*** ./app/libs/qiniu.client.js ***!
   \**********************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var _base = __webpack_require__(/*! ./base64 */ 22);
+	
+	var _base2 = _interopRequireDefault(_base);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	(function () {
 	
@@ -1188,8 +1194,8 @@
 	  };
 	
 	  // 上传 Base64 编码
-	  exports.uploadBase64 = function (pic, token, cb) {
-	    var url = 'http://up.qiniu.com/putb64/-1',
+	  exports.uploadBase64 = function (pic, token, key, cb) {
+	    var url = 'http://up.qiniu.com/putb64/-1/key/' + _base2.default.encode(key),
 	        xhr = new XMLHttpRequest(),
 	        upToken = 'UpToken ' + token;
 	
@@ -1213,6 +1219,1528 @@
 
 /***/ },
 /* 13 */
+/*!***************************!*\
+  !*** ./~/buffer/index.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
+	 * The buffer module from node.js, for the browser.
+	 *
+	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+	 * @license  MIT
+	 */
+	/* eslint-disable no-proto */
+	
+	'use strict';
+	
+	var base64 = __webpack_require__(/*! base64-js */ 33);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 38);
+	var isArray = __webpack_require__(/*! isarray */ 34);
+	
+	exports.Buffer = Buffer;
+	exports.SlowBuffer = SlowBuffer;
+	exports.INSPECT_MAX_BYTES = 50;
+	Buffer.poolSize = 8192; // not used by this implementation
+	
+	var rootParent = {};
+	
+	/**
+	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
+	 *   === true    Use Uint8Array implementation (fastest)
+	 *   === false   Use Object implementation (most compatible, even IE6)
+	 *
+	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+	 * Opera 11.6+, iOS 4.2+.
+	 *
+	 * Due to various browser bugs, sometimes the Object implementation will be used even
+	 * when the browser supports typed arrays.
+	 *
+	 * Note:
+	 *
+	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+	 *
+	 *   - Safari 5-7 lacks support for changing the `Object.prototype.constructor` property
+	 *     on objects.
+	 *
+	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+	 *
+	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+	 *     incorrect length in some situations.
+	
+	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+	 * get the Object implementation, which is slower but behaves correctly.
+	 */
+	Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined ? global.TYPED_ARRAY_SUPPORT : typedArraySupport();
+	
+	function typedArraySupport() {
+	  function Bar() {}
+	  try {
+	    var arr = new Uint8Array(1);
+	    arr.foo = function () {
+	      return 42;
+	    };
+	    arr.constructor = Bar;
+	    return arr.foo() === 42 && // typed array instances can be augmented
+	    arr.constructor === Bar && // constructor can be set
+	    typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+	    arr.subarray(1, 1).byteLength === 0; // ie10 has broken `subarray`
+	  } catch (e) {
+	    return false;
+	  }
+	}
+	
+	function kMaxLength() {
+	  return Buffer.TYPED_ARRAY_SUPPORT ? 0x7fffffff : 0x3fffffff;
+	}
+	
+	/**
+	 * Class: Buffer
+	 * =============
+	 *
+	 * The Buffer constructor returns instances of `Uint8Array` that are augmented
+	 * with function properties for all the node `Buffer` API functions. We use
+	 * `Uint8Array` so that square bracket notation works as expected -- it returns
+	 * a single octet.
+	 *
+	 * By augmenting the instances, we can avoid modifying the `Uint8Array`
+	 * prototype.
+	 */
+	function Buffer(arg) {
+	  if (!(this instanceof Buffer)) {
+	    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
+	    if (arguments.length > 1) return new Buffer(arg, arguments[1]);
+	    return new Buffer(arg);
+	  }
+	
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    this.length = 0;
+	    this.parent = undefined;
+	  }
+	
+	  // Common case.
+	  if (typeof arg === 'number') {
+	    return fromNumber(this, arg);
+	  }
+	
+	  // Slightly less common case.
+	  if (typeof arg === 'string') {
+	    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8');
+	  }
+	
+	  // Unusual.
+	  return fromObject(this, arg);
+	}
+	
+	function fromNumber(that, length) {
+	  that = allocate(that, length < 0 ? 0 : checked(length) | 0);
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    for (var i = 0; i < length; i++) {
+	      that[i] = 0;
+	    }
+	  }
+	  return that;
+	}
+	
+	function fromString(that, string, encoding) {
+	  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8';
+	
+	  // Assumption: byteLength() return value is always < kMaxLength.
+	  var length = byteLength(string, encoding) | 0;
+	  that = allocate(that, length);
+	
+	  that.write(string, encoding);
+	  return that;
+	}
+	
+	function fromObject(that, object) {
+	  if (Buffer.isBuffer(object)) return fromBuffer(that, object);
+	
+	  if (isArray(object)) return fromArray(that, object);
+	
+	  if (object == null) {
+	    throw new TypeError('must start with number, buffer, array or string');
+	  }
+	
+	  if (typeof ArrayBuffer !== 'undefined') {
+	    if (object.buffer instanceof ArrayBuffer) {
+	      return fromTypedArray(that, object);
+	    }
+	    if (object instanceof ArrayBuffer) {
+	      return fromArrayBuffer(that, object);
+	    }
+	  }
+	
+	  if (object.length) return fromArrayLike(that, object);
+	
+	  return fromJsonObject(that, object);
+	}
+	
+	function fromBuffer(that, buffer) {
+	  var length = checked(buffer.length) | 0;
+	  that = allocate(that, length);
+	  buffer.copy(that, 0, 0, length);
+	  return that;
+	}
+	
+	function fromArray(that, array) {
+	  var length = checked(array.length) | 0;
+	  that = allocate(that, length);
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255;
+	  }
+	  return that;
+	}
+	
+	// Duplicate of fromArray() to keep fromArray() monomorphic.
+	function fromTypedArray(that, array) {
+	  var length = checked(array.length) | 0;
+	  that = allocate(that, length);
+	  // Truncating the elements is probably not what people expect from typed
+	  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
+	  // of the old Buffer constructor.
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255;
+	  }
+	  return that;
+	}
+	
+	function fromArrayBuffer(that, array) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    array.byteLength;
+	    that = Buffer._augment(new Uint8Array(array));
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that = fromTypedArray(that, new Uint8Array(array));
+	  }
+	  return that;
+	}
+	
+	function fromArrayLike(that, array) {
+	  var length = checked(array.length) | 0;
+	  that = allocate(that, length);
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255;
+	  }
+	  return that;
+	}
+	
+	// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
+	// Returns a zero-length buffer for inputs that don't conform to the spec.
+	function fromJsonObject(that, object) {
+	  var array;
+	  var length = 0;
+	
+	  if (object.type === 'Buffer' && isArray(object.data)) {
+	    array = object.data;
+	    length = checked(array.length) | 0;
+	  }
+	  that = allocate(that, length);
+	
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255;
+	  }
+	  return that;
+	}
+	
+	if (Buffer.TYPED_ARRAY_SUPPORT) {
+	  Buffer.prototype.__proto__ = Uint8Array.prototype;
+	  Buffer.__proto__ = Uint8Array;
+	} else {
+	  // pre-set for values that may exist in the future
+	  Buffer.prototype.length = undefined;
+	  Buffer.prototype.parent = undefined;
+	}
+	
+	function allocate(that, length) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    that = Buffer._augment(new Uint8Array(length));
+	    that.__proto__ = Buffer.prototype;
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that.length = length;
+	    that._isBuffer = true;
+	  }
+	
+	  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1;
+	  if (fromPool) that.parent = rootParent;
+	
+	  return that;
+	}
+	
+	function checked(length) {
+	  // Note: cannot use `length < kMaxLength` here because that fails when
+	  // length is NaN (which is otherwise coerced to zero.)
+	  if (length >= kMaxLength()) {
+	    throw new RangeError('Attempt to allocate Buffer larger than maximum ' + 'size: 0x' + kMaxLength().toString(16) + ' bytes');
+	  }
+	  return length | 0;
+	}
+	
+	function SlowBuffer(subject, encoding) {
+	  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding);
+	
+	  var buf = new Buffer(subject, encoding);
+	  delete buf.parent;
+	  return buf;
+	}
+	
+	Buffer.isBuffer = function isBuffer(b) {
+	  return !!(b != null && b._isBuffer);
+	};
+	
+	Buffer.compare = function compare(a, b) {
+	  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+	    throw new TypeError('Arguments must be Buffers');
+	  }
+	
+	  if (a === b) return 0;
+	
+	  var x = a.length;
+	  var y = b.length;
+	
+	  var i = 0;
+	  var len = Math.min(x, y);
+	  while (i < len) {
+	    if (a[i] !== b[i]) break;
+	
+	    ++i;
+	  }
+	
+	  if (i !== len) {
+	    x = a[i];
+	    y = b[i];
+	  }
+	
+	  if (x < y) return -1;
+	  if (y < x) return 1;
+	  return 0;
+	};
+	
+	Buffer.isEncoding = function isEncoding(encoding) {
+	  switch (String(encoding).toLowerCase()) {
+	    case 'hex':
+	    case 'utf8':
+	    case 'utf-8':
+	    case 'ascii':
+	    case 'binary':
+	    case 'base64':
+	    case 'raw':
+	    case 'ucs2':
+	    case 'ucs-2':
+	    case 'utf16le':
+	    case 'utf-16le':
+	      return true;
+	    default:
+	      return false;
+	  }
+	};
+	
+	Buffer.concat = function concat(list, length) {
+	  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.');
+	
+	  if (list.length === 0) {
+	    return new Buffer(0);
+	  }
+	
+	  var i;
+	  if (length === undefined) {
+	    length = 0;
+	    for (i = 0; i < list.length; i++) {
+	      length += list[i].length;
+	    }
+	  }
+	
+	  var buf = new Buffer(length);
+	  var pos = 0;
+	  for (i = 0; i < list.length; i++) {
+	    var item = list[i];
+	    item.copy(buf, pos);
+	    pos += item.length;
+	  }
+	  return buf;
+	};
+	
+	function byteLength(string, encoding) {
+	  if (typeof string !== 'string') string = '' + string;
+	
+	  var len = string.length;
+	  if (len === 0) return 0;
+	
+	  // Use a for loop to avoid recursion
+	  var loweredCase = false;
+	  for (;;) {
+	    switch (encoding) {
+	      case 'ascii':
+	      case 'binary':
+	      // Deprecated
+	      case 'raw':
+	      case 'raws':
+	        return len;
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8ToBytes(string).length;
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return len * 2;
+	      case 'hex':
+	        return len >>> 1;
+	      case 'base64':
+	        return base64ToBytes(string).length;
+	      default:
+	        if (loweredCase) return utf8ToBytes(string).length; // assume utf8
+	        encoding = ('' + encoding).toLowerCase();
+	        loweredCase = true;
+	    }
+	  }
+	}
+	Buffer.byteLength = byteLength;
+	
+	function slowToString(encoding, start, end) {
+	  var loweredCase = false;
+	
+	  start = start | 0;
+	  end = end === undefined || end === Infinity ? this.length : end | 0;
+	
+	  if (!encoding) encoding = 'utf8';
+	  if (start < 0) start = 0;
+	  if (end > this.length) end = this.length;
+	  if (end <= start) return '';
+	
+	  while (true) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexSlice(this, start, end);
+	
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Slice(this, start, end);
+	
+	      case 'ascii':
+	        return asciiSlice(this, start, end);
+	
+	      case 'binary':
+	        return binarySlice(this, start, end);
+	
+	      case 'base64':
+	        return base64Slice(this, start, end);
+	
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return utf16leSlice(this, start, end);
+	
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding);
+	        encoding = (encoding + '').toLowerCase();
+	        loweredCase = true;
+	    }
+	  }
+	}
+	
+	Buffer.prototype.toString = function toString() {
+	  var length = this.length | 0;
+	  if (length === 0) return '';
+	  if (arguments.length === 0) return utf8Slice(this, 0, length);
+	  return slowToString.apply(this, arguments);
+	};
+	
+	Buffer.prototype.equals = function equals(b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer');
+	  if (this === b) return true;
+	  return Buffer.compare(this, b) === 0;
+	};
+	
+	Buffer.prototype.inspect = function inspect() {
+	  var str = '';
+	  var max = exports.INSPECT_MAX_BYTES;
+	  if (this.length > 0) {
+	    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ');
+	    if (this.length > max) str += ' ... ';
+	  }
+	  return '<Buffer ' + str + '>';
+	};
+	
+	Buffer.prototype.compare = function compare(b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer');
+	  if (this === b) return 0;
+	  return Buffer.compare(this, b);
+	};
+	
+	Buffer.prototype.indexOf = function indexOf(val, byteOffset) {
+	  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff;else if (byteOffset < -0x80000000) byteOffset = -0x80000000;
+	  byteOffset >>= 0;
+	
+	  if (this.length === 0) return -1;
+	  if (byteOffset >= this.length) return -1;
+	
+	  // Negative offsets start from the end of the buffer
+	  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0);
+	
+	  if (typeof val === 'string') {
+	    if (val.length === 0) return -1; // special case: looking for empty string always fails
+	    return String.prototype.indexOf.call(this, val, byteOffset);
+	  }
+	  if (Buffer.isBuffer(val)) {
+	    return arrayIndexOf(this, val, byteOffset);
+	  }
+	  if (typeof val === 'number') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
+	      return Uint8Array.prototype.indexOf.call(this, val, byteOffset);
+	    }
+	    return arrayIndexOf(this, [val], byteOffset);
+	  }
+	
+	  function arrayIndexOf(arr, val, byteOffset) {
+	    var foundIndex = -1;
+	    for (var i = 0; byteOffset + i < arr.length; i++) {
+	      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+	        if (foundIndex === -1) foundIndex = i;
+	        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex;
+	      } else {
+	        foundIndex = -1;
+	      }
+	    }
+	    return -1;
+	  }
+	
+	  throw new TypeError('val must be string, number or Buffer');
+	};
+	
+	// `get` is deprecated
+	Buffer.prototype.get = function get(offset) {
+	  console.log('.get() is deprecated. Access using array indexes instead.');
+	  return this.readUInt8(offset);
+	};
+	
+	// `set` is deprecated
+	Buffer.prototype.set = function set(v, offset) {
+	  console.log('.set() is deprecated. Access using array indexes instead.');
+	  return this.writeUInt8(v, offset);
+	};
+	
+	function hexWrite(buf, string, offset, length) {
+	  offset = Number(offset) || 0;
+	  var remaining = buf.length - offset;
+	  if (!length) {
+	    length = remaining;
+	  } else {
+	    length = Number(length);
+	    if (length > remaining) {
+	      length = remaining;
+	    }
+	  }
+	
+	  // must be an even number of digits
+	  var strLen = string.length;
+	  if (strLen % 2 !== 0) throw new Error('Invalid hex string');
+	
+	  if (length > strLen / 2) {
+	    length = strLen / 2;
+	  }
+	  for (var i = 0; i < length; i++) {
+	    var parsed = parseInt(string.substr(i * 2, 2), 16);
+	    if (isNaN(parsed)) throw new Error('Invalid hex string');
+	    buf[offset + i] = parsed;
+	  }
+	  return i;
+	}
+	
+	function utf8Write(buf, string, offset, length) {
+	  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
+	}
+	
+	function asciiWrite(buf, string, offset, length) {
+	  return blitBuffer(asciiToBytes(string), buf, offset, length);
+	}
+	
+	function binaryWrite(buf, string, offset, length) {
+	  return asciiWrite(buf, string, offset, length);
+	}
+	
+	function base64Write(buf, string, offset, length) {
+	  return blitBuffer(base64ToBytes(string), buf, offset, length);
+	}
+	
+	function ucs2Write(buf, string, offset, length) {
+	  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length);
+	}
+	
+	Buffer.prototype.write = function write(string, offset, length, encoding) {
+	  // Buffer#write(string)
+	  if (offset === undefined) {
+	    encoding = 'utf8';
+	    length = this.length;
+	    offset = 0;
+	    // Buffer#write(string, encoding)
+	  } else if (length === undefined && typeof offset === 'string') {
+	      encoding = offset;
+	      length = this.length;
+	      offset = 0;
+	      // Buffer#write(string, offset[, length][, encoding])
+	    } else if (isFinite(offset)) {
+	        offset = offset | 0;
+	        if (isFinite(length)) {
+	          length = length | 0;
+	          if (encoding === undefined) encoding = 'utf8';
+	        } else {
+	          encoding = length;
+	          length = undefined;
+	        }
+	        // legacy write(string, encoding, offset, length) - remove in v0.13
+	      } else {
+	          var swap = encoding;
+	          encoding = offset;
+	          offset = length | 0;
+	          length = swap;
+	        }
+	
+	  var remaining = this.length - offset;
+	  if (length === undefined || length > remaining) length = remaining;
+	
+	  if (string.length > 0 && (length < 0 || offset < 0) || offset > this.length) {
+	    throw new RangeError('attempt to write outside buffer bounds');
+	  }
+	
+	  if (!encoding) encoding = 'utf8';
+	
+	  var loweredCase = false;
+	  for (;;) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexWrite(this, string, offset, length);
+	
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Write(this, string, offset, length);
+	
+	      case 'ascii':
+	        return asciiWrite(this, string, offset, length);
+	
+	      case 'binary':
+	        return binaryWrite(this, string, offset, length);
+	
+	      case 'base64':
+	        // Warning: maxLength not taken into account in base64Write
+	        return base64Write(this, string, offset, length);
+	
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return ucs2Write(this, string, offset, length);
+	
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding);
+	        encoding = ('' + encoding).toLowerCase();
+	        loweredCase = true;
+	    }
+	  }
+	};
+	
+	Buffer.prototype.toJSON = function toJSON() {
+	  return {
+	    type: 'Buffer',
+	    data: Array.prototype.slice.call(this._arr || this, 0)
+	  };
+	};
+	
+	function base64Slice(buf, start, end) {
+	  if (start === 0 && end === buf.length) {
+	    return base64.fromByteArray(buf);
+	  } else {
+	    return base64.fromByteArray(buf.slice(start, end));
+	  }
+	}
+	
+	function utf8Slice(buf, start, end) {
+	  end = Math.min(buf.length, end);
+	  var res = [];
+	
+	  var i = start;
+	  while (i < end) {
+	    var firstByte = buf[i];
+	    var codePoint = null;
+	    var bytesPerSequence = firstByte > 0xEF ? 4 : firstByte > 0xDF ? 3 : firstByte > 0xBF ? 2 : 1;
+	
+	    if (i + bytesPerSequence <= end) {
+	      var secondByte, thirdByte, fourthByte, tempCodePoint;
+	
+	      switch (bytesPerSequence) {
+	        case 1:
+	          if (firstByte < 0x80) {
+	            codePoint = firstByte;
+	          }
+	          break;
+	        case 2:
+	          secondByte = buf[i + 1];
+	          if ((secondByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0x1F) << 0x6 | secondByte & 0x3F;
+	            if (tempCodePoint > 0x7F) {
+	              codePoint = tempCodePoint;
+	            }
+	          }
+	          break;
+	        case 3:
+	          secondByte = buf[i + 1];
+	          thirdByte = buf[i + 2];
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | thirdByte & 0x3F;
+	            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+	              codePoint = tempCodePoint;
+	            }
+	          }
+	          break;
+	        case 4:
+	          secondByte = buf[i + 1];
+	          thirdByte = buf[i + 2];
+	          fourthByte = buf[i + 3];
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | fourthByte & 0x3F;
+	            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+	              codePoint = tempCodePoint;
+	            }
+	          }
+	      }
+	    }
+	
+	    if (codePoint === null) {
+	      // we did not generate a valid codePoint so insert a
+	      // replacement char (U+FFFD) and advance only 1 byte
+	      codePoint = 0xFFFD;
+	      bytesPerSequence = 1;
+	    } else if (codePoint > 0xFFFF) {
+	      // encode to utf16 (surrogate pair dance)
+	      codePoint -= 0x10000;
+	      res.push(codePoint >>> 10 & 0x3FF | 0xD800);
+	      codePoint = 0xDC00 | codePoint & 0x3FF;
+	    }
+	
+	    res.push(codePoint);
+	    i += bytesPerSequence;
+	  }
+	
+	  return decodeCodePointsArray(res);
+	}
+	
+	// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+	// the lowest limit is Chrome, with 0x10000 args.
+	// We go 1 magnitude less, for safety
+	var MAX_ARGUMENTS_LENGTH = 0x1000;
+	
+	function decodeCodePointsArray(codePoints) {
+	  var len = codePoints.length;
+	  if (len <= MAX_ARGUMENTS_LENGTH) {
+	    return String.fromCharCode.apply(String, codePoints); // avoid extra slice()
+	  }
+	
+	  // Decode in chunks to avoid "call stack size exceeded".
+	  var res = '';
+	  var i = 0;
+	  while (i < len) {
+	    res += String.fromCharCode.apply(String, codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH));
+	  }
+	  return res;
+	}
+	
+	function asciiSlice(buf, start, end) {
+	  var ret = '';
+	  end = Math.min(buf.length, end);
+	
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i] & 0x7F);
+	  }
+	  return ret;
+	}
+	
+	function binarySlice(buf, start, end) {
+	  var ret = '';
+	  end = Math.min(buf.length, end);
+	
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i]);
+	  }
+	  return ret;
+	}
+	
+	function hexSlice(buf, start, end) {
+	  var len = buf.length;
+	
+	  if (!start || start < 0) start = 0;
+	  if (!end || end < 0 || end > len) end = len;
+	
+	  var out = '';
+	  for (var i = start; i < end; i++) {
+	    out += toHex(buf[i]);
+	  }
+	  return out;
+	}
+	
+	function utf16leSlice(buf, start, end) {
+	  var bytes = buf.slice(start, end);
+	  var res = '';
+	  for (var i = 0; i < bytes.length; i += 2) {
+	    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256);
+	  }
+	  return res;
+	}
+	
+	Buffer.prototype.slice = function slice(start, end) {
+	  var len = this.length;
+	  start = ~ ~start;
+	  end = end === undefined ? len : ~ ~end;
+	
+	  if (start < 0) {
+	    start += len;
+	    if (start < 0) start = 0;
+	  } else if (start > len) {
+	    start = len;
+	  }
+	
+	  if (end < 0) {
+	    end += len;
+	    if (end < 0) end = 0;
+	  } else if (end > len) {
+	    end = len;
+	  }
+	
+	  if (end < start) end = start;
+	
+	  var newBuf;
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    newBuf = Buffer._augment(this.subarray(start, end));
+	  } else {
+	    var sliceLen = end - start;
+	    newBuf = new Buffer(sliceLen, undefined);
+	    for (var i = 0; i < sliceLen; i++) {
+	      newBuf[i] = this[i + start];
+	    }
+	  }
+	
+	  if (newBuf.length) newBuf.parent = this.parent || this;
+	
+	  return newBuf;
+	};
+	
+	/*
+	 * Need to make sure that buffer isn't trying to write out of bounds.
+	 */
+	function checkOffset(offset, ext, length) {
+	  if (offset % 1 !== 0 || offset < 0) throw new RangeError('offset is not uint');
+	  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length');
+	}
+	
+	Buffer.prototype.readUIntLE = function readUIntLE(offset, byteLength, noAssert) {
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) checkOffset(offset, byteLength, this.length);
+	
+	  var val = this[offset];
+	  var mul = 1;
+	  var i = 0;
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul;
+	  }
+	
+	  return val;
+	};
+	
+	Buffer.prototype.readUIntBE = function readUIntBE(offset, byteLength, noAssert) {
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) {
+	    checkOffset(offset, byteLength, this.length);
+	  }
+	
+	  var val = this[offset + --byteLength];
+	  var mul = 1;
+	  while (byteLength > 0 && (mul *= 0x100)) {
+	    val += this[offset + --byteLength] * mul;
+	  }
+	
+	  return val;
+	};
+	
+	Buffer.prototype.readUInt8 = function readUInt8(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length);
+	  return this[offset];
+	};
+	
+	Buffer.prototype.readUInt16LE = function readUInt16LE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length);
+	  return this[offset] | this[offset + 1] << 8;
+	};
+	
+	Buffer.prototype.readUInt16BE = function readUInt16BE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length);
+	  return this[offset] << 8 | this[offset + 1];
+	};
+	
+	Buffer.prototype.readUInt32LE = function readUInt32LE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	
+	  return (this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16) + this[offset + 3] * 0x1000000;
+	};
+	
+	Buffer.prototype.readUInt32BE = function readUInt32BE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	
+	  return this[offset] * 0x1000000 + (this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3]);
+	};
+	
+	Buffer.prototype.readIntLE = function readIntLE(offset, byteLength, noAssert) {
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) checkOffset(offset, byteLength, this.length);
+	
+	  var val = this[offset];
+	  var mul = 1;
+	  var i = 0;
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul;
+	  }
+	  mul *= 0x80;
+	
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength);
+	
+	  return val;
+	};
+	
+	Buffer.prototype.readIntBE = function readIntBE(offset, byteLength, noAssert) {
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) checkOffset(offset, byteLength, this.length);
+	
+	  var i = byteLength;
+	  var mul = 1;
+	  var val = this[offset + --i];
+	  while (i > 0 && (mul *= 0x100)) {
+	    val += this[offset + --i] * mul;
+	  }
+	  mul *= 0x80;
+	
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength);
+	
+	  return val;
+	};
+	
+	Buffer.prototype.readInt8 = function readInt8(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length);
+	  if (!(this[offset] & 0x80)) return this[offset];
+	  return (0xff - this[offset] + 1) * -1;
+	};
+	
+	Buffer.prototype.readInt16LE = function readInt16LE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length);
+	  var val = this[offset] | this[offset + 1] << 8;
+	  return val & 0x8000 ? val | 0xFFFF0000 : val;
+	};
+	
+	Buffer.prototype.readInt16BE = function readInt16BE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length);
+	  var val = this[offset + 1] | this[offset] << 8;
+	  return val & 0x8000 ? val | 0xFFFF0000 : val;
+	};
+	
+	Buffer.prototype.readInt32LE = function readInt32LE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	
+	  return this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
+	};
+	
+	Buffer.prototype.readInt32BE = function readInt32BE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	
+	  return this[offset] << 24 | this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3];
+	};
+	
+	Buffer.prototype.readFloatLE = function readFloatLE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	  return ieee754.read(this, offset, true, 23, 4);
+	};
+	
+	Buffer.prototype.readFloatBE = function readFloatBE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length);
+	  return ieee754.read(this, offset, false, 23, 4);
+	};
+	
+	Buffer.prototype.readDoubleLE = function readDoubleLE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length);
+	  return ieee754.read(this, offset, true, 52, 8);
+	};
+	
+	Buffer.prototype.readDoubleBE = function readDoubleBE(offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length);
+	  return ieee754.read(this, offset, false, 52, 8);
+	};
+	
+	function checkInt(buf, value, offset, ext, max, min) {
+	  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance');
+	  if (value > max || value < min) throw new RangeError('value is out of bounds');
+	  if (offset + ext > buf.length) throw new RangeError('index out of range');
+	}
+	
+	Buffer.prototype.writeUIntLE = function writeUIntLE(value, offset, byteLength, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0);
+	
+	  var mul = 1;
+	  var i = 0;
+	  this[offset] = value & 0xFF;
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = value / mul & 0xFF;
+	  }
+	
+	  return offset + byteLength;
+	};
+	
+	Buffer.prototype.writeUIntBE = function writeUIntBE(value, offset, byteLength, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  byteLength = byteLength | 0;
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0);
+	
+	  var i = byteLength - 1;
+	  var mul = 1;
+	  this[offset + i] = value & 0xFF;
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = value / mul & 0xFF;
+	  }
+	
+	  return offset + byteLength;
+	};
+	
+	Buffer.prototype.writeUInt8 = function writeUInt8(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0);
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value);
+	  this[offset] = value & 0xff;
+	  return offset + 1;
+	};
+	
+	function objectWriteUInt16(buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffff + value + 1;
+	  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+	    buf[offset + i] = (value & 0xff << 8 * (littleEndian ? i : 1 - i)) >>> (littleEndian ? i : 1 - i) * 8;
+	  }
+	}
+	
+	Buffer.prototype.writeUInt16LE = function writeUInt16LE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value & 0xff;
+	    this[offset + 1] = value >>> 8;
+	  } else {
+	    objectWriteUInt16(this, value, offset, true);
+	  }
+	  return offset + 2;
+	};
+	
+	Buffer.prototype.writeUInt16BE = function writeUInt16BE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value >>> 8;
+	    this[offset + 1] = value & 0xff;
+	  } else {
+	    objectWriteUInt16(this, value, offset, false);
+	  }
+	  return offset + 2;
+	};
+	
+	function objectWriteUInt32(buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffffffff + value + 1;
+	  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+	    buf[offset + i] = value >>> (littleEndian ? i : 3 - i) * 8 & 0xff;
+	  }
+	}
+	
+	Buffer.prototype.writeUInt32LE = function writeUInt32LE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset + 3] = value >>> 24;
+	    this[offset + 2] = value >>> 16;
+	    this[offset + 1] = value >>> 8;
+	    this[offset] = value & 0xff;
+	  } else {
+	    objectWriteUInt32(this, value, offset, true);
+	  }
+	  return offset + 4;
+	};
+	
+	Buffer.prototype.writeUInt32BE = function writeUInt32BE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value >>> 24;
+	    this[offset + 1] = value >>> 16;
+	    this[offset + 2] = value >>> 8;
+	    this[offset + 3] = value & 0xff;
+	  } else {
+	    objectWriteUInt32(this, value, offset, false);
+	  }
+	  return offset + 4;
+	};
+	
+	Buffer.prototype.writeIntLE = function writeIntLE(value, offset, byteLength, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1);
+	
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit);
+	  }
+	
+	  var i = 0;
+	  var mul = 1;
+	  var sub = value < 0 ? 1 : 0;
+	  this[offset] = value & 0xFF;
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul >> 0) - sub & 0xFF;
+	  }
+	
+	  return offset + byteLength;
+	};
+	
+	Buffer.prototype.writeIntBE = function writeIntBE(value, offset, byteLength, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1);
+	
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit);
+	  }
+	
+	  var i = byteLength - 1;
+	  var mul = 1;
+	  var sub = value < 0 ? 1 : 0;
+	  this[offset + i] = value & 0xFF;
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul >> 0) - sub & 0xFF;
+	  }
+	
+	  return offset + byteLength;
+	};
+	
+	Buffer.prototype.writeInt8 = function writeInt8(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80);
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value);
+	  if (value < 0) value = 0xff + value + 1;
+	  this[offset] = value & 0xff;
+	  return offset + 1;
+	};
+	
+	Buffer.prototype.writeInt16LE = function writeInt16LE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value & 0xff;
+	    this[offset + 1] = value >>> 8;
+	  } else {
+	    objectWriteUInt16(this, value, offset, true);
+	  }
+	  return offset + 2;
+	};
+	
+	Buffer.prototype.writeInt16BE = function writeInt16BE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value >>> 8;
+	    this[offset + 1] = value & 0xff;
+	  } else {
+	    objectWriteUInt16(this, value, offset, false);
+	  }
+	  return offset + 2;
+	};
+	
+	Buffer.prototype.writeInt32LE = function writeInt32LE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000);
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value & 0xff;
+	    this[offset + 1] = value >>> 8;
+	    this[offset + 2] = value >>> 16;
+	    this[offset + 3] = value >>> 24;
+	  } else {
+	    objectWriteUInt32(this, value, offset, true);
+	  }
+	  return offset + 4;
+	};
+	
+	Buffer.prototype.writeInt32BE = function writeInt32BE(value, offset, noAssert) {
+	  value = +value;
+	  offset = offset | 0;
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000);
+	  if (value < 0) value = 0xffffffff + value + 1;
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = value >>> 24;
+	    this[offset + 1] = value >>> 16;
+	    this[offset + 2] = value >>> 8;
+	    this[offset + 3] = value & 0xff;
+	  } else {
+	    objectWriteUInt32(this, value, offset, false);
+	  }
+	  return offset + 4;
+	};
+	
+	function checkIEEE754(buf, value, offset, ext, max, min) {
+	  if (value > max || value < min) throw new RangeError('value is out of bounds');
+	  if (offset + ext > buf.length) throw new RangeError('index out of range');
+	  if (offset < 0) throw new RangeError('index out of range');
+	}
+	
+	function writeFloat(buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38);
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 23, 4);
+	  return offset + 4;
+	}
+	
+	Buffer.prototype.writeFloatLE = function writeFloatLE(value, offset, noAssert) {
+	  return writeFloat(this, value, offset, true, noAssert);
+	};
+	
+	Buffer.prototype.writeFloatBE = function writeFloatBE(value, offset, noAssert) {
+	  return writeFloat(this, value, offset, false, noAssert);
+	};
+	
+	function writeDouble(buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308);
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 52, 8);
+	  return offset + 8;
+	}
+	
+	Buffer.prototype.writeDoubleLE = function writeDoubleLE(value, offset, noAssert) {
+	  return writeDouble(this, value, offset, true, noAssert);
+	};
+	
+	Buffer.prototype.writeDoubleBE = function writeDoubleBE(value, offset, noAssert) {
+	  return writeDouble(this, value, offset, false, noAssert);
+	};
+	
+	// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+	Buffer.prototype.copy = function copy(target, targetStart, start, end) {
+	  if (!start) start = 0;
+	  if (!end && end !== 0) end = this.length;
+	  if (targetStart >= target.length) targetStart = target.length;
+	  if (!targetStart) targetStart = 0;
+	  if (end > 0 && end < start) end = start;
+	
+	  // Copy 0 bytes; we're done
+	  if (end === start) return 0;
+	  if (target.length === 0 || this.length === 0) return 0;
+	
+	  // Fatal error conditions
+	  if (targetStart < 0) {
+	    throw new RangeError('targetStart out of bounds');
+	  }
+	  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds');
+	  if (end < 0) throw new RangeError('sourceEnd out of bounds');
+	
+	  // Are we oob?
+	  if (end > this.length) end = this.length;
+	  if (target.length - targetStart < end - start) {
+	    end = target.length - targetStart + start;
+	  }
+	
+	  var len = end - start;
+	  var i;
+	
+	  if (this === target && start < targetStart && targetStart < end) {
+	    // descending copy from end
+	    for (i = len - 1; i >= 0; i--) {
+	      target[i + targetStart] = this[i + start];
+	    }
+	  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+	    // ascending copy from start
+	    for (i = 0; i < len; i++) {
+	      target[i + targetStart] = this[i + start];
+	    }
+	  } else {
+	    target._set(this.subarray(start, start + len), targetStart);
+	  }
+	
+	  return len;
+	};
+	
+	// fill(value, start=0, end=buffer.length)
+	Buffer.prototype.fill = function fill(value, start, end) {
+	  if (!value) value = 0;
+	  if (!start) start = 0;
+	  if (!end) end = this.length;
+	
+	  if (end < start) throw new RangeError('end < start');
+	
+	  // Fill 0 bytes; we're done
+	  if (end === start) return;
+	  if (this.length === 0) return;
+	
+	  if (start < 0 || start >= this.length) throw new RangeError('start out of bounds');
+	  if (end < 0 || end > this.length) throw new RangeError('end out of bounds');
+	
+	  var i;
+	  if (typeof value === 'number') {
+	    for (i = start; i < end; i++) {
+	      this[i] = value;
+	    }
+	  } else {
+	    var bytes = utf8ToBytes(value.toString());
+	    var len = bytes.length;
+	    for (i = start; i < end; i++) {
+	      this[i] = bytes[i % len];
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	/**
+	 * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+	 * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+	 */
+	Buffer.prototype.toArrayBuffer = function toArrayBuffer() {
+	  if (typeof Uint8Array !== 'undefined') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT) {
+	      return new Buffer(this).buffer;
+	    } else {
+	      var buf = new Uint8Array(this.length);
+	      for (var i = 0, len = buf.length; i < len; i += 1) {
+	        buf[i] = this[i];
+	      }
+	      return buf.buffer;
+	    }
+	  } else {
+	    throw new TypeError('Buffer.toArrayBuffer not supported in this browser');
+	  }
+	};
+	
+	// HELPER FUNCTIONS
+	// ================
+	
+	var BP = Buffer.prototype;
+	
+	/**
+	 * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+	 */
+	Buffer._augment = function _augment(arr) {
+	  arr.constructor = Buffer;
+	  arr._isBuffer = true;
+	
+	  // save reference to original Uint8Array set method before overwriting
+	  arr._set = arr.set;
+	
+	  // deprecated
+	  arr.get = BP.get;
+	  arr.set = BP.set;
+	
+	  arr.write = BP.write;
+	  arr.toString = BP.toString;
+	  arr.toLocaleString = BP.toString;
+	  arr.toJSON = BP.toJSON;
+	  arr.equals = BP.equals;
+	  arr.compare = BP.compare;
+	  arr.indexOf = BP.indexOf;
+	  arr.copy = BP.copy;
+	  arr.slice = BP.slice;
+	  arr.readUIntLE = BP.readUIntLE;
+	  arr.readUIntBE = BP.readUIntBE;
+	  arr.readUInt8 = BP.readUInt8;
+	  arr.readUInt16LE = BP.readUInt16LE;
+	  arr.readUInt16BE = BP.readUInt16BE;
+	  arr.readUInt32LE = BP.readUInt32LE;
+	  arr.readUInt32BE = BP.readUInt32BE;
+	  arr.readIntLE = BP.readIntLE;
+	  arr.readIntBE = BP.readIntBE;
+	  arr.readInt8 = BP.readInt8;
+	  arr.readInt16LE = BP.readInt16LE;
+	  arr.readInt16BE = BP.readInt16BE;
+	  arr.readInt32LE = BP.readInt32LE;
+	  arr.readInt32BE = BP.readInt32BE;
+	  arr.readFloatLE = BP.readFloatLE;
+	  arr.readFloatBE = BP.readFloatBE;
+	  arr.readDoubleLE = BP.readDoubleLE;
+	  arr.readDoubleBE = BP.readDoubleBE;
+	  arr.writeUInt8 = BP.writeUInt8;
+	  arr.writeUIntLE = BP.writeUIntLE;
+	  arr.writeUIntBE = BP.writeUIntBE;
+	  arr.writeUInt16LE = BP.writeUInt16LE;
+	  arr.writeUInt16BE = BP.writeUInt16BE;
+	  arr.writeUInt32LE = BP.writeUInt32LE;
+	  arr.writeUInt32BE = BP.writeUInt32BE;
+	  arr.writeIntLE = BP.writeIntLE;
+	  arr.writeIntBE = BP.writeIntBE;
+	  arr.writeInt8 = BP.writeInt8;
+	  arr.writeInt16LE = BP.writeInt16LE;
+	  arr.writeInt16BE = BP.writeInt16BE;
+	  arr.writeInt32LE = BP.writeInt32LE;
+	  arr.writeInt32BE = BP.writeInt32BE;
+	  arr.writeFloatLE = BP.writeFloatLE;
+	  arr.writeFloatBE = BP.writeFloatBE;
+	  arr.writeDoubleLE = BP.writeDoubleLE;
+	  arr.writeDoubleBE = BP.writeDoubleBE;
+	  arr.fill = BP.fill;
+	  arr.inspect = BP.inspect;
+	  arr.toArrayBuffer = BP.toArrayBuffer;
+	
+	  return arr;
+	};
+	
+	var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g;
+	
+	function base64clean(str) {
+	  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+	  str = stringtrim(str).replace(INVALID_BASE64_RE, '');
+	  // Node converts strings with length < 2 to ''
+	  if (str.length < 2) return '';
+	  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+	  while (str.length % 4 !== 0) {
+	    str = str + '=';
+	  }
+	  return str;
+	}
+	
+	function stringtrim(str) {
+	  if (str.trim) return str.trim();
+	  return str.replace(/^\s+|\s+$/g, '');
+	}
+	
+	function toHex(n) {
+	  if (n < 16) return '0' + n.toString(16);
+	  return n.toString(16);
+	}
+	
+	function utf8ToBytes(string, units) {
+	  units = units || Infinity;
+	  var codePoint;
+	  var length = string.length;
+	  var leadSurrogate = null;
+	  var bytes = [];
+	
+	  for (var i = 0; i < length; i++) {
+	    codePoint = string.charCodeAt(i);
+	
+	    // is surrogate component
+	    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+	      // last char was a lead
+	      if (!leadSurrogate) {
+	        // no lead yet
+	        if (codePoint > 0xDBFF) {
+	          // unexpected trail
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD);
+	          continue;
+	        } else if (i + 1 === length) {
+	          // unpaired lead
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD);
+	          continue;
+	        }
+	
+	        // valid lead
+	        leadSurrogate = codePoint;
+	
+	        continue;
+	      }
+	
+	      // 2 leads in a row
+	      if (codePoint < 0xDC00) {
+	        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD);
+	        leadSurrogate = codePoint;
+	        continue;
+	      }
+	
+	      // valid surrogate pair
+	      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000;
+	    } else if (leadSurrogate) {
+	      // valid bmp char, but last char was a lead
+	      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD);
+	    }
+	
+	    leadSurrogate = null;
+	
+	    // encode utf8
+	    if (codePoint < 0x80) {
+	      if ((units -= 1) < 0) break;
+	      bytes.push(codePoint);
+	    } else if (codePoint < 0x800) {
+	      if ((units -= 2) < 0) break;
+	      bytes.push(codePoint >> 0x6 | 0xC0, codePoint & 0x3F | 0x80);
+	    } else if (codePoint < 0x10000) {
+	      if ((units -= 3) < 0) break;
+	      bytes.push(codePoint >> 0xC | 0xE0, codePoint >> 0x6 & 0x3F | 0x80, codePoint & 0x3F | 0x80);
+	    } else if (codePoint < 0x110000) {
+	      if ((units -= 4) < 0) break;
+	      bytes.push(codePoint >> 0x12 | 0xF0, codePoint >> 0xC & 0x3F | 0x80, codePoint >> 0x6 & 0x3F | 0x80, codePoint & 0x3F | 0x80);
+	    } else {
+	      throw new Error('Invalid code point');
+	    }
+	  }
+	
+	  return bytes;
+	}
+	
+	function asciiToBytes(str) {
+	  var byteArray = [];
+	  for (var i = 0; i < str.length; i++) {
+	    // Node's code seems to be doing this and not & 0x7F..
+	    byteArray.push(str.charCodeAt(i) & 0xFF);
+	  }
+	  return byteArray;
+	}
+	
+	function utf16leToBytes(str, units) {
+	  var c, hi, lo;
+	  var byteArray = [];
+	  for (var i = 0; i < str.length; i++) {
+	    if ((units -= 2) < 0) break;
+	
+	    c = str.charCodeAt(i);
+	    hi = c >> 8;
+	    lo = c % 256;
+	    byteArray.push(lo);
+	    byteArray.push(hi);
+	  }
+	
+	  return byteArray;
+	}
+	
+	function base64ToBytes(str) {
+	  return base64.toByteArray(base64clean(str));
+	}
+	
+	function blitBuffer(src, dst, offset, length) {
+	  for (var i = 0; i < length; i++) {
+	    if (i + offset >= dst.length || i >= src.length) break;
+	    dst[i + offset] = src[i];
+	  }
+	  return i;
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 13).Buffer, (function() { return this; }())))
+
+/***/ },
+/* 14 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html5-entities.js ***!
   \***********************************************/
@@ -1410,7 +2938,7 @@
 	module.exports = Html5Entities;
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
@@ -1419,7 +2947,7 @@
 	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!*****************************************!*\
   !*** ./app/components/library/index.js ***!
   \*****************************************/
@@ -1437,11 +2965,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 43);
+	var _index = __webpack_require__(/*! ./index.html */ 48);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 50);
+	__webpack_require__(/*! ./index.scss */ 55);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1527,7 +3055,7 @@
 	};
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!*****************************************!*\
   !*** ./app/components/palette/index.js ***!
   \*****************************************/
@@ -1543,11 +3071,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 44);
+	var _index = __webpack_require__(/*! ./index.html */ 49);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 51);
+	__webpack_require__(/*! ./index.scss */ 56);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1575,7 +3103,7 @@
 	};
 
 /***/ },
-/* 17 */
+/* 18 */
 /*!***************************************!*\
   !*** ./app/components/panel/index.js ***!
   \***************************************/
@@ -1601,11 +3129,11 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 45);
+	var _index = __webpack_require__(/*! ./index.html */ 50);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 52);
+	__webpack_require__(/*! ./index.scss */ 57);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1617,7 +3145,12 @@
 	    controller: 'panelCtrl',
 	    controllerAs: 'panel',
 	    bindToController: true,
-	    restrict: 'E'
+	    restrict: 'E',
+	    link: function link(scope, elements, attrs) {
+	      var self = scope.panel;
+	      self.$scope.$watch('panel.files', self.uploadImageToCanvas.bind(self));
+	      self.$scope.$watch('panel.$stateParams', self.renderImages(self.$stateParams));
+	    }
 	  };
 	};
 	
@@ -1632,9 +3165,6 @@
 	    this.CanvasUtil = new _canvas2.default();
 	    this.hasImage = false;
 	    this.isLoading = false;
-	
-	    this.$scope.$watch('panel.files', this.uploadImageToCanvas(this.files));
-	    this.$scope.$watch('panel.$stateParams', this.renderImages(this.$stateParams));
 	  }
 	
 	  _createClass(panelCtrl, [{
@@ -1657,49 +3187,45 @@
 	  }, {
 	    key: 'uploadImageToCanvas',
 	    value: function uploadImageToCanvas(files) {
-	      var _this2 = this;
-	
 	      var self = this,
-	          reader = new FileReader(),
 	          domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
 	
-	      return function (files) {
-	        if (files && files.length) {
-	          // loading image
-	          self.isLoading = true;
+	      if (files && files.length) {
+	        // loading image
+	        self.isLoading = true;
 	
-	          var file = files[0],
-	              pics = self.$rootScope.pics;
+	        var file = files[0],
+	            pics = self.$rootScope.pics;
 	
-	          // check pics
-	          var hasPic = pics.filter(function (item) {
-	            return item.key === file.name;
-	          });
+	        // check pics
+	        var hasPic = pics.filter(function (item) {
+	          return item.name === self.filterName(file.name);
+	        });
 	
-	          if (hasPic[0]) {
-	            // render image
-	            self.imgSrc = hasPic[0].imageSrc;
-	            // show canvas
-	            self.hasImage = true;
-	            _this2.CanvasUtil.render(self.imgSrc);
-	            // loading finish
-	            self.isLoading = false;
-	          } else if (!file.$error && !!self.filterName(file.name)) {
-	            // render image
-	            self.imgSrc = window.URL.createObjectURL(file);
-	            // show canvas
-	            self.hasImage = true;
-	            _this2.CanvasUtil.render(self.imgSrc);
+	        if (hasPic[0]) {
+	          // render image
+	          self.imgSrc = hasPic[0].imageSrc;
+	          // show canvas
+	          self.hasImage = true;
+	          this.CanvasUtil.render(self.imgSrc);
+	          // loading finish
+	          self.isLoading = false;
+	        } else if (!file.$error && !!self.filterName(file.name)) {
 	
-	            // upload to qiniu
-	            self.uploadImageToQiniu(file);
-	          } else {
-	            // loading finish
-	            self.isLoading = false;
-	            console.log('图片出错，请检查图片格式和名称是否正确！');
-	          }
+	          // render image
+	          self.imgSrc = window.URL.createObjectURL(file);
+	          // show canvas
+	          self.hasImage = true;
+	          this.CanvasUtil.render(self.imgSrc);
+	
+	          // upload to qiniu
+	          self.uploadImageToQiniu(file);
+	        } else {
+	          // loading finish
+	          self.isLoading = false;
+	          console.log('图片出错，请检查图片格式和名称是否正确！');
 	        }
-	      };
+	      }
 	    }
 	  }, {
 	    key: 'filterName',
@@ -1758,7 +3284,7 @@
 	};
 
 /***/ },
-/* 18 */
+/* 19 */
 /*!*****************************************!*\
   !*** ./app/components/popover/index.js ***!
   \*****************************************/
@@ -1776,11 +3302,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 46);
+	var _index = __webpack_require__(/*! ./index.html */ 51);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 53);
+	__webpack_require__(/*! ./index.scss */ 58);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1826,7 +3352,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 20 */
 /*!*****************************************!*\
   !*** ./app/components/sideBtn/index.js ***!
   \*****************************************/
@@ -1844,7 +3370,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 47);
+	var _index = __webpack_require__(/*! ./index.html */ 52);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -1852,7 +3378,7 @@
 	
 	var _canvas2 = _interopRequireDefault(_canvas);
 	
-	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 21);
+	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 23);
 	
 	var _canvas2image2 = _interopRequireDefault(_canvas2image);
 	
@@ -1860,7 +3386,7 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 54);
+	__webpack_require__(/*! ./index.scss */ 59);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1884,13 +3410,14 @@
 	};
 	
 	var sideBtnCtrl = function () {
-	  function sideBtnCtrl($location, Service, $rootScope) {
+	  function sideBtnCtrl($location, Service, $rootScope, $route) {
 	    _classCallCheck(this, sideBtnCtrl);
 	
 	    this.$location = $location;
 	    this.Service = Service;
 	    this.CanvasUtil = new _canvas2.default();
 	    this.$rootScope = $rootScope;
+	    this.$route = $route;
 	    this.isPlot = false;
 	    this.isChange = false;
 	  }
@@ -1902,16 +3429,19 @@
 	    }
 	  }, {
 	    key: 'turnToHome',
-	    value: function turnToHome() {
-	      this.$location.url('/');
+	    value: function turnToHome(isLoading) {
+	      if (!isLoading) {
+	        this.$location.url('/home');
+	      }
 	    }
 	  }, {
 	    key: 'undoImage',
-	    value: function undoImage() {
+	    value: function undoImage(isLoading) {
 	      var _this = this;
 	
 	      var self = this;
-	      if (this.isPlot) {
+	
+	      if (this.isPlot && !isLoading) {
 	        var paths = this.$location.$$path.split('/'),
 	            id = paths[paths.length - 1];
 	        // 判断 id 是否正确
@@ -1927,15 +3457,16 @@
 	    }
 	  }, {
 	    key: 'updateImage',
-	    value: function updateImage() {
+	    value: function updateImage(isLoading) {
 	      var _this2 = this;
 	
-	      var canvas = this.CanvasUtil.$canvas;
+	      if (isLoading) {
+	        return;
+	      }
 	
-	      // 是否更改 && this.isChange
-	      var paths = this.$location.$$path.split('/'),
+	      var canvas = this.CanvasUtil.$canvas,
+	          paths = this.$location.$$path.split('/'),
 	          id = paths[paths.length - 1],
-	          imageSize = -1,
 	          curImage;
 	
 	      // 判断 id 是否正确
@@ -1944,31 +3475,28 @@
 	        pics.map(function (item) {
 	          if (item._id === id) {
 	            curImage = item;
-	            imageSize = item.size;
 	          }
 	        });
 	      }
 	
-	      // isNewImage
+	      // isNewImage && this.isChange
 	      if (curImage) {
-	        var imageBase64 = this.CanvasUtil.convertToBase64(canvas, imageSize);
 	
-	        // upload to Qiniu
+	        var imageBase64 = this.CanvasUtil.convertToBase64(canvas, curImage.size);
+	
+	        // get Qiniu token
 	        this.Service.genToken(function (token) {
-	          _qiniu2.default.uploadBase64(imageBase64, token, function (res) {
-	
-	            // save to  mongoDB
-	            var changeData = _angular2.default.extend(res, {
-	              id: curImage._id,
-	              imageSrc: _qiniu2.default.config.domain + res.key
-	            });
-	
-	            _this2.Service.updatePic(changeData, function (res) {
-	              if (res && res.success) {
-	                console.log('save');
-	                _this2.turnToHome();
-	              }
-	            });
+	          // delete origin pic from qiniu
+	          _this2.Service.deletePicFromQiniu(curImage._id, function (res) {
+	            if (res && res.success) {
+	              // upload new base64 pic to qiniu
+	              _qiniu2.default.uploadBase64(imageBase64, token, curImage.key, function (res) {
+	                if (res.key === curImage.key) {
+	                  _this2.turnToHome();
+	                  _this2.$route.reload();
+	                }
+	              });
+	            }
 	          });
 	        });
 	      } else {
@@ -1980,7 +3508,7 @@
 	  return sideBtnCtrl;
 	}();
 	
-	sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope'];
+	sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope', '$route'];
 	
 	exports.default = {
 	  tpl: sideBtnTpl,
@@ -1988,7 +3516,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
 /*!*****************************************!*\
   !*** ./app/components/sidebar/index.js ***!
   \*****************************************/
@@ -2004,11 +3532,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 48);
+	var _index = __webpack_require__(/*! ./index.html */ 53);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 55);
+	__webpack_require__(/*! ./index.scss */ 60);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2036,7 +3564,171 @@
 	};
 
 /***/ },
-/* 21 */
+/* 22 */
+/*!****************************!*\
+  !*** ./app/libs/base64.js ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+	
+	/*
+	 * $Id: base64.js,v 2.15 2014/04/05 12:58:57 dankogai Exp dankogai $
+	 *
+	 *  Licensed under the BSD 3-Clause License.
+	 *    http://opensource.org/licenses/BSD-3-Clause
+	 *
+	 *  References:
+	 *    http://en.wikipedia.org/wiki/Base64
+	 */
+	
+	(function (global) {
+	    'use strict';
+	    // existing version for noConflict()
+	
+	    var _Base64 = global.Base64;
+	    var version = "2.1.9";
+	    // if node.js, we use Buffer
+	    var buffer;
+	    if (typeof module !== 'undefined' && module.exports) {
+	        try {
+	            buffer = __webpack_require__(/*! buffer */ 13).Buffer;
+	        } catch (err) {}
+	    }
+	    // constants
+	    var b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+	    var b64tab = function (bin) {
+	        var t = {};
+	        for (var i = 0, l = bin.length; i < l; i++) {
+	            t[bin.charAt(i)] = i;
+	        }return t;
+	    }(b64chars);
+	    var fromCharCode = String.fromCharCode;
+	    // encoder stuff
+	    var cb_utob = function cb_utob(c) {
+	        if (c.length < 2) {
+	            var cc = c.charCodeAt(0);
+	            return cc < 0x80 ? c : cc < 0x800 ? fromCharCode(0xc0 | cc >>> 6) + fromCharCode(0x80 | cc & 0x3f) : fromCharCode(0xe0 | cc >>> 12 & 0x0f) + fromCharCode(0x80 | cc >>> 6 & 0x3f) + fromCharCode(0x80 | cc & 0x3f);
+	        } else {
+	            var cc = 0x10000 + (c.charCodeAt(0) - 0xD800) * 0x400 + (c.charCodeAt(1) - 0xDC00);
+	            return fromCharCode(0xf0 | cc >>> 18 & 0x07) + fromCharCode(0x80 | cc >>> 12 & 0x3f) + fromCharCode(0x80 | cc >>> 6 & 0x3f) + fromCharCode(0x80 | cc & 0x3f);
+	        }
+	    };
+	    var re_utob = /[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g;
+	    var utob = function utob(u) {
+	        return u.replace(re_utob, cb_utob);
+	    };
+	    var cb_encode = function cb_encode(ccc) {
+	        var padlen = [0, 2, 1][ccc.length % 3],
+	            ord = ccc.charCodeAt(0) << 16 | (ccc.length > 1 ? ccc.charCodeAt(1) : 0) << 8 | (ccc.length > 2 ? ccc.charCodeAt(2) : 0),
+	            chars = [b64chars.charAt(ord >>> 18), b64chars.charAt(ord >>> 12 & 63), padlen >= 2 ? '=' : b64chars.charAt(ord >>> 6 & 63), padlen >= 1 ? '=' : b64chars.charAt(ord & 63)];
+	        return chars.join('');
+	    };
+	    var btoa = global.btoa ? function (b) {
+	        return global.btoa(b);
+	    } : function (b) {
+	        return b.replace(/[\s\S]{1,3}/g, cb_encode);
+	    };
+	    var _encode = buffer ? function (u) {
+	        return (u.constructor === buffer.constructor ? u : new buffer(u)).toString('base64');
+	    } : function (u) {
+	        return btoa(utob(u));
+	    };
+	    var encode = function encode(u, urisafe) {
+	        return !urisafe ? _encode(String(u)) : _encode(String(u)).replace(/[+\/]/g, function (m0) {
+	            return m0 == '+' ? '-' : '_';
+	        }).replace(/=/g, '');
+	    };
+	    var encodeURI = function encodeURI(u) {
+	        return encode(u, true);
+	    };
+	    // decoder stuff
+	    var re_btou = new RegExp(['[\xC0-\xDF][\x80-\xBF]', '[\xE0-\xEF][\x80-\xBF]{2}', '[\xF0-\xF7][\x80-\xBF]{3}'].join('|'), 'g');
+	    var cb_btou = function cb_btou(cccc) {
+	        switch (cccc.length) {
+	            case 4:
+	                var cp = (0x07 & cccc.charCodeAt(0)) << 18 | (0x3f & cccc.charCodeAt(1)) << 12 | (0x3f & cccc.charCodeAt(2)) << 6 | 0x3f & cccc.charCodeAt(3),
+	                    offset = cp - 0x10000;
+	                return fromCharCode((offset >>> 10) + 0xD800) + fromCharCode((offset & 0x3FF) + 0xDC00);
+	            case 3:
+	                return fromCharCode((0x0f & cccc.charCodeAt(0)) << 12 | (0x3f & cccc.charCodeAt(1)) << 6 | 0x3f & cccc.charCodeAt(2));
+	            default:
+	                return fromCharCode((0x1f & cccc.charCodeAt(0)) << 6 | 0x3f & cccc.charCodeAt(1));
+	        }
+	    };
+	    var btou = function btou(b) {
+	        return b.replace(re_btou, cb_btou);
+	    };
+	    var cb_decode = function cb_decode(cccc) {
+	        var len = cccc.length,
+	            padlen = len % 4,
+	            n = (len > 0 ? b64tab[cccc.charAt(0)] << 18 : 0) | (len > 1 ? b64tab[cccc.charAt(1)] << 12 : 0) | (len > 2 ? b64tab[cccc.charAt(2)] << 6 : 0) | (len > 3 ? b64tab[cccc.charAt(3)] : 0),
+	            chars = [fromCharCode(n >>> 16), fromCharCode(n >>> 8 & 0xff), fromCharCode(n & 0xff)];
+	        chars.length -= [0, 0, 2, 1][padlen];
+	        return chars.join('');
+	    };
+	    var atob = global.atob ? function (a) {
+	        return global.atob(a);
+	    } : function (a) {
+	        return a.replace(/[\s\S]{1,4}/g, cb_decode);
+	    };
+	    var _decode = buffer ? function (a) {
+	        return (a.constructor === buffer.constructor ? a : new buffer(a, 'base64')).toString();
+	    } : function (a) {
+	        return btou(atob(a));
+	    };
+	    var decode = function decode(a) {
+	        return _decode(String(a).replace(/[-_]/g, function (m0) {
+	            return m0 == '-' ? '+' : '/';
+	        }).replace(/[^A-Za-z0-9\+\/]/g, ''));
+	    };
+	    var noConflict = function noConflict() {
+	        var Base64 = global.Base64;
+	        global.Base64 = _Base64;
+	        return Base64;
+	    };
+	    // export Base64
+	    global.Base64 = {
+	        VERSION: version,
+	        atob: atob,
+	        btoa: btoa,
+	        fromBase64: decode,
+	        toBase64: encode,
+	        utob: utob,
+	        encode: encode,
+	        encodeURI: encodeURI,
+	        btou: btou,
+	        decode: decode,
+	        noConflict: noConflict
+	    };
+	    // if ES5 is available, make Base64.extendString() available
+	    if (typeof Object.defineProperty === 'function') {
+	        var noEnum = function noEnum(v) {
+	            return { value: v, enumerable: false, writable: true, configurable: true };
+	        };
+	        global.Base64.extendString = function () {
+	            Object.defineProperty(String.prototype, 'fromBase64', noEnum(function () {
+	                return decode(this);
+	            }));
+	            Object.defineProperty(String.prototype, 'toBase64', noEnum(function (urisafe) {
+	                return encode(this, urisafe);
+	            }));
+	            Object.defineProperty(String.prototype, 'toBase64URI', noEnum(function () {
+	                return encode(this, true);
+	            }));
+	        };
+	    }
+	    // that's it!
+	    if (global['Meteor']) {
+	        Base64 = global.Base64; // for normal export in Meteor.js
+	    }
+	})(window);
+	
+	module.exports = global.Base64;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 23 */
 /*!**********************************!*\
   !*** ./app/libs/canvas2image.js ***!
   \**********************************/
@@ -2317,7 +4009,7 @@
 	};
 
 /***/ },
-/* 22 */
+/* 24 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -2333,49 +4025,49 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 27);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 29);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 26);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 28);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 23);
+	var _main = __webpack_require__(/*! ./main.routes */ 25);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 24);
+	var _main3 = __webpack_require__(/*! ./main.services */ 26);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 35);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 40);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 56);
+	__webpack_require__(/*! ./public/styles/main.scss */ 61);
 	
-	var _library = __webpack_require__(/*! ./components/library */ 15);
+	var _library = __webpack_require__(/*! ./components/library */ 16);
 	
 	var _library2 = _interopRequireDefault(_library);
 	
-	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 20);
+	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 21);
 	
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 	
-	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 19);
+	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 20);
 	
 	var _sideBtn2 = _interopRequireDefault(_sideBtn);
 	
-	var _panel = __webpack_require__(/*! ./components/panel */ 17);
+	var _panel = __webpack_require__(/*! ./components/panel */ 18);
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _palette = __webpack_require__(/*! ./components/palette */ 16);
+	var _palette = __webpack_require__(/*! ./components/palette */ 17);
 	
 	var _palette2 = _interopRequireDefault(_palette);
 	
-	var _popover = __webpack_require__(/*! ./components/popover */ 18);
+	var _popover = __webpack_require__(/*! ./components/popover */ 19);
 	
 	var _popover2 = _interopRequireDefault(_popover);
 	
@@ -2399,7 +4091,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 23 */
+/* 25 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -2423,18 +4115,18 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 49)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 54)
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 15)
 	  }).state('/plot/:id', {
 	    url: '/plot/:id',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 15)
 	  });
 	}
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -2459,10 +4151,15 @@
 	
 	  _createClass(service, [{
 	    key: 'genToken',
-	    value: function genToken(fn) {
+	    value: function genToken(key, fn) {
+	      if (key && typeof key === 'function') {
+	        var fn = key,
+	            key = '';
+	      }
 	      this.$http({
-	        method: 'get',
+	        method: 'post',
 	        url: '/uptoken',
+	        data: { key: key },
 	        headers: {
 	          'Content-Type': 'application/x-www-form-urlencoded'
 	        }
@@ -2584,6 +4281,21 @@
 	      }
 	    }
 	  }, {
+	    key: 'deletePicFromQiniu',
+	    value: function deletePicFromQiniu(id, fn) {
+	      if (id) {
+	        this.$http.delete('/qiniu/' + id).success(function (res) {
+	          if (fn) {
+	            fn(res);
+	          } else {
+	            return res;
+	          }
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'deletePic',
 	    value: function deletePic(id, fn) {
 	      if (id) {
@@ -2638,7 +4350,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -3628,7 +5340,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 26 */
+/* 28 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -3636,11 +5348,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 25);
+	__webpack_require__(/*! ./angular-route */ 27);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 27 */
+/* 29 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -5917,7 +7629,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 28 */
+/* 30 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -21728,7 +23440,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 29 */
+/* 31 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -21908,7 +23620,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 30 */
+/* 32 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -21922,7 +23634,148 @@
 	};
 
 /***/ },
-/* 31 */
+/* 33 */
+/*!********************************!*\
+  !*** ./~/base64-js/lib/b64.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+	
+	;(function (exports) {
+		'use strict';
+	
+		var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array;
+	
+		var PLUS = '+'.charCodeAt(0);
+		var SLASH = '/'.charCodeAt(0);
+		var NUMBER = '0'.charCodeAt(0);
+		var LOWER = 'a'.charCodeAt(0);
+		var UPPER = 'A'.charCodeAt(0);
+		var PLUS_URL_SAFE = '-'.charCodeAt(0);
+		var SLASH_URL_SAFE = '_'.charCodeAt(0);
+	
+		function decode(elt) {
+			var code = elt.charCodeAt(0);
+			if (code === PLUS || code === PLUS_URL_SAFE) return 62; // '+'
+			if (code === SLASH || code === SLASH_URL_SAFE) return 63; // '/'
+			if (code < NUMBER) return -1; //no match
+			if (code < NUMBER + 10) return code - NUMBER + 26 + 26;
+			if (code < UPPER + 26) return code - UPPER;
+			if (code < LOWER + 26) return code - LOWER + 26;
+		}
+	
+		function b64ToByteArray(b64) {
+			var i, j, l, tmp, placeHolders, arr;
+	
+			if (b64.length % 4 > 0) {
+				throw new Error('Invalid string. Length must be a multiple of 4');
+			}
+	
+			// the number of equal signs (place holders)
+			// if there are two placeholders, than the two characters before it
+			// represent one byte
+			// if there is only one, then the three characters before it represent 2 bytes
+			// this is just a cheap hack to not do indexOf twice
+			var len = b64.length;
+			placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0;
+	
+			// base64 is 4/3 + up to two characters of the original data
+			arr = new Arr(b64.length * 3 / 4 - placeHolders);
+	
+			// if there are placeholders, only get up to the last complete 4 chars
+			l = placeHolders > 0 ? b64.length - 4 : b64.length;
+	
+			var L = 0;
+	
+			function push(v) {
+				arr[L++] = v;
+			}
+	
+			for (i = 0, j = 0; i < l; i += 4, j += 3) {
+				tmp = decode(b64.charAt(i)) << 18 | decode(b64.charAt(i + 1)) << 12 | decode(b64.charAt(i + 2)) << 6 | decode(b64.charAt(i + 3));
+				push((tmp & 0xFF0000) >> 16);
+				push((tmp & 0xFF00) >> 8);
+				push(tmp & 0xFF);
+			}
+	
+			if (placeHolders === 2) {
+				tmp = decode(b64.charAt(i)) << 2 | decode(b64.charAt(i + 1)) >> 4;
+				push(tmp & 0xFF);
+			} else if (placeHolders === 1) {
+				tmp = decode(b64.charAt(i)) << 10 | decode(b64.charAt(i + 1)) << 4 | decode(b64.charAt(i + 2)) >> 2;
+				push(tmp >> 8 & 0xFF);
+				push(tmp & 0xFF);
+			}
+	
+			return arr;
+		}
+	
+		function uint8ToBase64(uint8) {
+			var i,
+			    extraBytes = uint8.length % 3,
+			    // if we have 1 byte left, pad 2 bytes
+			output = "",
+			    temp,
+			    length;
+	
+			function encode(num) {
+				return lookup.charAt(num);
+			}
+	
+			function tripletToBase64(num) {
+				return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F);
+			}
+	
+			// go through the array every three bytes, we'll deal with trailing stuff later
+			for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+				temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + uint8[i + 2];
+				output += tripletToBase64(temp);
+			}
+	
+			// pad the end with zeros, but make sure to not forget the extra bytes
+			switch (extraBytes) {
+				case 1:
+					temp = uint8[uint8.length - 1];
+					output += encode(temp >> 2);
+					output += encode(temp << 4 & 0x3F);
+					output += '==';
+					break;
+				case 2:
+					temp = (uint8[uint8.length - 2] << 8) + uint8[uint8.length - 1];
+					output += encode(temp >> 10);
+					output += encode(temp >> 4 & 0x3F);
+					output += encode(temp << 2 & 0x3F);
+					output += '=';
+					break;
+			}
+	
+			return output;
+		}
+	
+		exports.toByteArray = b64ToByteArray;
+		exports.fromByteArray = uint8ToBase64;
+	})( false ? undefined.base64js = {} : exports);
+
+/***/ },
+/* 34 */
+/*!*************************************!*\
+  !*** ./~/buffer/~/isarray/index.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var toString = {}.toString;
+	
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+/***/ },
+/* 35 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -21931,14 +23784,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 33),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 32),
-	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 13),
-	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 13)
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 37),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 36),
+	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 14),
+	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 14)
 	};
 
 /***/ },
-/* 32 */
+/* 36 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -22093,7 +23946,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 33 */
+/* 37 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -22256,7 +24109,101 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 34 */
+/* 38 */
+/*!****************************!*\
+  !*** ./~/ieee754/index.js ***!
+  \****************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+	  var e, m;
+	  var eLen = nBytes * 8 - mLen - 1;
+	  var eMax = (1 << eLen) - 1;
+	  var eBias = eMax >> 1;
+	  var nBits = -7;
+	  var i = isLE ? nBytes - 1 : 0;
+	  var d = isLE ? -1 : 1;
+	  var s = buffer[offset + i];
+	
+	  i += d;
+	
+	  e = s & (1 << -nBits) - 1;
+	  s >>= -nBits;
+	  nBits += eLen;
+	  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+	
+	  m = e & (1 << -nBits) - 1;
+	  e >>= -nBits;
+	  nBits += mLen;
+	  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+	
+	  if (e === 0) {
+	    e = 1 - eBias;
+	  } else if (e === eMax) {
+	    return m ? NaN : (s ? -1 : 1) * Infinity;
+	  } else {
+	    m = m + Math.pow(2, mLen);
+	    e = e - eBias;
+	  }
+	  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+	};
+	
+	exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+	  var e, m, c;
+	  var eLen = nBytes * 8 - mLen - 1;
+	  var eMax = (1 << eLen) - 1;
+	  var eBias = eMax >> 1;
+	  var rt = mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
+	  var i = isLE ? 0 : nBytes - 1;
+	  var d = isLE ? 1 : -1;
+	  var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
+	
+	  value = Math.abs(value);
+	
+	  if (isNaN(value) || value === Infinity) {
+	    m = isNaN(value) ? 1 : 0;
+	    e = eMax;
+	  } else {
+	    e = Math.floor(Math.log(value) / Math.LN2);
+	    if (value * (c = Math.pow(2, -e)) < 1) {
+	      e--;
+	      c *= 2;
+	    }
+	    if (e + eBias >= 1) {
+	      value += rt / c;
+	    } else {
+	      value += rt * Math.pow(2, 1 - eBias);
+	    }
+	    if (value * c >= 2) {
+	      e++;
+	      c /= 2;
+	    }
+	
+	    if (e + eBias >= eMax) {
+	      m = 0;
+	      e = eMax;
+	    } else if (e + eBias >= 1) {
+	      m = (value * c - 1) * Math.pow(2, mLen);
+	      e = e + eBias;
+	    } else {
+	      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+	      e = 0;
+	    }
+	  }
+	
+	  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+	
+	  e = e << mLen | m;
+	  eLen += mLen;
+	  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+	
+	  buffer[offset + i - d] |= s * 128;
+	};
+
+/***/ },
+/* 39 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -25021,7 +26968,7 @@
 	}]);
 
 /***/ },
-/* 35 */
+/* 40 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -25029,11 +26976,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 34);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 39);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 36 */
+/* 41 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -25125,7 +27072,7 @@
 	};
 
 /***/ },
-/* 37 */
+/* 42 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -25197,7 +27144,7 @@
 	};
 
 /***/ },
-/* 38 */
+/* 43 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -25205,11 +27152,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 36);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 37);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 41);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 42);
 
 /***/ },
-/* 39 */
+/* 44 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -25217,14 +27164,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 30)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 32)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 40 */
+/* 45 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -25260,7 +27207,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 29);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 31);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -25275,7 +27222,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 31).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 35).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -25306,7 +27253,7 @@
 	}
 
 /***/ },
-/* 41 */
+/* 46 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -25422,7 +27369,7 @@
 	};
 
 /***/ },
-/* 42 */
+/* 47 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -25442,7 +27389,7 @@
 	};
 
 /***/ },
-/* 43 */
+/* 48 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -25451,7 +27398,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 44 */
+/* 49 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -25460,7 +27407,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 45 */
+/* 50 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -25469,7 +27416,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 46 */
+/* 51 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -25478,16 +27425,16 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 47 */
+/* 52 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.updateImage()\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.undoImage()\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" ng-show=\"sideBtn.isPlot\" ng-click=\"sideBtn.turnToHome()\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 48 */
+/* 53 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -25496,7 +27443,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 49 */
+/* 54 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -25505,7 +27452,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 50 */
+/* 55 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -25534,7 +27481,7 @@
 	}
 
 /***/ },
-/* 51 */
+/* 56 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -25563,7 +27510,7 @@
 	}
 
 /***/ },
-/* 52 */
+/* 57 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -25592,7 +27539,7 @@
 	}
 
 /***/ },
-/* 53 */
+/* 58 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -25621,7 +27568,7 @@
 	}
 
 /***/ },
-/* 54 */
+/* 59 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -25650,7 +27597,7 @@
 	}
 
 /***/ },
-/* 55 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -25679,7 +27626,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 61 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -25708,7 +27655,7 @@
 	}
 
 /***/ },
-/* 57 */
+/* 62 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -25726,7 +27673,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 38);
+	  var querystring = __webpack_require__(/*! querystring */ 43);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -25794,11 +27741,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 39);
+	var strip = __webpack_require__(/*! strip-ansi */ 44);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 40);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 45);
 	}
 	
 	function problems(type, obj) {
@@ -25815,7 +27762,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 41);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 46);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -25847,7 +27794,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 42)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 47)(module)))
 
 /***/ }
 /******/ ]);

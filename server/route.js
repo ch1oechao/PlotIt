@@ -9,7 +9,7 @@
 
     app.get('/list', api.getImageList);
 
-    app.get('/uptoken', api.genToken);
+    app.post('/uptoken', api.genToken);
 
     app.post('/image', api.getImage);
 
@@ -17,7 +17,9 @@
 
     app.post('/update', api.updateImage);
 
-    app.delete('/image/:id', api.delImageFromQiniu, api.delImageFromDB);
+    app.delete('/qiniu/:id', api.delImageFromQiniu);
+
+    app.delete('/image/:id', api.deleteImage);
 
     app.post('/download', api.downloadImageFromQiniu);
 

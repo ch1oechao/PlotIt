@@ -17,7 +17,7 @@
     res.header('Pragma', 'no-cache');
     res.header('Expires', 0);
     res.json({
-      uptoken: qnServer.uptoken()
+      uptoken: qnServer.uptoken(key)
     });
   };
 
@@ -45,14 +45,15 @@
     if (reqData.name && reqData.key && reqData.imageSrc) {
       
       var pic = new picModel(reqData);
-
-      pic.save(function(err) {
-        if (err) {
+      console.log(pic);
+      pic.save(function(err, data) {
+        if (!err) {
+          res.json({
+            success: true
+          });
+        } else {
           console.log(err);
         }
-        res.json({
-          success: true
-        });
       });
     }
   };
@@ -70,6 +71,7 @@
       // update MongoDB
       var id = reqData.id;
       delete reqData.id;
+      delete reqData.hash;
       Pic.update({_id: id}, {
         $set: reqData
       }, function(err) {
@@ -83,24 +85,32 @@
     }
   };
 
-
-  exports.delImageFromQiniu = function(req, res, next) {
-    Pic.findById(req.params.id, function(err, item) {
+  exports.deleteImage = function(req, res) {
+    var id = req.params.id;
+    Pic.findById({_id: id}, function(err, item) {
       qnServer.deleteFile(item.key);
-      next();
+      Pic.remove({_id: id}, function(err) {
+        if (!err) {
+          res.json({
+            success: true
+          });  
+        } else {
+          console.log(err);
+        }
+      });
     });
-  };
+  }
 
-  exports.delImageFromDB = function(req, res) {
-    Pic.remove(req.params.id, function(err) {
-      if (!err) {
-        res.json({
-          success: true
-        });  
-      } else {
-        console.log(err);
-      }
-    }); 
+  exports.delImageFromQiniu = function(req, res) {
+    Pic.findById({_id: req.params.id}, function(err, item) {
+      qnServer.deleteFile(item.key, function(r) {
+        if (r && r.success) {
+          res.json({
+            success: true
+          });
+        }
+      });
+    });
   };
 
   exports.downloadImageFromQiniu = function(req, res) {

@@ -23,11 +23,12 @@ let sideBtnTpl = () => {
 };
 
 class sideBtnCtrl {
-  constructor($location, Service, $rootScope) {
+  constructor($location, Service, $rootScope, $route) {
     this.$location = $location;
     this.Service = Service;
     this.CanvasUtil = new CanvasUtil();
     this.$rootScope = $rootScope;
+    this.$route = $route;
     this.isPlot = false;
     this.isChange = false;
   }
@@ -36,13 +37,16 @@ class sideBtnCtrl {
     this.$location.url('/plot');
   }
 
-  turnToHome() {
-    this.$location.url('/');
+  turnToHome(isLoading) {
+    if (!isLoading) {
+      this.$location.url('/home');  
+    }
   }
 
-  undoImage() {
+  undoImage(isLoading) {
     var self = this;
-    if (this.isPlot) {
+
+    if (this.isPlot && !isLoading) {
       var paths = (this.$location.$$path).split('/'),
           id = paths[paths.length - 1];
       // 判断 id 是否正确
@@ -55,15 +59,18 @@ class sideBtnCtrl {
         });
       }
     }
+
   }
 
-  updateImage() {
-    var canvas = this.CanvasUtil.$canvas;
+  updateImage(isLoading) {
 
-    // 是否更改 && this.isChange
-    var paths = (this.$location.$$path).split('/'),
+    if (isLoading) {
+      return;
+    }
+
+    var canvas = this.CanvasUtil.$canvas,
+        paths = (this.$location.$$path).split('/'),
         id = paths[paths.length - 1],
-        imageSize = -1,
         curImage;
 
     // 判断 id 是否正确
@@ -72,34 +79,29 @@ class sideBtnCtrl {
       pics.map((item) => {
         if (item._id === id) {
           curImage = item;
-          imageSize = item.size;
         }
       });
     }
 
-    // isNewImage
+    // isNewImage && this.isChange
     if (curImage) {
-      var imageBase64 = this.CanvasUtil.convertToBase64(canvas, imageSize);
 
-      // upload to Qiniu
+      var imageBase64 = this.CanvasUtil.convertToBase64(canvas, curImage.size);
+
+      // get Qiniu token
       this.Service.genToken((token) => {
-        qiniuC.uploadBase64(imageBase64, token, (res) => {
-
-          // save to  mongoDB
-          var changeData = angular.extend(res, {
-            id: curImage._id,
-            imageSrc: qiniuC.config.domain + res.key
-          });
-
-          this.Service.updatePic(changeData, (res) => {
-            if (res && res.success) {
-              console.log('save');
-              this.turnToHome();
-            }
-          });
-
+        // delete origin pic from qiniu
+        this.Service.deletePicFromQiniu(curImage._id, (res) => {
+          if (res && res.success) {
+            // upload new base64 pic to qiniu
+            qiniuC.uploadBase64(imageBase64, token, curImage.key, (res) => {
+              if (res.key === curImage.key) {
+                this.turnToHome();
+                this.$route.reload();
+              }
+            });
+          }
         });
-
       });
 
     } else {
@@ -110,7 +112,7 @@ class sideBtnCtrl {
 
 }
 
-sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope'];
+sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope', '$route'];
 
 export default {
   tpl: sideBtnTpl,
