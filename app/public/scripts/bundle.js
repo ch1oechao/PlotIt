@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1fec87d1f6320bbf44f1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ba83ddba305fbdccb974"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */24);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */62);
+	__webpack_require__(/*! ./app/main.js */26);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */64);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 30);
+	__webpack_require__(/*! ./angular */ 32);
 	module.exports = angular;
 
 /***/ },
@@ -1027,100 +1027,6 @@
 
 /***/ },
 /* 11 */
-/*!*********************************!*\
-  !*** ./app/libs/canvas.util.js ***!
-  \*********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var CanvasUtil = function () {
-	  function CanvasUtil() {
-	    _classCallCheck(this, CanvasUtil);
-	
-	    this.$canvas = document.querySelector('#plotitCanvas');
-	    this.$panel = document.querySelector('.panel-canvas');
-	  }
-	
-	  _createClass(CanvasUtil, [{
-	    key: 'render',
-	    value: function render(imgSrc) {
-	      var _this = this;
-	
-	      if (this.$canvas && this.$panel) {
-	        var canvas = this.$canvas,
-	            context = canvas.getContext('2d'),
-	            image = new Image();
-	
-	        image.crossOrigin = 'anonymous';
-	        image.src = imgSrc;
-	
-	        image.onload = function () {
-	          var $panel = _this.$panel,
-	              panelW = $panel.clientWidth,
-	              panelH = $panel.clientHeight,
-	              imageW = image.width,
-	              imageH = image.height,
-	              scale;
-	
-	          context.clearRect(0, 0, canvas.width, canvas.height);
-	
-	          canvas.width = panelW;
-	          canvas.height = panelH;
-	
-	          if (imageW > imageH) {
-	            scale = imageW / panelW;
-	          } else {
-	            scale = imageH / panelH;
-	          }
-	
-	          imageW = imageW / scale;
-	          imageH = imageH / scale;
-	
-	          var dx = (panelW - imageW) / 2,
-	              dy = (panelH - imageH) / 2;
-	
-	          context.drawImage(image, dx, dy, imageW, imageH);
-	        };
-	      }
-	    }
-	  }, {
-	    key: 'convertToBase64',
-	    value: function convertToBase64(canvas, size) {
-	      if (canvas) {
-	        var quality = 1,
-	            maxSize = 50000000,
-	            context = canvas.getContext('2d'),
-	            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-	
-	        context.putImageData(imageData, 0, 0);
-	
-	        if (size > maxSize) {
-	          quality = Math.floor(maxSize / size);
-	        }
-	
-	        var base64Str = canvas.toDataURL(null, quality);
-	
-	        return base64Str.substring(base64Str.indexOf(',') + 1);
-	      }
-	    }
-	  }]);
-	
-	  return CanvasUtil;
-	}();
-
-	exports.default = CanvasUtil;
-
-/***/ },
-/* 12 */
 /*!**********************************!*\
   !*** ./app/libs/qiniu.client.js ***!
   \**********************************/
@@ -1128,7 +1034,7 @@
 
 	'use strict';
 	
-	var _base = __webpack_require__(/*! ./base64 */ 22);
+	var _base = __webpack_require__(/*! ./base64 */ 21);
 	
 	var _base2 = _interopRequireDefault(_base);
 	
@@ -1218,7 +1124,7 @@
 	})();
 
 /***/ },
-/* 13 */
+/* 12 */
 /*!***************************!*\
   !*** ./~/buffer/index.js ***!
   \***************************/
@@ -1234,9 +1140,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 33);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 38);
-	var isArray = __webpack_require__(/*! isarray */ 34);
+	var base64 = __webpack_require__(/*! base64-js */ 35);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 40);
+	var isArray = __webpack_require__(/*! isarray */ 36);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -2737,10 +2643,10 @@
 	  }
 	  return i;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 13).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 12).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 14 */
+/* 13 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html5-entities.js ***!
   \***********************************************/
@@ -2938,7 +2844,7 @@
 	module.exports = Html5Entities;
 
 /***/ },
-/* 15 */
+/* 14 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
@@ -2947,7 +2853,7 @@
 	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 16 */
+/* 15 */
 /*!*****************************************!*\
   !*** ./app/components/library/index.js ***!
   \*****************************************/
@@ -2965,11 +2871,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 48);
+	var _index = __webpack_require__(/*! ./index.html */ 50);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 55);
+	__webpack_require__(/*! ./index.scss */ 57);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3055,7 +2961,7 @@
 	};
 
 /***/ },
-/* 17 */
+/* 16 */
 /*!*****************************************!*\
   !*** ./app/components/palette/index.js ***!
   \*****************************************/
@@ -3073,11 +2979,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 49);
+	var _index = __webpack_require__(/*! ./index.html */ 51);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 56);
+	__webpack_require__(/*! ./index.scss */ 58);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3145,7 +3051,7 @@
 	};
 
 /***/ },
-/* 18 */
+/* 17 */
 /*!***************************************!*\
   !*** ./app/components/panel/index.js ***!
   \***************************************/
@@ -3163,19 +3069,19 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 11);
+	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 25);
 	
-	var _canvas2 = _interopRequireDefault(_canvas);
+	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 12);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 50);
+	var _index = __webpack_require__(/*! ./index.html */ 52);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 57);
+	__webpack_require__(/*! ./index.scss */ 59);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3205,7 +3111,7 @@
 	    this.$stateParams = $stateParams;
 	    this.$location = $location;
 	    this.$rootScope = $rootScope;
-	    this.CanvasUtil = new _canvas2.default();
+	    this.PlotitUtil = new _plotit2.default.Util();
 	    this.hasImage = false;
 	    this.curImageSrc = null;
 	    this.isLoading = false;
@@ -3227,7 +3133,7 @@
 	            if (item._id === id) {
 	              self.hasImage = true;
 	              self.curImageSrc = item.imageSrc;
-	              self.CanvasUtil.render(item.imageSrc);
+	              self.PlotitUtil.renderImage(item.imageSrc);
 	            }
 	          });
 	        } else {
@@ -3236,7 +3142,7 @@
 	            if (!err) {
 	              self.hasImage = true;
 	              self.curImageSrc = res.imageSrc;
-	              self.CanvasUtil.render(res.imageSrc);
+	              self.PlotitUtil.renderImage(res.imageSrc);
 	            } else {
 	              // loading err, back to home
 	              self.$location.url('/');
@@ -3270,7 +3176,7 @@
 	          // show canvas
 	          self.hasImage = true;
 	          self.curImageSrc = hasPic[0].imageSrc;
-	          this.CanvasUtil.render(self.imgSrc);
+	          this.PlotitUtil.renderImage(self.imgSrc);
 	          // loading finish
 	          self.isLoading = false;
 	        } else if (!file.$error && !!self.filterName(file.name)) {
@@ -3280,7 +3186,8 @@
 	          // show canvas
 	          self.hasImage = true;
 	          self.curImageSrc = self.imgSrc;
-	          this.CanvasUtil.render(self.imgSrc);
+	
+	          this.PlotitUtil.renderImage(self.imgSrc);
 	
 	          // upload to qiniu
 	          self.uploadImageToQiniu(file);
@@ -3317,7 +3224,6 @@
 	      this.Service.genToken(function (token) {
 	        // uploadImage image to Qiniu
 	        _qiniu2.default.uploadImage(file, token, key, function (imgSrc) {
-	
 	          // save file to MongoDB
 	          var img = {
 	            name: name,
@@ -3348,7 +3254,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 18 */
 /*!*****************************************!*\
   !*** ./app/components/popover/index.js ***!
   \*****************************************/
@@ -3366,11 +3272,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 51);
+	var _index = __webpack_require__(/*! ./index.html */ 53);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 58);
+	__webpack_require__(/*! ./index.scss */ 60);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3416,7 +3322,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 19 */
 /*!*****************************************!*\
   !*** ./app/components/sideBtn/index.js ***!
   \*****************************************/
@@ -3434,23 +3340,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 52);
+	var _index = __webpack_require__(/*! ./index.html */ 54);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _canvas = __webpack_require__(/*! ../../libs/canvas.util */ 11);
-	
-	var _canvas2 = _interopRequireDefault(_canvas);
-	
-	var _canvas2image = __webpack_require__(/*! ../../libs/canvas2image */ 23);
-	
-	var _canvas2image2 = _interopRequireDefault(_canvas2image);
-	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 12);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 59);
+	__webpack_require__(/*! ./index.scss */ 61);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3464,22 +3362,27 @@
 	    bindToController: true,
 	    restrict: 'E',
 	    link: function link(scope, element, attrs) {
+	
+	      var self = scope.sideBtn;
+	
 	      if (attrs.sideState === 'plot') {
-	        scope.sideBtn.isPlot = true;
+	        self.isPlot = true;
 	      } else {
-	        scope.sideBtn.isPlot = false;
+	        self.isPlot = false;
 	      }
+	
+	      self.$scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
 	    }
 	  };
 	};
 	
 	var sideBtnCtrl = function () {
-	  function sideBtnCtrl($location, Service, $rootScope, $route) {
+	  function sideBtnCtrl($scope, $location, Service, $rootScope, $route) {
 	    _classCallCheck(this, sideBtnCtrl);
 	
+	    this.$scope = $scope;
 	    this.$location = $location;
 	    this.Service = Service;
-	    this.CanvasUtil = new _canvas2.default();
 	    this.$rootScope = $rootScope;
 	    this.$route = $route;
 	    this.isPlot = false;
@@ -3487,6 +3390,11 @@
 	  }
 	
 	  _createClass(sideBtnCtrl, [{
+	    key: 'setPlotitUtil',
+	    value: function setPlotitUtil(PlotitUtil) {
+	      this.PlotitUtil = PlotitUtil;
+	    }
+	  }, {
 	    key: 'turnToCanvas',
 	    value: function turnToCanvas() {
 	      this.$location.url('/plot');
@@ -3513,7 +3421,7 @@
 	          var pics = this.$rootScope.pics;
 	          pics.map(function (item) {
 	            if (item._id === id) {
-	              _this.CanvasUtil.render(item.imageSrc);
+	              _this.PlotitUtil.renderImage(item.imageSrc);
 	            }
 	          });
 	        }
@@ -3528,8 +3436,7 @@
 	        return;
 	      }
 	
-	      var canvas = this.CanvasUtil.$canvas,
-	          paths = this.$location.$$path.split('/'),
+	      var paths = this.$location.$$path.split('/'),
 	          id = paths[paths.length - 1],
 	          curImage;
 	
@@ -3546,7 +3453,8 @@
 	      // isNewImage && this.isChange
 	      if (curImage) {
 	
-	        var imageBase64 = this.CanvasUtil.convertToBase64(canvas, curImage.size);
+	        var size = curImage.size,
+	            imageBase64 = this.PlotitUtil.convertToBase64(size);
 	
 	        // get Qiniu token
 	        this.Service.genToken(function (token) {
@@ -3572,7 +3480,7 @@
 	  return sideBtnCtrl;
 	}();
 	
-	sideBtnCtrl.$inject = ['$location', 'Service', '$rootScope', '$route'];
+	sideBtnCtrl.$inject = ['$scope', '$location', 'Service', '$rootScope', '$route'];
 	
 	exports.default = {
 	  tpl: sideBtnTpl,
@@ -3580,7 +3488,7 @@
 	};
 
 /***/ },
-/* 21 */
+/* 20 */
 /*!*****************************************!*\
   !*** ./app/components/sidebar/index.js ***!
   \*****************************************/
@@ -3596,11 +3504,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 53);
+	var _index = __webpack_require__(/*! ./index.html */ 55);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 60);
+	__webpack_require__(/*! ./index.scss */ 62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3628,7 +3536,7 @@
 	};
 
 /***/ },
-/* 22 */
+/* 21 */
 /*!****************************!*\
   !*** ./app/libs/base64.js ***!
   \****************************/
@@ -3656,7 +3564,7 @@
 	    var buffer;
 	    if (typeof module !== 'undefined' && module.exports) {
 	        try {
-	            buffer = __webpack_require__(/*! buffer */ 13).Buffer;
+	            buffer = __webpack_require__(/*! buffer */ 12).Buffer;
 	        } catch (err) {}
 	    }
 	    // constants
@@ -3792,288 +3700,197 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
+/* 22 */
+/*!***********************************!*\
+  !*** ./app/libs/core/adjuster.js ***!
+  \***********************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitAdjuster = function PlotitAdjuster() {
+	  _classCallCheck(this, PlotitAdjuster);
+	};
+
+	exports.default = PlotitAdjuster;
+
+/***/ },
 /* 23 */
-/*!**********************************!*\
-  !*** ./app/libs/canvas2image.js ***!
-  \**********************************/
+/*!*********************************!*\
+  !*** ./app/libs/core/filter.js ***!
+  \*********************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitFilter = function PlotitFilter() {
+	  _classCallCheck(this, PlotitFilter);
+	};
+
+	exports.default = PlotitFilter;
+
+/***/ },
+/* 24 */
+/*!*******************************!*\
+  !*** ./app/libs/core/util.js ***!
+  \*******************************/
 /***/ function(module, exports) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	/**
-	 * covert canvas to image
-	 * and save the image file
-	 */
 	
-	// check if support sth.
-	var $support = function () {
-	    var canvas = document.createElement('canvas'),
-	        ctx = canvas.getContext('2d');
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	    return {
-	        canvas: !!ctx,
-	        imageData: !!ctx.getImageData,
-	        dataURL: !!canvas.toDataURL,
-	        btoa: !!window.btoa
-	    };
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitUtil = function () {
+	  function PlotitUtil() {
+	    _classCallCheck(this, PlotitUtil);
+	
+	    this.$canvas = document.querySelector('#plotitCanvas') || {};
+	    this.$panel = document.querySelector('.panel-canvas') || {};
+	  }
+	
+	  _createClass(PlotitUtil, [{
+	    key: 'renderImage',
+	    value: function renderImage(imgSrc) {
+	      var _this = this;
+	
+	      if (this.$canvas && this.$panel) {
+	        var canvas = this.$canvas,
+	            context = canvas.getContext('2d'),
+	            image = new Image(),
+	            self = this;
+	
+	        image.crossOrigin = 'anonymous';
+	        image.src = imgSrc;
+	
+	        this.context = context;
+	        this.image = image;
+	
+	        image.onload = function () {
+	          var $panel = _this.$panel,
+	              panelW = $panel.clientWidth,
+	              panelH = $panel.clientHeight,
+	              imageW = image.width,
+	              imageH = image.height,
+	              scale;
+	
+	          context.clearRect(0, 0, canvas.width, canvas.height);
+	
+	          canvas.width = panelW;
+	          canvas.height = panelH;
+	
+	          if (imageW > imageH) {
+	            scale = imageW / panelW;
+	          } else {
+	            scale = imageH / panelH;
+	          }
+	
+	          imageW = imageW / scale;
+	          imageH = imageH / scale;
+	
+	          var dx = (panelW - imageW) / 2,
+	              dy = (panelH - imageH) / 2;
+	
+	          context.drawImage(image, dx, dy, imageW, imageH);
+	
+	          _this.originData = _this.getData(dx, dy, imageW, imageH);
+	        };
+	      }
+	    }
+	  }, {
+	    key: 'getData',
+	    value: function getData() {
+	      var canvas = this.$canvas;
+	      return this.context.getImageData(0, 0, canvas.width, canvas.height);
+	    }
+	  }, {
+	    key: 'setData',
+	    value: function setData(data) {
+	      return this.context.putImageData(data, 0, 0);
+	    }
+	  }, {
+	    key: 'resetImage',
+	    value: function resetImage() {
+	      this.setData(this.originData);
+	    }
+	  }, {
+	    key: 'convertToBase64',
+	    value: function convertToBase64(size) {
+	      var quality = 1,
+	          maxSize = 50000000,
+	          base64Str = '';
+	
+	      if (size > maxSize) {
+	        quality = Math.floor(maxSize / size);
+	      }
+	
+	      var imageData = this.getData();
+	
+	      this.setData(imageData);
+	
+	      base64Str = this.$canvas.toDataURL(null, quality);
+	
+	      return base64Str.substring(base64Str.indexOf(',') + 1);
+	    }
+	  }]);
+	
+	  return PlotitUtil;
 	}();
+
+	exports.default = PlotitUtil;
+
+/***/ },
+/* 25 */
+/*!****************************!*\
+  !*** ./app/libs/plotit.js ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
-	var downloadMime = 'image/octet-stream';
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	function scaleCanvas(canvas, width, height) {
-	    var w = canvas.width,
-	        h = canvas.height;
-	    if (width == undefined) {
-	        width = w;
-	    }
-	    if (height == undefined) {
-	        height = h;
-	    }
+	var _util = __webpack_require__(/*! ./core/util */ 24);
 	
-	    var retCanvas = document.createElement('canvas');
-	    var retCtx = retCanvas.getContext('2d');
-	    retCanvas.width = width;
-	    retCanvas.height = height;
-	    retCtx.drawImage(canvas, 0, 0, w, h, 0, 0, width, height);
-	    return retCanvas;
-	}
+	var _util2 = _interopRequireDefault(_util);
 	
-	function getDataURL(canvas, type, width, height) {
-	    canvas = scaleCanvas(canvas, width, height);
-	    return canvas.toDataURL(type);
-	}
+	var _adjuster = __webpack_require__(/*! ./core/adjuster */ 22);
 	
-	function saveFile(strData) {
-	    document.location.href = strData;
-	}
+	var _adjuster2 = _interopRequireDefault(_adjuster);
 	
-	function genImage(strData) {
-	    var img = document.createElement('img');
-	    img.src = strData;
-	    return img;
-	}
+	var _filter = __webpack_require__(/*! ./core/filter */ 23);
 	
-	function fixType(type) {
-	    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
-	    var r = type.match(/png|jpeg|bmp|gif/)[0];
-	    return 'image/' + r;
-	}
+	var _filter2 = _interopRequireDefault(_filter);
 	
-	function encodeData(data) {
-	    if (!window.btoa) {
-	        throw 'btoa undefined';
-	    }
-	    var str = '';
-	    if (typeof data == 'string') {
-	        str = data;
-	    } else {
-	        for (var i = 0; i < data.length; i++) {
-	            str += String.fromCharCode(data[i]);
-	        }
-	    }
-	
-	    return btoa(str);
-	}
-	
-	function getImageData(canvas) {
-	    var w = canvas.width,
-	        h = canvas.height;
-	    return canvas.getContext('2d').getImageData(0, 0, w, h);
-	}
-	
-	function makeURI(strData, type) {
-	    return 'data:' + type + ';base64,' + strData;
-	}
-	
-	/**
-	 * create bitmap image
-	 * 按照规则生成图片响应头和响应体
-	 */
-	var genBitmapImage = function genBitmapImage(oData) {
-	
-	    //
-	    // BITMAPFILEHEADER: http://msdn.microsoft.com/en-us/library/windows/desktop/dd183374(v=vs.85).aspx
-	    // BITMAPINFOHEADER: http://msdn.microsoft.com/en-us/library/dd183376.aspx
-	    //
-	
-	    var biWidth = oData.width;
-	    var biHeight = oData.height;
-	    var biSizeImage = biWidth * biHeight * 3;
-	    var bfSize = biSizeImage + 54; // total header size = 54 bytes
-	
-	    //
-	    //  typedef struct tagBITMAPFILEHEADER {
-	    //    WORD bfType;
-	    //    DWORD bfSize;
-	    //    WORD bfReserved1;
-	    //    WORD bfReserved2;
-	    //    DWORD bfOffBits;
-	    //  } BITMAPFILEHEADER;
-	    //
-	    var BITMAPFILEHEADER = [
-	    // WORD bfType -- The file type signature; must be "BM"
-	    0x42, 0x4D,
-	    // DWORD bfSize -- The size, in bytes, of the bitmap file
-	    bfSize & 0xff, bfSize >> 8 & 0xff, bfSize >> 16 & 0xff, bfSize >> 24 & 0xff,
-	    // WORD bfReserved1 -- Reserved; must be zero
-	    0, 0,
-	    // WORD bfReserved2 -- Reserved; must be zero
-	    0, 0,
-	    // DWORD bfOffBits -- The offset, in bytes, from the beginning of the BITMAPFILEHEADER structure to the bitmap bits.
-	    54, 0, 0, 0];
-	
-	    //
-	    //  typedef struct tagBITMAPINFOHEADER {
-	    //    DWORD biSize;
-	    //    LONG  biWidth;
-	    //    LONG  biHeight;
-	    //    WORD  biPlanes;
-	    //    WORD  biBitCount;
-	    //    DWORD biCompression;
-	    //    DWORD biSizeImage;
-	    //    LONG  biXPelsPerMeter;
-	    //    LONG  biYPelsPerMeter;
-	    //    DWORD biClrUsed;
-	    //    DWORD biClrImportant;
-	    //  } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
-	    //
-	    var BITMAPINFOHEADER = [
-	    // DWORD biSize -- The number of bytes required by the structure
-	    40, 0, 0, 0,
-	    // LONG biWidth -- The width of the bitmap, in pixels
-	    biWidth & 0xff, biWidth >> 8 & 0xff, biWidth >> 16 & 0xff, biWidth >> 24 & 0xff,
-	    // LONG biHeight -- The height of the bitmap, in pixels
-	    biHeight & 0xff, biHeight >> 8 & 0xff, biHeight >> 16 & 0xff, biHeight >> 24 & 0xff,
-	    // WORD biPlanes -- The number of planes for the target device. This value must be set to 1
-	    1, 0,
-	    // WORD biBitCount -- The number of bits-per-pixel, 24 bits-per-pixel -- the bitmap
-	    // has a maximum of 2^24 colors (16777216, Truecolor)
-	    24, 0,
-	    // DWORD biCompression -- The type of compression, BI_RGB (code 0) -- uncompressed
-	    0, 0, 0, 0,
-	    // DWORD biSizeImage -- The size, in bytes, of the image. This may be set to zero for BI_RGB bitmaps
-	    biSizeImage & 0xff, biSizeImage >> 8 & 0xff, biSizeImage >> 16 & 0xff, biSizeImage >> 24 & 0xff,
-	    // LONG biXPelsPerMeter, unused
-	    0, 0, 0, 0,
-	    // LONG biYPelsPerMeter, unused
-	    0, 0, 0, 0,
-	    // DWORD biClrUsed, the number of color indexes of palette, unused
-	    0, 0, 0, 0,
-	    // DWORD biClrImportant, unused
-	    0, 0, 0, 0];
-	
-	    var iPadding = (4 - biWidth * 3 % 4) % 4;
-	
-	    var aImgData = oData.data;
-	
-	    var strPixelData = '';
-	    var biWidth4 = biWidth << 2;
-	    var y = biHeight;
-	    var fromCharCode = String.fromCharCode;
-	
-	    do {
-	        var iOffsetY = biWidth4 * (y - 1);
-	        var strPixelRow = '';
-	        for (var x = 0; x < biWidth; x++) {
-	            var iOffsetX = x << 2;
-	            strPixelRow += fromCharCode(aImgData[iOffsetY + iOffsetX + 2]) + fromCharCode(aImgData[iOffsetY + iOffsetX + 1]) + fromCharCode(aImgData[iOffsetY + iOffsetX]);
-	        }
-	
-	        for (var c = 0; c < iPadding; c++) {
-	            strPixelRow += String.fromCharCode(0);
-	        }
-	
-	        strPixelData += strPixelRow;
-	    } while (--y);
-	
-	    var strEncoded = encodeData(BITMAPFILEHEADER.concat(BITMAPINFOHEADER)) + encodeData(strPixelData);
-	
-	    return strEncoded;
-	};
-	
-	/**
-	 * saveAsImage
-	 * @param canvasElement
-	 * @param {String} image type
-	 * @param {Number} [optional] png width
-	 * @param {Number} [optional] png height
-	 */
-	var saveAsImage = function saveAsImage(canvas, width, height, type) {
-	    if ($support.canvas && $support.dataURL) {
-	        if (typeof canvas == "string") {
-	            canvas = document.getElementById(canvas);
-	        }
-	        if (type == undefined) {
-	            type = 'png';
-	        }
-	        type = fixType(type);
-	        if (/bmp/.test(type)) {
-	            var data = getImageData(scaleCanvas(canvas, width, height));
-	            var strData = genBitmapImage(data);
-	            saveFile(makeURI(strData, downloadMime));
-	        } else {
-	            var strData = getDataURL(canvas, type, width, height);
-	            saveFile(strData.replace(type, downloadMime));
-	        }
-	    }
-	};
-	
-	var convertToImage = function convertToImage(canvas, width, height, type) {
-	    if ($support.canvas && $support.dataURL) {
-	        if (typeof canvas == "string") {
-	            canvas = document.getElementById(canvas);
-	        }
-	        if (type == undefined) {
-	            type = 'png';
-	        }
-	        type = fixType(type);
-	
-	        if (/bmp/.test(type)) {
-	            var data = getImageData(scaleCanvas(canvas, width, height));
-	            var strData = genBitmapImage(data);
-	            return genImage(makeURI(strData, 'image/bmp'));
-	        } else {
-	            var strData = getDataURL(canvas, type, width, height);
-	            return genImage(strData);
-	        }
-	    }
-	};
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	    saveAsImage: saveAsImage,
-	    saveAsPNG: function saveAsPNG(canvas, width, height) {
-	        return saveAsImage(canvas, width, height, 'png');
-	    },
-	    saveAsJPEG: function saveAsJPEG(canvas, width, height) {
-	        return saveAsImage(canvas, width, height, 'jpeg');
-	    },
-	    saveAsGIF: function saveAsGIF(canvas, width, height) {
-	        return saveAsImage(canvas, width, height, 'gif');
-	    },
-	    saveAsBMP: function saveAsBMP(canvas, width, height) {
-	        return saveAsImage(canvas, width, height, 'bmp');
-	    },
-	
-	    convertToImage: convertToImage,
-	    convertToPNG: function convertToPNG(canvas, width, height) {
-	        return convertToImage(canvas, width, height, 'png');
-	    },
-	    convertToJPEG: function convertToJPEG(canvas, width, height) {
-	        return convertToImage(canvas, width, height, 'jpeg');
-	    },
-	    convertToGIF: function convertToGIF(canvas, width, height) {
-	        return convertToImage(canvas, width, height, 'gif');
-	    },
-	    convertToBMP: function convertToBMP(canvas, width, height) {
-	        return convertToImage(canvas, width, height, 'bmp');
-	    }
+	  Util: _util2.default,
+	  Adjuster: _adjuster2.default,
+	  Filter: _filter2.default
 	};
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -4089,49 +3906,49 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 29);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 31);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 28);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 30);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 25);
+	var _main = __webpack_require__(/*! ./main.routes */ 27);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 26);
+	var _main3 = __webpack_require__(/*! ./main.services */ 28);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 40);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 42);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 61);
+	__webpack_require__(/*! ./public/styles/main.scss */ 63);
 	
-	var _library = __webpack_require__(/*! ./components/library */ 16);
+	var _library = __webpack_require__(/*! ./components/library */ 15);
 	
 	var _library2 = _interopRequireDefault(_library);
 	
-	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 21);
+	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 20);
 	
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 	
-	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 20);
+	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 19);
 	
 	var _sideBtn2 = _interopRequireDefault(_sideBtn);
 	
-	var _panel = __webpack_require__(/*! ./components/panel */ 18);
+	var _panel = __webpack_require__(/*! ./components/panel */ 17);
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _palette = __webpack_require__(/*! ./components/palette */ 17);
+	var _palette = __webpack_require__(/*! ./components/palette */ 16);
 	
 	var _palette2 = _interopRequireDefault(_palette);
 	
-	var _popover = __webpack_require__(/*! ./components/popover */ 19);
+	var _popover = __webpack_require__(/*! ./components/popover */ 18);
 	
 	var _popover2 = _interopRequireDefault(_popover);
 	
@@ -4155,7 +3972,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -4179,18 +3996,18 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 54)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 56)
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 15)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
 	  }).state('/plot/:id', {
 	    url: '/plot/:id',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 15)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
 	  });
 	}
 
 /***/ },
-/* 26 */
+/* 28 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -4414,7 +4231,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 27 */
+/* 29 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -5404,7 +5221,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 28 */
+/* 30 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -5412,11 +5229,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 27);
+	__webpack_require__(/*! ./angular-route */ 29);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 29 */
+/* 31 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -7693,7 +7510,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 30 */
+/* 32 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -23504,7 +23321,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 31 */
+/* 33 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -23684,7 +23501,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 32 */
+/* 34 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -23698,7 +23515,7 @@
 	};
 
 /***/ },
-/* 33 */
+/* 35 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -23824,7 +23641,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 34 */
+/* 36 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -23839,7 +23656,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 37 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -23848,14 +23665,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 37),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 36),
-	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 14),
-	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 14)
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 39),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 38),
+	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 13),
+	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 13)
 	};
 
 /***/ },
-/* 36 */
+/* 38 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -24010,7 +23827,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 37 */
+/* 39 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -24173,7 +23990,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 38 */
+/* 40 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -24267,7 +24084,7 @@
 	};
 
 /***/ },
-/* 39 */
+/* 41 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -27032,7 +26849,7 @@
 	}]);
 
 /***/ },
-/* 40 */
+/* 42 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -27040,11 +26857,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 39);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 41);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 41 */
+/* 43 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -27136,7 +26953,7 @@
 	};
 
 /***/ },
-/* 42 */
+/* 44 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -27208,7 +27025,7 @@
 	};
 
 /***/ },
-/* 43 */
+/* 45 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -27216,11 +27033,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 41);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 42);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 43);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 44);
 
 /***/ },
-/* 44 */
+/* 46 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -27228,14 +27045,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 32)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 34)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 45 */
+/* 47 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -27271,7 +27088,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 31);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 33);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -27286,7 +27103,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 35).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 37).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -27317,7 +27134,7 @@
 	}
 
 /***/ },
-/* 46 */
+/* 48 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -27433,7 +27250,7 @@
 	};
 
 /***/ },
-/* 47 */
+/* 49 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -27453,7 +27270,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 50 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -27462,7 +27279,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 49 */
+/* 51 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -27471,7 +27288,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\">\n          <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          <span class=\"filter-name\">filter</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.brightness\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.saturation\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.contrast\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">曝光 <span class=\"adjuster-qty\">{{palette.exposure}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.exposure\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">色彩 <span class=\"adjuster-qty\">{{palette.hue}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.hue\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">锐利 <span class=\"adjuster-qty\">{{palette.sharpen}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sharpen\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"100\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 50 */
+/* 52 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -27480,7 +27297,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 51 */
+/* 53 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -27489,7 +27306,7 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 52 */
+/* 54 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -27498,7 +27315,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 53 */
+/* 55 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -27507,7 +27324,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 54 */
+/* 56 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -27516,7 +27333,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 55 */
+/* 57 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -27545,7 +27362,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 58 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -27574,7 +27391,7 @@
 	}
 
 /***/ },
-/* 57 */
+/* 59 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -27603,7 +27420,7 @@
 	}
 
 /***/ },
-/* 58 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -27632,7 +27449,7 @@
 	}
 
 /***/ },
-/* 59 */
+/* 61 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -27661,7 +27478,7 @@
 	}
 
 /***/ },
-/* 60 */
+/* 62 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -27690,7 +27507,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 63 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -27719,7 +27536,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 64 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -27737,7 +27554,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 43);
+	  var querystring = __webpack_require__(/*! querystring */ 45);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -27805,11 +27622,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 44);
+	var strip = __webpack_require__(/*! strip-ansi */ 46);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 45);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 47);
 	}
 	
 	function problems(type, obj) {
@@ -27826,7 +27643,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 46);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 48);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -27858,7 +27675,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 47)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 49)(module)))
 
 /***/ }
 /******/ ]);

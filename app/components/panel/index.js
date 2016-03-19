@@ -1,6 +1,6 @@
 import angular from 'angular';
-import CanvasUtil from '../../libs/canvas.util';
-import qiniuC from '../../libs/qiniu.client';
+import Plotit from '../../libs/plotit';
+import QiniuC from '../../libs/qiniu.client';
 import template from './index.html';
 import './index.scss';
 
@@ -26,7 +26,7 @@ class panelCtrl {
     this.$stateParams = $stateParams;
     this.$location = $location;
     this.$rootScope = $rootScope;
-    this.CanvasUtil = new CanvasUtil();
+    this.PlotitUtil = new Plotit.Util();
     this.hasImage = false;
     this.curImageSrc = null;
     this.isLoading = false;
@@ -44,7 +44,7 @@ class panelCtrl {
           if (item._id === id) {
             self.hasImage = true;
             self.curImageSrc = item.imageSrc;
-            self.CanvasUtil.render(item.imageSrc);
+            self.PlotitUtil.renderImage(item.imageSrc);
           }
         });
       } else {
@@ -53,7 +53,7 @@ class panelCtrl {
           if (!err) {
             self.hasImage = true;
             self.curImageSrc = res.imageSrc;
-            self.CanvasUtil.render(res.imageSrc);  
+            self.PlotitUtil.renderImage(res.imageSrc);  
           } else {
             // loading err, back to home
             self.$location.url('/');
@@ -87,7 +87,7 @@ class panelCtrl {
         // show canvas
         self.hasImage = true;
         self.curImageSrc = hasPic[0].imageSrc;
-        this.CanvasUtil.render(self.imgSrc);
+        this.PlotitUtil.renderImage(self.imgSrc);
         // loading finish
         self.isLoading = false;
 
@@ -98,7 +98,8 @@ class panelCtrl {
         // show canvas
         self.hasImage = true;
         self.curImageSrc = self.imgSrc;
-        this.CanvasUtil.render(self.imgSrc);
+        
+        this.PlotitUtil.renderImage(self.imgSrc);
 
         // upload to qiniu
         self.uploadImageToQiniu(file); 
@@ -133,8 +134,7 @@ class panelCtrl {
     // gen Qiniu token
     this.Service.genToken((token) => {
       // uploadImage image to Qiniu
-      qiniuC.uploadImage(file, token, key, (imgSrc) => {
-        
+      QiniuC.uploadImage(file, token, key, (imgSrc) => {
         // save file to MongoDB
         var img = {
           name: name,
