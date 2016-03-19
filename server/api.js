@@ -36,7 +36,14 @@
   exports.getImage = function(req, res) {
     var _id = req.body.id;
     Pic.findById(_id, function(err, item) {
-      res.json(item);
+      if (!err) {
+        res.json(item);  
+      } else {
+        console.log(err);
+        res.json({
+          err: true
+        });
+      }
     });
   };
 

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8891b56d4050fe4d8336"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1fec87d1f6320bbf44f1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -935,7 +935,7 @@
 	
 	
 	// module
-	exports.push([module.id, "palette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 20% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 75%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu li {\n  display: inline-block;\n  padding: .5em 3em .5em 0;\n  border-bottom: 1px solid transparent; }\n  .palette-menu li:hover {\n    border-bottom-color: #08D9D6;\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, "palette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 16% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 75%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu {\n  width: 100%;\n  height: 3.5em; }\n  .palette-menu li {\n    display: inline-block;\n    padding: .5em 1.8em .6em .5em;\n    margin-right: .1em;\n    letter-spacing: .4em;\n    border-bottom: 1px solid transparent; }\n    .palette-menu li .fa {\n      margin-right: .5em; }\n    .palette-menu li.active {\n      border-bottom-color: #08D9D6; }\n    .palette-menu li:hover {\n      border-bottom-color: #08D9D6;\n      cursor: pointer; }\n\n.palette-body {\n  position: relative;\n  width: 14em;\n  height: 90%;\n  min-height: 400px;\n  overflow-y: scroll; }\n\n.palette-filter-container,\n.palette-adjuster-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.filter-item {\n  position: relative;\n  height: 7em;\n  padding: 0;\n  font-size: .9em;\n  background-color: #3A4750;\n  overflow: hidden;\n  cursor: pointer; }\n  .filter-item.active, .filter-item:hover {\n    color: #08D9D6; }\n  .filter-item img {\n    width: 100%; }\n\n.filter-name {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.5); }\n\n.adjuster-item {\n  height: 3em;\n  line-height: 3em;\n  padding-left: 1.2em;\n  margin-bottom: 1em;\n  font-size: .8em; }\n  .adjuster-item .adjuster-name {\n    width: 100%;\n    display: inline-block;\n    margin-bottom: .3em; }\n  .adjuster-item .adjuster-qty {\n    float: right;\n    padding-right: 5px; }\n  .adjuster-item input[type=range] {\n    width: 98%;\n    background-color: #4D606E;\n    height: 1px;\n    vertical-align: 1px;\n    -webkit-appearance: none;\n    outline: none;\n    border: none; }\n    .adjuster-item input[type=range]:hover {\n      cursor: pointer; }\n  .adjuster-item input[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: .65em;\n    width: .65em;\n    background: #08D9D6;\n    cursor: pointer; }\n", ""]);
 	
 	// exports
 
@@ -1020,7 +1020,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nbody {\n  font-family: 'Lato', sans-serif;\n  font-weight: 300; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 960px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666;\n  overflow: hidden; }\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nbody {\n  font-family: 'Lato', sans-serif;\n  font-weight: 300; }\n\n.app-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: stretch;\n  min-width: 1080px;\n  min-height: 480px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  color: #FFF;\n  background-color: #666;\n  overflow: hidden; }\n", ""]);
 	
 	// exports
 
@@ -3067,6 +3067,8 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _angular = __webpack_require__(/*! angular */ 1);
 	
 	var _angular2 = _interopRequireDefault(_angular);
@@ -3087,15 +3089,55 @@
 	    controller: 'paletteCtrl',
 	    controllerAs: 'palette',
 	    bindToController: true,
-	    restrict: 'E'
+	    restrict: 'E',
+	    link: function link(scope, element, attrs) {
+	      var self = scope.palette;
+	      self.$scope.$watch('panel.curImageSrc', self.setFilterImgSrc.bind(self));
+	    }
 	  };
 	};
 	
-	var paletteCtrl = function paletteCtrl() {
-	  _classCallCheck(this, paletteCtrl);
+	var paletteCtrl = function () {
+	  function paletteCtrl($scope) {
+	    _classCallCheck(this, paletteCtrl);
 	
-	  this.brand = 'PlotIt';
-	};
+	    this.brand = 'PlotIt';
+	    this.$scope = $scope;
+	    this.isFilter = true;
+	    this.filterImgSrc = 'http://7xrwkg.com1.z0.glb.clouddn.com/13.jpg?imageView2/2/h/150';
+	
+	    // filters
+	    // none
+	
+	    // adjusters
+	    this.brightness = 0;
+	    this.saturation = 0;
+	    this.contrast = 0;
+	    this.hue = 0;
+	    this.exposure = 0;
+	    this.blur = 0;
+	    this.sharpen = 0;
+	    this.noise = 0;
+	  }
+	
+	  _createClass(paletteCtrl, [{
+	    key: 'switchTab',
+	    value: function switchTab(isFilter) {
+	      this.isFilter = isFilter;
+	    }
+	  }, {
+	    key: 'setFilterImgSrc',
+	    value: function setFilterImgSrc(src) {
+	      if (src) {
+	        this.filterImgSrc = src;
+	      }
+	    }
+	  }]);
+	
+	  return paletteCtrl;
+	}();
+	
+	paletteCtrl.$inject = ['$scope'];
 	
 	exports.default = {
 	  tpl: paletteTpl,
@@ -3155,15 +3197,17 @@
 	};
 	
 	var panelCtrl = function () {
-	  function panelCtrl($scope, Service, $stateParams, $rootScope) {
+	  function panelCtrl($scope, Service, $stateParams, $rootScope, $location) {
 	    _classCallCheck(this, panelCtrl);
 	
 	    this.$scope = $scope;
 	    this.Service = Service;
 	    this.$stateParams = $stateParams;
+	    this.$location = $location;
 	    this.$rootScope = $rootScope;
 	    this.CanvasUtil = new _canvas2.default();
 	    this.hasImage = false;
+	    this.curImageSrc = null;
 	    this.isLoading = false;
 	  }
 	
@@ -3175,13 +3219,30 @@
 	      var self = this;
 	      return function (item) {
 	        var id = item.id,
-	            pics = _this.$rootScope.pics;
-	        pics.map(function (item) {
-	          if (item._id === id) {
-	            self.hasImage = true;
-	            self.CanvasUtil.render(item.imageSrc);
-	          }
-	        });
+	            pics = _this.$rootScope.pics || [];
+	
+	        if (pics !== []) {
+	          // find from cache
+	          pics.map(function (item) {
+	            if (item._id === id) {
+	              self.hasImage = true;
+	              self.curImageSrc = item.imageSrc;
+	              self.CanvasUtil.render(item.imageSrc);
+	            }
+	          });
+	        } else {
+	          // find pic from db
+	          _this.Service.findPic(id, function (res) {
+	            if (!err) {
+	              self.hasImage = true;
+	              self.curImageSrc = res.imageSrc;
+	              self.CanvasUtil.render(res.imageSrc);
+	            } else {
+	              // loading err, back to home
+	              self.$location.url('/');
+	            }
+	          });
+	        }
 	      };
 	    }
 	  }, {
@@ -3195,7 +3256,7 @@
 	        self.isLoading = true;
 	
 	        var file = files[0],
-	            pics = self.$rootScope.pics;
+	            pics = self.$rootScope.pics || [];
 	
 	        // check pics
 	        var hasPic = pics.filter(function (item) {
@@ -3203,10 +3264,12 @@
 	        });
 	
 	        if (hasPic[0]) {
+	
 	          // render image
 	          self.imgSrc = hasPic[0].imageSrc;
 	          // show canvas
 	          self.hasImage = true;
+	          self.curImageSrc = hasPic[0].imageSrc;
 	          this.CanvasUtil.render(self.imgSrc);
 	          // loading finish
 	          self.isLoading = false;
@@ -3216,6 +3279,7 @@
 	          self.imgSrc = window.URL.createObjectURL(file);
 	          // show canvas
 	          self.hasImage = true;
+	          self.curImageSrc = self.imgSrc;
 	          this.CanvasUtil.render(self.imgSrc);
 	
 	          // upload to qiniu
@@ -3276,7 +3340,7 @@
 	  return panelCtrl;
 	}();
 	
-	panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope'];
+	panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope', '$location'];
 	
 	exports.default = {
 	  tpl: panelTpl,
@@ -27404,7 +27468,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li><i class=\"fa fa-magic fa-fw\"></i>滤镜</li>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础</li>\n  </ul>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\">\n          <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          <span class=\"filter-name\">filter</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.brightness\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.saturation\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.contrast\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">曝光 <span class=\"adjuster-qty\">{{palette.exposure}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.exposure\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">色彩 <span class=\"adjuster-qty\">{{palette.hue}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.hue\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">锐利 <span class=\"adjuster-qty\">{{palette.sharpen}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sharpen\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"100\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 50 */

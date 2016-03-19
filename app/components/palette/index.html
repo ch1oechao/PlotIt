@@ -3,9 +3,59 @@
 </div>
 <div class="palette-container">
   <ul class="palette-menu">
-    <li><i class="fa fa-magic fa-fw"></i>滤镜</li>
-    <li><i class="fa fa-sliders fa-fw"></i>基础</li>
+    <li ng-class="palette.isFilter ? 'active' : ''" ng-click="palette.switchTab(true)">
+      <i class="fa fa-magic fa-fw"></i>滤镜
+    </li>
+    <li ng-class="!palette.isFilter ? 'active' : ''" ng-click="palette.switchTab(false)">
+      <i class="fa fa-sliders fa-fw"></i>基础
+    </li>
   </ul>
+  <div class="palette-body">
+    <div class="palette-filter-container" ng-show="palette.isFilter">
+      <div class="row">
+        <div class="col-md-6 filter-item">
+          <img height="104" ng-src={{palette.filterImgSrc}}>
+          <span class="filter-name">filter</span>
+        </div>
+      </div>
+    </div>
+    <div class="palette-adjuster-container" ng-show="!palette.isFilter">
+      <div class="row">
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">亮度 <span class="adjuster-qty">{{palette.brightness}}</span></span>
+          <input type="range" step="1" ng-model="palette.brightness" min="-100" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">饱和度 <span class="adjuster-qty">{{palette.saturation}}</span></span>
+          <input type="range" step="1" ng-model="palette.saturation" min="-100" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">对比度 <span class="adjuster-qty">{{palette.contrast}}</span></span>
+          <input type="range" step="1" ng-model="palette.contrast" min="-100" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">曝光 <span class="adjuster-qty">{{palette.exposure}}</span></span>
+          <input type="range" step="1" ng-model="palette.exposure" min="-100" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">色彩 <span class="adjuster-qty">{{palette.hue}}</span></span>
+          <input type="range" step="1" ng-model="palette.hue" min="0" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">模糊 <span class="adjuster-qty">{{palette.blur}}</span></span>
+          <input type="range" step="1" ng-model="palette.blur" min="0" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">锐利 <span class="adjuster-qty">{{palette.sharpen}}</span></span>
+          <input type="range" step="1" ng-model="palette.sharpen" min="0" max="100" />
+        </div>
+        <div class="col-md-12 adjuster-item">
+          <span class="adjuster-name">噪点 <span class="adjuster-qty">{{palette.noise}}</span></span>
+          <input type="range" step="1" ng-model="palette.noise" min="0" max="100" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="palette-footer">
   <p class="footer-copyright">&copy; 2016 zchen9</p>

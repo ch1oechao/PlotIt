@@ -14,7 +14,7 @@ palette {
 .palette-header {
   width: 100%;
   height: 5%;
-  padding: 20% 0 0 4em;
+  padding: 16% 0 0 4em;
 
   h1 {
     font-size: 2.4em;
@@ -31,13 +31,119 @@ palette {
 }
 
 .palette-menu {
+  width: 100%;
+  height: 3.5em;
+
   li {
     display: inline-block;
-    padding: .5em 3em .5em 0;
+    padding: .5em 1.8em .6em .5em;
+    margin-right: .1em;
+    letter-spacing: .4em;
     border-bottom: 1px solid transparent;
+
+    .fa {
+      margin-right: .5em;
+    }
+
+    &.active {
+      border-bottom-color: $primary-color;
+    }
+
     &:hover {
       border-bottom-color: $primary-color;
       cursor: pointer;
     }
   }
 }
+
+.palette-body {
+  position: relative;
+  width: 14em;
+  height: 90%;
+  min-height: 400px;
+  overflow-y: scroll;
+}
+
+.palette-filter-container,
+.palette-adjuster-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.filter-item {
+  position: relative;
+  height: 7em;
+  padding: 0;
+  font-size: .9em;
+  background-color: $second-dark;
+  overflow: hidden;
+  cursor: pointer;
+
+  &.active,
+  &:hover {
+    color: $primary-color;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.filter-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  background: rgba(0, 0, 0, .5);
+}
+
+.adjuster-item {
+  height: 3em;
+  line-height: 3em;
+  padding-left: 1.2em;
+  margin-bottom: 1em;
+  font-size: .8em;
+
+  .adjuster-name {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: .3em;
+  }
+
+  .adjuster-qty {
+    float: right;
+    padding-right: 5px;
+  }
+
+  input[type=range] {
+    width: 98%;
+    background-color: $third-dark;
+    height: 1px;
+    vertical-align: 1px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: .65em;
+    width: .65em;
+    background: $primary-color;
+    cursor: pointer;
+  }
+}
+
+
+
+ 

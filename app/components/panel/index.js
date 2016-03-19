@@ -20,13 +20,15 @@ let panelTpl = () => {
 };
 
 class panelCtrl {
-  constructor($scope, Service, $stateParams, $rootScope) {
+  constructor($scope, Service, $stateParams, $rootScope, $location) {
     this.$scope = $scope;
     this.Service = Service;
     this.$stateParams = $stateParams;
+    this.$location = $location;
     this.$rootScope = $rootScope;
     this.CanvasUtil = new CanvasUtil();
     this.hasImage = false;
+    this.curImageSrc = null;
     this.isLoading = false;
   }
 
@@ -34,13 +36,31 @@ class panelCtrl {
     var self = this;
     return (item) => {
       var id = item.id,
-          pics = this.$rootScope.pics;
-      pics.map((item) => {
-        if (item._id === id) {
-          self.hasImage = true;
-          self.CanvasUtil.render(item.imageSrc);
-        }
-      });
+          pics = this.$rootScope.pics || [];
+
+      if (pics !== []) {
+        // find from cache
+        pics.map((item) => {
+          if (item._id === id) {
+            self.hasImage = true;
+            self.curImageSrc = item.imageSrc;
+            self.CanvasUtil.render(item.imageSrc);
+          }
+        });
+      } else {
+        // find pic from db
+        this.Service.findPic(id, (res) => {
+          if (!err) {
+            self.hasImage = true;
+            self.curImageSrc = res.imageSrc;
+            self.CanvasUtil.render(res.imageSrc);  
+          } else {
+            // loading err, back to home
+            self.$location.url('/');
+          }
+        });
+      }
+
     }
   }
 
@@ -53,7 +73,7 @@ class panelCtrl {
       self.isLoading = true;
 
       var file = files[0],
-          pics = self.$rootScope.pics;
+          pics = self.$rootScope.pics || [];
 
       // check pics
       var hasPic = pics.filter((item) => {
@@ -61,10 +81,12 @@ class panelCtrl {
       });
 
       if (hasPic[0]) {
+
         // render image
         self.imgSrc = hasPic[0].imageSrc;
         // show canvas
         self.hasImage = true;
+        self.curImageSrc = hasPic[0].imageSrc;
         this.CanvasUtil.render(self.imgSrc);
         // loading finish
         self.isLoading = false;
@@ -75,6 +97,7 @@ class panelCtrl {
         self.imgSrc = window.URL.createObjectURL(file);
         // show canvas
         self.hasImage = true;
+        self.curImageSrc = self.imgSrc;
         this.CanvasUtil.render(self.imgSrc);
 
         // upload to qiniu
@@ -134,7 +157,7 @@ class panelCtrl {
 
 }
 
-panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope'];
+panelCtrl.$inject = ['$scope', 'Service', '$stateParams', '$rootScope', '$location'];
 
 export default {
   tpl: panelTpl,
