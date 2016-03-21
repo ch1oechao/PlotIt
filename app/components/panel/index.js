@@ -43,7 +43,7 @@ class panelCtrl {
         pics.map((item) => {
           if (item._id === id) {
             self.hasImage = true;
-            self.curImageSrc = item.imageSrc;
+            self.curImageSrc = item.imageSrc + '?' + (+new Date());
             self.PlotitUtil.renderImage(item.imageSrc);
           }
         });
@@ -52,7 +52,7 @@ class panelCtrl {
         this.Service.findPic(id, (res) => {
           if (!err) {
             self.hasImage = true;
-            self.curImageSrc = res.imageSrc;
+            self.curImageSrc = res.imageSrc + '?' + (+new Date());
             self.PlotitUtil.renderImage(res.imageSrc);  
           } else {
             // loading err, back to home
@@ -60,7 +60,6 @@ class panelCtrl {
           }
         });
       }
-
     }
   }
 

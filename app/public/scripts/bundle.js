@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ba83ddba305fbdccb974"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "141046a16e7d1969f41c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */26);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */64);
+	__webpack_require__(/*! ./app/main.js */27);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */66);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 32);
+	__webpack_require__(/*! ./angular */ 33);
 	module.exports = angular;
 
 /***/ },
@@ -952,7 +952,7 @@
 	
 	
 	// module
-	exports.push([module.id, "panel {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n  .panel-upload .drop-box {\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    padding-top: 35%; }\n\n#plotitCanvas {\n  width: 100%;\n  height: 100%;\n  background: transparent; }\n", ""]);
+	exports.push([module.id, "panel {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.panel-container {\n  position: relative;\n  width: 86%;\n  height: 84%;\n  max-height: 560px;\n  margin: 7.5% auto;\n  background: transparent; }\n\n.panel-upload,\n.panel-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  height: 560px; }\n\n.panel-upload {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center; }\n  .panel-upload .drop-box {\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    padding-top: 35%; }\n\n#plotitCanvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  background: transparent; }\n", ""]);
 	
 	// exports
 
@@ -1027,6 +1027,250 @@
 
 /***/ },
 /* 11 */
+/*!***********************************!*\
+  !*** ./app/libs/core/adjuster.js ***!
+  \***********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitAdjuster = function () {
+	  function PlotitAdjuster() {
+	    _classCallCheck(this, PlotitAdjuster);
+	
+	    this.defaultDegree = 0;
+	    this.options = ['r', 'g', 'b'];
+	  }
+	
+	  _createClass(PlotitAdjuster, [{
+	    key: 'checkOpts',
+	    value: function checkOpts(pixel) {
+	      var keys = Object.keys(pixel);
+	      return this.options.every(function (item) {
+	        return keys.indexOf(item) !== -1;
+	      });
+	    }
+	
+	    // 亮度
+	
+	  }, {
+	    key: 'brightness',
+	    value: function brightness(pixel, degree) {
+	      var deg = parseInt(degree || this.defaultDegree, 10);
+	
+	      deg = Math.floor(255 * (deg / 500));
+	
+	      if (this.checkOpts(pixel)) {
+	        pixel.r += deg;
+	        pixel.g += deg;
+	        pixel.b += deg;
+	      }
+	
+	      return pixel;
+	    }
+	
+	    // 饱和度
+	
+	  }, {
+	    key: 'saturation',
+	    value: function saturation(pixel, degree) {
+	      var deg = parseInt(degree || this.defaultDegree, 10);
+	
+	      if (this.checkOpts(pixel)) {
+	        var max = Math.max(pixel.r, pixel.g, pixel.b);
+	
+	        pixel.r += pixel.r !== max ? (max - pixel.r) * (deg / 50) : 0;
+	        pixel.g += pixel.g !== max ? (max - pixel.g) * (deg / 50) : 0;
+	        pixel.b += pixel.b !== max ? (max - pixel.b) * (deg / 50) : 0;
+	      }
+	
+	      return pixel;
+	    }
+	
+	    // 对比度
+	
+	  }, {
+	    key: 'contrast',
+	    value: function contrast(pixel, degree) {
+	      var deg = parseInt(degree || this.defaultDegree, 10);
+	
+	      deg = Math.pow((deg + 100) / 100, 2);
+	
+	      if (this.checkOpts(pixel)) {
+	        // Red Channel
+	        pixel.r /= 255;
+	        pixel.r -= .5;
+	        pixel.r *= deg;
+	        pixel.r += .5;
+	        pixel.r *= 255;
+	        // Green Channel
+	        pixel.g /= 255;
+	        pixel.g -= .5;
+	        pixel.g *= deg;
+	        pixel.g += .5;
+	        pixel.g *= 255;
+	        // Blue Channel
+	        pixel.b /= 255;
+	        pixel.b -= .5;
+	        pixel.b *= deg;
+	        pixel.b += .5;
+	        pixel.b *= 255;
+	      }
+	
+	      return pixel;
+	    }
+	
+	    // 褐度
+	
+	  }, {
+	    key: 'sepia',
+	    value: function sepia(pixel, degree) {
+	      var deg = parseInt(degree || this.defaultDegree, 10) / 100;
+	      if (this.checkOpts(pixel)) {
+	        pixel.r = Math.min(255, pixel.r * (1 - 0.607 * deg) + pixel.g * (0.769 * deg) + pixel.b * (0.189 * deg));
+	        pixel.g = Math.min(255, pixel.r * (0.349 * deg) + pixel.g * (1 - 0.314 * deg) + pixel.b * (0.168 * deg));
+	        pixel.b = Math.min(255, pixel.r * (0.272 * deg) + pixel.g * (0.534 * deg) + pixel.b * (1 - 0.869 * deg));;
+	      }
+	      return pixel;
+	    }
+	
+	    // 噪点
+	
+	  }, {
+	    key: 'noise',
+	    value: function noise(pixel, degree) {
+	      var deg = parseInt(degree || this.defaultDegree, 10);
+	
+	      var randomRange = function randomRange(min, max) {
+	        var rand = min + Math.random() * (max - min);
+	        return Math.round(rand) / 50;
+	      };
+	
+	      deg = Math.abs(deg) * 255;
+	
+	      if (this.checkOpts(pixel)) {
+	
+	        var random = randomRange(deg * -1, deg);
+	
+	        pixel.r += random;
+	        pixel.g += random;
+	        pixel.b += random;
+	      }
+	
+	      return pixel;
+	    }
+	  }]);
+	
+	  return PlotitAdjuster;
+	}();
+	
+	exports.default = new PlotitAdjuster();
+
+/***/ },
+/* 12 */
+/*!*********************************!*\
+  !*** ./app/libs/core/filter.js ***!
+  \*********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitFilter = function () {
+	  function PlotitFilter() {
+	    _classCallCheck(this, PlotitFilter);
+	
+	    this.options = ['r', 'g', 'b'];
+	  }
+	
+	  _createClass(PlotitFilter, [{
+	    key: 'checkOpts',
+	    value: function checkOpts(pixel) {
+	      var _this = this;
+	
+	      var keys = Object.keys(pixel);
+	      return keys.every(function (item) {
+	        return _this.options.indexOf(item) !== -1;
+	      });
+	    }
+	
+	    // 灰度
+	
+	  }, {
+	    key: 'greyscale',
+	    value: function greyscale(pixel) {
+	      if (this.checkOpts(pixel)) {
+	        var avg = 0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b;
+	
+	        pixel.r = avg;
+	        pixel.g = avg;
+	        pixel.b = avg;
+	      }
+	
+	      return pixel;
+	    }
+	  }]);
+	
+	  return PlotitFilter;
+	}();
+	
+	exports.default = new PlotitFilter();
+
+/***/ },
+/* 13 */
+/*!****************************!*\
+  !*** ./app/libs/plotit.js ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _util = __webpack_require__(/*! ./core/util */ 26);
+	
+	var _util2 = _interopRequireDefault(_util);
+	
+	var _adjuster = __webpack_require__(/*! ./core/adjuster */ 11);
+	
+	var _adjuster2 = _interopRequireDefault(_adjuster);
+	
+	var _filter = __webpack_require__(/*! ./core/filter */ 12);
+	
+	var _filter2 = _interopRequireDefault(_filter);
+	
+	var _converter = __webpack_require__(/*! ./core/converter */ 25);
+	
+	var _converter2 = _interopRequireDefault(_converter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  Util: _util2.default,
+	  Adjuster: _adjuster2.default,
+	  Filter: _filter2.default,
+	  Converter: _converter2.default
+	};
+
+/***/ },
+/* 14 */
 /*!**********************************!*\
   !*** ./app/libs/qiniu.client.js ***!
   \**********************************/
@@ -1034,7 +1278,7 @@
 
 	'use strict';
 	
-	var _base = __webpack_require__(/*! ./base64 */ 21);
+	var _base = __webpack_require__(/*! ./base64 */ 24);
 	
 	var _base2 = _interopRequireDefault(_base);
 	
@@ -1124,7 +1368,7 @@
 	})();
 
 /***/ },
-/* 12 */
+/* 15 */
 /*!***************************!*\
   !*** ./~/buffer/index.js ***!
   \***************************/
@@ -1140,9 +1384,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 35);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 40);
-	var isArray = __webpack_require__(/*! isarray */ 36);
+	var base64 = __webpack_require__(/*! base64-js */ 36);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 41);
+	var isArray = __webpack_require__(/*! isarray */ 37);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -2643,10 +2887,10 @@
 	  }
 	  return i;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 12).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 15).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 13 */
+/* 16 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html5-entities.js ***!
   \***********************************************/
@@ -2844,7 +3088,7 @@
 	module.exports = Html5Entities;
 
 /***/ },
-/* 14 */
+/* 17 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
@@ -2853,7 +3097,7 @@
 	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 15 */
+/* 18 */
 /*!*****************************************!*\
   !*** ./app/components/library/index.js ***!
   \*****************************************/
@@ -2871,11 +3115,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 50);
+	var _index = __webpack_require__(/*! ./index.html */ 52);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 57);
+	__webpack_require__(/*! ./index.scss */ 59);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2902,6 +3146,7 @@
 	    this.Service = Service;
 	    this.$route = $route;
 	    this.$rootScope = $rootScope;
+	    this.curTime = +new Date();
 	    this.pics = [];
 	  }
 	
@@ -2961,7 +3206,7 @@
 	};
 
 /***/ },
-/* 16 */
+/* 19 */
 /*!*****************************************!*\
   !*** ./app/components/palette/index.js ***!
   \*****************************************/
@@ -2979,11 +3224,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 51);
+	var _index = __webpack_require__(/*! ./index.html */ 53);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 58);
+	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 13);
+	
+	var _plotit2 = _interopRequireDefault(_plotit);
+	
+	__webpack_require__(/*! ./index.scss */ 60);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -2996,9 +3245,21 @@
 	    controllerAs: 'palette',
 	    bindToController: true,
 	    restrict: 'E',
-	    link: function link(scope, element, attrs) {
-	      var self = scope.palette;
-	      self.$scope.$watch('panel.curImageSrc', self.setFilterImgSrc.bind(self));
+	    link: function link(scope, elements, attrs) {
+	      var self = scope.palette,
+	          $scope = self.$scope;
+	
+	      var $brightness = document.querySelector('#brightness');
+	
+	      $scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
+	      $scope.$watch('panel.curImageSrc', self.setFilterImgSrc.bind(self));
+	
+	      $scope.$watch('palette.brightness', self.processBrightness.bind(self));
+	      $scope.$watch('palette.saturation', self.processSaturation.bind(self));
+	      $scope.$watch('palette.contrast', self.processContrast.bind(self));
+	      $scope.$watch('palette.sepia', self.processSepia.bind(self));
+	      $scope.$watch('palette.noise', self.processNoise.bind(self));
+	      $scope.$watch('palette.blur', self.processBlur.bind(self));
 	    }
 	  };
 	};
@@ -3010,8 +3271,9 @@
 	    this.brand = 'PlotIt';
 	    this.$scope = $scope;
 	    this.isFilter = true;
-	    this.filterImgSrc = 'http://7xrwkg.com1.z0.glb.clouddn.com/13.jpg?imageView2/2/h/150';
-	
+	    this.curTime = +new Date() + 1024;
+	    this.filterImgSrc = 'http://7xr6bj.com1.z0.glb.clouddn.com/01.jpg?imageView2/2/h/150/?' + this.curTime;
+	    this.Plotit = _plotit2.default;
 	    // filters
 	    // none
 	
@@ -3020,13 +3282,17 @@
 	    this.saturation = 0;
 	    this.contrast = 0;
 	    this.hue = 0;
-	    this.exposure = 0;
+	    this.sepia = 0;
 	    this.blur = 0;
-	    this.sharpen = 0;
 	    this.noise = 0;
 	  }
 	
 	  _createClass(paletteCtrl, [{
+	    key: 'setPlotitUtil',
+	    value: function setPlotitUtil(PlotitUtil) {
+	      this.PlotitUtil = PlotitUtil;
+	    }
+	  }, {
 	    key: 'switchTab',
 	    value: function switchTab(isFilter) {
 	      this.isFilter = isFilter;
@@ -3035,8 +3301,42 @@
 	    key: 'setFilterImgSrc',
 	    value: function setFilterImgSrc(src) {
 	      if (src) {
-	        this.filterImgSrc = src;
+	        if (src.substr(0, 4) === 'http') {
+	          this.filterImgSrc = src + '?imageView2/2/h/150/?' + this.curTime;
+	        } else {
+	          this.filterImgSrc = src;
+	        }
 	      }
+	    }
+	  }, {
+	    key: 'processBrightness',
+	    value: function processBrightness(newVal, oldVal) {
+	      this.PlotitUtil.processPixel('brightness', newVal - oldVal);
+	    }
+	  }, {
+	    key: 'processSaturation',
+	    value: function processSaturation(newVal, oldVal) {
+	      this.PlotitUtil.processPixel('saturation', oldVal - newVal);
+	    }
+	  }, {
+	    key: 'processContrast',
+	    value: function processContrast(newVal, oldVal) {
+	      this.PlotitUtil.processPixel('contrast', newVal - oldVal);
+	    }
+	  }, {
+	    key: 'processSepia',
+	    value: function processSepia(newVal, oldVal) {
+	      this.PlotitUtil.processPixel('sepia', newVal - oldVal);
+	    }
+	  }, {
+	    key: 'processNoise',
+	    value: function processNoise(val) {
+	      this.PlotitUtil.processPixel('noise', val);
+	    }
+	  }, {
+	    key: 'processBlur',
+	    value: function processBlur(newVal, oldVal) {
+	      this.PlotitUtil.stackBlurImg(newVal - oldVal);
 	    }
 	  }]);
 	
@@ -3051,7 +3351,7 @@
 	};
 
 /***/ },
-/* 17 */
+/* 20 */
 /*!***************************************!*\
   !*** ./app/components/panel/index.js ***!
   \***************************************/
@@ -3069,19 +3369,19 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 25);
+	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 13);
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 14);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 52);
+	var _index = __webpack_require__(/*! ./index.html */ 54);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 59);
+	__webpack_require__(/*! ./index.scss */ 61);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3132,7 +3432,7 @@
 	          pics.map(function (item) {
 	            if (item._id === id) {
 	              self.hasImage = true;
-	              self.curImageSrc = item.imageSrc;
+	              self.curImageSrc = item.imageSrc + '?' + +new Date();
 	              self.PlotitUtil.renderImage(item.imageSrc);
 	            }
 	          });
@@ -3141,7 +3441,7 @@
 	          _this.Service.findPic(id, function (res) {
 	            if (!err) {
 	              self.hasImage = true;
-	              self.curImageSrc = res.imageSrc;
+	              self.curImageSrc = res.imageSrc + '?' + +new Date();
 	              self.PlotitUtil.renderImage(res.imageSrc);
 	            } else {
 	              // loading err, back to home
@@ -3254,7 +3554,7 @@
 	};
 
 /***/ },
-/* 18 */
+/* 21 */
 /*!*****************************************!*\
   !*** ./app/components/popover/index.js ***!
   \*****************************************/
@@ -3272,11 +3572,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 53);
+	var _index = __webpack_require__(/*! ./index.html */ 55);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 60);
+	__webpack_require__(/*! ./index.scss */ 62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3322,7 +3622,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 22 */
 /*!*****************************************!*\
   !*** ./app/components/sideBtn/index.js ***!
   \*****************************************/
@@ -3340,15 +3640,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 54);
+	var _index = __webpack_require__(/*! ./index.html */ 56);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 11);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 14);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 61);
+	__webpack_require__(/*! ./index.scss */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3488,7 +3788,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 23 */
 /*!*****************************************!*\
   !*** ./app/components/sidebar/index.js ***!
   \*****************************************/
@@ -3504,11 +3804,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 55);
+	var _index = __webpack_require__(/*! ./index.html */ 57);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 62);
+	__webpack_require__(/*! ./index.scss */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3536,7 +3836,7 @@
 	};
 
 /***/ },
-/* 21 */
+/* 24 */
 /*!****************************!*\
   !*** ./app/libs/base64.js ***!
   \****************************/
@@ -3564,7 +3864,7 @@
 	    var buffer;
 	    if (typeof module !== 'undefined' && module.exports) {
 	        try {
-	            buffer = __webpack_require__(/*! buffer */ 12).Buffer;
+	            buffer = __webpack_require__(/*! buffer */ 15).Buffer;
 	        } catch (err) {}
 	    }
 	    // constants
@@ -3700,52 +4000,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 22 */
-/*!***********************************!*\
-  !*** ./app/libs/core/adjuster.js ***!
-  \***********************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var PlotitAdjuster = function PlotitAdjuster() {
-	  _classCallCheck(this, PlotitAdjuster);
-	};
-
-	exports.default = PlotitAdjuster;
-
-/***/ },
-/* 23 */
-/*!*********************************!*\
-  !*** ./app/libs/core/filter.js ***!
-  \*********************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var PlotitFilter = function PlotitFilter() {
-	  _classCallCheck(this, PlotitFilter);
-	};
-
-	exports.default = PlotitFilter;
-
-/***/ },
-/* 24 */
-/*!*******************************!*\
-  !*** ./app/libs/core/util.js ***!
-  \*******************************/
+/* 25 */
+/*!************************************!*\
+  !*** ./app/libs/core/converter.js ***!
+  \************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3754,7 +4012,231 @@
 	  value: true
 	});
 	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	//adapted from github.com/meltingice/CamanJS/ - convert.coffee
+	
+	var Converter = function () {
+	  function Converter() {
+	    _classCallCheck(this, Converter);
+	  }
+	
+	  _createClass(Converter, [{
+	    key: 'hexToRBG',
+	    value: function hexToRBG(hex) {
+	      hex = hex.charAt(0) === '#' ? hex.substr(1) : hex;
+	
+	      return {
+	        r: parseInt(hex.substr(0, 2), 16),
+	        g: parseInt(hex.substr(2, 2), 16),
+	        b: parseInt(hex.substr(4, 2), 16)
+	      };
+	    }
+	  }, {
+	    key: 'rgbToHSL',
+	    value: function rgbToHSL(r, g, b) {
+	
+	      var h, s, l;
+	
+	      if ((typeof r === 'undefined' ? 'undefined' : _typeof(r)) === 'object') {
+	        g = r.g;
+	        b = r.b;
+	        r = r.r;
+	      }
+	
+	      r /= 255;
+	      g /= 255;
+	      b /= 255;
+	
+	      var max = Math.max(r, g, b),
+	          min = Math.min(r, g, b),
+	          l = (max + min) / 2;
+	
+	      if (max === min) {
+	        h = s = 0;
+	      } else {
+	        d = max - min;
+	        s = l > .5 ? d / (a - max - min) : d / (max + min);
+	
+	        if (r === max) {
+	          h = (g - b) / d + (g < b ? 6 : 0);
+	        } else if (g === max) {
+	          h = (b - r) / d + 2;
+	        } else {
+	          h = (r - g) / d + 4;
+	        }
+	
+	        h /= 6;
+	      }
+	
+	      return {
+	        h: h,
+	        s: s,
+	        l: l
+	      };
+	    }
+	  }, {
+	    key: 'hslToRGB',
+	    value: function hslToRGB(h, s, l) {
+	
+	      var r, g, b, q, p;
+	
+	      if ((typeof h === 'undefined' ? 'undefined' : _typeof(h)) === 'object') {
+	        s = h.s;
+	        l = h.l;
+	        h = h.h;
+	      }
+	
+	      if (s === 0) {
+	        r = g = b = l;
+	      } else {
+	        q = l < .5 ? l * (1 + s) : l + s - l * s;
+	        p = 2 * l - q;
+	
+	        r = this.hueToRGB(p, q, h) + 1 / 3;
+	        g = this.hueToRGB(p, q, h);
+	        b = this.hueToRGB(p, q, h) - 1 / 3;
+	      }
+	
+	      return {
+	        r: r * 255,
+	        g: g * 255,
+	        b: b * 255
+	      };
+	    }
+	  }, {
+	    key: 'hueToRGB',
+	    value: function hueToRGB(p, q, t) {
+	
+	      if (t < 0) t += 1;
+	      if (t > 1) t -= 1;
+	
+	      if (t < 1 / 6) {
+	        return p + (q - p) * 6 * t;
+	      } else if (t < 1 / 2) {
+	        return q;
+	      } else if (t < 2 / 3) {
+	        return p + (q - p) * (2 / 3 - t) * 6;
+	      }
+	
+	      return p;
+	    }
+	  }, {
+	    key: 'rgbToHSV',
+	    value: function rgbToHSV(r, g, b) {
+	      r /= 255;
+	      g /= 255;
+	      b /= 255;
+	
+	      var max = Math.max(r, g, b),
+	          min = Math.min(r, g, b),
+	          v = max,
+	          d = max - min,
+	          s = max === 0 ? 0 : d / max,
+	          h;
+	
+	      if (max === min) {
+	        h = 0;
+	      } else {
+	        if (r === max) {
+	          h = (g - b) / d + (g < b ? 6 : 0);
+	        } else if (g === max) {
+	          h = (b - r) / d + 2;
+	        } else {
+	          h = (r - g) / d + 4;
+	        }
+	
+	        h /= 6;
+	      }
+	
+	      return {
+	        h: h,
+	        s: s,
+	        v: v
+	      };
+	    }
+	  }, {
+	    key: 'hsvToRGB',
+	    value: function hsvToRGB(h, s, v) {
+	      var i, f, p, q, t, r, g, b;
+	      i = Math.floor(h * 6);
+	      f = h * 6 - i;
+	      p = v * (1 - s);
+	      q = v * (1 - f * s);
+	      t = v * (1 - (1 - f) * s);
+	
+	      switch (i % 6) {
+	        case 0:
+	          r = v;
+	          g = t;
+	          b = p;
+	        case 1:
+	          r = q;
+	          g = v;
+	          b = p;
+	        case 2:
+	          r = p;
+	          g = v;
+	          b = t;
+	        case 3:
+	          r = p;
+	          g = q;
+	          b = v;
+	        case 4:
+	          r = p;
+	          g = q;
+	          b = v;
+	        case 5:
+	          r = v;
+	          g = p;
+	          b = q;
+	      }
+	
+	      return {
+	        r: Math.floor(r * 255),
+	        g: Math.floor(g * 255),
+	        b: Math.floor(b * 255)
+	      };
+	    }
+	  }]);
+	
+	  return Converter;
+	}();
+	
+	exports.default = new Converter();
+
+/***/ },
+/* 26 */
+/*!*******************************!*\
+  !*** ./app/libs/core/util.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _adjuster = __webpack_require__(/*! ./adjuster */ 11);
+	
+	var _adjuster2 = _interopRequireDefault(_adjuster);
+	
+	var _filter = __webpack_require__(/*! ./filter */ 12);
+	
+	var _filter2 = _interopRequireDefault(_filter);
+	
+	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 47);
+	
+	var _stackblurCanvas2 = _interopRequireDefault(_stackblurCanvas);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3777,6 +4259,8 @@
 	            image = new Image(),
 	            self = this;
 	
+	        this.clearData();
+	
 	        image.crossOrigin = 'anonymous';
 	        image.src = imgSrc;
 	
@@ -3793,9 +4277,6 @@
 	
 	          context.clearRect(0, 0, canvas.width, canvas.height);
 	
-	          canvas.width = panelW;
-	          canvas.height = panelH;
-	
 	          if (imageW > imageH) {
 	            scale = imageW / panelW;
 	          } else {
@@ -3808,33 +4289,96 @@
 	          var dx = (panelW - imageW) / 2,
 	              dy = (panelH - imageH) / 2;
 	
-	          context.drawImage(image, dx, dy, imageW, imageH);
+	          canvas.width = imageW;
+	          canvas.height = imageH;
+	          canvas.style.top = dy + 'px';
+	          canvas.style.left = dx + 'px';
 	
-	          _this.originData = _this.getData(dx, dy, imageW, imageH);
+	          context.drawImage(image, 0, 0, imageW, imageH);
+	
+	          _this.originData = _this.getData(0, 0, imageW, imageH);
 	        };
 	      }
 	    }
 	  }, {
 	    key: 'getData',
 	    value: function getData() {
-	      var canvas = this.$canvas;
-	      return this.context.getImageData(0, 0, canvas.width, canvas.height);
+	      var context = this.context || this.$canvas.getContext('2d');
+	      if (context) {
+	        return context.getImageData(0, 0, this.$canvas.width, this.$canvas.height);
+	      }
 	    }
 	  }, {
 	    key: 'setData',
 	    value: function setData(data) {
-	      return this.context.putImageData(data, 0, 0);
+	      var context = this.context || this.$canvas.getContext('2d');
+	      if (context) {
+	        this.clearData();
+	        return context.putImageData(data, 0, 0);
+	      }
+	    }
+	  }, {
+	    key: 'clearData',
+	    value: function clearData() {
+	      var context = this.context || this.$canvas.getContext('2d');
+	      if (context) {
+	        return context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+	      }
 	    }
 	  }, {
 	    key: 'resetImage',
 	    value: function resetImage() {
-	      this.setData(this.originData);
+	      if (this, originData) {
+	        this.setData(this.originData);
+	      }
+	    }
+	  }, {
+	    key: 'processPixel',
+	    value: function processPixel(processor, degree) {
+	      if (this.getData()) {
+	        var imageData = this.getData(),
+	            deg = degree || 0,
+	            pixel;
+	
+	        if (processor && typeof processor === 'string') {
+	          processor = _adjuster2.default[processor].bind(_adjuster2.default) || _filter2.default[processor].bind(_filter2.default) || {};
+	        }
+	
+	        if (processor && typeof processor === 'function') {
+	          for (var i = 0; i < imageData.data.length; i += 4) {
+	            var pixel = {
+	              r: imageData.data[i + 0],
+	              g: imageData.data[i + 1],
+	              b: imageData.data[i + 2],
+	              a: imageData.data[i + 3]
+	            };
+	
+	            pixel = processor(pixel, deg);
+	
+	            imageData.data[i + 0] = pixel.r;
+	            imageData.data[i + 1] = pixel.g;
+	            imageData.data[i + 2] = pixel.b;
+	            imageData.data[i + 3] = pixel.a;
+	          }
+	        }
+	
+	        this.setData(imageData);
+	      }
+	    }
+	  }, {
+	    key: 'stackBlurImg',
+	    value: function stackBlurImg(radius) {
+	      if (this.getData()) {
+	        var imageData = this.getData(),
+	            canvas = this.$canvas;
+	        this.setData(_stackblurCanvas2.default.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, radius));
+	      }
 	    }
 	  }, {
 	    key: 'convertToBase64',
 	    value: function convertToBase64(size) {
 	      var quality = 1,
-	          maxSize = 50000000,
+	          maxSize = 10000000,
 	          base64Str = '';
 	
 	      if (size > maxSize) {
@@ -3857,40 +4401,7 @@
 	exports.default = PlotitUtil;
 
 /***/ },
-/* 25 */
-/*!****************************!*\
-  !*** ./app/libs/plotit.js ***!
-  \****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _util = __webpack_require__(/*! ./core/util */ 24);
-	
-	var _util2 = _interopRequireDefault(_util);
-	
-	var _adjuster = __webpack_require__(/*! ./core/adjuster */ 22);
-	
-	var _adjuster2 = _interopRequireDefault(_adjuster);
-	
-	var _filter = __webpack_require__(/*! ./core/filter */ 23);
-	
-	var _filter2 = _interopRequireDefault(_filter);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  Util: _util2.default,
-	  Adjuster: _adjuster2.default,
-	  Filter: _filter2.default
-	};
-
-/***/ },
-/* 26 */
+/* 27 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -3906,49 +4417,49 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 31);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 32);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 30);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 31);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 27);
+	var _main = __webpack_require__(/*! ./main.routes */ 28);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 28);
+	var _main3 = __webpack_require__(/*! ./main.services */ 29);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 42);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 43);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 63);
+	__webpack_require__(/*! ./public/styles/main.scss */ 65);
 	
-	var _library = __webpack_require__(/*! ./components/library */ 15);
+	var _library = __webpack_require__(/*! ./components/library */ 18);
 	
 	var _library2 = _interopRequireDefault(_library);
 	
-	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 20);
+	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 23);
 	
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 	
-	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 19);
+	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 22);
 	
 	var _sideBtn2 = _interopRequireDefault(_sideBtn);
 	
-	var _panel = __webpack_require__(/*! ./components/panel */ 17);
+	var _panel = __webpack_require__(/*! ./components/panel */ 20);
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _palette = __webpack_require__(/*! ./components/palette */ 16);
+	var _palette = __webpack_require__(/*! ./components/palette */ 19);
 	
 	var _palette2 = _interopRequireDefault(_palette);
 	
-	var _popover = __webpack_require__(/*! ./components/popover */ 18);
+	var _popover = __webpack_require__(/*! ./components/popover */ 21);
 	
 	var _popover2 = _interopRequireDefault(_popover);
 	
@@ -3972,7 +4483,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -3996,18 +4507,18 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 56)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 58)
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
 	  }).state('/plot/:id', {
 	    url: '/plot/:id',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 14)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
 	  });
 	}
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -4231,7 +4742,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -5221,7 +5732,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -5229,11 +5740,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 29);
+	__webpack_require__(/*! ./angular-route */ 30);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -7510,7 +8021,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -23321,7 +23832,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -23501,7 +24012,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -23515,7 +24026,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -23641,7 +24152,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -23656,7 +24167,7 @@
 	};
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -23665,14 +24176,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 39),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 38),
-	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 13),
-	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 13)
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 40),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 39),
+	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 16),
+	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 16)
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -23827,7 +24338,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -23990,7 +24501,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -24084,7 +24595,7 @@
 	};
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -26849,7 +27360,7 @@
 	}]);
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -26857,11 +27368,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 41);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 42);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -26953,7 +27464,7 @@
 	};
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -27025,7 +27536,7 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -27033,11 +27544,552 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 43);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 44);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 44);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 45);
 
 /***/ },
-/* 46 */
+/* 47 */
+/*!*********************************************!*\
+  !*** ./~/stackblur-canvas/src/stackblur.js ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	/*
+	    StackBlur - a fast almost Gaussian Blur For Canvas
+	
+	    Version:     0.5
+	    Author:        Mario Klingemann
+	    Contact:     mario@quasimondo.com
+	    Website:    http://www.quasimondo.com/StackBlurForCanvas
+	    Twitter:    @quasimondo
+	
+	    In case you find this class useful - especially in commercial projects -
+	    I am not totally unhappy for a small donation to my PayPal account
+	    mario@quasimondo.de
+	
+	    Or support me on flattr:
+	    https://flattr.com/thing/72791/StackBlur-a-fast-almost-Gaussian-Blur-Effect-for-CanvasJavascript
+	
+	    Copyright (c) 2010 Mario Klingemann
+	
+	    Permission is hereby granted, free of charge, to any person
+	    obtaining a copy of this software and associated documentation
+	    files (the "Software"), to deal in the Software without
+	    restriction, including without limitation the rights to use,
+	    copy, modify, merge, publish, distribute, sublicense, and/or sell
+	    copies of the Software, and to permit persons to whom the
+	    Software is furnished to do so, subject to the following
+	    conditions:
+	
+	    The above copyright notice and this permission notice shall be
+	    included in all copies or substantial portions of the Software.
+	
+	    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+	    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+	    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+	    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+	    OTHER DEALINGS IN THE SOFTWARE.
+	    */
+	
+	var mul_table = [512, 512, 456, 512, 328, 456, 335, 512, 405, 328, 271, 456, 388, 335, 292, 512, 454, 405, 364, 328, 298, 271, 496, 456, 420, 388, 360, 335, 312, 292, 273, 512, 482, 454, 428, 405, 383, 364, 345, 328, 312, 298, 284, 271, 259, 496, 475, 456, 437, 420, 404, 388, 374, 360, 347, 335, 323, 312, 302, 292, 282, 273, 265, 512, 497, 482, 468, 454, 441, 428, 417, 405, 394, 383, 373, 364, 354, 345, 337, 328, 320, 312, 305, 298, 291, 284, 278, 271, 265, 259, 507, 496, 485, 475, 465, 456, 446, 437, 428, 420, 412, 404, 396, 388, 381, 374, 367, 360, 354, 347, 341, 335, 329, 323, 318, 312, 307, 302, 297, 292, 287, 282, 278, 273, 269, 265, 261, 512, 505, 497, 489, 482, 475, 468, 461, 454, 447, 441, 435, 428, 422, 417, 411, 405, 399, 394, 389, 383, 378, 373, 368, 364, 359, 354, 350, 345, 341, 337, 332, 328, 324, 320, 316, 312, 309, 305, 301, 298, 294, 291, 287, 284, 281, 278, 274, 271, 268, 265, 262, 259, 257, 507, 501, 496, 491, 485, 480, 475, 470, 465, 460, 456, 451, 446, 442, 437, 433, 428, 424, 420, 416, 412, 408, 404, 400, 396, 392, 388, 385, 381, 377, 374, 370, 367, 363, 360, 357, 354, 350, 347, 344, 341, 338, 335, 332, 329, 326, 323, 320, 318, 315, 312, 310, 307, 304, 302, 299, 297, 294, 292, 289, 287, 285, 282, 280, 278, 275, 273, 271, 269, 267, 265, 263, 261, 259];
+	
+	var shg_table = [9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24];
+	
+	function processImage(img, canvas, radius, blurAlphaChannel) {
+	    if (typeof img == 'string') {
+	        var img = document.getElementById(img);
+	    } else if (!img instanceof HTMLImageElement) {
+	        return;
+	    }
+	    var w = img.naturalWidth;
+	    var h = img.naturalHeight;
+	
+	    if (typeof canvas == 'string') {
+	        var canvas = document.getElementById(canvas);
+	    } else if (!canvas instanceof HTMLCanvasElement) {
+	        return;
+	    }
+	
+	    canvas.style.width = w + 'px';
+	    canvas.style.height = h + 'px';
+	    canvas.width = w;
+	    canvas.height = h;
+	
+	    var context = canvas.getContext('2d');
+	    context.clearRect(0, 0, w, h);
+	    context.drawImage(img, 0, 0);
+	
+	    if (isNaN(radius) || radius < 1) return;
+	
+	    if (blurAlphaChannel) processCanvasRGBA(canvas, 0, 0, w, h, radius);else processCanvasRGB(canvas, 0, 0, w, h, radius);
+	}
+	
+	function getImageDataFromCanvas(canvas, top_x, top_y, width, height) {
+	    if (typeof canvas == 'string') var canvas = document.getElementById(canvas);else if (!canvas instanceof HTMLCanvasElement) return;
+	
+	    var context = canvas.getContext('2d');
+	    var imageData;
+	
+	    try {
+	        try {
+	            imageData = context.getImageData(top_x, top_y, width, height);
+	        } catch (e) {
+	            throw new Error("unable to access local image data: " + e);
+	            return;
+	        }
+	    } catch (e) {
+	        throw new Error("unable to access image data: " + e);
+	    }
+	
+	    return imageData;
+	}
+	
+	function processCanvasRGBA(canvas, top_x, top_y, width, height, radius) {
+	    if (isNaN(radius) || radius < 1) return;
+	    radius |= 0;
+	
+	    var imageData = getImageDataFromCanvas(canvas, top_x, top_y, width, height);
+	
+	    imageData = processImageDataRGBA(imageData, top_x, top_y, width, height, radius);
+	
+	    canvas.getContext('2d').putImageData(imageData, top_x, top_y);
+	}
+	
+	function processImageDataRGBA(imageData, top_x, top_y, width, height, radius) {
+	    var pixels = imageData.data;
+	
+	    var x, y, i, p, yp, yi, yw, r_sum, g_sum, b_sum, a_sum, r_out_sum, g_out_sum, b_out_sum, a_out_sum, r_in_sum, g_in_sum, b_in_sum, a_in_sum, pr, pg, pb, pa, rbs;
+	
+	    var div = radius + radius + 1;
+	    var w4 = width << 2;
+	    var widthMinus1 = width - 1;
+	    var heightMinus1 = height - 1;
+	    var radiusPlus1 = radius + 1;
+	    var sumFactor = radiusPlus1 * (radiusPlus1 + 1) / 2;
+	
+	    var stackStart = new BlurStack();
+	    var stack = stackStart;
+	    for (i = 1; i < div; i++) {
+	        stack = stack.next = new BlurStack();
+	        if (i == radiusPlus1) var stackEnd = stack;
+	    }
+	    stack.next = stackStart;
+	    var stackIn = null;
+	    var stackOut = null;
+	
+	    yw = yi = 0;
+	
+	    var mul_sum = mul_table[radius];
+	    var shg_sum = shg_table[radius];
+	
+	    for (y = 0; y < height; y++) {
+	        r_in_sum = g_in_sum = b_in_sum = a_in_sum = r_sum = g_sum = b_sum = a_sum = 0;
+	
+	        r_out_sum = radiusPlus1 * (pr = pixels[yi]);
+	        g_out_sum = radiusPlus1 * (pg = pixels[yi + 1]);
+	        b_out_sum = radiusPlus1 * (pb = pixels[yi + 2]);
+	        a_out_sum = radiusPlus1 * (pa = pixels[yi + 3]);
+	
+	        r_sum += sumFactor * pr;
+	        g_sum += sumFactor * pg;
+	        b_sum += sumFactor * pb;
+	        a_sum += sumFactor * pa;
+	
+	        stack = stackStart;
+	
+	        for (i = 0; i < radiusPlus1; i++) {
+	            stack.r = pr;
+	            stack.g = pg;
+	            stack.b = pb;
+	            stack.a = pa;
+	            stack = stack.next;
+	        }
+	
+	        for (i = 1; i < radiusPlus1; i++) {
+	            p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+	            r_sum += (stack.r = pr = pixels[p]) * (rbs = radiusPlus1 - i);
+	            g_sum += (stack.g = pg = pixels[p + 1]) * rbs;
+	            b_sum += (stack.b = pb = pixels[p + 2]) * rbs;
+	            a_sum += (stack.a = pa = pixels[p + 3]) * rbs;
+	
+	            r_in_sum += pr;
+	            g_in_sum += pg;
+	            b_in_sum += pb;
+	            a_in_sum += pa;
+	
+	            stack = stack.next;
+	        }
+	
+	        stackIn = stackStart;
+	        stackOut = stackEnd;
+	        for (x = 0; x < width; x++) {
+	            pixels[yi + 3] = pa = a_sum * mul_sum >> shg_sum;
+	            if (pa != 0) {
+	                pa = 255 / pa;
+	                pixels[yi] = (r_sum * mul_sum >> shg_sum) * pa;
+	                pixels[yi + 1] = (g_sum * mul_sum >> shg_sum) * pa;
+	                pixels[yi + 2] = (b_sum * mul_sum >> shg_sum) * pa;
+	            } else {
+	                pixels[yi] = pixels[yi + 1] = pixels[yi + 2] = 0;
+	            }
+	
+	            r_sum -= r_out_sum;
+	            g_sum -= g_out_sum;
+	            b_sum -= b_out_sum;
+	            a_sum -= a_out_sum;
+	
+	            r_out_sum -= stackIn.r;
+	            g_out_sum -= stackIn.g;
+	            b_out_sum -= stackIn.b;
+	            a_out_sum -= stackIn.a;
+	
+	            p = yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1) << 2;
+	
+	            r_in_sum += stackIn.r = pixels[p];
+	            g_in_sum += stackIn.g = pixels[p + 1];
+	            b_in_sum += stackIn.b = pixels[p + 2];
+	            a_in_sum += stackIn.a = pixels[p + 3];
+	
+	            r_sum += r_in_sum;
+	            g_sum += g_in_sum;
+	            b_sum += b_in_sum;
+	            a_sum += a_in_sum;
+	
+	            stackIn = stackIn.next;
+	
+	            r_out_sum += pr = stackOut.r;
+	            g_out_sum += pg = stackOut.g;
+	            b_out_sum += pb = stackOut.b;
+	            a_out_sum += pa = stackOut.a;
+	
+	            r_in_sum -= pr;
+	            g_in_sum -= pg;
+	            b_in_sum -= pb;
+	            a_in_sum -= pa;
+	
+	            stackOut = stackOut.next;
+	
+	            yi += 4;
+	        }
+	        yw += width;
+	    }
+	
+	    for (x = 0; x < width; x++) {
+	        g_in_sum = b_in_sum = a_in_sum = r_in_sum = g_sum = b_sum = a_sum = r_sum = 0;
+	
+	        yi = x << 2;
+	        r_out_sum = radiusPlus1 * (pr = pixels[yi]);
+	        g_out_sum = radiusPlus1 * (pg = pixels[yi + 1]);
+	        b_out_sum = radiusPlus1 * (pb = pixels[yi + 2]);
+	        a_out_sum = radiusPlus1 * (pa = pixels[yi + 3]);
+	
+	        r_sum += sumFactor * pr;
+	        g_sum += sumFactor * pg;
+	        b_sum += sumFactor * pb;
+	        a_sum += sumFactor * pa;
+	
+	        stack = stackStart;
+	
+	        for (i = 0; i < radiusPlus1; i++) {
+	            stack.r = pr;
+	            stack.g = pg;
+	            stack.b = pb;
+	            stack.a = pa;
+	            stack = stack.next;
+	        }
+	
+	        yp = width;
+	
+	        for (i = 1; i <= radius; i++) {
+	            yi = yp + x << 2;
+	
+	            r_sum += (stack.r = pr = pixels[yi]) * (rbs = radiusPlus1 - i);
+	            g_sum += (stack.g = pg = pixels[yi + 1]) * rbs;
+	            b_sum += (stack.b = pb = pixels[yi + 2]) * rbs;
+	            a_sum += (stack.a = pa = pixels[yi + 3]) * rbs;
+	
+	            r_in_sum += pr;
+	            g_in_sum += pg;
+	            b_in_sum += pb;
+	            a_in_sum += pa;
+	
+	            stack = stack.next;
+	
+	            if (i < heightMinus1) {
+	                yp += width;
+	            }
+	        }
+	
+	        yi = x;
+	        stackIn = stackStart;
+	        stackOut = stackEnd;
+	        for (y = 0; y < height; y++) {
+	            p = yi << 2;
+	            pixels[p + 3] = pa = a_sum * mul_sum >> shg_sum;
+	            if (pa > 0) {
+	                pa = 255 / pa;
+	                pixels[p] = (r_sum * mul_sum >> shg_sum) * pa;
+	                pixels[p + 1] = (g_sum * mul_sum >> shg_sum) * pa;
+	                pixels[p + 2] = (b_sum * mul_sum >> shg_sum) * pa;
+	            } else {
+	                pixels[p] = pixels[p + 1] = pixels[p + 2] = 0;
+	            }
+	
+	            r_sum -= r_out_sum;
+	            g_sum -= g_out_sum;
+	            b_sum -= b_out_sum;
+	            a_sum -= a_out_sum;
+	
+	            r_out_sum -= stackIn.r;
+	            g_out_sum -= stackIn.g;
+	            b_out_sum -= stackIn.b;
+	            a_out_sum -= stackIn.a;
+	
+	            p = x + ((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width << 2;
+	
+	            r_sum += r_in_sum += stackIn.r = pixels[p];
+	            g_sum += g_in_sum += stackIn.g = pixels[p + 1];
+	            b_sum += b_in_sum += stackIn.b = pixels[p + 2];
+	            a_sum += a_in_sum += stackIn.a = pixels[p + 3];
+	
+	            stackIn = stackIn.next;
+	
+	            r_out_sum += pr = stackOut.r;
+	            g_out_sum += pg = stackOut.g;
+	            b_out_sum += pb = stackOut.b;
+	            a_out_sum += pa = stackOut.a;
+	
+	            r_in_sum -= pr;
+	            g_in_sum -= pg;
+	            b_in_sum -= pb;
+	            a_in_sum -= pa;
+	
+	            stackOut = stackOut.next;
+	
+	            yi += width;
+	        }
+	    }
+	    return imageData;
+	}
+	
+	function processCanvasRGB(canvas, top_x, top_y, width, height, radius) {
+	    if (isNaN(radius) || radius < 1) return;
+	    radius |= 0;
+	
+	    var imageData = getImageDataFromCanvas(canvas, top_x, top_y, width, height);
+	    imageData = processImageDataRGB(imageData, top_x, top_y, width, height, radius);
+	
+	    canvas.getContext('2d').putImageData(imageData, top_x, top_y);
+	}
+	
+	function processImageDataRGB(imageData, top_x, top_y, width, height, radius) {
+	    var pixels = imageData.data;
+	
+	    var x, y, i, p, yp, yi, yw, r_sum, g_sum, b_sum, r_out_sum, g_out_sum, b_out_sum, r_in_sum, g_in_sum, b_in_sum, pr, pg, pb, rbs;
+	
+	    var div = radius + radius + 1;
+	    var w4 = width << 2;
+	    var widthMinus1 = width - 1;
+	    var heightMinus1 = height - 1;
+	    var radiusPlus1 = radius + 1;
+	    var sumFactor = radiusPlus1 * (radiusPlus1 + 1) / 2;
+	
+	    var stackStart = new BlurStack();
+	    var stack = stackStart;
+	    for (i = 1; i < div; i++) {
+	        stack = stack.next = new BlurStack();
+	        if (i == radiusPlus1) var stackEnd = stack;
+	    }
+	    stack.next = stackStart;
+	    var stackIn = null;
+	    var stackOut = null;
+	
+	    yw = yi = 0;
+	
+	    var mul_sum = mul_table[radius];
+	    var shg_sum = shg_table[radius];
+	
+	    for (y = 0; y < height; y++) {
+	        r_in_sum = g_in_sum = b_in_sum = r_sum = g_sum = b_sum = 0;
+	
+	        r_out_sum = radiusPlus1 * (pr = pixels[yi]);
+	        g_out_sum = radiusPlus1 * (pg = pixels[yi + 1]);
+	        b_out_sum = radiusPlus1 * (pb = pixels[yi + 2]);
+	
+	        r_sum += sumFactor * pr;
+	        g_sum += sumFactor * pg;
+	        b_sum += sumFactor * pb;
+	
+	        stack = stackStart;
+	
+	        for (i = 0; i < radiusPlus1; i++) {
+	            stack.r = pr;
+	            stack.g = pg;
+	            stack.b = pb;
+	            stack = stack.next;
+	        }
+	
+	        for (i = 1; i < radiusPlus1; i++) {
+	            p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+	            r_sum += (stack.r = pr = pixels[p]) * (rbs = radiusPlus1 - i);
+	            g_sum += (stack.g = pg = pixels[p + 1]) * rbs;
+	            b_sum += (stack.b = pb = pixels[p + 2]) * rbs;
+	
+	            r_in_sum += pr;
+	            g_in_sum += pg;
+	            b_in_sum += pb;
+	
+	            stack = stack.next;
+	        }
+	
+	        stackIn = stackStart;
+	        stackOut = stackEnd;
+	        for (x = 0; x < width; x++) {
+	            pixels[yi] = r_sum * mul_sum >> shg_sum;
+	            pixels[yi + 1] = g_sum * mul_sum >> shg_sum;
+	            pixels[yi + 2] = b_sum * mul_sum >> shg_sum;
+	
+	            r_sum -= r_out_sum;
+	            g_sum -= g_out_sum;
+	            b_sum -= b_out_sum;
+	
+	            r_out_sum -= stackIn.r;
+	            g_out_sum -= stackIn.g;
+	            b_out_sum -= stackIn.b;
+	
+	            p = yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1) << 2;
+	
+	            r_in_sum += stackIn.r = pixels[p];
+	            g_in_sum += stackIn.g = pixels[p + 1];
+	            b_in_sum += stackIn.b = pixels[p + 2];
+	
+	            r_sum += r_in_sum;
+	            g_sum += g_in_sum;
+	            b_sum += b_in_sum;
+	
+	            stackIn = stackIn.next;
+	
+	            r_out_sum += pr = stackOut.r;
+	            g_out_sum += pg = stackOut.g;
+	            b_out_sum += pb = stackOut.b;
+	
+	            r_in_sum -= pr;
+	            g_in_sum -= pg;
+	            b_in_sum -= pb;
+	
+	            stackOut = stackOut.next;
+	
+	            yi += 4;
+	        }
+	        yw += width;
+	    }
+	
+	    for (x = 0; x < width; x++) {
+	        g_in_sum = b_in_sum = r_in_sum = g_sum = b_sum = r_sum = 0;
+	
+	        yi = x << 2;
+	        r_out_sum = radiusPlus1 * (pr = pixels[yi]);
+	        g_out_sum = radiusPlus1 * (pg = pixels[yi + 1]);
+	        b_out_sum = radiusPlus1 * (pb = pixels[yi + 2]);
+	
+	        r_sum += sumFactor * pr;
+	        g_sum += sumFactor * pg;
+	        b_sum += sumFactor * pb;
+	
+	        stack = stackStart;
+	
+	        for (i = 0; i < radiusPlus1; i++) {
+	            stack.r = pr;
+	            stack.g = pg;
+	            stack.b = pb;
+	            stack = stack.next;
+	        }
+	
+	        yp = width;
+	
+	        for (i = 1; i <= radius; i++) {
+	            yi = yp + x << 2;
+	
+	            r_sum += (stack.r = pr = pixels[yi]) * (rbs = radiusPlus1 - i);
+	            g_sum += (stack.g = pg = pixels[yi + 1]) * rbs;
+	            b_sum += (stack.b = pb = pixels[yi + 2]) * rbs;
+	
+	            r_in_sum += pr;
+	            g_in_sum += pg;
+	            b_in_sum += pb;
+	
+	            stack = stack.next;
+	
+	            if (i < heightMinus1) {
+	                yp += width;
+	            }
+	        }
+	
+	        yi = x;
+	        stackIn = stackStart;
+	        stackOut = stackEnd;
+	        for (y = 0; y < height; y++) {
+	            p = yi << 2;
+	            pixels[p] = r_sum * mul_sum >> shg_sum;
+	            pixels[p + 1] = g_sum * mul_sum >> shg_sum;
+	            pixels[p + 2] = b_sum * mul_sum >> shg_sum;
+	
+	            r_sum -= r_out_sum;
+	            g_sum -= g_out_sum;
+	            b_sum -= b_out_sum;
+	
+	            r_out_sum -= stackIn.r;
+	            g_out_sum -= stackIn.g;
+	            b_out_sum -= stackIn.b;
+	
+	            p = x + ((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width << 2;
+	
+	            r_sum += r_in_sum += stackIn.r = pixels[p];
+	            g_sum += g_in_sum += stackIn.g = pixels[p + 1];
+	            b_sum += b_in_sum += stackIn.b = pixels[p + 2];
+	
+	            stackIn = stackIn.next;
+	
+	            r_out_sum += pr = stackOut.r;
+	            g_out_sum += pg = stackOut.g;
+	            b_out_sum += pb = stackOut.b;
+	
+	            r_in_sum -= pr;
+	            g_in_sum -= pg;
+	            b_in_sum -= pb;
+	
+	            stackOut = stackOut.next;
+	
+	            yi += width;
+	        }
+	    }
+	
+	    return imageData;
+	}
+	
+	function BlurStack() {
+	    this.r = 0;
+	    this.g = 0;
+	    this.b = 0;
+	    this.a = 0;
+	    this.next = null;
+	}
+	
+	module.exports = {
+	    image: processImage,
+	    canvasRGBA: processCanvasRGBA,
+	    canvasRGB: processCanvasRGB,
+	    imageDataRGBA: processImageDataRGBA,
+	    imageDataRGB: processImageDataRGB
+	};
+
+/***/ },
+/* 48 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -27045,14 +28097,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 34)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 35)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 47 */
+/* 49 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -27088,7 +28140,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 33);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 34);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -27103,7 +28155,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 37).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 38).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -27134,7 +28186,7 @@
 	}
 
 /***/ },
-/* 48 */
+/* 50 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -27250,7 +28302,7 @@
 	};
 
 /***/ },
-/* 49 */
+/* 51 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -27270,25 +28322,25 @@
 	};
 
 /***/ },
-/* 50 */
+/* 52 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500\" class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 51 */
+/* 53 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\">\n          <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          <span class=\"filter-name\">filter</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.brightness\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.saturation\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.contrast\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">曝光 <span class=\"adjuster-qty\">{{palette.exposure}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.exposure\" min=\"-100\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">色彩 <span class=\"adjuster-qty\">{{palette.hue}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.hue\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">锐利 <span class=\"adjuster-qty\">{{palette.sharpen}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sharpen\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"100\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\">\n          <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          <span class=\"filter-name\">filter</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 52 */
+/* 54 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -27297,7 +28349,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 53 */
+/* 55 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -27306,7 +28358,7 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 54 */
+/* 56 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -27315,7 +28367,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 55 */
+/* 57 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -27324,7 +28376,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 56 */
+/* 58 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -27333,7 +28385,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 57 */
+/* 59 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -27362,7 +28414,7 @@
 	}
 
 /***/ },
-/* 58 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -27391,7 +28443,7 @@
 	}
 
 /***/ },
-/* 59 */
+/* 61 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -27420,7 +28472,7 @@
 	}
 
 /***/ },
-/* 60 */
+/* 62 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -27449,7 +28501,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -27478,7 +28530,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 64 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -27507,7 +28559,7 @@
 	}
 
 /***/ },
-/* 63 */
+/* 65 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -27536,7 +28588,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 66 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -27554,7 +28606,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 45);
+	  var querystring = __webpack_require__(/*! querystring */ 46);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -27622,11 +28674,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 46);
+	var strip = __webpack_require__(/*! strip-ansi */ 48);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 47);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 49);
 	}
 	
 	function problems(type, obj) {
@@ -27643,7 +28695,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 48);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 50);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -27675,7 +28727,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 49)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 51)(module)))
 
 /***/ }
 /******/ ]);

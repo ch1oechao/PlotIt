@@ -20,7 +20,8 @@
     "morgan": "~1.6.1",
     "ng-file-upload": "^12.0.4",
     "qiniu": "^6.1.9",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "stackblur-canvas": "^1.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.6.5",

@@ -1,3 +1,7 @@
+import Adjuster from './adjuster';
+import Filter from './filter';
+import StackBlur from 'stackblur-canvas';
+
 export default class PlotitUtil {
   constructor() {
     this.$canvas = document.querySelector('#plotitCanvas') || {};
@@ -10,6 +14,8 @@ export default class PlotitUtil {
           context = canvas.getContext('2d'),
           image = new Image(),
           self = this;
+
+      this.clearData();
 
       image.crossOrigin = 'anonymous';
       image.src = imgSrc;
@@ -27,9 +33,6 @@ export default class PlotitUtil {
 
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        canvas.width = panelW;
-        canvas.height = panelH;
-
         if (imageW > imageH) {
           scale = imageW / panelW;
         } else {
@@ -42,29 +45,89 @@ export default class PlotitUtil {
         var dx = (panelW - imageW) / 2,
             dy = (panelH - imageH) / 2;
 
-        context.drawImage(image, dx, dy, imageW, imageH);
+        canvas.width = imageW;
+        canvas.height = imageH;
+        canvas.style.top = dy + 'px';
+        canvas.style.left = dx + 'px';
 
-        this.originData = this.getData(dx, dy, imageW, imageH);
+        context.drawImage(image, 0, 0, imageW, imageH);
+
+        this.originData = this.getData(0, 0, imageW, imageH);
       }
     }
   }
 
   getData() {
-    var canvas = this.$canvas;
-    return this.context.getImageData(0, 0, canvas.width, canvas.height);
+    var context = this.context || this.$canvas.getContext('2d');
+    if (context) {
+      return context.getImageData(0, 0, this.$canvas.width, this.$canvas.height);
+    }
   }
 
   setData(data) {
-    return this.context.putImageData(data, 0, 0);
+    var context = this.context || this.$canvas.getContext('2d');
+    if (context) {
+      this.clearData();
+      return context.putImageData(data, 0, 0);
+    }
+  }
+
+  clearData() {
+    var context = this.context || this.$canvas.getContext('2d');
+    if (context) {
+      return context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+    }
   }
 
   resetImage() {
-    this.setData(this.originData);
+    if (this,originData) {
+      this.setData(this.originData);  
+    }
+  }
+
+  processPixel(processor, degree) {
+    if (this.getData()) {
+      var imageData = this.getData(),
+          deg = degree || 0,
+          pixel;
+
+      if (processor && typeof processor === 'string') {
+        processor = Adjuster[processor].bind(Adjuster) || Filter[processor].bind(Filter) || {};
+      }
+
+      if (processor && typeof processor === 'function') {
+        for (var i = 0; i < imageData.data.length; i += 4) {
+          var pixel = {
+            r: imageData.data[i + 0],
+            g: imageData.data[i + 1],
+            b: imageData.data[i + 2],
+            a: imageData.data[i + 3]
+          };
+
+          pixel = processor(pixel, deg);
+
+          imageData.data[i + 0] = pixel.r;
+          imageData.data[i + 1] = pixel.g;
+          imageData.data[i + 2] = pixel.b;
+          imageData.data[i + 3] = pixel.a;
+        }
+      }
+
+      this.setData(imageData);
+    }
+  }
+
+  stackBlurImg(radius) {
+    if (this.getData()) {
+      var imageData = this.getData(),
+          canvas = this.$canvas;
+      this.setData(StackBlur.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, radius));   
+    }
   }
 
   convertToBase64(size) {
     var quality = 1,
-        maxSize = 50000000,
+        maxSize = 10000000,
         base64Str = '';
 
     if (size > maxSize) {

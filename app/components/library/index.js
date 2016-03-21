@@ -21,6 +21,7 @@ class libraryCtrl {
     this.Service = Service;
     this.$route = $route;
     this.$rootScope = $rootScope;
+    this.curTime = +(new Date());
     this.pics = [];
   }
 

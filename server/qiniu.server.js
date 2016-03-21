@@ -71,7 +71,8 @@
   // 文件下载
   exports.getDownloadUrl = function(key) {
     var policy = new qiniu.rs.GetPolicy(),
-        url = 'http://7xrwkg.com1.z0.glb.clouddn.com/' + key;
+        curTime = +new Date(),
+        url = 'http://7xrwkg.com1.z0.glb.clouddn.com/' + key + '?' + curTime;
     // return policy.makeRequest(url);
     return url + '?attname=';
   }
