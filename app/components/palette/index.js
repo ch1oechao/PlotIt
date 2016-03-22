@@ -38,7 +38,10 @@ class paletteCtrl {
     this.filterImgSrc = 'http://7xr6bj.com1.z0.glb.clouddn.com/01.jpg?imageView2/2/h/150/?' + this.curTime;
     this.Plotit = Plotit;
     // filters
-    // none
+    this.filters = [{
+      name: 'moon',
+      processor: 'greyscale'
+    }];
 
     // adjusters
     this.brightness = 0;
@@ -68,28 +71,44 @@ class paletteCtrl {
     }
   }
 
+  renderFilter(processor) {
+    this.PlotitUtil.processPixel('filter', processor);
+  }
+
   processBrightness(newVal, oldVal) {
-    this.PlotitUtil.processPixel('brightness', newVal - oldVal);
+    if (newVal !== 0) {
+      this.PlotitUtil.processPixel('adjuster', 'brightness', newVal - oldVal);
+    }  
   }
 
   processSaturation(newVal, oldVal) {
-    this.PlotitUtil.processPixel('saturation', oldVal - newVal);
+    if (newVal !== 0) {
+      this.PlotitUtil.processPixel('adjuster', 'saturation', oldVal - newVal);
+    }  
   }
 
   processContrast(newVal, oldVal) {
-    this.PlotitUtil.processPixel('contrast', newVal - oldVal);
+    if (newVal !== 0) {
+      this.PlotitUtil.processPixel('adjuster', 'contrast', newVal - oldVal);
+    }  
   }
 
   processSepia(newVal, oldVal) {
-    this.PlotitUtil.processPixel('sepia', newVal - oldVal);
+    if (newVal !== 0) {
+      this.PlotitUtil.processPixel('adjuster', 'sepia', newVal - oldVal);
+    }  
   }
 
   processNoise(val) {
-    this.PlotitUtil.processPixel('noise', val);
+    if (val !== 0) {
+      this.PlotitUtil.processPixel('adjuster', 'noise', val);  
+    }
   }
 
   processBlur(newVal, oldVal) {
-    this.PlotitUtil.stackBlurImg(newVal - oldVal);
+    if (newVal !== 0) {
+      this.PlotitUtil.stackBlurImg(newVal - oldVal);
+    }  
   }
 
 }

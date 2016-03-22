@@ -13,9 +13,13 @@
   <div class="palette-body">
     <div class="palette-filter-container" ng-show="palette.isFilter">
       <div class="row">
-        <div class="col-md-6 filter-item">
-          <img height="104" ng-src={{palette.filterImgSrc}}>
-          <span class="filter-name">filter</span>
+        <div class="col-md-6 filter-item" 
+             ng-repeat="f in palette.filters" 
+             ng-click="palette.renderFilter(f.processor)">
+          <figure ng-class="f.name">
+            <img height="104" ng-src={{palette.filterImgSrc}}>
+          </figure>
+          <span class="filter-name">{{f.name}}</span>
         </div>
       </div>
     </div>

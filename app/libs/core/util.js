@@ -83,14 +83,21 @@ export default class PlotitUtil {
     }
   }
 
-  processPixel(processor, degree) {
+  processPixel(type, processor, degree) {
     if (this.getData()) {
       var imageData = this.getData(),
           deg = degree || 0,
           pixel;
 
       if (processor && typeof processor === 'string') {
-        processor = Adjuster[processor].bind(Adjuster) || Filter[processor].bind(Filter) || {};
+        switch(type) {
+          case 'adjuster':
+            processor = Adjuster[processor].bind(Adjuster);
+            break;
+          case 'filter':
+            processor = Filter[processor].bind(Filter);
+            break;
+        }
       }
 
       if (processor && typeof processor === 'function') {

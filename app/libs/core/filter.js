@@ -5,8 +5,8 @@ class PlotitFilter {
 
   checkOpts(pixel) {
     var keys = Object.keys(pixel);
-    return keys.every((item) => {
-      return this.options.indexOf(item) !== -1;
+    return this.options.every((item) => {
+      return keys.indexOf(item) !== -1;
     });
   }
   
