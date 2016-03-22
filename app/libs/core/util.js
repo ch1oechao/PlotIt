@@ -15,8 +15,6 @@ export default class PlotitUtil {
           image = new Image(),
           self = this;
 
-      this.clearData();
-
       image.crossOrigin = 'anonymous';
       image.src = imgSrc;
 
@@ -80,7 +78,7 @@ export default class PlotitUtil {
   }
 
   resetImage() {
-    if (this,originData) {
+    if (this.originData) {
       this.setData(this.originData);  
     }
   }

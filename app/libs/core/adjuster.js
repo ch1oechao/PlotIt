@@ -15,7 +15,7 @@ class PlotitAdjuster {
   brightness(pixel, degree) {
     var deg = parseInt(degree || this.defaultDegree, 10);
 
-    deg = Math.floor(255 * (deg / 500));
+    deg = Math.floor(255 * (deg / 250));
 
     if (this.checkOpts(pixel)) {
       pixel.r += deg;

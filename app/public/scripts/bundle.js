@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "141046a16e7d1969f41c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0e2cc340c8c0e50916c3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -1066,7 +1066,7 @@
 	    value: function brightness(pixel, degree) {
 	      var deg = parseInt(degree || this.defaultDegree, 10);
 	
-	      deg = Math.floor(255 * (deg / 500));
+	      deg = Math.floor(255 * (deg / 250));
 	
 	      if (this.checkOpts(pixel)) {
 	        pixel.r += deg;
@@ -4259,8 +4259,6 @@
 	            image = new Image(),
 	            self = this;
 	
-	        this.clearData();
-	
 	        image.crossOrigin = 'anonymous';
 	        image.src = imgSrc;
 	
@@ -4328,7 +4326,7 @@
 	  }, {
 	    key: 'resetImage',
 	    value: function resetImage() {
-	      if (this, originData) {
+	      if (this.originData) {
 	        this.setData(this.originData);
 	      }
 	    }
@@ -4539,11 +4537,34 @@
 	    _classCallCheck(this, service);
 	
 	    this.$http = $http;
+	    this.headers = {
+	      'Content-Type': 'application/x-www-form-urlencoded'
+	    };
 	  }
 	
 	  _createClass(service, [{
+	    key: 'transformRequest',
+	    value: function transformRequest(obj) {
+	      var str = [];
+	      for (var p in obj) {
+	        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	      }
+	      return str.join('&');
+	    }
+	  }, {
+	    key: 'resolve',
+	    value: function resolve(fn, res) {
+	      if (fn) {
+	        fn(res);
+	      } else {
+	        return res;
+	      }
+	    }
+	  }, {
 	    key: 'genToken',
 	    value: function genToken(key, fn) {
+	      var _this = this;
+	
 	      if (key && typeof key === 'function') {
 	        var fn = key,
 	            key = '';
@@ -4552,16 +4573,9 @@
 	        method: 'post',
 	        url: '/uptoken',
 	        data: { key: key },
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded'
-	        }
+	        headers: this.headers
 	      }).success(function (res) {
-	        var token = res.uptoken;
-	        if (fn) {
-	          fn(token);
-	        } else {
-	          return token;
-	        }
+	        _this.resolve(fn, res.uptoken);
 	      }).error(function (err) {
 	        console.log(err);
 	      });
@@ -4569,18 +4583,14 @@
 	  }, {
 	    key: 'getPics',
 	    value: function getPics(fn) {
+	      var _this2 = this;
+	
 	      this.$http({
 	        method: 'get',
 	        url: '/list',
-	        headers: {
-	          'Content-Type': 'application/x-www-form-urlencoded'
-	        }
+	        headers: this.headers
 	      }).success(function (res) {
-	        if (fn) {
-	          fn(res);
-	        } else {
-	          return res;
-	        }
+	        _this2.resolve(fn, res);
 	      }).error(function (err) {
 	        console.log(err);
 	      });
@@ -4588,27 +4598,17 @@
 	  }, {
 	    key: 'findPic',
 	    value: function findPic(id, fn) {
+	      var _this3 = this;
+	
 	      if (id) {
 	        this.$http({
 	          method: 'post',
 	          url: '/image',
 	          data: { id: id },
-	          headers: {
-	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	          },
-	          transformRequest: function transformRequest(obj) {
-	            var str = [];
-	            for (var p in obj) {
-	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	            }
-	            return str.join('&');
-	          }
+	          headers: this.headers,
+	          transformRequest: this.transformRequest
 	        }).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this3.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });
@@ -4617,27 +4617,17 @@
 	  }, {
 	    key: 'savePic',
 	    value: function savePic(img, fn) {
+	      var _this4 = this;
+	
 	      if (img.name && img.key && img.imageSrc) {
 	        this.$http({
 	          method: 'post',
 	          url: '/save',
 	          data: img,
-	          headers: {
-	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	          },
-	          transformRequest: function transformRequest(obj) {
-	            var str = [];
-	            for (var p in obj) {
-	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	            }
-	            return str.join('&');
-	          }
+	          headers: this.headers,
+	          transformRequest: this.transformRequest
 	        }).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this4.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });
@@ -4646,27 +4636,17 @@
 	  }, {
 	    key: 'updatePic',
 	    value: function updatePic(img, fn) {
+	      var _this5 = this;
+	
 	      if (img.id && img.key && img.imageSrc) {
 	        this.$http({
 	          method: 'post',
 	          url: '/update',
 	          data: img,
-	          headers: {
-	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	          },
-	          transformRequest: function transformRequest(obj) {
-	            var str = [];
-	            for (var p in obj) {
-	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	            }
-	            return str.join('&');
-	          }
+	          headers: this.headers,
+	          transformRequest: this.transformRequest
 	        }).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this5.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });
@@ -4675,13 +4655,11 @@
 	  }, {
 	    key: 'deletePicFromQiniu',
 	    value: function deletePicFromQiniu(id, fn) {
+	      var _this6 = this;
+	
 	      if (id) {
 	        this.$http.delete('/qiniu/' + id).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this6.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });
@@ -4690,13 +4668,11 @@
 	  }, {
 	    key: 'deletePic',
 	    value: function deletePic(id, fn) {
+	      var _this7 = this;
+	
 	      if (id) {
 	        this.$http.delete('/image/' + id).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this7.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });
@@ -4705,27 +4681,17 @@
 	  }, {
 	    key: 'downloadPic',
 	    value: function downloadPic(id, fn) {
+	      var _this8 = this;
+	
 	      if (id) {
 	        this.$http({
 	          method: 'post',
 	          url: '/download',
 	          data: { id: id },
-	          headers: {
-	            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-	          },
-	          transformRequest: function transformRequest(obj) {
-	            var str = [];
-	            for (var p in obj) {
-	              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-	            }
-	            return str.join('&');
-	          }
+	          headers: this.headers,
+	          transformRequest: this.transformRequest
 	        }).success(function (res) {
-	          if (fn) {
-	            fn(res);
-	          } else {
-	            return res;
-	          }
+	          _this8.resolve(fn, res);
 	        }).error(function (err) {
 	          console.log(err);
 	        });

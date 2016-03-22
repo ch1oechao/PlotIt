@@ -1,6 +1,26 @@
 export default class service {
   constructor($http) {
     this.$http = $http;
+    this.headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+  }
+
+
+  transformRequest(obj) {
+    var str = [];
+    for (var p in obj) {
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+    }
+    return str.join('&');
+  }
+
+  resolve(fn, res) {
+    if (fn) {
+      fn(res);
+    } else {
+      return res;
+    }
   }
 
   genToken(key, fn) {
@@ -12,34 +32,21 @@ export default class service {
       method: 'post',
       url: '/uptoken',
       data: {key: key},
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      headers: this.headers
     }).success((res) => {
-      var token = res.uptoken;
-      if (fn) {
-        fn(token)
-      } else {
-        return token;
-      }
+      this.resolve(fn, res.uptoken);
     }).error((err) => {
       console.log(err);
-    })
+    });
   }
 
   getPics(fn) {
     this.$http({
       method: 'get',
       url: '/list',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      headers: this.headers
     }).success((res) => {
-      if (fn) {
-        fn(res);
-      } else {
-        return res;
-      }
+      this.resolve(fn, res);
     }).error((err) => {
       console.log(err);
     })
@@ -51,22 +58,10 @@ export default class service {
         method: 'post',
         url: '/image',
         data: {id: id},
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (obj) => {
-          var str = [];
-          for (var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        }
+        headers: this.headers,
+        transformRequest: this.transformRequest
       }).success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
+        this.resolve(fn, res);
       }).error((err) => {
         console.log(err);
       });
@@ -79,22 +74,10 @@ export default class service {
         method: 'post',
         url: '/save',
         data: img,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (obj) => {
-          var str = [];
-          for (var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        }
+        headers: this.headers,
+        transformRequest: this.transformRequest
       }).success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
+        this.resolve(fn, res);
       }).error((err) => {
         console.log(err);
       });
@@ -107,22 +90,10 @@ export default class service {
         method: 'post',
         url: '/update',
         data: img,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (obj) => {
-          var str = [];
-          for (var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        }
+        headers: this.headers,
+        transformRequest: this.transformRequest
       }).success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
+        this.resolve(fn, res);
       }).error((err) => {
         console.log(err);
       });
@@ -132,15 +103,12 @@ export default class service {
   deletePicFromQiniu(id, fn) {
     if (id) {
       this.$http.delete('/qiniu/' + id)
-      .success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
-      }).error((err) => {
-        console.log(err);
-      });
+                .success((res) => {
+                  this.resolve(fn, res);
+                })
+                .error((err) => {
+                  console.log(err);
+                });
     }
   }
 
@@ -148,15 +116,12 @@ export default class service {
   deletePic(id, fn) {
     if (id) {
       this.$http.delete('/image/' + id)
-      .success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
-      }).error((err) => {
-        console.log(err);
-      });
+                .success((res) => {
+                  this.resolve(fn, res);
+                })
+                .error((err) => {
+                  console.log(err);
+                });
     }
   }
 
@@ -166,22 +131,10 @@ export default class service {
         method: 'post',
         url: '/download',
         data: {id: id},
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        transformRequest: (obj) => {
-          var str = [];
-          for (var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        }
+        headers: this.headers,
+        transformRequest: this.transformRequest
       }).success((res) => {
-        if (fn) {
-          fn(res);
-        } else {
-          return res;
-        }
+        this.resolve(fn, res);  
       }).error((err) => {
         console.log(err);
       });
