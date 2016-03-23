@@ -16,7 +16,7 @@
         <div class="col-md-6 filter-item" 
              ng-repeat="f in palette.filters" 
              ng-click="palette.renderFilter(f.processor)">
-          <figure ng-class="f.name">
+          <figure ng-class="f.processor">
             <img height="104" ng-src={{palette.filterImgSrc}}>
           </figure>
           <span class="filter-name">{{f.name}}</span>

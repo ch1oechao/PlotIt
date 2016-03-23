@@ -55,10 +55,11 @@ export default class PlotitUtil {
     }
   }
 
-  getData() {
-    var context = this.context || this.$canvas.getContext('2d');
+  getData(canvas) {
+    var canvas = canvas || this.$canvas,
+        context = this.context || canvas.getContext('2d');
     if (context) {
-      return context.getImageData(0, 0, this.$canvas.width, this.$canvas.height);
+      return context.getImageData(0, 0, canvas.width, canvas.height);
     }
   }
 
@@ -83,21 +84,34 @@ export default class PlotitUtil {
     }
   }
 
-  processPixel(type, processor, degree) {
+
+  processFilter(processor, canvas) {
+    
+    // new layer
+    Filter.newLayer(canvas);
+    // bind Util
+    Filter.bindUtil(this);
+
+    if (processor && typeof processor === 'string') {
+      processor = Filter[processor].bind(Filter);
+    }
+
+    // filter processing
+    processor();
+
+    // filter render
+    Filter.renderLayer();
+
+  }
+
+  processPixel(processor, degree) {
     if (this.getData()) {
       var imageData = imageData || this.getData(),
           deg = degree || 0,
           pixel;
 
       if (processor && typeof processor === 'string') {
-        switch(type) {
-          case 'adjuster':
-            processor = Adjuster[processor].bind(Adjuster);
-            break;
-          case 'filter':
-            processor = Filter[processor].bind(Filter);
-            break;
-        }
+        processor = Adjuster[processor].bind(Adjuster);
       }
 
       if (processor && typeof processor === 'function') {

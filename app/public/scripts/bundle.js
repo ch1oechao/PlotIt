@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9cc26e029e02170f45e7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dacacd6c1a889c5e686c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */27);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */66);
+	__webpack_require__(/*! ./app/main.js */28);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */67);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 33);
+	__webpack_require__(/*! ./angular */ 34);
 	module.exports = angular;
 
 /***/ },
@@ -1167,6 +1167,22 @@
 	
 	      return pixel;
 	    }
+	
+	    // 灰度
+	
+	  }, {
+	    key: 'greyscale',
+	    value: function greyscale(pixel) {
+	      if (this.checkOpts(pixel)) {
+	        var avg = 0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b;
+	
+	        pixel.r = avg;
+	        pixel.g = avg;
+	        pixel.b = avg;
+	      }
+	
+	      return pixel;
+	    }
 	  }]);
 	
 	  return PlotitAdjuster;
@@ -1179,7 +1195,7 @@
 /*!*********************************!*\
   !*** ./app/libs/core/filter.js ***!
   \*********************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -1188,6 +1204,12 @@
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _layer = __webpack_require__(/*! ./layer */ 26);
+	
+	var _layer2 = _interopRequireDefault(_layer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1206,21 +1228,194 @@
 	        return keys.indexOf(item) !== -1;
 	      });
 	    }
-	
-	    // 灰度
-	
 	  }, {
-	    key: 'greyscale',
-	    value: function greyscale(pixel) {
-	      if (this.checkOpts(pixel)) {
-	        var avg = 0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b;
-	
-	        pixel.r = avg;
-	        pixel.g = avg;
-	        pixel.b = avg;
+	    key: 'bindUtil',
+	    value: function bindUtil(util) {
+	      this.util = util;
+	    }
+	  }, {
+	    key: 'getData',
+	    value: function getData(canvas) {
+	      var context = canvas.getContext('2d');
+	      if (context) {
+	        return context.getImageData(0, 0, canvas.width, canvas.height);
 	      }
+	    }
+	  }, {
+	    key: 'newLayer',
+	    value: function newLayer(canvas) {
+	      this.canvas = canvas;
+	      this.layer = new _layer2.default(canvas).layer;
+	    }
+	  }, {
+	    key: 'renderLayer',
+	    value: function renderLayer() {
+	      this.canvas.getContext('2d').drawImage(this.layer, 0, 0);
+	      console.log('render Filter ... is OK!');
+	    }
+	  }, {
+	    key: 'moon',
+	    value: function moon() {
+	      this.util.processPixel('greyscale');
+	    }
+	  }, {
+	    key: 'toaster',
+	    value: function toaster() {
 	
-	      return pixel;
+	      this.util.processPixel('brightness', 30);
+	      this.util.processPixel('contrast', 18);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 3,
+	          x1 = width / 2,
+	          y1 = height / 2,
+	          r1 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+	      grd.addColorStop(0, 'rgba(128, 78, 15, .2)');
+	      grd.addColorStop(1, 'rgba(59, 0, 59, .2)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: '_1977',
+	    value: function _1977() {
+	
+	      this.util.processPixel('brightness', 20);
+	      this.util.processPixel('saturation', -10);
+	      this.util.processPixel('contrast', 8);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, 0, 0, 0);
+	      grd.addColorStop(0, 'rgba(243, 106, 188, .07)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: 'aden',
+	    value: function aden() {
+	      this.util.processPixel('brightness', 10);
+	      this.util.processPixel('saturation', 5);
+	      this.util.processPixel('contrast', 10);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 3,
+	          x1 = width / 2,
+	          y1 = height / 2,
+	          r1 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+	      grd.addColorStop(0, 'rgba(66, 10, 14, .1)');
+	      grd.addColorStop(1, 'transparent');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: 'earlybird',
+	    value: function earlybird() {
+	      this.util.processPixel('saturation', -10);
+	      this.util.processPixel('sepia', 15);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 3,
+	          x1 = width / 2,
+	          y1 = height / 2,
+	          r1 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+	      grd.addColorStop(0, 'rgba(208, 186, 142, .15)');
+	      grd.addColorStop(.75, 'rgba(54, 3, 9, .1)');
+	      grd.addColorStop(1, 'rgba(29, 2, 16, .1)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: 'walden',
+	    value: function walden() {
+	      this.util.processPixel('brightness', 22);
+	      this.util.processPixel('saturation', -18);
+	      this.util.processPixel('sepia', 36);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, 0, 0, 0);
+	      grd.addColorStop(0, 'rgba(20, 68, 204, .07)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: 'xpro2',
+	    value: function xpro2() {
+	      this.util.processPixel('contrast', 10);
+	      this.util.processPixel('sepia', 20);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 3,
+	          x1 = width / 2,
+	          y1 = height / 2,
+	          r1 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+	      grd.addColorStop(0, 'rgba(230, 231, 224, .15)');
+	      grd.addColorStop(1, 'rgba(43, 42, 161, .05)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
+	    }
+	  }, {
+	    key: 'lofi',
+	    value: function lofi() {
+	      this.util.processPixel('saturation', 15);
+	      this.util.processPixel('contrast', 20);
+	
+	      var ctx = this.layer.getContext('2d'),
+	          width = this.layer.width,
+	          height = this.layer.height,
+	          x0 = width / 2,
+	          y0 = height / 2,
+	          r0 = (width > height ? width : height) / 3,
+	          x1 = width / 2,
+	          y1 = height / 2,
+	          r1 = (width > height ? width : height) / 2;
+	
+	      var grd = ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+	      grd.addColorStop(0, 'transparent');
+	      grd.addColorStop(1, 'rgba(34, 34, 34, .12)');
+	
+	      ctx.fillStyle = grd;
+	      ctx.fillRect(0, 0, width, height);
 	    }
 	  }]);
 	
@@ -1242,7 +1437,7 @@
 	  value: true
 	});
 	
-	var _util = __webpack_require__(/*! ./core/util */ 26);
+	var _util = __webpack_require__(/*! ./core/util */ 27);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -1382,9 +1577,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 36);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 41);
-	var isArray = __webpack_require__(/*! isarray */ 37);
+	var base64 = __webpack_require__(/*! base64-js */ 37);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 42);
+	var isArray = __webpack_require__(/*! isarray */ 38);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -3113,11 +3308,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 52);
+	var _index = __webpack_require__(/*! ./index.html */ 53);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 59);
+	__webpack_require__(/*! ./index.scss */ 60);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3222,7 +3417,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 53);
+	var _index = __webpack_require__(/*! ./index.html */ 54);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -3230,7 +3425,7 @@
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	__webpack_require__(/*! ./index.scss */ 60);
+	__webpack_require__(/*! ./index.scss */ 61);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3274,15 +3469,35 @@
 	    this.Plotit = _plotit2.default;
 	    // filters
 	    this.filters = [{
-	      name: 'moon',
-	      processor: 'greyscale'
+	      name: 'Toaster',
+	      processor: 'toaster'
+	    }, {
+	      name: '1977',
+	      processor: '_1977'
+	    }, {
+	      name: 'Moon',
+	      processor: 'moon'
+	    }, {
+	      name: 'Aden',
+	      processor: 'aden'
+	    }, {
+	      name: 'Earlybird',
+	      processor: 'earlybird'
+	    }, {
+	      name: 'Walden',
+	      processor: 'walden'
+	    }, {
+	      name: 'X-pro II',
+	      processor: 'xpro2'
+	    }, {
+	      name: 'Lo-Fi',
+	      processor: 'lofi'
 	    }];
 	
 	    // adjusters
 	    this.brightness = 0;
 	    this.saturation = 0;
 	    this.contrast = 0;
-	    this.hue = 0;
 	    this.sepia = 0;
 	    this.blur = 0;
 	    this.noise = 0;
@@ -3312,41 +3527,41 @@
 	  }, {
 	    key: 'renderFilter',
 	    value: function renderFilter(processor) {
-	      this.PlotitUtil.processPixel('filter', processor);
+	      this.PlotitUtil.processFilter(processor, this.PlotitUtil.$canvas);
 	    }
 	  }, {
 	    key: 'processBrightness',
 	    value: function processBrightness(newVal, oldVal) {
 	      if (newVal !== 0) {
-	        this.PlotitUtil.processPixel('adjuster', 'brightness', newVal - oldVal);
+	        this.PlotitUtil.processPixel('brightness', newVal - oldVal);
 	      }
 	    }
 	  }, {
 	    key: 'processSaturation',
 	    value: function processSaturation(newVal, oldVal) {
 	      if (newVal !== 0) {
-	        this.PlotitUtil.processPixel('adjuster', 'saturation', oldVal - newVal);
+	        this.PlotitUtil.processPixel('saturation', oldVal - newVal);
 	      }
 	    }
 	  }, {
 	    key: 'processContrast',
 	    value: function processContrast(newVal, oldVal) {
 	      if (newVal !== 0) {
-	        this.PlotitUtil.processPixel('adjuster', 'contrast', newVal - oldVal);
+	        this.PlotitUtil.processPixel('contrast', newVal - oldVal);
 	      }
 	    }
 	  }, {
 	    key: 'processSepia',
 	    value: function processSepia(newVal, oldVal) {
 	      if (newVal !== 0) {
-	        this.PlotitUtil.processPixel('adjuster', 'sepia', newVal - oldVal);
+	        this.PlotitUtil.processPixel('sepia', newVal - oldVal);
 	      }
 	    }
 	  }, {
 	    key: 'processNoise',
 	    value: function processNoise(val) {
 	      if (val !== 0) {
-	        this.PlotitUtil.processPixel('adjuster', 'noise', val);
+	        this.PlotitUtil.processPixel('noise', val);
 	      }
 	    }
 	  }, {
@@ -3395,11 +3610,11 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 54);
+	var _index = __webpack_require__(/*! ./index.html */ 55);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 61);
+	__webpack_require__(/*! ./index.scss */ 62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3590,11 +3805,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 55);
+	var _index = __webpack_require__(/*! ./index.html */ 56);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 62);
+	__webpack_require__(/*! ./index.scss */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3658,7 +3873,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 56);
+	var _index = __webpack_require__(/*! ./index.html */ 57);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -3666,7 +3881,7 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 63);
+	__webpack_require__(/*! ./index.scss */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3833,11 +4048,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 57);
+	var _index = __webpack_require__(/*! ./index.html */ 58);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 64);
+	__webpack_require__(/*! ./index.scss */ 65);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4240,6 +4455,60 @@
 
 /***/ },
 /* 26 */
+/*!********************************!*\
+  !*** ./app/libs/core/layer.js ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitLayer = function () {
+	  function PlotitLayer(canvas) {
+	    _classCallCheck(this, PlotitLayer);
+	
+	    this.canvas = canvas, this.layer = this.new();
+	  }
+	
+	  _createClass(PlotitLayer, [{
+	    key: 'new',
+	    value: function _new() {
+	      var canvas = this.canvas,
+	          width = canvas.width,
+	          height = canvas.height,
+	          top = canvas.style.top,
+	          left = canvas.style.left,
+	          parent = canvas.parentNode;
+	
+	      var newCanvas = document.createElement('canvas');
+	
+	      newCanvas.id = 'newCanvas';
+	      newCanvas.width = width;
+	      newCanvas.height = height;
+	      newCanvas.style.position = 'absolute';
+	      newCanvas.style.top = top;
+	      newCanvas.style.left = left;
+	
+	      // parent.appendChild(newCanvas);
+	
+	      return newCanvas;
+	    }
+	  }]);
+	
+	  return PlotitLayer;
+	}();
+
+	exports.default = PlotitLayer;
+
+/***/ },
+/* 27 */
 /*!*******************************!*\
   !*** ./app/libs/core/util.js ***!
   \*******************************/
@@ -4261,7 +4530,7 @@
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 47);
+	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 48);
 	
 	var _stackblurCanvas2 = _interopRequireDefault(_stackblurCanvas);
 	
@@ -4329,10 +4598,11 @@
 	    }
 	  }, {
 	    key: 'getData',
-	    value: function getData() {
-	      var context = this.context || this.$canvas.getContext('2d');
+	    value: function getData(canvas) {
+	      var canvas = canvas || this.$canvas,
+	          context = this.context || canvas.getContext('2d');
 	      if (context) {
-	        return context.getImageData(0, 0, this.$canvas.width, this.$canvas.height);
+	        return context.getImageData(0, 0, canvas.width, canvas.height);
 	      }
 	    }
 	  }, {
@@ -4360,22 +4630,34 @@
 	      }
 	    }
 	  }, {
+	    key: 'processFilter',
+	    value: function processFilter(processor, canvas) {
+	
+	      // new layer
+	      _filter2.default.newLayer(canvas);
+	      // bind Util
+	      _filter2.default.bindUtil(this);
+	
+	      if (processor && typeof processor === 'string') {
+	        processor = _filter2.default[processor].bind(_filter2.default);
+	      }
+	
+	      // filter processing
+	      processor();
+	
+	      // filter render
+	      _filter2.default.renderLayer();
+	    }
+	  }, {
 	    key: 'processPixel',
-	    value: function processPixel(type, processor, degree) {
+	    value: function processPixel(processor, degree) {
 	      if (this.getData()) {
 	        var imageData = imageData || this.getData(),
 	            deg = degree || 0,
 	            pixel;
 	
 	        if (processor && typeof processor === 'string') {
-	          switch (type) {
-	            case 'adjuster':
-	              processor = _adjuster2.default[processor].bind(_adjuster2.default);
-	              break;
-	            case 'filter':
-	              processor = _filter2.default[processor].bind(_filter2.default);
-	              break;
-	          }
+	          processor = _adjuster2.default[processor].bind(_adjuster2.default);
 	        }
 	
 	        if (processor && typeof processor === 'function') {
@@ -4435,7 +4717,7 @@
 	exports.default = PlotitUtil;
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -4451,27 +4733,27 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 32);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 33);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 31);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 32);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 28);
+	var _main = __webpack_require__(/*! ./main.routes */ 29);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 29);
+	var _main3 = __webpack_require__(/*! ./main.services */ 30);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 43);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 44);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 65);
+	__webpack_require__(/*! ./public/styles/main.scss */ 66);
 	
 	var _library = __webpack_require__(/*! ./components/library */ 18);
 	
@@ -4517,7 +4799,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -4541,7 +4823,7 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 58)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 59)
 	  }).state('plot', {
 	    url: '/plot',
 	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
@@ -4552,7 +4834,7 @@
 	}
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -4744,7 +5026,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -5734,7 +6016,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -5742,11 +6024,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 30);
+	__webpack_require__(/*! ./angular-route */ 31);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -8023,7 +8305,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -23834,7 +24116,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -24014,7 +24296,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -24028,7 +24310,7 @@
 	};
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -24154,7 +24436,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -24169,7 +24451,7 @@
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -24178,14 +24460,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 40),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 39),
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 41),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 40),
 	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 16),
 	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 16)
 	};
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -24340,7 +24622,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -24503,7 +24785,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -24597,7 +24879,7 @@
 	};
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -27362,7 +27644,7 @@
 	}]);
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -27370,11 +27652,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 42);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 43);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -27466,7 +27748,7 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -27538,7 +27820,7 @@
 	};
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -27546,11 +27828,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 44);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 45);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 45);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 46);
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!*********************************************!*\
   !*** ./~/stackblur-canvas/src/stackblur.js ***!
   \*********************************************/
@@ -28091,7 +28373,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -28099,14 +28381,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 35)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 36)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -28142,7 +28424,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 34);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 35);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -28157,7 +28439,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 38).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 39).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -28188,7 +28470,7 @@
 	}
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -28304,7 +28586,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -28324,7 +28606,7 @@
 	};
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -28333,16 +28615,16 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.name\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -28351,7 +28633,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -28360,7 +28642,7 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -28369,7 +28651,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -28378,7 +28660,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -28387,7 +28669,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -28416,7 +28698,7 @@
 	}
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -28445,7 +28727,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -28474,7 +28756,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -28503,7 +28785,7 @@
 	}
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -28532,7 +28814,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -28561,7 +28843,7 @@
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -28590,7 +28872,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -28608,7 +28890,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 46);
+	  var querystring = __webpack_require__(/*! querystring */ 47);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -28676,11 +28958,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 48);
+	var strip = __webpack_require__(/*! strip-ansi */ 49);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 49);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 50);
 	}
 	
 	function problems(type, obj) {
@@ -28697,7 +28979,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 50);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 51);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -28729,7 +29011,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 51)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 52)(module)))
 
 /***/ }
 /******/ ]);

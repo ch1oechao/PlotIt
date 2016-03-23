@@ -39,15 +39,35 @@ class paletteCtrl {
     this.Plotit = Plotit;
     // filters
     this.filters = [{
-      name: 'moon',
-      processor: 'greyscale'
+      name: 'Toaster',
+      processor: 'toaster'
+    }, {
+      name: '1977',
+      processor: '_1977'
+    }, {
+      name: 'Moon',
+      processor: 'moon'
+    }, {
+      name: 'Aden',
+      processor: 'aden'
+    }, {
+      name: 'Earlybird',
+      processor: 'earlybird'
+    }, {
+      name: 'Walden',
+      processor: 'walden'
+    }, {
+      name: 'X-pro II',
+      processor: 'xpro2'
+    }, {
+      name: 'Lo-Fi',
+      processor: 'lofi'
     }];
 
     // adjusters
     this.brightness = 0;
     this.saturation = 0;
     this.contrast = 0;
-    this.hue = 0;
     this.sepia = 0;
     this.blur = 0;
     this.noise = 0;
@@ -72,36 +92,36 @@ class paletteCtrl {
   }
 
   renderFilter(processor) {
-    this.PlotitUtil.processPixel('filter', processor);
+    this.PlotitUtil.processFilter(processor, this.PlotitUtil.$canvas);
   }
 
   processBrightness(newVal, oldVal) {
     if (newVal !== 0) {
-      this.PlotitUtil.processPixel('adjuster', 'brightness', newVal - oldVal);
+      this.PlotitUtil.processPixel('brightness', newVal - oldVal);
     }  
   }
 
   processSaturation(newVal, oldVal) {
     if (newVal !== 0) {
-      this.PlotitUtil.processPixel('adjuster', 'saturation', oldVal - newVal);
+      this.PlotitUtil.processPixel('saturation', oldVal - newVal);
     }  
   }
 
   processContrast(newVal, oldVal) {
     if (newVal !== 0) {
-      this.PlotitUtil.processPixel('adjuster', 'contrast', newVal - oldVal);
+      this.PlotitUtil.processPixel('contrast', newVal - oldVal);
     }  
   }
 
   processSepia(newVal, oldVal) {
     if (newVal !== 0) {
-      this.PlotitUtil.processPixel('adjuster', 'sepia', newVal - oldVal);
+      this.PlotitUtil.processPixel('sepia', newVal - oldVal);
     }  
   }
 
   processNoise(val) {
     if (val !== 0) {
-      this.PlotitUtil.processPixel('adjuster', 'noise', val);  
+      this.PlotitUtil.processPixel('noise', val);  
     }
   }
 
