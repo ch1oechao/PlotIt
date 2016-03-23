@@ -85,7 +85,7 @@ export default class PlotitUtil {
 
   processPixel(type, processor, degree) {
     if (this.getData()) {
-      var imageData = this.getData(),
+      var imageData = imageData || this.getData(),
           deg = degree || 0,
           pixel;
 

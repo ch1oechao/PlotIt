@@ -51,13 +51,13 @@ class sideBtnCtrl {
     }
   }
 
-  undoImage(isLoading) {
+  undoImage(isLoading, palette) {
     var self = this;
 
     if (this.isPlot && !isLoading) {
       var paths = (this.$location.$$path).split('/'),
           id = paths[paths.length - 1];
-      // 判断 id 是否正确
+      // check the id
       if (id.length === 24) {
         var pics = this.$rootScope.pics;
         pics.map((item) => {
@@ -66,6 +66,17 @@ class sideBtnCtrl {
           }
         });
       }
+    }
+
+    // roll back all the palette config
+    if (palette) {
+      palette.brightness = 0;
+      palette.saturation = 0;
+      palette.contrast = 0;
+      palette.hue = 0;
+      palette.sepia = 0;
+      palette.blur = 0;
+      palette.noise = 0;
     }
 
   }
@@ -80,7 +91,7 @@ class sideBtnCtrl {
         id = paths[paths.length - 1],
         curImage;
 
-    // 判断 id 是否正确
+    // check the id
     if (id.length === 24) {
       var pics = this.$rootScope.pics;
       pics.map((item) => {

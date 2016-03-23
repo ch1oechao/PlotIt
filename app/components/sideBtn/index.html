@@ -9,7 +9,7 @@
 </div>
 <div ng-class="panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'" 
      ng-show="sideBtn.isPlot" 
-     ng-click="sideBtn.undoImage(panel.isLoading)">
+     ng-click="sideBtn.undoImage(panel.isLoading, palette)">
   <i class="fa fa-undo"></i>
 </div>
 <div ng-class="panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' " 

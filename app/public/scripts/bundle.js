@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ae990d300da82ba2076c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9cc26e029e02170f45e7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3726,7 +3726,7 @@
 	    }
 	  }, {
 	    key: 'undoImage',
-	    value: function undoImage(isLoading) {
+	    value: function undoImage(isLoading, palette) {
 	      var _this = this;
 	
 	      var self = this;
@@ -3734,7 +3734,7 @@
 	      if (this.isPlot && !isLoading) {
 	        var paths = this.$location.$$path.split('/'),
 	            id = paths[paths.length - 1];
-	        // 判断 id 是否正确
+	        // check the id
 	        if (id.length === 24) {
 	          var pics = this.$rootScope.pics;
 	          pics.map(function (item) {
@@ -3743,6 +3743,17 @@
 	            }
 	          });
 	        }
+	      }
+	
+	      // roll back all the palette config
+	      if (palette) {
+	        palette.brightness = 0;
+	        palette.saturation = 0;
+	        palette.contrast = 0;
+	        palette.hue = 0;
+	        palette.sepia = 0;
+	        palette.blur = 0;
+	        palette.noise = 0;
 	      }
 	    }
 	  }, {
@@ -3758,7 +3769,7 @@
 	          id = paths[paths.length - 1],
 	          curImage;
 	
-	      // 判断 id 是否正确
+	      // check the id
 	      if (id.length === 24) {
 	        var pics = this.$rootScope.pics;
 	        pics.map(function (item) {
@@ -4352,7 +4363,7 @@
 	    key: 'processPixel',
 	    value: function processPixel(type, processor, degree) {
 	      if (this.getData()) {
-	        var imageData = this.getData(),
+	        var imageData = imageData || this.getData(),
 	            deg = degree || 0,
 	            pixel;
 	
@@ -28355,7 +28366,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
 /* 57 */
