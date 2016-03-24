@@ -18,6 +18,9 @@
     imageSrc: {
       type: String
     },
+    changeSrc: {
+      type: String
+    },
     imageConfig: {
       type: Object
     },

@@ -28,8 +28,10 @@ class panelCtrl {
     this.$rootScope = $rootScope;
     this.PlotitUtil = new Plotit.Util();
     this.hasImage = false;
+    this.newImage = null;
     this.curImageSrc = null;
     this.isLoading = false;
+    this.imageConfig = false;
   }
 
   renderImages(item) {
@@ -43,8 +45,9 @@ class panelCtrl {
         pics.map((item) => {
           if (item._id === id) {
             self.hasImage = true;
+            self.imageConfig = JSON.parse(item.imageConfig || '{}');
             self.curImageSrc = item.imageSrc + '?' + (+new Date());
-            self.PlotitUtil.renderImage(item.imageSrc);
+            self.PlotitUtil.renderImage(item.imageSrc, self.imageConfig);
           }
         });
       } else {
@@ -52,8 +55,9 @@ class panelCtrl {
         this.Service.findPic(id, (res) => {
           if (!err) {
             self.hasImage = true;
+            self.imageConfig = JSON.parse(res.imageConfig || '{}');
             self.curImageSrc = res.imageSrc + '?' + (+new Date());
-            self.PlotitUtil.renderImage(res.imageSrc);  
+            self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);  
           } else {
             // loading err, back to home
             self.$location.url('/');
@@ -144,6 +148,7 @@ class panelCtrl {
 
         self.Service.savePic(img, (res) => {
           if (res && res.success) {
+            self.newImage = res.pic;
             // loading finish
             self.isLoading = false;
           }

@@ -92,6 +92,8 @@ class paletteCtrl {
   }
 
   renderFilter(processor) {
+    this.curFilter = processor;
+    this.PlotitUtil.resetImage();
     this.PlotitUtil.processFilter(processor, this.PlotitUtil.$canvas);
   }
 

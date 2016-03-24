@@ -52,11 +52,11 @@
     if (reqData.name && reqData.key && reqData.imageSrc) {
       
       var pic = new picModel(reqData);
-      console.log(pic);
       pic.save(function(err, data) {
         if (!err) {
           res.json({
-            success: true
+            success: true,
+            pic: pic
           });
         } else {
           console.log(err);
@@ -66,36 +66,45 @@
   };
 
   exports.updateImage = function(req, res) {
-    var reqData = req.body;
+    var reqData = req.body,
+        _id = reqData.id;
 
-    if (reqData.id && reqData.key && reqData.imageSrc) {
-      // delete origin image
-      // Pic.findById(reqData.id, function(err, item) {
-      //   // delete origin key
-      //   qnServer.deleteFile(item.key);
-      // });
+    if (_id) {
 
-      // update MongoDB
-      var id = reqData.id;
-      delete reqData.id;
-      delete reqData.hash;
-      Pic.update({_id: id}, {
-        $set: reqData
-      }, function(err) {
-        if (err) {
-          console.log(err);
-        }
-        res.json({
-          success: true
+      Pic.findById(_id, function(err, pic) {
+
+        delete reqData.id;
+
+        Object.keys(reqData).map(function(item) {
+          pic[item] = reqData[item];
         });
+
+        Pic.update({_id: _id}, pic, function(err) {
+          if (err) {
+          console.log(err);
+          }
+          res.json({
+            success: true
+          });
+        });
+
       });
+
     }
+
   };
 
   exports.deleteImage = function(req, res) {
     var id = req.params.id;
     Pic.findById({_id: id}, function(err, item) {
+      var tag = 'changed_',
+          key = tag + item.key;
+
+      // del changeSrc
+      qnServer.deleteFile(key);
+      // del originSrc
       qnServer.deleteFile(item.key);
+      // del img from mongoDB
       Pic.remove({_id: id}, function(err) {
         if (!err) {
           res.json({
@@ -105,12 +114,15 @@
           console.log(err);
         }
       });
+
     });
   }
 
   exports.delImageFromQiniu = function(req, res) {
     Pic.findById({_id: req.params.id}, function(err, item) {
-      qnServer.deleteFile(item.key, function(r) {
+      var tag = 'changed_',
+          key = tag + item.key;
+      qnServer.deleteFile(key, function(r) {
         if (r && r.success) {
           res.json({
             success: true
@@ -122,7 +134,12 @@
 
   exports.downloadImageFromQiniu = function(req, res) {
     Pic.findById(req.body.id, function(err, item) {
-      var rqUrl = qnServer.getDownloadUrl(item.key);
+      var key = item.key,
+          tag = 'changed_';
+      if (item.changeSrc) {
+        key = tag + key;
+      }
+      var rqUrl = qnServer.getDownloadUrl(key);
       res.json({
         url: rqUrl
       });

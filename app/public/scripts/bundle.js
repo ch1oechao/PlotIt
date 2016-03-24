@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dacacd6c1a889c5e686c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5252cb7907aaf66ea22c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3527,6 +3527,8 @@
 	  }, {
 	    key: 'renderFilter',
 	    value: function renderFilter(processor) {
+	      this.curFilter = processor;
+	      this.PlotitUtil.resetImage();
 	      this.PlotitUtil.processFilter(processor, this.PlotitUtil.$canvas);
 	    }
 	  }, {
@@ -3646,8 +3648,10 @@
 	    this.$rootScope = $rootScope;
 	    this.PlotitUtil = new _plotit2.default.Util();
 	    this.hasImage = false;
+	    this.newImage = null;
 	    this.curImageSrc = null;
 	    this.isLoading = false;
+	    this.imageConfig = false;
 	  }
 	
 	  _createClass(panelCtrl, [{
@@ -3665,8 +3669,9 @@
 	          pics.map(function (item) {
 	            if (item._id === id) {
 	              self.hasImage = true;
+	              self.imageConfig = JSON.parse(item.imageConfig || '{}');
 	              self.curImageSrc = item.imageSrc + '?' + +new Date();
-	              self.PlotitUtil.renderImage(item.imageSrc);
+	              self.PlotitUtil.renderImage(item.imageSrc, self.imageConfig);
 	            }
 	          });
 	        } else {
@@ -3674,8 +3679,9 @@
 	          _this.Service.findPic(id, function (res) {
 	            if (!err) {
 	              self.hasImage = true;
+	              self.imageConfig = JSON.parse(res.imageConfig || '{}');
 	              self.curImageSrc = res.imageSrc + '?' + +new Date();
-	              self.PlotitUtil.renderImage(res.imageSrc);
+	              self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);
 	            } else {
 	              // loading err, back to home
 	              self.$location.url('/');
@@ -3767,6 +3773,7 @@
 	
 	          self.Service.savePic(img, function (res) {
 	            if (res && res.success) {
+	              self.newImage = res.pic;
 	              // loading finish
 	              self.isLoading = false;
 	            }
@@ -3905,6 +3912,17 @@
 	      }
 	
 	      self.$scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
+	
+	      self.$scope.$watch('panel.newImage', self.getNewImage.bind(self));
+	
+	      self.$scope.$watch('palette.brightness', self.watchBrightness.bind(self));
+	      self.$scope.$watch('palette.saturation', self.watchSaturation.bind(self));
+	      self.$scope.$watch('palette.contrast', self.watchContrast.bind(self));
+	      self.$scope.$watch('palette.hue', self.watchHue.bind(self));
+	      self.$scope.$watch('palette.sepia', self.watchSepia.bind(self));
+	      self.$scope.$watch('palette.blur', self.watchBlur.bind(self));
+	      self.$scope.$watch('palette.noise', self.watchNoise.bind(self));
+	      self.$scope.$watch('palette.curFilter', self.watchFilter.bind(self));
 	    }
 	  };
 	};
@@ -3920,6 +3938,10 @@
 	    this.$route = $route;
 	    this.isPlot = false;
 	    this.isChange = false;
+	    this.imageConfig = {
+	      adjusters: {},
+	      filter: ''
+	    };
 	  }
 	
 	  _createClass(sideBtnCtrl, [{
@@ -3946,6 +3968,17 @@
 	
 	      var self = this;
 	
+	      // roll back all the palette config
+	      if (palette) {
+	        palette.brightness = 0;
+	        palette.saturation = 0;
+	        palette.contrast = 0;
+	        palette.hue = 0;
+	        palette.sepia = 0;
+	        palette.blur = 0;
+	        palette.noise = 0;
+	      }
+	
 	      if (this.isPlot && !isLoading) {
 	        var paths = this.$location.$$path.split('/'),
 	            id = paths[paths.length - 1];
@@ -3959,17 +3992,51 @@
 	          });
 	        }
 	      }
-	
-	      // roll back all the palette config
-	      if (palette) {
-	        palette.brightness = 0;
-	        palette.saturation = 0;
-	        palette.contrast = 0;
-	        palette.hue = 0;
-	        palette.sepia = 0;
-	        palette.blur = 0;
-	        palette.noise = 0;
-	      }
+	    }
+	  }, {
+	    key: 'watchBrightness',
+	    value: function watchBrightness(val) {
+	      this.imageConfig.adjusters.brightness = val;
+	    }
+	  }, {
+	    key: 'watchSaturation',
+	    value: function watchSaturation(val) {
+	      this.imageConfig.adjusters.saturation = val;
+	    }
+	  }, {
+	    key: 'watchContrast',
+	    value: function watchContrast(val) {
+	      this.imageConfig.adjusters.contrast = val;
+	    }
+	  }, {
+	    key: 'watchHue',
+	    value: function watchHue(val) {
+	      this.imageConfig.adjusters.hue = val;
+	    }
+	  }, {
+	    key: 'watchSepia',
+	    value: function watchSepia(val) {
+	      this.imageConfig.adjusters.sepia = val;
+	    }
+	  }, {
+	    key: 'watchBlur',
+	    value: function watchBlur(val) {
+	      this.imageConfig.adjusters.blur = val;
+	    }
+	  }, {
+	    key: 'watchNoise',
+	    value: function watchNoise(val) {
+	      this.imageConfig.adjusters.noise = val;
+	    }
+	  }, {
+	    key: 'watchFilter',
+	    value: function watchFilter(val) {
+	      this.imageConfig.filter = val;
+	    }
+	  }, {
+	    key: 'getNewImage',
+	    value: function getNewImage(val) {
+	      this.newImage = val;
 	    }
 	  }, {
 	    key: 'updateImage',
@@ -3980,7 +4047,8 @@
 	        return;
 	      }
 	
-	      var paths = this.$location.$$path.split('/'),
+	      var self = this,
+	          paths = this.$location.$$path.split('/'),
 	          id = paths[paths.length - 1],
 	          curImage;
 	
@@ -3994,22 +4062,38 @@
 	        });
 	      }
 	
-	      // isNewImage && this.isChange
-	      if (curImage) {
+	      // check image
+	      if (curImage || this.newImage) {
 	
-	        var size = curImage.size,
+	        var curImage = curImage || this.newImage,
+	            size = curImage.size,
 	            imageBase64 = this.PlotitUtil.convertToBase64(size);
 	
 	        // get Qiniu token
 	        this.Service.genToken(function (token) {
-	          // delete origin pic from qiniu
-	          _this2.Service.deletePicFromQiniu(curImage._id, function (res) {
-	            if (res && res.success) {
-	              // upload new base64 pic to qiniu
-	              _qiniu2.default.uploadBase64(imageBase64, token, curImage.key, function (res) {
-	                if (res.key === curImage.key) {
-	                  _this2.turnToHome();
-	                  _this2.$route.reload();
+	
+	          // delete changed pic from qiniu
+	          _this2.Service.deletePicFromQiniu(curImage._id);
+	
+	          var key = curImage.key,
+	              tag = 'changed_';
+	
+	          // upload new base64 pic to qiniu
+	          _qiniu2.default.uploadBase64(imageBase64, token, tag + key, function (res) {
+	
+	            if (res.key === tag + key) {
+	              var src = _qiniu2.default.config.domain + res.key,
+	                  imageConfig = JSON.stringify(self.imageConfig || {});
+	              // update mongoDB
+	              self.Service.updatePic({
+	                id: curImage._id,
+	                changeSrc: src,
+	                imageConfig: imageConfig
+	              }, function (res) {
+	                if (res && res.success) {
+	                  // back to home
+	                  self.turnToHome();
+	                  self.$route.reload();
 	                }
 	              });
 	            }
@@ -4496,6 +4580,7 @@
 	      newCanvas.style.top = top;
 	      newCanvas.style.left = left;
 	
+	      // append to the panel
 	      // parent.appendChild(newCanvas);
 	
 	      return newCanvas;
@@ -4519,6 +4604,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -4548,7 +4635,7 @@
 	
 	  _createClass(PlotitUtil, [{
 	    key: 'renderImage',
-	    value: function renderImage(imgSrc) {
+	    value: function renderImage(imgSrc, config) {
 	      var _this = this;
 	
 	      if (this.$canvas && this.$panel) {
@@ -4592,7 +4679,25 @@
 	
 	          context.drawImage(image, 0, 0, imageW, imageH);
 	
-	          _this.originData = _this.getData(0, 0, imageW, imageH);
+	          if (config && (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+	
+	            Object.keys(config).map(function (item) {
+	              switch (item) {
+	                case 'filter':
+	                  var filter = config[item] || '';
+	                  self.processFilter(filter, canvas);
+	                  break;
+	                case 'adjuster':
+	                  var adjusters = config[item] || {};
+	                  Object.keys(adjusters).map(function (item) {
+	                    self.processPixel(item, adjusters[item]);
+	                  });
+	                  break;
+	              }
+	            });
+	          }
+	
+	          _this.originData = _this.getData();
 	        };
 	      }
 	    }
@@ -4956,7 +5061,7 @@
 	    value: function updatePic(img, fn) {
 	      var _this5 = this;
 	
-	      if (img.id && img.key && img.imageSrc) {
+	      if (img.id) {
 	        this.$http({
 	          method: 'post',
 	          url: '/update',
@@ -28612,7 +28717,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc ? item.changeSrc : item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
 /* 54 */

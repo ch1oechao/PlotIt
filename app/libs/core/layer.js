@@ -21,6 +21,7 @@ export default class PlotitLayer {
     newCanvas.style.top = top;
     newCanvas.style.left = left;
 
+    // append to the panel
     // parent.appendChild(newCanvas);
 
     return newCanvas;

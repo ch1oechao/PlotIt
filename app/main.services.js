@@ -85,7 +85,7 @@ export default class service {
   }
 
   updatePic(img, fn) {
-    if (img.id && img.key && img.imageSrc) {
+    if (img.id) {
       this.$http({
         method: 'post',
         url: '/update',

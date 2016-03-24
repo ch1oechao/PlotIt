@@ -22,6 +22,16 @@ let sideBtnTpl = () => {
 
       self.$scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
 
+      self.$scope.$watch('panel.newImage', self.getNewImage.bind(self));
+
+      self.$scope.$watch('palette.brightness', self.watchBrightness.bind(self));
+      self.$scope.$watch('palette.saturation', self.watchSaturation.bind(self));
+      self.$scope.$watch('palette.contrast', self.watchContrast.bind(self));
+      self.$scope.$watch('palette.hue', self.watchHue.bind(self));
+      self.$scope.$watch('palette.sepia', self.watchSepia.bind(self));
+      self.$scope.$watch('palette.blur', self.watchBlur.bind(self));
+      self.$scope.$watch('palette.noise', self.watchNoise.bind(self));
+      self.$scope.$watch('palette.curFilter', self.watchFilter.bind(self));
     }
   }
 };
@@ -35,6 +45,10 @@ class sideBtnCtrl {
     this.$route = $route;
     this.isPlot = false;
     this.isChange = false;
+    this.imageConfig = {
+      adjusters: {},
+      filter: ''
+    };
   }
 
   setPlotitUtil(PlotitUtil) {
@@ -54,6 +68,17 @@ class sideBtnCtrl {
   undoImage(isLoading, palette) {
     var self = this;
 
+    // roll back all the palette config
+    if (palette) {
+      palette.brightness = 0;
+      palette.saturation = 0;
+      palette.contrast = 0;
+      palette.hue = 0;
+      palette.sepia = 0;
+      palette.blur = 0;
+      palette.noise = 0;
+    }
+
     if (this.isPlot && !isLoading) {
       var paths = (this.$location.$$path).split('/'),
           id = paths[paths.length - 1];
@@ -68,17 +93,42 @@ class sideBtnCtrl {
       }
     }
 
-    // roll back all the palette config
-    if (palette) {
-      palette.brightness = 0;
-      palette.saturation = 0;
-      palette.contrast = 0;
-      palette.hue = 0;
-      palette.sepia = 0;
-      palette.blur = 0;
-      palette.noise = 0;
-    }
+  }
 
+  watchBrightness(val) {
+    this.imageConfig.adjusters.brightness = val;
+  }
+
+  watchSaturation(val) {
+    this.imageConfig.adjusters.saturation = val;
+  }
+
+  watchContrast(val) {
+    this.imageConfig.adjusters.contrast = val;
+  }
+
+  watchHue(val) {
+    this.imageConfig.adjusters.hue = val;
+  }
+
+  watchSepia(val) {
+    this.imageConfig.adjusters.sepia = val;
+  }
+
+  watchBlur(val) {
+    this.imageConfig.adjusters.blur = val;
+  }
+
+  watchNoise(val) {
+    this.imageConfig.adjusters.noise = val;
+  }
+
+  watchFilter(val) {
+    this.imageConfig.filter = val;
+  }
+
+  getNewImage(val) {
+    this.newImage = val;
   }
 
   updateImage(isLoading) {
@@ -87,7 +137,8 @@ class sideBtnCtrl {
       return;
     }
 
-    var paths = (this.$location.$$path).split('/'),
+    var self = this,
+        paths = (this.$location.$$path).split('/'),
         id = paths[paths.length - 1],
         curImage;
 
@@ -101,24 +152,40 @@ class sideBtnCtrl {
       });
     }
 
-    // isNewImage && this.isChange
-    if (curImage) {
+    // check image
+    if (curImage || this.newImage) {
 
-      var size = curImage.size,
+      var curImage = curImage || this.newImage,
+          size = curImage.size,
           imageBase64 = this.PlotitUtil.convertToBase64(size);
 
       // get Qiniu token
       this.Service.genToken((token) => {
-        // delete origin pic from qiniu
-        this.Service.deletePicFromQiniu(curImage._id, (res) => {
-          if (res && res.success) {
-            // upload new base64 pic to qiniu
-            QiniuC.uploadBase64(imageBase64, token, curImage.key, (res) => {
-              if (res.key === curImage.key) {
-                this.turnToHome();
-                this.$route.reload();
+
+        // delete changed pic from qiniu
+        this.Service.deletePicFromQiniu(curImage._id);
+        
+        var key = curImage.key,
+            tag = 'changed_';
+
+        // upload new base64 pic to qiniu
+        QiniuC.uploadBase64(imageBase64, token, tag + key, (res) => {
+
+          if (res.key === tag + key) {
+            var src = QiniuC.config.domain + res.key,
+                imageConfig = JSON.stringify(self.imageConfig || {});
+            // update mongoDB
+            self.Service.updatePic({
+              id: curImage._id,
+              changeSrc: src,
+              imageConfig: imageConfig
+            }, (res) => {
+              if (res && res.success) {
+                // back to home
+                self.turnToHome();
+                self.$route.reload();
               }
-            });
+            }); 
           }
         });
       });

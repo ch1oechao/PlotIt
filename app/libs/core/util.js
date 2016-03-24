@@ -8,7 +8,7 @@ export default class PlotitUtil {
     this.$panel = document.querySelector('.panel-canvas') || {};
   }
 
-  renderImage(imgSrc) {
+  renderImage(imgSrc, config) {
     if (this.$canvas && this.$panel) {
       var canvas = this.$canvas,
           context = canvas.getContext('2d'),
@@ -50,7 +50,25 @@ export default class PlotitUtil {
 
         context.drawImage(image, 0, 0, imageW, imageH);
 
-        this.originData = this.getData(0, 0, imageW, imageH);
+        if (config && typeof config === 'object') {
+
+          Object.keys(config).map((item) => {
+            switch(item) {
+              case 'filter':
+                var filter = config[item] || '';
+                self.processFilter(filter, canvas);
+              break;
+              case 'adjuster':
+                var adjusters = config[item] || {};
+                Object.keys(adjusters).map((item) => {
+                  self.processPixel(item, adjusters[item]);
+                });
+              break;
+            }
+          });
+        }
+
+        this.originData = this.getData();
       }
     }
   }
@@ -83,7 +101,6 @@ export default class PlotitUtil {
       this.setData(this.originData);  
     }
   }
-
 
   processFilter(processor, canvas) {
     
