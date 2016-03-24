@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0dbe27632a3da86cdc74"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d85b58600bd9ddf4016e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4769,10 +4769,11 @@
 	      }
 	
 	      // filter processing
-	      processor();
-	
-	      // filter render
-	      _filter2.default.renderLayer();
+	      if (processor && typeof processor === 'function') {
+	        processor();
+	        // filter render
+	        _filter2.default.renderLayer();
+	      }
 	    }
 	  }, {
 	    key: 'processPixel',

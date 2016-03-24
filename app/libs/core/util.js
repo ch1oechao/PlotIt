@@ -117,11 +117,12 @@ export default class PlotitUtil {
     }
 
     // filter processing
-    processor();
-
-    // filter render
-    Filter.renderLayer();
-
+    if (processor && typeof processor === 'function') {
+      processor();
+      // filter render
+      Filter.renderLayer();
+    }
+    
   }
 
   processPixel(processor, degree) {
