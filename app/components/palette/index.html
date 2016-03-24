@@ -14,6 +14,7 @@
     <div class="palette-filter-container" ng-show="palette.isFilter">
       <div class="row">
         <div class="col-md-6 filter-item" 
+             ng-class="palette.curFilter === f.processor ? ' active' : ''"
              ng-repeat="f in palette.filters" 
              ng-click="palette.renderFilter(f.processor)">
           <figure ng-class="f.processor">

@@ -18,6 +18,7 @@ let paletteTpl = () => {
 
       $scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
       $scope.$watch('panel.curImageSrc', self.setFilterImgSrc.bind(self));
+      $scope.$watch('panel.imageConfig', self.setImageConfig.bind(self));
 
       $scope.$watch('palette.brightness', self.processBrightness.bind(self));
       $scope.$watch('palette.saturation', self.processSaturation.bind(self));
@@ -79,6 +80,26 @@ class paletteCtrl {
 
   switchTab(isFilter) {
     this.isFilter = isFilter;
+  }
+
+  setImageConfig(val) {
+    var config = val,
+        self = this;
+    if (config && typeof config === 'object') {
+      Object.keys(config).map((item) => {
+        switch(item) {
+          case 'filter':
+            self.curFilter = config[item] || '';
+          break;
+          case 'adjusters':
+            var adjusters = config[item] || {};
+            Object.keys(adjusters).map((i) => {
+              self[i] = +adjusters[i];
+            });
+          break;
+        }
+      });
+    }
   }
 
   setFilterImgSrc(src) {

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5252cb7907aaf66ea22c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0dbe27632a3da86cdc74"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3411,6 +3411,8 @@
 	  value: true
 	});
 	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _angular = __webpack_require__(/*! angular */ 1);
@@ -3446,6 +3448,7 @@
 	
 	      $scope.$watch('panel.PlotitUtil', self.setPlotitUtil.bind(self));
 	      $scope.$watch('panel.curImageSrc', self.setFilterImgSrc.bind(self));
+	      $scope.$watch('panel.imageConfig', self.setImageConfig.bind(self));
 	
 	      $scope.$watch('palette.brightness', self.processBrightness.bind(self));
 	      $scope.$watch('palette.saturation', self.processSaturation.bind(self));
@@ -3512,6 +3515,27 @@
 	    key: 'switchTab',
 	    value: function switchTab(isFilter) {
 	      this.isFilter = isFilter;
+	    }
+	  }, {
+	    key: 'setImageConfig',
+	    value: function setImageConfig(val) {
+	      var config = val,
+	          self = this;
+	      if (config && (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+	        Object.keys(config).map(function (item) {
+	          switch (item) {
+	            case 'filter':
+	              self.curFilter = config[item] || '';
+	              break;
+	            case 'adjusters':
+	              var adjusters = config[item] || {};
+	              Object.keys(adjusters).map(function (i) {
+	                self[i] = +adjusters[i];
+	              });
+	              break;
+	          }
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'setFilterImgSrc',
@@ -3918,7 +3942,6 @@
 	      self.$scope.$watch('palette.brightness', self.watchBrightness.bind(self));
 	      self.$scope.$watch('palette.saturation', self.watchSaturation.bind(self));
 	      self.$scope.$watch('palette.contrast', self.watchContrast.bind(self));
-	      self.$scope.$watch('palette.hue', self.watchHue.bind(self));
 	      self.$scope.$watch('palette.sepia', self.watchSepia.bind(self));
 	      self.$scope.$watch('palette.blur', self.watchBlur.bind(self));
 	      self.$scope.$watch('palette.noise', self.watchNoise.bind(self));
@@ -3973,10 +3996,10 @@
 	        palette.brightness = 0;
 	        palette.saturation = 0;
 	        palette.contrast = 0;
-	        palette.hue = 0;
 	        palette.sepia = 0;
 	        palette.blur = 0;
 	        palette.noise = 0;
+	        palette.curFilter = '';
 	      }
 	
 	      if (this.isPlot && !isLoading) {
@@ -4007,11 +4030,6 @@
 	    key: 'watchContrast',
 	    value: function watchContrast(val) {
 	      this.imageConfig.adjusters.contrast = val;
-	    }
-	  }, {
-	    key: 'watchHue',
-	    value: function watchHue(val) {
-	      this.imageConfig.adjusters.hue = val;
 	    }
 	  }, {
 	    key: 'watchSepia',
@@ -4680,17 +4698,20 @@
 	          context.drawImage(image, 0, 0, imageW, imageH);
 	
 	          if (config && (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
-	
 	            Object.keys(config).map(function (item) {
 	              switch (item) {
 	                case 'filter':
 	                  var filter = config[item] || '';
 	                  self.processFilter(filter, canvas);
 	                  break;
-	                case 'adjuster':
+	                case 'adjusters':
 	                  var adjusters = config[item] || {};
-	                  Object.keys(adjusters).map(function (item) {
-	                    self.processPixel(item, adjusters[item]);
+	                  Object.keys(adjusters).map(function (i) {
+	                    if (i === 'blur') {
+	                      // self.stackBlurImg(adjusters[i]).bind(self);
+	                    } else {
+	                        self.processPixel(i, adjusters[i]);
+	                      }
 	                  });
 	                  break;
 	              }
@@ -4758,11 +4779,12 @@
 	    value: function processPixel(processor, degree) {
 	      if (this.getData()) {
 	        var imageData = imageData || this.getData(),
-	            deg = degree || 0,
+	            deg = +degree || 0,
 	            pixel;
 	
 	        if (processor && typeof processor === 'string') {
-	          processor = _adjuster2.default[processor].bind(_adjuster2.default);
+	          processor = _adjuster2.default[processor];
+	          processor = processor ? processor.bind(_adjuster2.default) : null;
 	        }
 	
 	        if (processor && typeof processor === 'function') {
@@ -4792,7 +4814,7 @@
 	      if (this.getData()) {
 	        var imageData = this.getData(),
 	            canvas = this.$canvas;
-	        this.setData(_stackblurCanvas2.default.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, radius));
+	        this.setData(_stackblurCanvas2.default.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, +radius));
 	      }
 	    }
 	  }, {
@@ -28726,7 +28748,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 55 */

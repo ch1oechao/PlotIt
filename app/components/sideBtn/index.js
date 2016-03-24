@@ -27,7 +27,6 @@ let sideBtnTpl = () => {
       self.$scope.$watch('palette.brightness', self.watchBrightness.bind(self));
       self.$scope.$watch('palette.saturation', self.watchSaturation.bind(self));
       self.$scope.$watch('palette.contrast', self.watchContrast.bind(self));
-      self.$scope.$watch('palette.hue', self.watchHue.bind(self));
       self.$scope.$watch('palette.sepia', self.watchSepia.bind(self));
       self.$scope.$watch('palette.blur', self.watchBlur.bind(self));
       self.$scope.$watch('palette.noise', self.watchNoise.bind(self));
@@ -73,10 +72,10 @@ class sideBtnCtrl {
       palette.brightness = 0;
       palette.saturation = 0;
       palette.contrast = 0;
-      palette.hue = 0;
       palette.sepia = 0;
       palette.blur = 0;
       palette.noise = 0;
+      palette.curFilter = '';
     }
 
     if (this.isPlot && !isLoading) {
@@ -105,10 +104,6 @@ class sideBtnCtrl {
 
   watchContrast(val) {
     this.imageConfig.adjusters.contrast = val;
-  }
-
-  watchHue(val) {
-    this.imageConfig.adjusters.hue = val;
   }
 
   watchSepia(val) {

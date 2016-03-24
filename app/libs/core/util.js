@@ -51,17 +51,20 @@ export default class PlotitUtil {
         context.drawImage(image, 0, 0, imageW, imageH);
 
         if (config && typeof config === 'object') {
-
           Object.keys(config).map((item) => {
             switch(item) {
               case 'filter':
                 var filter = config[item] || '';
                 self.processFilter(filter, canvas);
               break;
-              case 'adjuster':
+              case 'adjusters':
                 var adjusters = config[item] || {};
-                Object.keys(adjusters).map((item) => {
-                  self.processPixel(item, adjusters[item]);
+                Object.keys(adjusters).map((i) => {
+                  if (i === 'blur') {
+                    // self.stackBlurImg(adjusters[i]).bind(self);
+                  } else {
+                    self.processPixel(i, adjusters[i]);
+                  }
                 });
               break;
             }
@@ -124,11 +127,12 @@ export default class PlotitUtil {
   processPixel(processor, degree) {
     if (this.getData()) {
       var imageData = imageData || this.getData(),
-          deg = degree || 0,
+          deg = +degree || 0,
           pixel;
 
       if (processor && typeof processor === 'string') {
-        processor = Adjuster[processor].bind(Adjuster);
+        processor = Adjuster[processor];
+        processor = processor ? processor.bind(Adjuster) : null;
       }
 
       if (processor && typeof processor === 'function') {
@@ -157,7 +161,7 @@ export default class PlotitUtil {
     if (this.getData()) {
       var imageData = this.getData(),
           canvas = this.$canvas;
-      this.setData(StackBlur.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, radius));   
+      this.setData(StackBlur.imageDataRGB(imageData, 0, 0, canvas.width, canvas.height, +radius));   
     }
   }
 
