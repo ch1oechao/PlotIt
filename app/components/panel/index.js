@@ -55,7 +55,7 @@ class panelCtrl {
       } else {
         // find pic from db
         this.Service.findPic(id, (res) => {
-          if (!err) {
+          if (res) {
             self.hasImage = true;
             self.imageConfig = JSON.parse(res.imageConfig || '{}');
             self.curImageSrc = res.imageSrc + '?' + (+new Date());

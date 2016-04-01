@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0494520e5a23c9b7081e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9fa160f9ebe79ba51aec"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3384,7 +3384,32 @@
 	  }, {
 	    key: 'shareImage',
 	    value: function shareImage(id) {
-	      console.log('share ' + id);
+	      this.Service.findPic(id, function (res) {
+	        if (res) {
+	          var item = res,
+	              appkey = 1976616587,
+	              imageSrc = (item.changeSrc || item.imageSrc) + '?' + +new Date(),
+	              title = item.name + ' 分享自#PlotIt#',
+	              appUrl = 'https://github.com/zchen9/PlotIt/',
+	              charset = 'utf-8';
+	
+	          (function (s, d, e, r, l, p, t, z, c) {
+	            var f = 'http://v.t.sina.com.cn/share/share.php?appkey=' + appkey,
+	                u = z || d.location,
+	                p = ['&url=', e(u), '&title=', e(t || d.title), '&source=', e(r), '&sourceUrl=', e(l), '&content=', c || 'gb2312', '&pic=', e(p || '')].join('');
+	            function a() {
+	              if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=440,height=430,left=', (s.width - 440) / 2, ',top=', (s.height - 430) / 2].join(''))) {
+	                u.href = [f, p].join('');
+	              }
+	            }
+	            if (/Firefox/.test(navigator.userAgent)) {
+	              setTimeout(a, 0);
+	            } else {
+	              a();
+	            };
+	          })(screen, document, encodeURIComponent, '', '', imageSrc, title, appUrl, charset);
+	        }
+	      });
 	    }
 	  }]);
 	
@@ -3703,7 +3728,7 @@
 	        } else {
 	          // find pic from db
 	          _this.Service.findPic(id, function (res) {
-	            if (!err) {
+	            if (res) {
 	              self.hasImage = true;
 	              self.imageConfig = JSON.parse(res.imageConfig || '{}');
 	              self.curImageSrc = res.imageSrc + '?' + +new Date();
@@ -28800,7 +28825,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc ? item.changeSrc : item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
+	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
 /* 54 */

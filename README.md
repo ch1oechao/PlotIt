@@ -20,14 +20,15 @@ Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
 
 - Rename the image
 
+- Share picture to Weibo
+
 ### Function under Development
 
 - Clip
 - Resize
 - Rotate
-- Share
+- Share picture to Wechat (maybe...)
 - fix some filters & adjusters
-
 
 ## Screenshot
 
