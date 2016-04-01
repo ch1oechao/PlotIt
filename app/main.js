@@ -17,8 +17,12 @@ import popover from './components/popover';
 const MODULE_NAME = 'plotit';
 const plotitApp = angular.module(MODULE_NAME, [uiRouter, ngRoute, ngFileUpload]);
 
-// config
+// config routing
 plotitApp.config(routes);
+
+plotitApp.config(($httpProvider) => {
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
 
 // services
 plotitApp.service('Service', services);

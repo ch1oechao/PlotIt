@@ -43,7 +43,7 @@ import Base64 from './base64';
       }
     }, false);
 
-    xhr.onreadystatechange = function(response) {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
           var blkRet = JSON.parse(xhr.responseText);
 

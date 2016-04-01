@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9fa160f9ebe79ba51aec"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b27a38684dc70e501117"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */28);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */67);
+	__webpack_require__(/*! ./app/main.js */29);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */68);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 34);
+	__webpack_require__(/*! ./angular */ 35);
 	module.exports = angular;
 
 /***/ },
@@ -1520,7 +1520,7 @@
 	      }
 	    }, false);
 	
-	    xhr.onreadystatechange = function (response) {
+	    xhr.onreadystatechange = function () {
 	      if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
 	        var blkRet = JSON.parse(xhr.responseText);
 	
@@ -1577,9 +1577,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 37);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 42);
-	var isArray = __webpack_require__(/*! isarray */ 38);
+	var base64 = __webpack_require__(/*! base64-js */ 38);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 43);
+	var isArray = __webpack_require__(/*! isarray */ 39);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -3308,11 +3308,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 53);
+	var _index = __webpack_require__(/*! ./index.html */ 54);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 60);
+	__webpack_require__(/*! ./index.scss */ 61);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3384,30 +3384,12 @@
 	  }, {
 	    key: 'shareImage',
 	    value: function shareImage(id) {
+	      var _this3 = this;
+	
 	      this.Service.findPic(id, function (res) {
 	        if (res) {
-	          var item = res,
-	              appkey = 1976616587,
-	              imageSrc = (item.changeSrc || item.imageSrc) + '?' + +new Date(),
-	              title = item.name + ' 分享自#PlotIt#',
-	              appUrl = 'https://github.com/zchen9/PlotIt/',
-	              charset = 'utf-8';
-	
-	          (function (s, d, e, r, l, p, t, z, c) {
-	            var f = 'http://v.t.sina.com.cn/share/share.php?appkey=' + appkey,
-	                u = z || d.location,
-	                p = ['&url=', e(u), '&title=', e(t || d.title), '&source=', e(r), '&sourceUrl=', e(l), '&content=', c || 'gb2312', '&pic=', e(p || '')].join('');
-	            function a() {
-	              if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=440,height=430,left=', (s.width - 440) / 2, ',top=', (s.height - 430) / 2].join(''))) {
-	                u.href = [f, p].join('');
-	              }
-	            }
-	            if (/Firefox/.test(navigator.userAgent)) {
-	              setTimeout(a, 0);
-	            } else {
-	              a();
-	            };
-	          })(screen, document, encodeURIComponent, '', '', imageSrc, title, appUrl, charset);
+	          _this3.Service.shareToWeibo(res);
+	          // this.Service.shareToWechat();
 	        }
 	      });
 	    }
@@ -3444,7 +3426,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 54);
+	var _index = __webpack_require__(/*! ./index.html */ 55);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -3452,7 +3434,7 @@
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	__webpack_require__(/*! ./index.scss */ 61);
+	__webpack_require__(/*! ./index.scss */ 62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3661,11 +3643,11 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 55);
+	var _index = __webpack_require__(/*! ./index.html */ 56);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 62);
+	__webpack_require__(/*! ./index.scss */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3865,11 +3847,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 56);
+	var _index = __webpack_require__(/*! ./index.html */ 57);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 63);
+	__webpack_require__(/*! ./index.scss */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3984,7 +3966,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 57);
+	var _index = __webpack_require__(/*! ./index.html */ 58);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -3992,7 +3974,7 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 64);
+	__webpack_require__(/*! ./index.scss */ 65);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4235,11 +4217,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 58);
+	var _index = __webpack_require__(/*! ./index.html */ 59);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 65);
+	__webpack_require__(/*! ./index.scss */ 66);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4720,7 +4702,7 @@
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 48);
+	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 49);
 	
 	var _stackblurCanvas2 = _interopRequireDefault(_stackblurCanvas);
 	
@@ -4931,6 +4913,356 @@
 
 /***/ },
 /* 28 */
+/*!***********************************!*\
+  !*** ./app/libs/wechat.client.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	
+	!function (a, b) {
+	     true ? !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	        return b(a);
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : b(a, !0);
+	}(window, function (a, b) {
+	    function c(b, c, d) {
+	        a.WeixinJSBridge ? WeixinJSBridge.invoke(b, e(c), function (a) {
+	            g(b, a, d);
+	        }) : j(b, d);
+	    }
+	
+	    function d(b, c, d) {
+	        a.WeixinJSBridge ? WeixinJSBridge.on(b, function (a) {
+	            d && d.trigger && d.trigger(a), g(b, a, c);
+	        }) : d ? j(b, d) : j(b, c);
+	    }
+	
+	    function e(a) {
+	        return a = a || {}, a.appId = E.appId, a.verifyAppId = E.appId, a.verifySignType = "sha1", a.verifyTimestamp = E.timestamp + "", a.verifyNonceStr = E.nonceStr, a.verifySignature = E.signature, a;
+	    }
+	
+	    function f(a) {
+	        return { timeStamp: a.timestamp + "", nonceStr: a.nonceStr, "package": a.package, paySign: a.paySign, signType: a.signType || "SHA1" };
+	    }
+	
+	    function g(a, b, c) {
+	        var d, e, f;
+	        switch (delete b.err_code, delete b.err_desc, delete b.err_detail, d = b.errMsg, d || (d = b.err_msg, delete b.err_msg, d = h(a, d), b.errMsg = d), c = c || {}, c._complete && (c._complete(b), delete c._complete), d = b.errMsg || "", E.debug && !c.isInnerInvoke && alert(JSON.stringify(b)), e = d.indexOf(":"), f = d.substring(e + 1)) {
+	            case "ok":
+	                c.success && c.success(b);
+	                break;
+	            case "cancel":
+	                c.cancel && c.cancel(b);
+	                break;
+	            default:
+	                c.fail && c.fail(b);
+	        }
+	        c.complete && c.complete(b);
+	    }
+	
+	    function h(a, b) {
+	        var e,
+	            f,
+	            c = a,
+	            d = p[c];
+	        return d && (c = d), e = "ok", b && (f = b.indexOf(":"), e = b.substring(f + 1), "confirm" == e && (e = "ok"), "failed" == e && (e = "fail"), -1 != e.indexOf("failed_") && (e = e.substring(7)), -1 != e.indexOf("fail_") && (e = e.substring(5)), e = e.replace(/_/g, " "), e = e.toLowerCase(), ("access denied" == e || "no permission to execute" == e) && (e = "permission denied"), "config" == c && "function not exist" == e && (e = "ok"), "" == e && (e = "fail")), b = c + ":" + e;
+	    }
+	
+	    function i(a) {
+	        var b, c, d, e;
+	        if (a) {
+	            for (b = 0, c = a.length; c > b; ++b) {
+	                d = a[b], e = o[d], e && (a[b] = e);
+	            }return a;
+	        }
+	    }
+	
+	    function j(a, b) {
+	        if (!(!E.debug || b && b.isInnerInvoke)) {
+	            var c = p[a];
+	            c && (a = c), b && b._complete && delete b._complete, console.log('"' + a + '",', b || "");
+	        }
+	    }
+	
+	    function k() {
+	        0 != D.preVerifyState && (u || v || E.debug || "6.0.2" > z || D.systemType < 0 || A || (A = !0, D.appId = E.appId, D.initTime = C.initEndTime - C.initStartTime, D.preVerifyTime = C.preVerifyEndTime - C.preVerifyStartTime, H.getNetworkType({
+	            isInnerInvoke: !0,
+	            success: function success(a) {
+	                var b, c;
+	                D.networkType = a.networkType, b = "http://open.weixin.qq.com/sdk/report?v=" + D.version + "&o=" + D.preVerifyState + "&s=" + D.systemType + "&c=" + D.clientVersion + "&a=" + D.appId + "&n=" + D.networkType + "&i=" + D.initTime + "&p=" + D.preVerifyTime + "&u=" + D.url, c = new Image(), c.src = b;
+	            }
+	        })));
+	    }
+	
+	    function l() {
+	        return new Date().getTime();
+	    }
+	
+	    function m(b) {
+	        w && (a.WeixinJSBridge ? b() : q.addEventListener && q.addEventListener("WeixinJSBridgeReady", b, !1));
+	    }
+	
+	    function n() {
+	        H.invoke || (H.invoke = function (b, c, d) {
+	            a.WeixinJSBridge && WeixinJSBridge.invoke(b, e(c), d);
+	        }, H.on = function (b, c) {
+	            a.WeixinJSBridge && WeixinJSBridge.on(b, c);
+	        });
+	    }
+	    var o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H;
+	    if (!a.jWeixin) return o = { config: "preVerifyJSAPI", onMenuShareTimeline: "menu:share:timeline", onMenuShareAppMessage: "menu:share:appmessage", onMenuShareQQ: "menu:share:qq", onMenuShareWeibo: "menu:share:weiboApp", onMenuShareQZone: "menu:share:QZone", previewImage: "imagePreview", getLocation: "geoLocation", openProductSpecificView: "openProductViewWithPid", addCard: "batchAddCard", openCard: "batchViewCard", chooseWXPay: "getBrandWCPayRequest" }, p = function () {
+	        var b,
+	            a = {};
+	        for (b in o) {
+	            a[o[b]] = b;
+	        }return a;
+	    }(), q = a.document, r = q.title, s = navigator.userAgent.toLowerCase(), t = navigator.platform.toLowerCase(), u = !(!t.match("mac") && !t.match("win")), v = -1 != s.indexOf("wxdebugger"), w = -1 != s.indexOf("micromessenger"), x = -1 != s.indexOf("android"), y = -1 != s.indexOf("iphone") || -1 != s.indexOf("ipad"), z = function () {
+	        var a = s.match(/micromessenger\/(\d+\.\d+\.\d+)/) || s.match(/micromessenger\/(\d+\.\d+)/);
+	        return a ? a[1] : "";
+	    }(), A = !1, B = !1, C = { initStartTime: l(), initEndTime: 0, preVerifyStartTime: 0, preVerifyEndTime: 0 }, D = { version: 1, appId: "", initTime: 0, preVerifyTime: 0, networkType: "", preVerifyState: 1, systemType: y ? 1 : x ? 2 : -1, clientVersion: z, url: encodeURIComponent(location.href) }, E = {}, F = { _completes: [] }, G = { state: 0, data: {} }, m(function () {
+	        C.initEndTime = l();
+	    }), H = {
+	        config: function config(a) {
+	            E = a, j("config", a);
+	            var b = E.check === !1 ? !1 : !0;
+	            m(function () {
+	                var a, d, e;
+	                if (b) c(o.config, { verifyJsApiList: i(E.jsApiList) }, function () {
+	                    F._complete = function (a) {
+	                        C.preVerifyEndTime = l(), G.state = 1, G.data = a;
+	                    }, F.success = function () {
+	                        D.preVerifyState = 0;
+	                    }, F.fail = function (a) {
+	                        F._fail ? F._fail(a) : G.state = -1;
+	                    };
+	                    var a = F._completes;
+	                    return a.push(function () {
+	                        k();
+	                    }), F.complete = function () {
+	                        for (var c = 0, d = a.length; d > c; ++c) {
+	                            a[c]();
+	                        }F._completes = [];
+	                    }, F;
+	                }()), C.preVerifyStartTime = l();else {
+	                    for (G.state = 1, a = F._completes, d = 0, e = a.length; e > d; ++d) {
+	                        a[d]();
+	                    }F._completes = [];
+	                }
+	            }), E.beta && n();
+	        },
+	        ready: function ready(a) {
+	            0 != G.state ? a() : (F._completes.push(a), !w && E.debug && a());
+	        },
+	        error: function error(a) {
+	            "6.0.2" > z || B || (B = !0, -1 == G.state ? a(G.data) : F._fail = a);
+	        },
+	        checkJsApi: function checkJsApi(a) {
+	            var b = function b(a) {
+	                var c,
+	                    d,
+	                    b = a.checkResult;
+	                for (c in b) {
+	                    d = p[c], d && (b[d] = b[c], delete b[c]);
+	                }return a;
+	            };
+	            c("checkJsApi", { jsApiList: i(a.jsApiList) }, function () {
+	                return a._complete = function (a) {
+	                    if (x) {
+	                        var c = a.checkResult;
+	                        c && (a.checkResult = JSON.parse(c));
+	                    }
+	                    a = b(a);
+	                }, a;
+	            }());
+	        },
+	        onMenuShareTimeline: function onMenuShareTimeline(a) {
+	            d(o.onMenuShareTimeline, { complete: function complete() {
+	                    c("shareTimeline", { title: a.title || r, desc: a.title || r, img_url: a.imgUrl || "", link: a.link || location.href, type: a.type || "link", data_url: a.dataUrl || "" }, a);
+	                } }, a);
+	        },
+	        onMenuShareAppMessage: function onMenuShareAppMessage(a) {
+	            d(o.onMenuShareAppMessage, { complete: function complete() {
+	                    c("sendAppMessage", { title: a.title || r, desc: a.desc || "", link: a.link || location.href, img_url: a.imgUrl || "", type: a.type || "link", data_url: a.dataUrl || "" }, a);
+	                } }, a);
+	        },
+	        onMenuShareQQ: function onMenuShareQQ(a) {
+	            d(o.onMenuShareQQ, { complete: function complete() {
+	                    c("shareQQ", { title: a.title || r, desc: a.desc || "", img_url: a.imgUrl || "", link: a.link || location.href }, a);
+	                } }, a);
+	        },
+	        onMenuShareWeibo: function onMenuShareWeibo(a) {
+	            d(o.onMenuShareWeibo, { complete: function complete() {
+	                    c("shareWeiboApp", { title: a.title || r, desc: a.desc || "", img_url: a.imgUrl || "", link: a.link || location.href }, a);
+	                } }, a);
+	        },
+	        onMenuShareQZone: function onMenuShareQZone(a) {
+	            d(o.onMenuShareQZone, { complete: function complete() {
+	                    c("shareQZone", { title: a.title || r, desc: a.desc || "", img_url: a.imgUrl || "", link: a.link || location.href }, a);
+	                } }, a);
+	        },
+	        startRecord: function startRecord(a) {
+	            c("startRecord", {}, a);
+	        },
+	        stopRecord: function stopRecord(a) {
+	            c("stopRecord", {}, a);
+	        },
+	        onVoiceRecordEnd: function onVoiceRecordEnd(a) {
+	            d("onVoiceRecordEnd", a);
+	        },
+	        playVoice: function playVoice(a) {
+	            c("playVoice", { localId: a.localId }, a);
+	        },
+	        pauseVoice: function pauseVoice(a) {
+	            c("pauseVoice", { localId: a.localId }, a);
+	        },
+	        stopVoice: function stopVoice(a) {
+	            c("stopVoice", { localId: a.localId }, a);
+	        },
+	        onVoicePlayEnd: function onVoicePlayEnd(a) {
+	            d("onVoicePlayEnd", a);
+	        },
+	        uploadVoice: function uploadVoice(a) {
+	            c("uploadVoice", { localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1 }, a);
+	        },
+	        downloadVoice: function downloadVoice(a) {
+	            c("downloadVoice", { serverId: a.serverId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1 }, a);
+	        },
+	        translateVoice: function translateVoice(a) {
+	            c("translateVoice", { localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1 }, a);
+	        },
+	        chooseImage: function chooseImage(a) {
+	            c("chooseImage", { scene: "1|2", count: a.count || 9, sizeType: a.sizeType || ["original", "compressed"], sourceType: a.sourceType || ["album", "camera"] }, function () {
+	                return a._complete = function (a) {
+	                    if (x) {
+	                        var b = a.localIds;
+	                        b && (a.localIds = JSON.parse(b));
+	                    }
+	                }, a;
+	            }());
+	        },
+	        previewImage: function previewImage(a) {
+	            c(o.previewImage, { current: a.current, urls: a.urls }, a);
+	        },
+	        uploadImage: function uploadImage(a) {
+	            c("uploadImage", { localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1 }, a);
+	        },
+	        downloadImage: function downloadImage(a) {
+	            c("downloadImage", { serverId: a.serverId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1 }, a);
+	        },
+	        getNetworkType: function getNetworkType(a) {
+	            var b = function b(a) {
+	                var c,
+	                    d,
+	                    e,
+	                    b = a.errMsg;
+	                if (a.errMsg = "getNetworkType:ok", c = a.subtype, delete a.subtype, c) a.networkType = c;else switch (d = b.indexOf(":"), e = b.substring(d + 1)) {
+	                    case "wifi":
+	                    case "edge":
+	                    case "wwan":
+	                        a.networkType = e;
+	                        break;
+	                    default:
+	                        a.errMsg = "getNetworkType:fail";
+	                }
+	                return a;
+	            };
+	            c("getNetworkType", {}, function () {
+	                return a._complete = function (a) {
+	                    a = b(a);
+	                }, a;
+	            }());
+	        },
+	        openLocation: function openLocation(a) {
+	            c("openLocation", { latitude: a.latitude, longitude: a.longitude, name: a.name || "", address: a.address || "", scale: a.scale || 28, infoUrl: a.infoUrl || "" }, a);
+	        },
+	        getLocation: function getLocation(a) {
+	            a = a || {}, c(o.getLocation, { type: a.type || "wgs84" }, function () {
+	                return a._complete = function (a) {
+	                    delete a.type;
+	                }, a;
+	            }());
+	        },
+	        hideOptionMenu: function hideOptionMenu(a) {
+	            c("hideOptionMenu", {}, a);
+	        },
+	        showOptionMenu: function showOptionMenu(a) {
+	            c("showOptionMenu", {}, a);
+	        },
+	        closeWindow: function closeWindow(a) {
+	            a = a || {}, c("closeWindow", {}, a);
+	        },
+	        hideMenuItems: function hideMenuItems(a) {
+	            c("hideMenuItems", { menuList: a.menuList }, a);
+	        },
+	        showMenuItems: function showMenuItems(a) {
+	            c("showMenuItems", { menuList: a.menuList }, a);
+	        },
+	        hideAllNonBaseMenuItem: function hideAllNonBaseMenuItem(a) {
+	            c("hideAllNonBaseMenuItem", {}, a);
+	        },
+	        showAllNonBaseMenuItem: function showAllNonBaseMenuItem(a) {
+	            c("showAllNonBaseMenuItem", {}, a);
+	        },
+	        scanQRCode: function scanQRCode(a) {
+	            a = a || {}, c("scanQRCode", { needResult: a.needResult || 0, scanType: a.scanType || ["qrCode", "barCode"] }, function () {
+	                return a._complete = function (a) {
+	                    var b, c;
+	                    y && (b = a.resultStr, b && (c = JSON.parse(b), a.resultStr = c && c.scan_code && c.scan_code.scan_result));
+	                }, a;
+	            }());
+	        },
+	        openProductSpecificView: function openProductSpecificView(a) {
+	            c(o.openProductSpecificView, { pid: a.productId, view_type: a.viewType || 0, ext_info: a.extInfo }, a);
+	        },
+	        addCard: function addCard(a) {
+	            var e,
+	                f,
+	                g,
+	                h,
+	                b = a.cardList,
+	                d = [];
+	            for (e = 0, f = b.length; f > e; ++e) {
+	                g = b[e], h = { card_id: g.cardId, card_ext: g.cardExt }, d.push(h);
+	            }c(o.addCard, { card_list: d }, function () {
+	                return a._complete = function (a) {
+	                    var c,
+	                        d,
+	                        e,
+	                        b = a.card_list;
+	                    if (b) {
+	                        for (b = JSON.parse(b), c = 0, d = b.length; d > c; ++c) {
+	                            e = b[c], e.cardId = e.card_id, e.cardExt = e.card_ext, e.isSuccess = e.is_succ ? !0 : !1, delete e.card_id, delete e.card_ext, delete e.is_succ;
+	                        }a.cardList = b, delete a.card_list;
+	                    }
+	                }, a;
+	            }());
+	        },
+	        chooseCard: function chooseCard(a) {
+	            c("chooseCard", { app_id: E.appId, location_id: a.shopId || "", sign_type: a.signType || "SHA1", card_id: a.cardId || "", card_type: a.cardType || "", card_sign: a.cardSign, time_stamp: a.timestamp + "", nonce_str: a.nonceStr }, function () {
+	                return a._complete = function (a) {
+	                    a.cardList = a.choose_card_info, delete a.choose_card_info;
+	                }, a;
+	            }());
+	        },
+	        openCard: function openCard(a) {
+	            var e,
+	                f,
+	                g,
+	                h,
+	                b = a.cardList,
+	                d = [];
+	            for (e = 0, f = b.length; f > e; ++e) {
+	                g = b[e], h = { card_id: g.cardId, code: g.code }, d.push(h);
+	            }c(o.openCard, { card_list: d }, a);
+	        },
+	        chooseWXPay: function chooseWXPay(a) {
+	            c(o.chooseWXPay, f(a), a);
+	        }
+	    }, b && (a.wx = a.jWeixin = H), H;
+	});
+
+/***/ },
+/* 29 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -4946,27 +5278,27 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 33);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 34);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 32);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 33);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 29);
+	var _main = __webpack_require__(/*! ./main.routes */ 30);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 30);
+	var _main3 = __webpack_require__(/*! ./main.services */ 31);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 44);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 45);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 66);
+	__webpack_require__(/*! ./public/styles/main.scss */ 67);
 	
 	var _library = __webpack_require__(/*! ./components/library */ 18);
 	
@@ -4997,8 +5329,12 @@
 	var MODULE_NAME = 'plotit';
 	var plotitApp = _angular2.default.module(MODULE_NAME, [_angularUiRouter2.default, _angularRoute2.default, _ngFileUpload2.default]);
 	
-	// config
+	// config routing
 	plotitApp.config(_main2.default);
+	
+	plotitApp.config(function ($httpProvider) {
+	  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	});
 	
 	// services
 	plotitApp.service('Service', _main4.default);
@@ -5012,7 +5348,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -5036,7 +5372,7 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 59)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 60)
 	  }).state('plot', {
 	    url: '/plot',
 	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
@@ -5047,11 +5383,11 @@
 	}
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -5061,6 +5397,12 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _wechat = __webpack_require__(/*! ./libs/wechat.client */ 28);
+	
+	var _wechat2 = _interopRequireDefault(_wechat);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var service = function () {
@@ -5069,7 +5411,8 @@
 	
 	    this.$http = $http;
 	    this.headers = {
-	      'Content-Type': 'application/x-www-form-urlencoded'
+	      'Content-Type': 'application/x-www-form-urlencoded',
+	      'Access-Control-Allow-Origin': '*'
 	    };
 	  }
 	
@@ -5228,6 +5571,55 @@
 	        });
 	      }
 	    }
+	  }, {
+	    key: 'shareToWeibo',
+	    value: function shareToWeibo(item) {
+	      var appkey = 1976616587,
+	          imageSrc = (item.changeSrc || item.imageSrc) + '?' + +new Date(),
+	          title = item.name + ' 分享自#PlotIt#',
+	          appUrl = 'https://github.com/zchen9/PlotIt/',
+	          charset = 'utf-8';
+	
+	      (function (s, d, e, r, l, p, t, z, c) {
+	        var f = 'http://v.t.sina.com.cn/share/share.php?appkey=' + appkey,
+	            u = z || d.location,
+	            p = ['&url=', e(u), '&title=', e(t || d.title), '&source=', e(r), '&sourceUrl=', e(l), '&content=', c || 'gb2312', '&pic=', e(p || '')].join('');
+	        function a() {
+	          if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=440,height=430,left=', (s.width - 440) / 2, ',top=', (s.height - 430) / 2].join(''))) {
+	            u.href = [f, p].join('');
+	          }
+	        }
+	        if (/Firefox/.test(navigator.userAgent)) {
+	          setTimeout(a, 0);
+	        } else {
+	          a();
+	        };
+	      })(screen, document, encodeURIComponent, '', '', imageSrc, title, appUrl, charset);
+	    }
+	  }, {
+	    key: 'shareToWechat',
+	    value: function shareToWechat() {
+	      var _this9 = this;
+	
+	      var config = {
+	        'aid': 'wxf22f393f544c7f24',
+	        'ase': '7a478172fdd6c82a80641e913cebeb0d'
+	      };
+	
+	      var getAccessToken = function getAccessToken(config) {
+	
+	        _this9.$http({
+	          method: 'get',
+	          url: url
+	        }).success(function (res) {
+	          console.log(res);
+	        }).error(function (err) {
+	          console.log(err);
+	        });
+	      };
+	
+	      getAccessToken(config);
+	    }
 	  }]);
 	
 	  return service;
@@ -5239,7 +5631,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -6229,7 +6621,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -6237,11 +6629,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 31);
+	__webpack_require__(/*! ./angular-route */ 32);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -8518,7 +8910,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -24329,7 +24721,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -24509,7 +24901,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -24523,7 +24915,7 @@
 	};
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -24649,7 +25041,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -24664,7 +25056,7 @@
 	};
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -24673,14 +25065,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 41),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 40),
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 42),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 41),
 	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 16),
 	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 16)
 	};
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -24835,7 +25227,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -24998,7 +25390,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -25092,7 +25484,7 @@
 	};
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -27857,7 +28249,7 @@
 	}]);
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -27865,11 +28257,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 43);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 44);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -27961,7 +28353,7 @@
 	};
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -28033,7 +28425,7 @@
 	};
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -28041,11 +28433,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 45);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 46);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 46);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 47);
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!*********************************************!*\
   !*** ./~/stackblur-canvas/src/stackblur.js ***!
   \*********************************************/
@@ -28586,7 +28978,7 @@
 	};
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -28594,14 +28986,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 36)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 37)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -28637,7 +29029,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 35);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 36);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -28652,7 +29044,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 39).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 40).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -28683,7 +29075,7 @@
 	}
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -28799,7 +29191,7 @@
 	};
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -28819,7 +29211,7 @@
 	};
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -28828,7 +29220,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -28837,7 +29229,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -28846,7 +29238,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -28855,7 +29247,7 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}} ?</div>\n      <div class=\"popover-name\" ng-hide=\"popover.isEditable\" ng-click=\"popover.isEditable = true\">{{popover.curImageName}}</div>\n      <div class=\"popover-edit\" ng-hide=\"!popover.isEditable\">\n        <input class=\"popover-input\" ng-model=\"popover.curImageName\" ng-class=\"popover.isTextError ? ' error' : ''\" /> \n        <i class=\"fa fa-check fa-fw\" ng-click=\"popover.checkName()\" \n                                     ng-class=\"popover.isEditError ? ' error' : ''\"></i>\n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.cancel(sideBtn)\">取消</span>\n      <span class=\"check popover-btn\" ng-click=\"popover.check(sideBtn)\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -28864,7 +29256,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -28873,7 +29265,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -28882,7 +29274,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -28911,7 +29303,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -28940,7 +29332,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -28969,7 +29361,7 @@
 	}
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -28998,7 +29390,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -29027,7 +29419,7 @@
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -29056,7 +29448,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -29085,7 +29477,7 @@
 	}
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -29103,7 +29495,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 47);
+	  var querystring = __webpack_require__(/*! querystring */ 48);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -29171,11 +29563,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 49);
+	var strip = __webpack_require__(/*! strip-ansi */ 50);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 50);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 51);
 	}
 	
 	function problems(type, obj) {
@@ -29192,7 +29584,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 51);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 52);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -29224,7 +29616,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 52)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 53)(module)))
 
 /***/ }
 /******/ ]);
