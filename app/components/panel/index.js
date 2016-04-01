@@ -30,6 +30,7 @@ class panelCtrl {
     this.hasImage = false;
     this.newImage = null;
     this.curImageSrc = null;
+    this.curImageName = null;
     this.isLoading = false;
     this.imageConfig = false;
   }
@@ -47,6 +48,7 @@ class panelCtrl {
             self.hasImage = true;
             self.imageConfig = JSON.parse(item.imageConfig || '{}');
             self.curImageSrc = item.imageSrc + '?' + (+new Date());
+            self.curImageName = item.name;
             self.PlotitUtil.renderImage(item.imageSrc, self.imageConfig);
           }
         });
@@ -57,6 +59,7 @@ class panelCtrl {
             self.hasImage = true;
             self.imageConfig = JSON.parse(res.imageConfig || '{}');
             self.curImageSrc = res.imageSrc + '?' + (+new Date());
+            self.curImageName = item.name;
             self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);  
           } else {
             // loading err, back to home
@@ -85,24 +88,25 @@ class panelCtrl {
 
       if (hasPic[0]) {
 
-        // render image
-        self.imgSrc = hasPic[0].imageSrc;
+        var curPic = hasPic[0];
+
         // show canvas
         self.hasImage = true;
-        self.curImageSrc = hasPic[0].imageSrc;
-        this.PlotitUtil.renderImage(self.imgSrc);
+        self.curImageSrc = curPic.imageSrc;
+        self.curImageName = curPic.name;
+        // render image
+        this.PlotitUtil.renderImage(self.curImageSrc);
         // loading finish
         self.isLoading = false;
 
       } else if (!file.$error && !!self.filterName(file.name)) {
         
-        // render image
-        self.imgSrc = window.URL.createObjectURL(file);
         // show canvas
         self.hasImage = true;
-        self.curImageSrc = self.imgSrc;
-        
-        this.PlotitUtil.renderImage(self.imgSrc);
+        self.curImageSrc = window.URL.createObjectURL(file);
+        self.curImageName = self.filterName(file.name);
+        // render image
+        this.PlotitUtil.renderImage(self.curImageSrc);
 
         // upload to qiniu
         self.uploadImageToQiniu(file); 

@@ -3,7 +3,7 @@
 </div>
 <div class="sidebtn complete" 
      ng-show="sideBtn.isPlot" 
-     ng-click="sideBtn.updateImage(panel.isLoading)">
+     ng-click="sideBtn.updateImage(panel.isLoading, popover)">
   <i class="fa fa-check" ng-if="!panel.isLoading"></i>
   <i class="fa fa-spinner fa-pulse" ng-if="panel.isLoading"></i>
 </div>

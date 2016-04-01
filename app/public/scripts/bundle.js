@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d85b58600bd9ddf4016e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0494520e5a23c9b7081e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -969,7 +969,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".popover-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n\n.popover-box {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 560px;\n  height: 280px;\n  background-color: #3A4750;\n  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);\n  z-index: 9999; }\n\n.popover-header {\n  width: 100%;\n  height: 40px;\n  line-height: 40px; }\n  .popover-header .fa-remove {\n    float: right;\n    margin: .5em;\n    color: #4D606E;\n    cursor: pointer;\n    transition: all 200ms ease-in; }\n    .popover-header .fa-remove:hover {\n      color: #FC5185; }\n\n.popover-body {\n  width: 100%;\n  height: 170px;\n  padding: 2em; }\n\n.popover-tip {\n  line-height: 2.5em; }\n\n.popover-input {\n  width: 31em;\n  padding: 5px 0;\n  font-size: 1em;\n  color: #EEE;\n  outline: none;\n  border: none;\n  border-bottom: 1px solid #08D9D6;\n  background: transparent; }\n  .popover-input[disabled=disabled] {\n    color: #08D9D6;\n    border-bottom: 1px solid #4D606E; }\n\n.popover-footer {\n  width: 100%;\n  height: 70px;\n  padding: 1em 2em;\n  text-align: right; }\n\n.popover-btn {\n  display: inline-block;\n  width: 6em;\n  height: 2em;\n  line-height: 2em;\n  margin-left: .5em;\n  text-align: center;\n  border: 0;\n  outline: 0;\n  background-color: #EEE;\n  transition: all 200ms ease-in; }\n  .popover-btn:hover {\n    cursor: pointer;\n    box-shadow: 2px 3px 6px rgba(10, 10, 10, 0.6); }\n  .popover-btn.check {\n    color: #303841;\n    background-color: #08D9D6; }\n  .popover-btn.cancel {\n    color: #FC5185;\n    background-color: transparent; }\n\n.popover-overlap {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n", ""]);
+	exports.push([module.id, ".popover-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n\n.popover-box {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 560px;\n  height: 280px;\n  background-color: #3A4750;\n  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);\n  z-index: 9999; }\n\n.popover-header {\n  width: 100%;\n  height: 40px;\n  line-height: 40px; }\n  .popover-header .fa-remove {\n    float: right;\n    margin: .5em;\n    color: #4D606E;\n    cursor: pointer;\n    transition: all 200ms ease-in; }\n    .popover-header .fa-remove:hover {\n      color: #FC5185; }\n\n.popover-body {\n  width: 100%;\n  height: 170px;\n  padding: 2em; }\n\n.popover-tip {\n  line-height: 2.5em; }\n\n.popover-input {\n  width: 31em;\n  padding: 10px 0;\n  font-size: 1em;\n  color: #EEE;\n  outline: none;\n  border: none;\n  border-bottom: 1px solid #08D9D6;\n  background: transparent; }\n  .popover-input[disabled=disabled] {\n    color: #08D9D6;\n    border-bottom: 1px solid #4D606E; }\n  .popover-input.error {\n    border-bottom: 1px solid #FC5185; }\n\n.popover-edit {\n  position: relative;\n  width: 31em;\n  height: 2em; }\n  .popover-edit .fa-check {\n    position: absolute;\n    right: 1px;\n    top: 15px;\n    cursor: pointer;\n    transition: all 200ms ease-in; }\n    .popover-edit .fa-check:hover, .popover-edit .fa-check.error {\n      color: #FC5185; }\n\n.popover-name {\n  width: 31em;\n  padding: 12px 0;\n  font-size: 1em;\n  outline: none;\n  border: none;\n  background: transparent;\n  color: #08D9D6;\n  border-bottom: 1px solid #4D606E; }\n\n.popover-footer {\n  width: 100%;\n  height: 70px;\n  padding: 1em 2em;\n  text-align: right; }\n\n.popover-btn {\n  display: inline-block;\n  width: 6em;\n  height: 2em;\n  line-height: 2em;\n  margin-left: .5em;\n  text-align: center;\n  border: 0;\n  outline: 0;\n  background-color: #EEE;\n  transition: all 200ms ease-in; }\n  .popover-btn:hover {\n    cursor: pointer;\n    box-shadow: 2px 3px 6px rgba(10, 10, 10, 0.6); }\n  .popover-btn.check {\n    color: #303841;\n    background-color: #08D9D6; }\n  .popover-btn.cancel {\n    color: #FC5185;\n    background-color: transparent; }\n\n.popover-overlap {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n", ""]);
 	
 	// exports
 
@@ -3674,6 +3674,7 @@
 	    this.hasImage = false;
 	    this.newImage = null;
 	    this.curImageSrc = null;
+	    this.curImageName = null;
 	    this.isLoading = false;
 	    this.imageConfig = false;
 	  }
@@ -3695,6 +3696,7 @@
 	              self.hasImage = true;
 	              self.imageConfig = JSON.parse(item.imageConfig || '{}');
 	              self.curImageSrc = item.imageSrc + '?' + +new Date();
+	              self.curImageName = item.name;
 	              self.PlotitUtil.renderImage(item.imageSrc, self.imageConfig);
 	            }
 	          });
@@ -3705,6 +3707,7 @@
 	              self.hasImage = true;
 	              self.imageConfig = JSON.parse(res.imageConfig || '{}');
 	              self.curImageSrc = res.imageSrc + '?' + +new Date();
+	              self.curImageName = item.name;
 	              self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);
 	            } else {
 	              // loading err, back to home
@@ -3734,23 +3737,24 @@
 	
 	        if (hasPic[0]) {
 	
-	          // render image
-	          self.imgSrc = hasPic[0].imageSrc;
+	          var curPic = hasPic[0];
+	
 	          // show canvas
 	          self.hasImage = true;
-	          self.curImageSrc = hasPic[0].imageSrc;
-	          this.PlotitUtil.renderImage(self.imgSrc);
+	          self.curImageSrc = curPic.imageSrc;
+	          self.curImageName = curPic.name;
+	          // render image
+	          this.PlotitUtil.renderImage(self.curImageSrc);
 	          // loading finish
 	          self.isLoading = false;
 	        } else if (!file.$error && !!self.filterName(file.name)) {
 	
-	          // render image
-	          self.imgSrc = window.URL.createObjectURL(file);
 	          // show canvas
 	          self.hasImage = true;
-	          self.curImageSrc = self.imgSrc;
-	
-	          this.PlotitUtil.renderImage(self.imgSrc);
+	          self.curImageSrc = window.URL.createObjectURL(file);
+	          self.curImageName = self.filterName(file.name);
+	          // render image
+	          this.PlotitUtil.renderImage(self.curImageSrc);
 	
 	          // upload to qiniu
 	          self.uploadImageToQiniu(file);
@@ -3852,20 +3856,32 @@
 	    controller: 'popoverCtrl',
 	    controllerAs: 'popover',
 	    bindToController: true,
-	    restrict: 'E'
+	    restrict: 'E',
+	    link: function link(scope, attrs, element) {
+	      var self = scope.popover,
+	          $scope = self.$scope;
+	
+	      $scope.$watch('panel.curImageName', self.getCurImageName.bind(self));
+	    }
 	  };
 	};
 	
 	var popoverCtrl = function () {
-	  function popoverCtrl() {
+	  function popoverCtrl($scope) {
 	    _classCallCheck(this, popoverCtrl);
 	
+	    this.$scope = $scope;
 	    this.isShow = false;
-	    this.isEditable = true;
-	    this.tip = "是否保存该图片";
+	    this.isEditable = false;
+	    this.tip = "是否保存当前图片";
 	  }
 	
 	  _createClass(popoverCtrl, [{
+	    key: 'getCurImageName',
+	    value: function getCurImageName(val) {
+	      this.curImageName = val;
+	    }
+	  }, {
 	    key: 'open',
 	    value: function open() {
 	      this.isShow = true;
@@ -3875,10 +3891,49 @@
 	    value: function close() {
 	      this.isShow = false;
 	    }
+	  }, {
+	    key: 'cancel',
+	    value: function cancel(sidebtn) {
+	      this.close();
+	      sidebtn.turnToHome();
+	    }
+	  }, {
+	    key: 'check',
+	    value: function check(sidebtn) {
+	      if (this.checkInput()) {
+	        sidebtn.uploadImage(this.curImageName);
+	        this.close();
+	      }
+	    }
+	  }, {
+	    key: 'checkName',
+	    value: function checkName() {
+	      if (!!this.curImageName) {
+	        this.isEditable = this.isEditError = this.isTextError = false;
+	      } else {
+	        this.isTextError = true;
+	      }
+	    }
+	  }, {
+	    key: 'checkInput',
+	    value: function checkInput() {
+	      var res = true;
+	      if (!this.curImageName) {
+	        this.isTextError = true;
+	        res = false;
+	      }
+	      if (this.isEditable) {
+	        this.isEditError = true;
+	        res = false;
+	      }
+	      return res;
+	    }
 	  }]);
 	
 	  return popoverCtrl;
 	}();
+	
+	popoverCtrl.$inject = ['$scope'];
 	
 	exports.default = {
 	  tpl: popoverTpl,
@@ -4058,12 +4113,16 @@
 	    }
 	  }, {
 	    key: 'updateImage',
-	    value: function updateImage(isLoading) {
-	      var _this2 = this;
-	
-	      if (isLoading) {
+	    value: function updateImage(isLoading, popover) {
+	      if (isLoading || !popover) {
 	        return;
 	      }
+	      popover.open();
+	    }
+	  }, {
+	    key: 'uploadImage',
+	    value: function uploadImage(name) {
+	      var _this2 = this;
 	
 	      var self = this,
 	          paths = this.$location.$$path.split('/'),
@@ -4105,6 +4164,7 @@
 	              // update mongoDB
 	              self.Service.updatePic({
 	                id: curImage._id,
+	                name: name ? name : curImage.name,
 	                changeSrc: src,
 	                imageConfig: imageConfig
 	              }, function (res) {
@@ -28767,7 +28827,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}}?</div>\n      <div class=\"popover-name\">\n        <input class=\"popover-input\" value=\"asdasdasdasa\" ng-disabled=\"popover.isEditable\" />  \n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.close()\">取消</span>\n      <span class=\"check popover-btn\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
+	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}} ?</div>\n      <div class=\"popover-name\" ng-hide=\"popover.isEditable\" ng-click=\"popover.isEditable = true\">{{popover.curImageName}}</div>\n      <div class=\"popover-edit\" ng-hide=\"!popover.isEditable\">\n        <input class=\"popover-input\" ng-model=\"popover.curImageName\" ng-class=\"popover.isTextError ? ' error' : ''\" /> \n        <i class=\"fa fa-check fa-fw\" ng-click=\"popover.checkName()\" \n                                     ng-class=\"popover.isEditError ? ' error' : ''\"></i>\n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.cancel(sideBtn)\">取消</span>\n      <span class=\"check popover-btn\" ng-click=\"popover.check(sideBtn)\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
 /* 57 */
@@ -28776,7 +28836,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
 /* 58 */

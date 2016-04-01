@@ -18,12 +18,13 @@ Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
 
 - One step for reset the image
 
+- Rename the image
+
 ### Function under Development
 
 - Clip
 - Resize
 - Rotate
-- Rename
 - Share
 - fix some filters & adjusters
 

@@ -126,12 +126,14 @@ class sideBtnCtrl {
     this.newImage = val;
   }
 
-  updateImage(isLoading) {
-
-    if (isLoading) {
+  updateImage(isLoading, popover) {
+    if (isLoading || !popover) {
       return;
     }
+    popover.open();
+  }
 
+  uploadImage(name) {
     var self = this,
         paths = (this.$location.$$path).split('/'),
         id = paths[paths.length - 1],
@@ -172,6 +174,7 @@ class sideBtnCtrl {
             // update mongoDB
             self.Service.updatePic({
               id: curImage._id,
+              name: name ? name : curImage.name,
               changeSrc: src,
               imageConfig: imageConfig
             }, (res) => {
@@ -188,7 +191,6 @@ class sideBtnCtrl {
     } else {
       this.turnToHome();
     }
-    
   }
 
 }

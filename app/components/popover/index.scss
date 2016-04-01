@@ -49,7 +49,7 @@
 
 .popover-input {
   width: 31em;
-  padding: 5px 0;
+  padding: 10px 0;
   font-size: 1em;
   color: $second-color;
   outline: none;
@@ -61,7 +61,41 @@
     color: $primary-color;
     border-bottom: 1px solid $third-dark;
   }
+
+  &.error {
+    border-bottom: 1px solid $red;
+  } 
 }
+.popover-edit {
+  position: relative;
+  width: 31em;
+  height: 2em;
+
+  .fa-check {
+    position: absolute;
+    right: 1px;
+    top: 15px;
+    cursor: pointer;
+    transition: all 200ms ease-in;
+
+    &:hover,
+    &.error {
+      color: $red;
+    }
+  }
+}
+
+.popover-name {
+  width: 31em;
+  padding: 12px 0;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: $primary-color;
+  border-bottom: 1px solid $third-dark;
+}
+
 
 .popover-footer {
   width: 100%;

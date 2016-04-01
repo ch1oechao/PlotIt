@@ -4,14 +4,17 @@
       <i class="fa fa-remove" ng-click="popover.close()"></i>
     </div>
     <div class="popover-body">
-      <div class="popover-tip">{{popover.tip}}?</div>
-      <div class="popover-name">
-        <input class="popover-input" value="asdasdasdasa" ng-disabled="popover.isEditable" />  
+      <div class="popover-tip">{{popover.tip}} ?</div>
+      <div class="popover-name" ng-hide="popover.isEditable" ng-click="popover.isEditable = true">{{popover.curImageName}}</div>
+      <div class="popover-edit" ng-hide="!popover.isEditable">
+        <input class="popover-input" ng-model="popover.curImageName" ng-class="popover.isTextError ? ' error' : ''" /> 
+        <i class="fa fa-check fa-fw" ng-click="popover.checkName()" 
+                                     ng-class="popover.isEditError ? ' error' : ''"></i>
       </div>
     </div>
     <div class="popover-footer">
-      <span class="cancel popover-btn" ng-click="popover.close()">取消</span>
-      <span class="check popover-btn">确定</span>
+      <span class="cancel popover-btn" ng-click="popover.cancel(sideBtn)">取消</span>
+      <span class="check popover-btn" ng-click="popover.check(sideBtn)">确定</span>
     </div>
   </div>
   <div class="popover-overlap"></div>
