@@ -34,15 +34,15 @@ Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
 
 #### HOME PAGE
 
-![](./image/home.png)
+![](./images/home.png)
 
 #### FILTER PAGE
 
-![](./image/filter.png)
+![](./images/filter.png)
 
 #### ADJSUTER PAGE
 
-![](./image/adjuster.png)
+![](./images/adjuster.png)
 
 ## Thanks for the inspiration
 
