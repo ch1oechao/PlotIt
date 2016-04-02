@@ -34,7 +34,8 @@ class paletteCtrl {
   constructor($scope) {
     this.brand = 'PlotIt';
     this.$scope = $scope;
-    this.isFilter = true;
+    this.activeMenu = 'filter';
+    this.curScale = null;
     this.curTime = +(new Date()) + 1024;
     this.filterImgSrc = 'http://7xr6bj.com1.z0.glb.clouddn.com/01.jpg?imageView2/2/h/150/?' + this.curTime;
     this.Plotit = Plotit;
@@ -72,14 +73,37 @@ class paletteCtrl {
     this.sepia = 0;
     this.blur = 0;
     this.noise = 0;
+
+    this.resizeScales = [{
+      name: '自定义',
+      x: 0,
+      y: 0
+    }, {
+      name: '1:1',
+      x: 1,
+      y: 1
+    }, {
+      name: '4:3',
+      x: 4,
+      y: 3
+    }, {
+      name: '3:4',
+      x: 3,
+      y: 4
+    }]
   }
 
   setPlotitUtil(PlotitUtil) {
     this.PlotitUtil = PlotitUtil;
   }
 
-  switchTab(isFilter) {
-    this.isFilter = isFilter;
+  switchTab(type) {
+    
+    this.activeMenu = type || 'filter';
+
+    if (type !== 'resize') {
+      this.PlotitUtil.removeResizeFrame();
+    }
   }
 
   setImageConfig(val) {
@@ -152,6 +176,11 @@ class paletteCtrl {
     if (newVal !== 0) {
       this.PlotitUtil.stackBlurImg(newVal - oldVal);
     }  
+  }
+
+  setCanvasScale(scale) {
+    this.curScale = scale;
+    this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale);
   }
 
 }

@@ -1,5 +1,6 @@
 import Adjuster from './adjuster';
 import Filter from './filter';
+import Resize from './resize';
 import StackBlur from 'stackblur-canvas';
 
 export default class PlotitUtil {
@@ -156,6 +157,17 @@ export default class PlotitUtil {
 
       this.setData(imageData);
     }
+  }
+
+  processResize(canvas, scale) {
+    // new layer
+    Resize.newFrame(canvas, scale);
+    // bind Util
+    Resize.bindUtil(this);
+  }
+
+  removeResizeFrame() {
+    Resize.removeFrame();
   }
 
   stackBlurImg(radius) {

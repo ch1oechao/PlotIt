@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b27a38684dc70e501117"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "889f320a7bc5ddf6cab1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,8 +575,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./app/main.js */29);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */68);
+	__webpack_require__(/*! ./app/main.js */30);
+	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */69);
 
 
 /***/ },
@@ -588,7 +588,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 35);
+	__webpack_require__(/*! ./angular */ 36);
 	module.exports = angular;
 
 /***/ },
@@ -935,7 +935,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".aden {\n  -webkit-filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2);\n  filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2); }\n\n.aden::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.perpetua::after, .reyes::after {\n  mix-blend-mode: soft-light;\n  opacity: .5; }\n\n.inkwell {\n  -webkit-filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1);\n  filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1); }\n\n.perpetua::after {\n  background: -webkit-linear-gradient(top, #005b9a, #e6c13d);\n  background: linear-gradient(to bottom, #005b9a, #e6c13d); }\n\n.reyes {\n  -webkit-filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75);\n  filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75); }\n\n.reyes::after {\n  background: #efcdad; }\n\n.gingham {\n  -webkit-filter: brightness(1.05) hue-rotate(-10deg);\n  filter: brightness(1.05) hue-rotate(-10deg); }\n\n.gingham::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.toaster {\n  -webkit-filter: contrast(1.5) brightness(0.9);\n  filter: contrast(1.5) brightness(0.9); }\n\n.toaster::after {\n  background: -webkit-radial-gradient(circle, #804e0f, #3b003b);\n  background: radial-gradient(circle, #804e0f, #3b003b);\n  mix-blend-mode: screen; }\n\n.walden {\n  -webkit-filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6);\n  filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6); }\n\n.walden::after {\n  background: #04c;\n  mix-blend-mode: screen;\n  opacity: .3; }\n\n.hudson {\n  -webkit-filter: brightness(1.2) contrast(0.9) saturate(1.1);\n  filter: brightness(1.2) contrast(0.9) saturate(1.1); }\n\n.hudson::after {\n  background: -webkit-radial-gradient(circle, #a6b1ff 50%, #342134);\n  background: radial-gradient(circle, #a6b1ff 50%, #342134);\n  mix-blend-mode: multiply;\n  opacity: .5; }\n\n.earlybird {\n  -webkit-filter: contrast(0.9) sepia(0.2);\n  filter: contrast(0.9) sepia(0.2); }\n\n.earlybird::after {\n  background: -webkit-radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  background: radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  mix-blend-mode: overlay; }\n\n.mayfair {\n  -webkit-filter: contrast(1.1) saturate(1.1);\n  filter: contrast(1.1) saturate(1.1); }\n\n.mayfair::after {\n  background: -webkit-radial-gradient(40% 40%, circle, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  mix-blend-mode: overlay;\n  opacity: .4; }\n\n.lofi {\n  -webkit-filter: saturate(1.1) contrast(1.5);\n  filter: saturate(1.1) contrast(1.5); }\n\n.lofi::after {\n  background: -webkit-radial-gradient(circle, transparent 70%, #222 150%);\n  background: radial-gradient(circle, transparent 70%, #222 150%);\n  mix-blend-mode: multiply; }\n\n._1977 {\n  -webkit-filter: contrast(1.1) brightness(1.1) saturate(1.3);\n  filter: contrast(1.1) brightness(1.1) saturate(1.3); }\n\n._1977:after {\n  background: rgba(243, 106, 188, 0.3);\n  mix-blend-mode: screen; }\n\n.brooklyn {\n  -webkit-filter: contrast(0.9) brightness(1.1);\n  filter: contrast(0.9) brightness(1.1); }\n\n.brooklyn::after {\n  background: -webkit-radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  background: radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  mix-blend-mode: overlay; }\n\n.xpro2 {\n  -webkit-filter: sepia(0.3);\n  filter: sepia(0.3); }\n\n.xpro2::after {\n  background: -webkit-radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  background: radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  mix-blend-mode: color-burn; }\n\n.nashville {\n  -webkit-filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2);\n  filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2); }\n\n.nashville::after {\n  background: rgba(0, 70, 150, 0.4);\n  mix-blend-mode: lighten; }\n\n.nashville::before {\n  background: rgba(247, 176, 153, 0.56);\n  mix-blend-mode: darken; }\n\n.lark {\n  -webkit-filter: contrast(0.9);\n  filter: contrast(0.9); }\n\n.lark::after {\n  background: rgba(242, 242, 242, 0.8);\n  mix-blend-mode: darken; }\n\n.lark::before {\n  background: #22253f;\n  mix-blend-mode: color-dodge; }\n\n.moon {\n  -webkit-filter: grayscale(1) contrast(1.1) brightness(1.1);\n  filter: grayscale(1) contrast(1.1) brightness(1.1); }\n\n.moon::before {\n  background: #a0a0a0;\n  mix-blend-mode: soft-light; }\n\n.moon::after {\n  background: #383838;\n  mix-blend-mode: lighten; }\n\n.clarendon {\n  -webkit-filter: contrast(1.2) saturate(1.35);\n  filter: contrast(1.2) saturate(1.35); }\n\n.clarendon:before {\n  background: rgba(127, 187, 227, 0.2);\n  mix-blend-mode: overlay; }\n\n.willow {\n  -webkit-filter: grayscale(0.5) contrast(0.95) brightness(0.9);\n  filter: grayscale(0.5) contrast(0.95) brightness(0.9); }\n\n.willow::before {\n  background-color: radial-gradient(40%, circle, #d4a9af 55%, #000 150%);\n  mix-blend-mode: overlay; }\n\n.willow::after {\n  background-color: #d8cdcb;\n  mix-blend-mode: color; }\n\n.rise {\n  -webkit-filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9);\n  filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9); }\n\n.rise::after {\n  background: -webkit-radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  background: radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  mix-blend-mode: overlay;\n  opacity: .6; }\n\n.rise::before {\n  background: -webkit-radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  background: radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  mix-blend-mode: multiply; }\n\n._1977:after, ._1977:before, .aden:after, .aden:before, .brooklyn:after, .brooklyn:before, .clarendon:after, .clarendon:before, .earlybird:after, .earlybird:before, .gingham:after, .gingham:before, .hudson:after, .hudson:before, .inkwell:after, .inkwell:before, .lark:after, .lark:before, .lofi:after, .lofi:before, .mayfair:after, .mayfair:before, .moon:after, .moon:before, .nashville:after, .nashville:before, .perpetua:after, .perpetua:before, .reyes:after, .reyes:before, .rise:after, .rise:before, .slumber:after, .slumber:before, .toaster:after, .toaster:before, .walden:after, .walden:before, .willow:after, .willow:before, .xpro2:after, .xpro2:before {\n  content: '';\n  display: block;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  pointer-events: none; }\n\n._1977, .aden, .brooklyn, .clarendon, .earlybird, .gingham, .hudson, .inkwell, .lark, .lofi, .mayfair, .moon, .nashville, .perpetua, .reyes, .rise, .slumber, .toaster, .walden, .willow, .xpro2 {\n  position: relative; }\n\n._1977 img, .aden img, .brooklyn img, .clarendon img, .earlybird img, .gingham img, .hudson img, .inkwell img, .lark img, .lofi img, .mayfair img, .moon img, .nashville img, .perpetua img, .reyes img, .rise img, .slumber img, .toaster img, .walden img, .willow img, .xpro2 img {\n  width: 100%;\n  z-index: 1; }\n\n._1977:before, .aden:before, .brooklyn:before, .clarendon:before, .earlybird:before, .gingham:before, .hudson:before, .inkwell:before, .lark:before, .lofi:before, .mayfair:before, .moon:before, .nashville:before, .perpetua:before, .reyes:before, .rise:before, .slumber:before, .toaster:before, .walden:before, .willow:before, .xpro2:before {\n  z-index: 2; }\n\n._1977:after, .aden:after, .brooklyn:after, .clarendon:after, .earlybird:after, .gingham:after, .hudson:after, .inkwell:after, .lark:after, .lofi:after, .mayfair:after, .moon:after, .nashville:after, .perpetua:after, .reyes:after, .rise:after, .slumber:after, .toaster:after, .walden:after, .willow:after, .xpro2:after {\n  z-index: 3; }\n\n.slumber {\n  -webkit-filter: saturate(0.66) brightness(1.05);\n  filter: saturate(0.66) brightness(1.05); }\n\n.slumber::after {\n  background: rgba(125, 105, 24, 0.5);\n  mix-blend-mode: soft-light; }\n\n.slumber::before {\n  background: rgba(69, 41, 12, 0.4);\n  mix-blend-mode: lighten; }\n\npalette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 16% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 75%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu {\n  width: 100%;\n  height: 3.5em; }\n  .palette-menu li {\n    display: inline-block;\n    padding: .5em 1.8em .6em .5em;\n    margin-right: .1em;\n    letter-spacing: .4em;\n    border-bottom: 1px solid transparent; }\n    .palette-menu li .fa {\n      margin-right: .5em; }\n    .palette-menu li.active {\n      border-bottom-color: #08D9D6; }\n    .palette-menu li:hover {\n      border-bottom-color: #08D9D6;\n      cursor: pointer; }\n\n.palette-body {\n  position: relative;\n  width: 14em;\n  height: 90%;\n  min-height: 400px;\n  overflow-y: scroll; }\n\n.palette-filter-container,\n.palette-adjuster-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.filter-item {\n  position: relative;\n  height: 7em;\n  padding: 0;\n  font-size: .9em;\n  background-color: #3A4750;\n  overflow: hidden;\n  cursor: pointer; }\n  .filter-item.active, .filter-item:hover {\n    color: #08D9D6; }\n  .filter-item img {\n    width: 100%; }\n\n.filter-name {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.5); }\n\n.adjuster-item {\n  height: 3em;\n  line-height: 3em;\n  padding-left: 1.2em;\n  margin-bottom: 1em;\n  font-size: .8em; }\n  .adjuster-item .adjuster-name {\n    width: 100%;\n    display: inline-block;\n    margin-bottom: .3em; }\n  .adjuster-item .adjuster-qty {\n    float: right;\n    padding-right: 5px; }\n  .adjuster-item input[type=range] {\n    width: 98%;\n    background-color: #4D606E;\n    height: 1px;\n    vertical-align: 1px;\n    -webkit-appearance: none;\n    outline: none;\n    border: none; }\n    .adjuster-item input[type=range]:hover {\n      cursor: pointer; }\n  .adjuster-item input[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: .65em;\n    width: .65em;\n    background: #08D9D6;\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, ".aden {\n  -webkit-filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2);\n  filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2); }\n\n.aden::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.perpetua::after, .reyes::after {\n  mix-blend-mode: soft-light;\n  opacity: .5; }\n\n.inkwell {\n  -webkit-filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1);\n  filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1); }\n\n.perpetua::after {\n  background: -webkit-linear-gradient(top, #005b9a, #e6c13d);\n  background: linear-gradient(to bottom, #005b9a, #e6c13d); }\n\n.reyes {\n  -webkit-filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75);\n  filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75); }\n\n.reyes::after {\n  background: #efcdad; }\n\n.gingham {\n  -webkit-filter: brightness(1.05) hue-rotate(-10deg);\n  filter: brightness(1.05) hue-rotate(-10deg); }\n\n.gingham::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.toaster {\n  -webkit-filter: contrast(1.5) brightness(0.9);\n  filter: contrast(1.5) brightness(0.9); }\n\n.toaster::after {\n  background: -webkit-radial-gradient(circle, #804e0f, #3b003b);\n  background: radial-gradient(circle, #804e0f, #3b003b);\n  mix-blend-mode: screen; }\n\n.walden {\n  -webkit-filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6);\n  filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6); }\n\n.walden::after {\n  background: #04c;\n  mix-blend-mode: screen;\n  opacity: .3; }\n\n.hudson {\n  -webkit-filter: brightness(1.2) contrast(0.9) saturate(1.1);\n  filter: brightness(1.2) contrast(0.9) saturate(1.1); }\n\n.hudson::after {\n  background: -webkit-radial-gradient(circle, #a6b1ff 50%, #342134);\n  background: radial-gradient(circle, #a6b1ff 50%, #342134);\n  mix-blend-mode: multiply;\n  opacity: .5; }\n\n.earlybird {\n  -webkit-filter: contrast(0.9) sepia(0.2);\n  filter: contrast(0.9) sepia(0.2); }\n\n.earlybird::after {\n  background: -webkit-radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  background: radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  mix-blend-mode: overlay; }\n\n.mayfair {\n  -webkit-filter: contrast(1.1) saturate(1.1);\n  filter: contrast(1.1) saturate(1.1); }\n\n.mayfair::after {\n  background: -webkit-radial-gradient(40% 40%, circle, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  mix-blend-mode: overlay;\n  opacity: .4; }\n\n.lofi {\n  -webkit-filter: saturate(1.1) contrast(1.5);\n  filter: saturate(1.1) contrast(1.5); }\n\n.lofi::after {\n  background: -webkit-radial-gradient(circle, transparent 70%, #222 150%);\n  background: radial-gradient(circle, transparent 70%, #222 150%);\n  mix-blend-mode: multiply; }\n\n._1977 {\n  -webkit-filter: contrast(1.1) brightness(1.1) saturate(1.3);\n  filter: contrast(1.1) brightness(1.1) saturate(1.3); }\n\n._1977:after {\n  background: rgba(243, 106, 188, 0.3);\n  mix-blend-mode: screen; }\n\n.brooklyn {\n  -webkit-filter: contrast(0.9) brightness(1.1);\n  filter: contrast(0.9) brightness(1.1); }\n\n.brooklyn::after {\n  background: -webkit-radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  background: radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  mix-blend-mode: overlay; }\n\n.xpro2 {\n  -webkit-filter: sepia(0.3);\n  filter: sepia(0.3); }\n\n.xpro2::after {\n  background: -webkit-radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  background: radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  mix-blend-mode: color-burn; }\n\n.nashville {\n  -webkit-filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2);\n  filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2); }\n\n.nashville::after {\n  background: rgba(0, 70, 150, 0.4);\n  mix-blend-mode: lighten; }\n\n.nashville::before {\n  background: rgba(247, 176, 153, 0.56);\n  mix-blend-mode: darken; }\n\n.lark {\n  -webkit-filter: contrast(0.9);\n  filter: contrast(0.9); }\n\n.lark::after {\n  background: rgba(242, 242, 242, 0.8);\n  mix-blend-mode: darken; }\n\n.lark::before {\n  background: #22253f;\n  mix-blend-mode: color-dodge; }\n\n.moon {\n  -webkit-filter: grayscale(1) contrast(1.1) brightness(1.1);\n  filter: grayscale(1) contrast(1.1) brightness(1.1); }\n\n.moon::before {\n  background: #a0a0a0;\n  mix-blend-mode: soft-light; }\n\n.moon::after {\n  background: #383838;\n  mix-blend-mode: lighten; }\n\n.clarendon {\n  -webkit-filter: contrast(1.2) saturate(1.35);\n  filter: contrast(1.2) saturate(1.35); }\n\n.clarendon:before {\n  background: rgba(127, 187, 227, 0.2);\n  mix-blend-mode: overlay; }\n\n.willow {\n  -webkit-filter: grayscale(0.5) contrast(0.95) brightness(0.9);\n  filter: grayscale(0.5) contrast(0.95) brightness(0.9); }\n\n.willow::before {\n  background-color: radial-gradient(40%, circle, #d4a9af 55%, #000 150%);\n  mix-blend-mode: overlay; }\n\n.willow::after {\n  background-color: #d8cdcb;\n  mix-blend-mode: color; }\n\n.rise {\n  -webkit-filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9);\n  filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9); }\n\n.rise::after {\n  background: -webkit-radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  background: radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  mix-blend-mode: overlay;\n  opacity: .6; }\n\n.rise::before {\n  background: -webkit-radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  background: radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  mix-blend-mode: multiply; }\n\n._1977:after, ._1977:before, .aden:after, .aden:before, .brooklyn:after, .brooklyn:before, .clarendon:after, .clarendon:before, .earlybird:after, .earlybird:before, .gingham:after, .gingham:before, .hudson:after, .hudson:before, .inkwell:after, .inkwell:before, .lark:after, .lark:before, .lofi:after, .lofi:before, .mayfair:after, .mayfair:before, .moon:after, .moon:before, .nashville:after, .nashville:before, .perpetua:after, .perpetua:before, .reyes:after, .reyes:before, .rise:after, .rise:before, .slumber:after, .slumber:before, .toaster:after, .toaster:before, .walden:after, .walden:before, .willow:after, .willow:before, .xpro2:after, .xpro2:before {\n  content: '';\n  display: block;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  pointer-events: none; }\n\n._1977, .aden, .brooklyn, .clarendon, .earlybird, .gingham, .hudson, .inkwell, .lark, .lofi, .mayfair, .moon, .nashville, .perpetua, .reyes, .rise, .slumber, .toaster, .walden, .willow, .xpro2 {\n  position: relative; }\n\n._1977 img, .aden img, .brooklyn img, .clarendon img, .earlybird img, .gingham img, .hudson img, .inkwell img, .lark img, .lofi img, .mayfair img, .moon img, .nashville img, .perpetua img, .reyes img, .rise img, .slumber img, .toaster img, .walden img, .willow img, .xpro2 img {\n  width: 100%;\n  z-index: 1; }\n\n._1977:before, .aden:before, .brooklyn:before, .clarendon:before, .earlybird:before, .gingham:before, .hudson:before, .inkwell:before, .lark:before, .lofi:before, .mayfair:before, .moon:before, .nashville:before, .perpetua:before, .reyes:before, .rise:before, .slumber:before, .toaster:before, .walden:before, .willow:before, .xpro2:before {\n  z-index: 2; }\n\n._1977:after, .aden:after, .brooklyn:after, .clarendon:after, .earlybird:after, .gingham:after, .hudson:after, .inkwell:after, .lark:after, .lofi:after, .mayfair:after, .moon:after, .nashville:after, .perpetua:after, .reyes:after, .rise:after, .slumber:after, .toaster:after, .walden:after, .willow:after, .xpro2:after {\n  z-index: 3; }\n\n.slumber {\n  -webkit-filter: saturate(0.66) brightness(1.05);\n  filter: saturate(0.66) brightness(1.05); }\n\n.slumber::after {\n  background: rgba(125, 105, 24, 0.5);\n  mix-blend-mode: soft-light; }\n\n.slumber::before {\n  background: rgba(69, 41, 12, 0.4);\n  mix-blend-mode: lighten; }\n\npalette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 16% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 75%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu {\n  width: 100%;\n  height: 3.5em; }\n  .palette-menu li {\n    display: inline-block;\n    padding: .6em;\n    border-bottom: 1px solid transparent; }\n    .palette-menu li .fa {\n      margin: 0 .5em; }\n    .palette-menu li.active {\n      padding: .6em;\n      margin-right: .1em;\n      letter-spacing: .7em;\n      border-bottom-color: #08D9D6; }\n    .palette-menu li:hover {\n      border-bottom-color: #08D9D6;\n      cursor: pointer; }\n\n.palette-body {\n  position: relative;\n  width: 14em;\n  height: 90%;\n  min-height: 400px;\n  overflow-y: scroll; }\n\n.palette-filter-container,\n.palette-adjuster-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.filter-item {\n  position: relative;\n  height: 7em;\n  padding: 0;\n  font-size: .9em;\n  background-color: #3A4750;\n  overflow: hidden;\n  cursor: pointer; }\n  .filter-item.active, .filter-item:hover {\n    color: #08D9D6; }\n  .filter-item img {\n    width: 100%; }\n\n.filter-name {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.5); }\n\n.adjuster-item {\n  height: 4em;\n  line-height: 3em;\n  padding-left: 2em;\n  margin-bottom: 1em;\n  font-size: .8em; }\n  .adjuster-item .adjuster-name {\n    width: 100%;\n    display: inline-block;\n    margin-bottom: .3em; }\n  .adjuster-item .adjuster-qty {\n    float: right;\n    padding-right: 5px; }\n  .adjuster-item input[type=range] {\n    width: 98%;\n    background-color: #4D606E;\n    height: 1px;\n    vertical-align: 1px;\n    -webkit-appearance: none;\n    outline: none;\n    border: none; }\n    .adjuster-item input[type=range]:hover {\n      cursor: pointer; }\n  .adjuster-item input[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: .65em;\n    width: .65em;\n    background: #08D9D6;\n    cursor: pointer; }\n\n.scale-item {\n  position: relative;\n  height: 6em;\n  margin-bottom: .2em;\n  text-align: center;\n  color: #08D9D6;\n  cursor: pointer; }\n  .scale-item:hover, .scale-item.active {\n    color: #FC5185; }\n  .scale-item .scale-model {\n    width: 100%;\n    height: 5em; }\n  .scale-item .scale-name {\n    font-size: .9em;\n    color: inherit; }\n", ""]);
 	
 	// exports
 
@@ -1205,7 +1205,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _layer = __webpack_require__(/*! ./layer */ 26);
+	var _layer = __webpack_require__(/*! ./layer */ 13);
 	
 	var _layer2 = _interopRequireDefault(_layer);
 	
@@ -1245,7 +1245,7 @@
 	    key: 'newLayer',
 	    value: function newLayer(canvas) {
 	      this.canvas = canvas;
-	      this.layer = new _layer2.default(canvas).layer;
+	      this.layer = new _layer2.default(canvas, 'newFilter').layer;
 	    }
 	  }, {
 	    key: 'renderLayer',
@@ -1426,6 +1426,141 @@
 
 /***/ },
 /* 13 */
+/*!********************************!*\
+  !*** ./app/libs/core/layer.js ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PlotitLayer = function () {
+	  function PlotitLayer(canvas, id) {
+	    _classCallCheck(this, PlotitLayer);
+	
+	    this.canvas = canvas;
+	    this.id = id;
+	    this.layer = this.new(id);
+	  }
+	
+	  _createClass(PlotitLayer, [{
+	    key: 'new',
+	    value: function _new(id) {
+	      var canvas = this.canvas,
+	          width = canvas.width,
+	          height = canvas.height,
+	          top = canvas.style.top,
+	          left = canvas.style.left;
+	
+	      var newCanvas = document.createElement('canvas');
+	
+	      newCanvas.id = id;
+	      newCanvas.width = width;
+	      newCanvas.height = height;
+	      newCanvas.style.position = 'absolute';
+	      newCanvas.style.top = top;
+	      newCanvas.style.left = left;
+	
+	      return newCanvas;
+	    }
+	  }, {
+	    key: 'clear',
+	    value: function clear() {
+	      if (document.querySelector('#' + this.id)) {
+	        var $frame = document.querySelector('#' + this.id),
+	            parent = $frame.parentNode;
+	        parent.removeChild($frame);
+	      }
+	    }
+	
+	    // append to the panel
+	
+	  }, {
+	    key: 'addFrame',
+	    value: function addFrame(scale) {
+	
+	      this.clear();
+	
+	      var originW = this.layer.width,
+	          originH = this.layer.height,
+	          layerStyle = this.layer.style,
+	          originT = parseFloat(layerStyle.top.replace('px', '')),
+	          originL = parseFloat(layerStyle.left.replace('px', ''));
+	
+	      switch (scale.name) {
+	        case '1:1':
+	        case '4:3':
+	        case '3:4':
+	          var x = scale.x,
+	              y = scale.y,
+	              wh = originW / originH,
+	              s = x / y,
+	              min;
+	
+	          if (wh < s) {
+	            this.layer.width = originW;
+	            this.layer.height = originW / x * y;
+	          } else if (wh > s) {
+	            this.layer.height = originH;
+	            this.layer.width = originH / y * x;
+	          } else {
+	            var min = originW < originH ? originW : originH;
+	            this.layer.width = min;
+	            this.layer.height = min;
+	          }
+	          break;
+	
+	        case '自定义':
+	        default:
+	          break;
+	      }
+	
+	      layerStyle.top = originT + (originH - this.layer.height) / 2 + 'px';
+	      layerStyle.left = originL + (originW - this.layer.width) / 2 + 'px';
+	
+	      this.drawFrameLine(this.layer);
+	
+	      this.canvas.parentNode.appendChild(this.layer);
+	    }
+	  }, {
+	    key: 'drawFrameLine',
+	    value: function drawFrameLine(canvas) {
+	      var cxt = canvas.getContext('2d'),
+	          w = canvas.width,
+	          h = canvas.height;
+	
+	      cxt.strokeStyle = 'rgba(255, 255, 255, .5)';
+	      cxt.lineWidth = 1;
+	      cxt.strokeRect(0, h / 3, w, h / 3);
+	      cxt.strokeRect(w / 3, 0, w / 3, h);
+	
+	      cxt.strokeStyle = '#FFF';
+	      cxt.lineWidth = 5;
+	      cxt.strokeRect(0, 0, w, h);
+	
+	      var rW = 10;
+	      cxt.fillStyle = '#FFF';
+	      cxt.fillRect(0, 0, rW, rW);
+	      cxt.fillRect(w - rW, 0, rW, rW);
+	      cxt.fillRect(w - rW, h - rW, rW, rW);
+	      cxt.fillRect(0, h - rW, rW, rW);
+	    }
+	  }]);
+	
+	  return PlotitLayer;
+	}();
+
+	exports.default = PlotitLayer;
+
+/***/ },
+/* 14 */
 /*!****************************!*\
   !*** ./app/libs/plotit.js ***!
   \****************************/
@@ -1437,7 +1572,7 @@
 	  value: true
 	});
 	
-	var _util = __webpack_require__(/*! ./core/util */ 27);
+	var _util = __webpack_require__(/*! ./core/util */ 28);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -1449,7 +1584,7 @@
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _converter = __webpack_require__(/*! ./core/converter */ 25);
+	var _converter = __webpack_require__(/*! ./core/converter */ 26);
 	
 	var _converter2 = _interopRequireDefault(_converter);
 	
@@ -1463,7 +1598,7 @@
 	};
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!**********************************!*\
   !*** ./app/libs/qiniu.client.js ***!
   \**********************************/
@@ -1471,7 +1606,7 @@
 
 	'use strict';
 	
-	var _base = __webpack_require__(/*! ./base64 */ 24);
+	var _base = __webpack_require__(/*! ./base64 */ 25);
 	
 	var _base2 = _interopRequireDefault(_base);
 	
@@ -1561,7 +1696,7 @@
 	})();
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!***************************!*\
   !*** ./~/buffer/index.js ***!
   \***************************/
@@ -1577,9 +1712,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 38);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 43);
-	var isArray = __webpack_require__(/*! isarray */ 39);
+	var base64 = __webpack_require__(/*! base64-js */ 39);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 44);
+	var isArray = __webpack_require__(/*! isarray */ 40);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -3080,10 +3215,10 @@
 	  }
 	  return i;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 15).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/buffer/index.js */ 16).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html5-entities.js ***!
   \***********************************************/
@@ -3281,7 +3416,7 @@
 	module.exports = Html5Entities;
 
 /***/ },
-/* 17 */
+/* 18 */
 /*!***********************************!*\
   !*** ./app/views/index.plot.html ***!
   \***********************************/
@@ -3290,7 +3425,7 @@
 	module.exports = "<div class=\"app-container\">\n  <panel></panel>\n  <palette></palette>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 18 */
+/* 19 */
 /*!*****************************************!*\
   !*** ./app/components/library/index.js ***!
   \*****************************************/
@@ -3308,11 +3443,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 54);
+	var _index = __webpack_require__(/*! ./index.html */ 55);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 61);
+	__webpack_require__(/*! ./index.scss */ 62);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3406,7 +3541,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 20 */
 /*!*****************************************!*\
   !*** ./app/components/palette/index.js ***!
   \*****************************************/
@@ -3426,15 +3561,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 55);
+	var _index = __webpack_require__(/*! ./index.html */ 56);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 13);
+	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 14);
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	__webpack_require__(/*! ./index.scss */ 62);
+	__webpack_require__(/*! ./index.scss */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3473,7 +3608,8 @@
 	
 	    this.brand = 'PlotIt';
 	    this.$scope = $scope;
-	    this.isFilter = true;
+	    this.activeMenu = 'filter';
+	    this.curScale = null;
 	    this.curTime = +new Date() + 1024;
 	    this.filterImgSrc = 'http://7xr6bj.com1.z0.glb.clouddn.com/01.jpg?imageView2/2/h/150/?' + this.curTime;
 	    this.Plotit = _plotit2.default;
@@ -3511,6 +3647,24 @@
 	    this.sepia = 0;
 	    this.blur = 0;
 	    this.noise = 0;
+	
+	    this.resizeScales = [{
+	      name: '自定义',
+	      x: 0,
+	      y: 0
+	    }, {
+	      name: '1:1',
+	      x: 1,
+	      y: 1
+	    }, {
+	      name: '4:3',
+	      x: 4,
+	      y: 3
+	    }, {
+	      name: '3:4',
+	      x: 3,
+	      y: 4
+	    }];
 	  }
 	
 	  _createClass(paletteCtrl, [{
@@ -3520,8 +3674,13 @@
 	    }
 	  }, {
 	    key: 'switchTab',
-	    value: function switchTab(isFilter) {
-	      this.isFilter = isFilter;
+	    value: function switchTab(type) {
+	
+	      this.activeMenu = type || 'filter';
+	
+	      if (type !== 'resize') {
+	        this.PlotitUtil.removeResizeFrame();
+	      }
 	    }
 	  }, {
 	    key: 'setImageConfig',
@@ -3604,6 +3763,12 @@
 	        this.PlotitUtil.stackBlurImg(newVal - oldVal);
 	      }
 	    }
+	  }, {
+	    key: 'setCanvasScale',
+	    value: function setCanvasScale(scale) {
+	      this.curScale = scale;
+	      this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale);
+	    }
 	  }]);
 	
 	  return paletteCtrl;
@@ -3617,7 +3782,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
 /*!***************************************!*\
   !*** ./app/components/panel/index.js ***!
   \***************************************/
@@ -3635,19 +3800,19 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 13);
+	var _plotit = __webpack_require__(/*! ../../libs/plotit */ 14);
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 14);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 15);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 56);
+	var _index = __webpack_require__(/*! ./index.html */ 57);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 63);
+	__webpack_require__(/*! ./index.scss */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3829,7 +3994,7 @@
 	};
 
 /***/ },
-/* 21 */
+/* 22 */
 /*!*****************************************!*\
   !*** ./app/components/popover/index.js ***!
   \*****************************************/
@@ -3847,11 +4012,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 57);
+	var _index = __webpack_require__(/*! ./index.html */ 58);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 64);
+	__webpack_require__(/*! ./index.scss */ 65);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3948,7 +4113,7 @@
 	};
 
 /***/ },
-/* 22 */
+/* 23 */
 /*!*****************************************!*\
   !*** ./app/components/sideBtn/index.js ***!
   \*****************************************/
@@ -3966,15 +4131,15 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 58);
+	var _index = __webpack_require__(/*! ./index.html */ 59);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 14);
+	var _qiniu = __webpack_require__(/*! ../../libs/qiniu.client */ 15);
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 65);
+	__webpack_require__(/*! ./index.scss */ 66);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4201,7 +4366,7 @@
 	};
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!*****************************************!*\
   !*** ./app/components/sidebar/index.js ***!
   \*****************************************/
@@ -4217,11 +4382,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 59);
+	var _index = __webpack_require__(/*! ./index.html */ 60);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 66);
+	__webpack_require__(/*! ./index.scss */ 67);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4249,7 +4414,7 @@
 	};
 
 /***/ },
-/* 24 */
+/* 25 */
 /*!****************************!*\
   !*** ./app/libs/base64.js ***!
   \****************************/
@@ -4277,7 +4442,7 @@
 	    var buffer;
 	    if (typeof module !== 'undefined' && module.exports) {
 	        try {
-	            buffer = __webpack_require__(/*! buffer */ 15).Buffer;
+	            buffer = __webpack_require__(/*! buffer */ 16).Buffer;
 	        } catch (err) {}
 	    }
 	    // constants
@@ -4413,7 +4578,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 25 */
+/* 26 */
 /*!************************************!*\
   !*** ./app/libs/core/converter.js ***!
   \************************************/
@@ -4623,11 +4788,11 @@
 	exports.default = new Converter();
 
 /***/ },
-/* 26 */
-/*!********************************!*\
-  !*** ./app/libs/core/layer.js ***!
-  \********************************/
-/***/ function(module, exports) {
+/* 27 */
+/*!*********************************!*\
+  !*** ./app/libs/core/resize.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -4637,48 +4802,45 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _layer = __webpack_require__(/*! ./layer */ 13);
+	
+	var _layer2 = _interopRequireDefault(_layer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var PlotitLayer = function () {
-	  function PlotitLayer(canvas) {
-	    _classCallCheck(this, PlotitLayer);
-	
-	    this.canvas = canvas, this.layer = this.new();
+	var PlotitResize = function () {
+	  function PlotitResize() {
+	    _classCallCheck(this, PlotitResize);
 	  }
 	
-	  _createClass(PlotitLayer, [{
-	    key: 'new',
-	    value: function _new() {
-	      var canvas = this.canvas,
-	          width = canvas.width,
-	          height = canvas.height,
-	          top = canvas.style.top,
-	          left = canvas.style.left,
-	          parent = canvas.parentNode;
-	
-	      var newCanvas = document.createElement('canvas');
-	
-	      newCanvas.id = 'newCanvas';
-	      newCanvas.width = width;
-	      newCanvas.height = height;
-	      newCanvas.style.position = 'absolute';
-	      newCanvas.style.top = top;
-	      newCanvas.style.left = left;
-	
-	      // append to the panel
-	      // parent.appendChild(newCanvas);
-	
-	      return newCanvas;
+	  _createClass(PlotitResize, [{
+	    key: 'bindUtil',
+	    value: function bindUtil(util) {
+	      this.util = util;
+	    }
+	  }, {
+	    key: 'newFrame',
+	    value: function newFrame(canvas, scale) {
+	      this.canvas = canvas;
+	      this.Layer = new _layer2.default(canvas, 'newFrame');
+	      this.layer = this.Layer.addFrame(scale);
+	    }
+	  }, {
+	    key: 'removeFrame',
+	    value: function removeFrame() {
+	      this.Layer.clear();
 	    }
 	  }]);
 	
-	  return PlotitLayer;
+	  return PlotitResize;
 	}();
-
-	exports.default = PlotitLayer;
+	
+	exports.default = new PlotitResize();
 
 /***/ },
-/* 27 */
+/* 28 */
 /*!*******************************!*\
   !*** ./app/libs/core/util.js ***!
   \*******************************/
@@ -4702,7 +4864,11 @@
 	
 	var _filter2 = _interopRequireDefault(_filter);
 	
-	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 49);
+	var _resize = __webpack_require__(/*! ./resize */ 27);
+	
+	var _resize2 = _interopRequireDefault(_resize);
+	
+	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 50);
 	
 	var _stackblurCanvas2 = _interopRequireDefault(_stackblurCanvas);
 	
@@ -4877,6 +5043,19 @@
 	      }
 	    }
 	  }, {
+	    key: 'processResize',
+	    value: function processResize(canvas, scale) {
+	      // new layer
+	      _resize2.default.newFrame(canvas, scale);
+	      // bind Util
+	      _resize2.default.bindUtil(this);
+	    }
+	  }, {
+	    key: 'removeResizeFrame',
+	    value: function removeResizeFrame() {
+	      _resize2.default.removeFrame();
+	    }
+	  }, {
 	    key: 'stackBlurImg',
 	    value: function stackBlurImg(radius) {
 	      if (this.getData()) {
@@ -4912,7 +5091,7 @@
 	exports.default = PlotitUtil;
 
 /***/ },
-/* 28 */
+/* 29 */
 /*!***********************************!*\
   !*** ./app/libs/wechat.client.js ***!
   \***********************************/
@@ -5262,7 +5441,7 @@
 	});
 
 /***/ },
-/* 29 */
+/* 30 */
 /*!*********************!*\
   !*** ./app/main.js ***!
   \*********************/
@@ -5278,49 +5457,49 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 34);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 35);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 33);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 34);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
-	var _main = __webpack_require__(/*! ./main.routes */ 30);
+	var _main = __webpack_require__(/*! ./main.routes */ 31);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _main3 = __webpack_require__(/*! ./main.services */ 31);
+	var _main3 = __webpack_require__(/*! ./main.services */ 32);
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 45);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 46);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 67);
+	__webpack_require__(/*! ./public/styles/main.scss */ 68);
 	
-	var _library = __webpack_require__(/*! ./components/library */ 18);
+	var _library = __webpack_require__(/*! ./components/library */ 19);
 	
 	var _library2 = _interopRequireDefault(_library);
 	
-	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 23);
+	var _sidebar = __webpack_require__(/*! ./components/sidebar */ 24);
 	
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 	
-	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 22);
+	var _sideBtn = __webpack_require__(/*! ./components/sideBtn */ 23);
 	
 	var _sideBtn2 = _interopRequireDefault(_sideBtn);
 	
-	var _panel = __webpack_require__(/*! ./components/panel */ 20);
+	var _panel = __webpack_require__(/*! ./components/panel */ 21);
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _palette = __webpack_require__(/*! ./components/palette */ 19);
+	var _palette = __webpack_require__(/*! ./components/palette */ 20);
 	
 	var _palette2 = _interopRequireDefault(_palette);
 	
-	var _popover = __webpack_require__(/*! ./components/popover */ 21);
+	var _popover = __webpack_require__(/*! ./components/popover */ 22);
 	
 	var _popover2 = _interopRequireDefault(_popover);
 	
@@ -5348,7 +5527,7 @@
 	exports.default = MODULE_NAME;
 
 /***/ },
-/* 30 */
+/* 31 */
 /*!****************************!*\
   !*** ./app/main.routes.js ***!
   \****************************/
@@ -5372,18 +5551,18 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 60)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 61)
 	  }).state('plot', {
 	    url: '/plot',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 18)
 	  }).state('/plot/:id', {
 	    url: '/plot/:id',
-	    template: __webpack_require__(/*! ./views/index.plot.html */ 17)
+	    template: __webpack_require__(/*! ./views/index.plot.html */ 18)
 	  });
 	}
 
 /***/ },
-/* 31 */
+/* 32 */
 /*!******************************!*\
   !*** ./app/main.services.js ***!
   \******************************/
@@ -5397,7 +5576,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _wechat = __webpack_require__(/*! ./libs/wechat.client */ 28);
+	var _wechat = __webpack_require__(/*! ./libs/wechat.client */ 29);
 	
 	var _wechat2 = _interopRequireDefault(_wechat);
 	
@@ -5631,7 +5810,7 @@
 	service.$inject = ['$http'];
 
 /***/ },
-/* 32 */
+/* 33 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -6621,7 +6800,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 33 */
+/* 34 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -6629,11 +6808,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 32);
+	__webpack_require__(/*! ./angular-route */ 33);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -8910,7 +9089,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -24721,7 +24900,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -24901,7 +25080,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -24915,7 +25094,7 @@
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -25041,7 +25220,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -25056,7 +25235,7 @@
 	};
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -25065,14 +25244,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 42),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 41),
-	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 16),
-	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 16)
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 43),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 42),
+	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 17),
+	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 17)
 	};
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -25227,7 +25406,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -25390,7 +25569,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -25484,7 +25663,7 @@
 	};
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -28249,7 +28428,7 @@
 	}]);
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -28257,11 +28436,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 44);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 45);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -28353,7 +28532,7 @@
 	};
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -28425,7 +28604,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -28433,11 +28612,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 46);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 47);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 47);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 48);
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!*********************************************!*\
   !*** ./~/stackblur-canvas/src/stackblur.js ***!
   \*********************************************/
@@ -28978,7 +29157,7 @@
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -28986,14 +29165,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 37)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 38)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -29029,7 +29208,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 36);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 37);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -29044,7 +29223,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 40).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 41).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -29075,7 +29254,7 @@
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -29191,7 +29370,7 @@
 	};
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -29211,7 +29390,7 @@
 	};
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -29220,16 +29399,16 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(true)\">\n      <i class=\"fa fa-magic fa-fw\"></i>滤镜\n    </li>\n    <li ng-class=\"!palette.isFilter ? 'active' : ''\" ng-click=\"palette.switchTab(false)\">\n      <i class=\"fa fa-sliders fa-fw\"></i>基础\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"!palette.isFilter\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.activeMenu === 'filter' ? 'active' : ''\" ng-click=\"palette.switchTab('filter')\">\n      <i class=\"fa fa-magic fa-fw\"></i>{{palette.activeMenu === 'filter' ? '滤镜' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'adjuster' ? 'active' : ''\" ng-click=\"palette.switchTab('adjuster')\">\n      <i class=\"fa fa-sliders fa-fw\"></i>{{palette.activeMenu === 'adjuster' ? '调节' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'resize' ? 'active' : ''\" ng-click=\"palette.switchTab('resize')\">\n      <i class=\"fa fa-arrows-alt fa-fw\"></i>{{palette.activeMenu === 'resize' ? '剪裁' : ''}}\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.activeMenu === 'filter'\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"palette.activeMenu === 'adjuster'\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-resize-container\" ng-show=\"palette.activeMenu === 'resize'\">\n      <ul class=\"resize-scale\">\n        <li class=\"col-md-6 scale-item\" \n            ng-class=\"palette.curScale.name === s.name ? ' active' : ''\" \n            ng-repeat=\"s in palette.resizeScales\" \n            ng-click=\"palette.setCanvasScale(s)\">\n          <div class=\"scale-model\">\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '自定义'\">\n              <rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" stroke=\"#FFF\" stroke-dasharray=\"5\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '1:1'\">\n              <rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '4:3'\">\n              <rect x=\"20\" y=\"30\" width=\"40\" height=\"30\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '3:4'\">\n              <rect x=\"25\" y=\"25\" width=\"30\" height=\"40\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>          \n          </div>\n          <span class=\"scale-name\">{{s.name}}</span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -29238,7 +29417,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -29247,16 +29426,16 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}} ?</div>\n      <div class=\"popover-name\" ng-hide=\"popover.isEditable\" ng-click=\"popover.isEditable = true\">{{popover.curImageName}}</div>\n      <div class=\"popover-edit\" ng-hide=\"!popover.isEditable\">\n        <input class=\"popover-input\" ng-model=\"popover.curImageName\" ng-class=\"popover.isTextError ? ' error' : ''\" /> \n        <i class=\"fa fa-check fa-fw\" ng-click=\"popover.checkName()\" \n                                     ng-class=\"popover.isEditError ? ' error' : ''\"></i>\n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.cancel(sideBtn)\">取消</span>\n      <span class=\"check popover-btn\" ng-click=\"popover.check(sideBtn)\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-undo\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-history\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -29265,7 +29444,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -29274,7 +29453,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -29303,7 +29482,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -29332,7 +29511,7 @@
 	}
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -29361,7 +29540,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -29390,7 +29569,7 @@
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -29419,7 +29598,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -29448,7 +29627,7 @@
 	}
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -29477,7 +29656,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 69 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -29495,7 +29674,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 48);
+	  var querystring = __webpack_require__(/*! querystring */ 49);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -29563,11 +29742,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 50);
+	var strip = __webpack_require__(/*! strip-ansi */ 51);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 51);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 52);
 	}
 	
 	function problems(type, obj) {
@@ -29584,7 +29763,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 52);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 53);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -29616,7 +29795,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 53)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 54)(module)))
 
 /***/ }
 /******/ ]);

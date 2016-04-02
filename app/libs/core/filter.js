@@ -25,7 +25,7 @@ class PlotitFilter {
 
   newLayer(canvas) {
     this.canvas = canvas;
-    this.layer = new Layer(canvas).layer;
+    this.layer = new Layer(canvas, 'newFilter').layer;
   }
 
   renderLayer() {

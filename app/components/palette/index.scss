@@ -37,16 +37,17 @@ palette {
 
   li {
     display: inline-block;
-    padding: .5em 1.8em .6em .5em;
-    margin-right: .1em;
-    letter-spacing: .4em;
+    padding: .6em;
     border-bottom: 1px solid transparent;
 
     .fa {
-      margin-right: .5em;
+      margin: 0 .5em;
     }
 
     &.active {
+      padding: .6em;
+      margin-right: .1em;
+      letter-spacing: .7em;
       border-bottom-color: $primary-color;
     }
 
@@ -104,9 +105,9 @@ palette {
 }
 
 .adjuster-item {
-  height: 3em;
+  height: 4em;
   line-height: 3em;
-  padding-left: 1.2em;
+  padding-left: 2em;
   margin-bottom: 1em;
   font-size: .8em;
 
@@ -145,6 +146,29 @@ palette {
   }
 }
 
+.scale-item {
+  position: relative;
+  height: 6em;
+  margin-bottom: .2em;
+  text-align: center;
+  color: $primary-color;
+  cursor: pointer;
 
+  &:hover,
+  &.active {
+    color: $red;
+  }
+
+  .scale-model {
+    width: 100%;
+    height: 5em;
+  }
+
+  .scale-name {
+    font-size: .9em;
+    color: inherit;
+  }
+
+}
 
  
