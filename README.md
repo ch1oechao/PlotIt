@@ -44,6 +44,11 @@ Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
 
 ![](./images/adjuster.png)
 
+#### RESIZE PAGE
+
+![](./images/resize.png)
+
+ 
 ## Thanks for the inspiration
 
 - [[ CammaJS ]](https://github.com/meltingice/CamanJS)
