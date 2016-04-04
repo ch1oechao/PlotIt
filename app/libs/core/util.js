@@ -68,6 +68,9 @@ export default class PlotitUtil {
                   }
                 });
               break;
+              case 'resize':
+                console.log(1);
+              break;
             }
           });
         }
@@ -159,11 +162,17 @@ export default class PlotitUtil {
     }
   }
 
-  processResize(canvas, scale) {
+  processResize(originCanvas, scale, previewCanvas) {
     // new layer
-    Resize.newFrame(canvas, scale);
+    Resize.newFrame(originCanvas, scale);
     // bind Util
     Resize.bindUtil(this);
+    // set Preview
+    Resize.setPreview(previewCanvas);
+  }
+
+  getResizeFrame() {
+    Resize.getFrame();
   }
 
   removeResizeFrame() {

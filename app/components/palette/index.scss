@@ -27,7 +27,7 @@ palette {
 
 .palette-container {
   width: 100%;
-  height: 75%;
+  height: 80%;
   padding: 1.5em 0 0 4em;
 }
 
@@ -146,9 +146,13 @@ palette {
   }
 }
 
+.resize-scale {
+  overflow: hidden;
+}
+
 .scale-item {
   position: relative;
-  height: 6em;
+  height: 5em;
   margin-bottom: .2em;
   text-align: center;
   color: $primary-color;
@@ -161,14 +165,48 @@ palette {
 
   .scale-model {
     width: 100%;
-    height: 5em;
+    height: 4em;
   }
 
   .scale-name {
+    line-height: 1em;
     font-size: .9em;
     color: inherit;
   }
+}
 
+.resize-btn-container {
+  margin-top: 1.5em;
+  width: 100%;
+  height: 2em;
+}
+
+.resize-btn {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  transition: all 200ms ease-in;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 3px 6px rgba(10, 10, 10, .6);
+  }
+
+  &.check {
+    color: $primary-color;
+  }
+
+  &.cancel {
+    color: $red;
+  }
+}
+
+.resize-preview {
+  margin-top: 1.5em;
 }
 
  

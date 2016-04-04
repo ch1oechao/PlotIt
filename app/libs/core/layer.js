@@ -7,10 +7,10 @@ export default class PlotitLayer {
 
   new(id) {
     var canvas = this.canvas,
-      width = canvas.width,
-      height = canvas.height,
-      top = canvas.style.top,
-      left = canvas.style.left;
+        width = canvas.width,
+        height = canvas.height,
+        top = canvas.style.top,
+        left = canvas.style.left;
 
     var newCanvas = document.createElement('canvas');
 
@@ -25,10 +25,16 @@ export default class PlotitLayer {
   }
 
   clear() {
-    if (document.querySelector('#' + this.id)) {
-      var $frame = document.querySelector('#' + this.id),
-          parent = $frame.parentNode;
-      parent.removeChild($frame);
+    if (!document.querySelector('#' + this.id)) return;
+
+    var $frame = document.querySelector('#' + this.id),
+        $overlay = document.querySelector('#overlay'),
+        parent = $frame.parentNode;
+
+    parent.removeChild($frame);
+
+    if ($overlay) {
+      parent.removeChild($overlay);
     }
   }
 
@@ -74,11 +80,40 @@ export default class PlotitLayer {
     layerStyle.top = originT + (originH - this.layer.height) / 2 + 'px';
     layerStyle.left = originL + (originW - this.layer.width) / 2 + 'px';
 
-    this.drawFrameLine(this.layer);
 
+    this.drawCropImage(this.layer, {
+      originW: originW,
+      originH: originH,
+      cropW: this.layer.width,
+      cropH: this.layer.height
+    });
+    
+    this.drawFrameLine(this.layer);
+    
+    this.addOverlay(originW, originH);
+    
     this.canvas.parentNode.appendChild(this.layer);
+  
+    return {
+      layer: this.layer,
+      originW: originW,
+      originH: originH,
+      cropW: this.layer.width,
+      cropH: this.layer.height
+    };
   }
 
+  drawCropImage(canvas, opts) {
+    var cropCxt = canvas.getContext('2d'),
+        originCtx = this.canvas.getContext('2d'),
+        x = (opts.originW - opts.cropW) / 2,
+        y = (opts.originH - opts.cropH) / 2;
+
+    var originImageData = originCtx.getImageData(x, y, opts.originW, opts.originH);
+
+    cropCxt.clearRect(0, 0, opts.cropW, opts.cropH);
+    cropCxt.putImageData(originImageData, 0, 0);
+  }
 
   drawFrameLine(canvas) {
     var cxt = canvas.getContext('2d'),
@@ -100,6 +135,19 @@ export default class PlotitLayer {
     cxt.fillRect(w - rW, 0, rW, rW);
     cxt.fillRect(w - rW, h - rW, rW, rW);
     cxt.fillRect(0, h - rW, rW, rW);
+  }
+
+  addOverlay(w, h) {
+
+    if (document.querySelector('#overlay')) return;
+
+    this.overlay = this.new('overlay');
+
+    var overlayCtx = this.overlay.getContext('2d');
+    overlayCtx.fillStyle = 'rgba(0, 0, 0, .7)';
+    overlayCtx.fillRect(0, 0, w, h);
+
+    this.canvas.parentNode.appendChild(this.overlay);
   }
 
 }

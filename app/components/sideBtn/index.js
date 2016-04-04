@@ -76,6 +76,7 @@ class sideBtnCtrl {
       palette.blur = 0;
       palette.noise = 0;
       palette.curFilter = '';
+      palette.cancelResize.bind(palette);
     }
 
     if (this.isPlot && !isLoading) {

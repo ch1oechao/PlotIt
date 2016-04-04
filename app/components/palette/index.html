@@ -57,27 +57,34 @@
     </div>
     <div class="palette-resize-container" ng-show="palette.activeMenu === 'resize'">
       <ul class="resize-scale">
-        <li class="col-md-6 scale-item" 
+        <li class="col-md-3 scale-item" 
             ng-class="palette.curScale.name === s.name ? ' active' : ''" 
             ng-repeat="s in palette.resizeScales" 
             ng-click="palette.setCanvasScale(s)">
           <div class="scale-model">
-            <svg width="100%" height="100%" ng-show="s.name === '自定义'">
-              <rect x="25" y="30" width="30" height="30" stroke="#FFF" stroke-dasharray="5" fill="transparent" stroke-width="2" />
+            <svg width="100%" height="100%" ng-show="s.name === '-'">
+              <rect x="5" y="30" width="15" height="15" stroke="#FFF" stroke-dasharray="5" fill="transparent" stroke-width="2" />
             </svg>
             <svg width="100%" height="100%" ng-show="s.name === '1:1'">
-              <rect x="25" y="30" width="30" height="30" stroke="#FFF" fill="transparent" stroke-width="2" />
+              <rect x="5" y="30" width="15" height="15" stroke="#FFF" fill="transparent" stroke-width="2" />
             </svg>
             <svg width="100%" height="100%" ng-show="s.name === '4:3'">
-              <rect x="20" y="30" width="40" height="30" stroke="#FFF" fill="transparent" stroke-width="2" />
+              <rect x="5" y="30" width="20" height="15" stroke="#FFF" fill="transparent" stroke-width="2" />
             </svg>
             <svg width="100%" height="100%" ng-show="s.name === '3:4'">
-              <rect x="25" y="25" width="30" height="40" stroke="#FFF" fill="transparent" stroke-width="2" />
+              <rect x="5" y="26" width="15" height="20" stroke="#FFF" fill="transparent" stroke-width="2" />
             </svg>          
           </div>
           <span class="scale-name">{{s.name}}</span>
         </li>
       </ul>
+      <div class="resize-btn-container" ng-show="palette.curScale">
+        <span class="cancel resize-btn col-md-6" ng-click="palette.cancelResize()"><i class="fa fa-remove"></i></span>
+        <span class="check resize-btn col-md-6" ng-click="palette.checkResize()"><i class="fa fa-check"></i></span>
+      </div>
+      <div class="resize-preview">
+        <canvas id="preview" width="100%" height="100%"></canvas>
+      </div>
     </div>
   </div>
 </div>

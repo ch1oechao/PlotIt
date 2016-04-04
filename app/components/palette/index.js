@@ -75,7 +75,7 @@ class paletteCtrl {
     this.noise = 0;
 
     this.resizeScales = [{
-      name: '自定义',
+      name: '-',
       x: 0,
       y: 0
     }, {
@@ -102,6 +102,7 @@ class paletteCtrl {
     this.activeMenu = type || 'filter';
 
     if (type !== 'resize') {
+      this.curScale = null;
       this.PlotitUtil.removeResizeFrame();
     }
   }
@@ -179,8 +180,27 @@ class paletteCtrl {
   }
 
   setCanvasScale(scale) {
+    this.$preview = document.querySelector('#preview') || null;
     this.curScale = scale;
-    this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale);
+    this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale, this.$preview);
+  }
+
+  checkResize() {
+    this.curScale = null;
+    this.PlotitUtil.getResizeFrame();
+    this.clearPreview();
+  }
+
+  cancelResize() {
+    this.curScale = null;
+    this.PlotitUtil.removeResizeFrame();
+    this.clearPreview();
+  }
+
+  clearPreview() {
+    if (this.$preview) {
+      this.$preview.getContext('2d').clearRect(0, 0, this.$preview.width, this.$preview.height);
+    } 
   }
 
 }

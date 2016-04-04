@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "889f320a7bc5ddf6cab1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3634819fa4a487fe3f68"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -935,7 +935,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".aden {\n  -webkit-filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2);\n  filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2); }\n\n.aden::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.perpetua::after, .reyes::after {\n  mix-blend-mode: soft-light;\n  opacity: .5; }\n\n.inkwell {\n  -webkit-filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1);\n  filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1); }\n\n.perpetua::after {\n  background: -webkit-linear-gradient(top, #005b9a, #e6c13d);\n  background: linear-gradient(to bottom, #005b9a, #e6c13d); }\n\n.reyes {\n  -webkit-filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75);\n  filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75); }\n\n.reyes::after {\n  background: #efcdad; }\n\n.gingham {\n  -webkit-filter: brightness(1.05) hue-rotate(-10deg);\n  filter: brightness(1.05) hue-rotate(-10deg); }\n\n.gingham::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.toaster {\n  -webkit-filter: contrast(1.5) brightness(0.9);\n  filter: contrast(1.5) brightness(0.9); }\n\n.toaster::after {\n  background: -webkit-radial-gradient(circle, #804e0f, #3b003b);\n  background: radial-gradient(circle, #804e0f, #3b003b);\n  mix-blend-mode: screen; }\n\n.walden {\n  -webkit-filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6);\n  filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6); }\n\n.walden::after {\n  background: #04c;\n  mix-blend-mode: screen;\n  opacity: .3; }\n\n.hudson {\n  -webkit-filter: brightness(1.2) contrast(0.9) saturate(1.1);\n  filter: brightness(1.2) contrast(0.9) saturate(1.1); }\n\n.hudson::after {\n  background: -webkit-radial-gradient(circle, #a6b1ff 50%, #342134);\n  background: radial-gradient(circle, #a6b1ff 50%, #342134);\n  mix-blend-mode: multiply;\n  opacity: .5; }\n\n.earlybird {\n  -webkit-filter: contrast(0.9) sepia(0.2);\n  filter: contrast(0.9) sepia(0.2); }\n\n.earlybird::after {\n  background: -webkit-radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  background: radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  mix-blend-mode: overlay; }\n\n.mayfair {\n  -webkit-filter: contrast(1.1) saturate(1.1);\n  filter: contrast(1.1) saturate(1.1); }\n\n.mayfair::after {\n  background: -webkit-radial-gradient(40% 40%, circle, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  mix-blend-mode: overlay;\n  opacity: .4; }\n\n.lofi {\n  -webkit-filter: saturate(1.1) contrast(1.5);\n  filter: saturate(1.1) contrast(1.5); }\n\n.lofi::after {\n  background: -webkit-radial-gradient(circle, transparent 70%, #222 150%);\n  background: radial-gradient(circle, transparent 70%, #222 150%);\n  mix-blend-mode: multiply; }\n\n._1977 {\n  -webkit-filter: contrast(1.1) brightness(1.1) saturate(1.3);\n  filter: contrast(1.1) brightness(1.1) saturate(1.3); }\n\n._1977:after {\n  background: rgba(243, 106, 188, 0.3);\n  mix-blend-mode: screen; }\n\n.brooklyn {\n  -webkit-filter: contrast(0.9) brightness(1.1);\n  filter: contrast(0.9) brightness(1.1); }\n\n.brooklyn::after {\n  background: -webkit-radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  background: radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  mix-blend-mode: overlay; }\n\n.xpro2 {\n  -webkit-filter: sepia(0.3);\n  filter: sepia(0.3); }\n\n.xpro2::after {\n  background: -webkit-radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  background: radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  mix-blend-mode: color-burn; }\n\n.nashville {\n  -webkit-filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2);\n  filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2); }\n\n.nashville::after {\n  background: rgba(0, 70, 150, 0.4);\n  mix-blend-mode: lighten; }\n\n.nashville::before {\n  background: rgba(247, 176, 153, 0.56);\n  mix-blend-mode: darken; }\n\n.lark {\n  -webkit-filter: contrast(0.9);\n  filter: contrast(0.9); }\n\n.lark::after {\n  background: rgba(242, 242, 242, 0.8);\n  mix-blend-mode: darken; }\n\n.lark::before {\n  background: #22253f;\n  mix-blend-mode: color-dodge; }\n\n.moon {\n  -webkit-filter: grayscale(1) contrast(1.1) brightness(1.1);\n  filter: grayscale(1) contrast(1.1) brightness(1.1); }\n\n.moon::before {\n  background: #a0a0a0;\n  mix-blend-mode: soft-light; }\n\n.moon::after {\n  background: #383838;\n  mix-blend-mode: lighten; }\n\n.clarendon {\n  -webkit-filter: contrast(1.2) saturate(1.35);\n  filter: contrast(1.2) saturate(1.35); }\n\n.clarendon:before {\n  background: rgba(127, 187, 227, 0.2);\n  mix-blend-mode: overlay; }\n\n.willow {\n  -webkit-filter: grayscale(0.5) contrast(0.95) brightness(0.9);\n  filter: grayscale(0.5) contrast(0.95) brightness(0.9); }\n\n.willow::before {\n  background-color: radial-gradient(40%, circle, #d4a9af 55%, #000 150%);\n  mix-blend-mode: overlay; }\n\n.willow::after {\n  background-color: #d8cdcb;\n  mix-blend-mode: color; }\n\n.rise {\n  -webkit-filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9);\n  filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9); }\n\n.rise::after {\n  background: -webkit-radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  background: radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  mix-blend-mode: overlay;\n  opacity: .6; }\n\n.rise::before {\n  background: -webkit-radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  background: radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  mix-blend-mode: multiply; }\n\n._1977:after, ._1977:before, .aden:after, .aden:before, .brooklyn:after, .brooklyn:before, .clarendon:after, .clarendon:before, .earlybird:after, .earlybird:before, .gingham:after, .gingham:before, .hudson:after, .hudson:before, .inkwell:after, .inkwell:before, .lark:after, .lark:before, .lofi:after, .lofi:before, .mayfair:after, .mayfair:before, .moon:after, .moon:before, .nashville:after, .nashville:before, .perpetua:after, .perpetua:before, .reyes:after, .reyes:before, .rise:after, .rise:before, .slumber:after, .slumber:before, .toaster:after, .toaster:before, .walden:after, .walden:before, .willow:after, .willow:before, .xpro2:after, .xpro2:before {\n  content: '';\n  display: block;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  pointer-events: none; }\n\n._1977, .aden, .brooklyn, .clarendon, .earlybird, .gingham, .hudson, .inkwell, .lark, .lofi, .mayfair, .moon, .nashville, .perpetua, .reyes, .rise, .slumber, .toaster, .walden, .willow, .xpro2 {\n  position: relative; }\n\n._1977 img, .aden img, .brooklyn img, .clarendon img, .earlybird img, .gingham img, .hudson img, .inkwell img, .lark img, .lofi img, .mayfair img, .moon img, .nashville img, .perpetua img, .reyes img, .rise img, .slumber img, .toaster img, .walden img, .willow img, .xpro2 img {\n  width: 100%;\n  z-index: 1; }\n\n._1977:before, .aden:before, .brooklyn:before, .clarendon:before, .earlybird:before, .gingham:before, .hudson:before, .inkwell:before, .lark:before, .lofi:before, .mayfair:before, .moon:before, .nashville:before, .perpetua:before, .reyes:before, .rise:before, .slumber:before, .toaster:before, .walden:before, .willow:before, .xpro2:before {\n  z-index: 2; }\n\n._1977:after, .aden:after, .brooklyn:after, .clarendon:after, .earlybird:after, .gingham:after, .hudson:after, .inkwell:after, .lark:after, .lofi:after, .mayfair:after, .moon:after, .nashville:after, .perpetua:after, .reyes:after, .rise:after, .slumber:after, .toaster:after, .walden:after, .willow:after, .xpro2:after {\n  z-index: 3; }\n\n.slumber {\n  -webkit-filter: saturate(0.66) brightness(1.05);\n  filter: saturate(0.66) brightness(1.05); }\n\n.slumber::after {\n  background: rgba(125, 105, 24, 0.5);\n  mix-blend-mode: soft-light; }\n\n.slumber::before {\n  background: rgba(69, 41, 12, 0.4);\n  mix-blend-mode: lighten; }\n\npalette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 16% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 75%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu {\n  width: 100%;\n  height: 3.5em; }\n  .palette-menu li {\n    display: inline-block;\n    padding: .6em;\n    border-bottom: 1px solid transparent; }\n    .palette-menu li .fa {\n      margin: 0 .5em; }\n    .palette-menu li.active {\n      padding: .6em;\n      margin-right: .1em;\n      letter-spacing: .7em;\n      border-bottom-color: #08D9D6; }\n    .palette-menu li:hover {\n      border-bottom-color: #08D9D6;\n      cursor: pointer; }\n\n.palette-body {\n  position: relative;\n  width: 14em;\n  height: 90%;\n  min-height: 400px;\n  overflow-y: scroll; }\n\n.palette-filter-container,\n.palette-adjuster-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.filter-item {\n  position: relative;\n  height: 7em;\n  padding: 0;\n  font-size: .9em;\n  background-color: #3A4750;\n  overflow: hidden;\n  cursor: pointer; }\n  .filter-item.active, .filter-item:hover {\n    color: #08D9D6; }\n  .filter-item img {\n    width: 100%; }\n\n.filter-name {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.5); }\n\n.adjuster-item {\n  height: 4em;\n  line-height: 3em;\n  padding-left: 2em;\n  margin-bottom: 1em;\n  font-size: .8em; }\n  .adjuster-item .adjuster-name {\n    width: 100%;\n    display: inline-block;\n    margin-bottom: .3em; }\n  .adjuster-item .adjuster-qty {\n    float: right;\n    padding-right: 5px; }\n  .adjuster-item input[type=range] {\n    width: 98%;\n    background-color: #4D606E;\n    height: 1px;\n    vertical-align: 1px;\n    -webkit-appearance: none;\n    outline: none;\n    border: none; }\n    .adjuster-item input[type=range]:hover {\n      cursor: pointer; }\n  .adjuster-item input[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: .65em;\n    width: .65em;\n    background: #08D9D6;\n    cursor: pointer; }\n\n.scale-item {\n  position: relative;\n  height: 6em;\n  margin-bottom: .2em;\n  text-align: center;\n  color: #08D9D6;\n  cursor: pointer; }\n  .scale-item:hover, .scale-item.active {\n    color: #FC5185; }\n  .scale-item .scale-model {\n    width: 100%;\n    height: 5em; }\n  .scale-item .scale-name {\n    font-size: .9em;\n    color: inherit; }\n", ""]);
+	exports.push([module.id, ".aden {\n  -webkit-filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2);\n  filter: hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2); }\n\n.aden::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.perpetua::after, .reyes::after {\n  mix-blend-mode: soft-light;\n  opacity: .5; }\n\n.inkwell {\n  -webkit-filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1);\n  filter: sepia(0.3) contrast(1.1) brightness(1.1) grayscale(1); }\n\n.perpetua::after {\n  background: -webkit-linear-gradient(top, #005b9a, #e6c13d);\n  background: linear-gradient(to bottom, #005b9a, #e6c13d); }\n\n.reyes {\n  -webkit-filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75);\n  filter: sepia(0.22) brightness(1.1) contrast(0.85) saturate(0.75); }\n\n.reyes::after {\n  background: #efcdad; }\n\n.gingham {\n  -webkit-filter: brightness(1.05) hue-rotate(-10deg);\n  filter: brightness(1.05) hue-rotate(-10deg); }\n\n.gingham::after {\n  background: -webkit-linear-gradient(left, rgba(66, 10, 14, 0.2), transparent);\n  background: linear-gradient(to right, rgba(66, 10, 14, 0.2), transparent);\n  mix-blend-mode: darken; }\n\n.toaster {\n  -webkit-filter: contrast(1.5) brightness(0.9);\n  filter: contrast(1.5) brightness(0.9); }\n\n.toaster::after {\n  background: -webkit-radial-gradient(circle, #804e0f, #3b003b);\n  background: radial-gradient(circle, #804e0f, #3b003b);\n  mix-blend-mode: screen; }\n\n.walden {\n  -webkit-filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6);\n  filter: brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6); }\n\n.walden::after {\n  background: #04c;\n  mix-blend-mode: screen;\n  opacity: .3; }\n\n.hudson {\n  -webkit-filter: brightness(1.2) contrast(0.9) saturate(1.1);\n  filter: brightness(1.2) contrast(0.9) saturate(1.1); }\n\n.hudson::after {\n  background: -webkit-radial-gradient(circle, #a6b1ff 50%, #342134);\n  background: radial-gradient(circle, #a6b1ff 50%, #342134);\n  mix-blend-mode: multiply;\n  opacity: .5; }\n\n.earlybird {\n  -webkit-filter: contrast(0.9) sepia(0.2);\n  filter: contrast(0.9) sepia(0.2); }\n\n.earlybird::after {\n  background: -webkit-radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  background: radial-gradient(circle, #d0ba8e 20%, #360309 85%, #1d0210 100%);\n  mix-blend-mode: overlay; }\n\n.mayfair {\n  -webkit-filter: contrast(1.1) saturate(1.1);\n  filter: contrast(1.1) saturate(1.1); }\n\n.mayfair::after {\n  background: -webkit-radial-gradient(40% 40%, circle, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.6), #111 60%);\n  mix-blend-mode: overlay;\n  opacity: .4; }\n\n.lofi {\n  -webkit-filter: saturate(1.1) contrast(1.5);\n  filter: saturate(1.1) contrast(1.5); }\n\n.lofi::after {\n  background: -webkit-radial-gradient(circle, transparent 70%, #222 150%);\n  background: radial-gradient(circle, transparent 70%, #222 150%);\n  mix-blend-mode: multiply; }\n\n._1977 {\n  -webkit-filter: contrast(1.1) brightness(1.1) saturate(1.3);\n  filter: contrast(1.1) brightness(1.1) saturate(1.3); }\n\n._1977:after {\n  background: rgba(243, 106, 188, 0.3);\n  mix-blend-mode: screen; }\n\n.brooklyn {\n  -webkit-filter: contrast(0.9) brightness(1.1);\n  filter: contrast(0.9) brightness(1.1); }\n\n.brooklyn::after {\n  background: -webkit-radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  background: radial-gradient(circle, rgba(168, 223, 193, 0.4) 70%, #c4b7c8);\n  mix-blend-mode: overlay; }\n\n.xpro2 {\n  -webkit-filter: sepia(0.3);\n  filter: sepia(0.3); }\n\n.xpro2::after {\n  background: -webkit-radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  background: radial-gradient(circle, #e6e7e0 40%, rgba(43, 42, 161, 0.6) 110%);\n  mix-blend-mode: color-burn; }\n\n.nashville {\n  -webkit-filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2);\n  filter: sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2); }\n\n.nashville::after {\n  background: rgba(0, 70, 150, 0.4);\n  mix-blend-mode: lighten; }\n\n.nashville::before {\n  background: rgba(247, 176, 153, 0.56);\n  mix-blend-mode: darken; }\n\n.lark {\n  -webkit-filter: contrast(0.9);\n  filter: contrast(0.9); }\n\n.lark::after {\n  background: rgba(242, 242, 242, 0.8);\n  mix-blend-mode: darken; }\n\n.lark::before {\n  background: #22253f;\n  mix-blend-mode: color-dodge; }\n\n.moon {\n  -webkit-filter: grayscale(1) contrast(1.1) brightness(1.1);\n  filter: grayscale(1) contrast(1.1) brightness(1.1); }\n\n.moon::before {\n  background: #a0a0a0;\n  mix-blend-mode: soft-light; }\n\n.moon::after {\n  background: #383838;\n  mix-blend-mode: lighten; }\n\n.clarendon {\n  -webkit-filter: contrast(1.2) saturate(1.35);\n  filter: contrast(1.2) saturate(1.35); }\n\n.clarendon:before {\n  background: rgba(127, 187, 227, 0.2);\n  mix-blend-mode: overlay; }\n\n.willow {\n  -webkit-filter: grayscale(0.5) contrast(0.95) brightness(0.9);\n  filter: grayscale(0.5) contrast(0.95) brightness(0.9); }\n\n.willow::before {\n  background-color: radial-gradient(40%, circle, #d4a9af 55%, #000 150%);\n  mix-blend-mode: overlay; }\n\n.willow::after {\n  background-color: #d8cdcb;\n  mix-blend-mode: color; }\n\n.rise {\n  -webkit-filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9);\n  filter: brightness(1.05) sepia(0.2) contrast(0.9) saturate(0.9); }\n\n.rise::after {\n  background: -webkit-radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  background: radial-gradient(circle, rgba(232, 197, 152, 0.8), transparent 90%);\n  mix-blend-mode: overlay;\n  opacity: .6; }\n\n.rise::before {\n  background: -webkit-radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  background: radial-gradient(circle, rgba(236, 205, 169, 0.15) 55%, rgba(50, 30, 7, 0.4));\n  mix-blend-mode: multiply; }\n\n._1977:after, ._1977:before, .aden:after, .aden:before, .brooklyn:after, .brooklyn:before, .clarendon:after, .clarendon:before, .earlybird:after, .earlybird:before, .gingham:after, .gingham:before, .hudson:after, .hudson:before, .inkwell:after, .inkwell:before, .lark:after, .lark:before, .lofi:after, .lofi:before, .mayfair:after, .mayfair:before, .moon:after, .moon:before, .nashville:after, .nashville:before, .perpetua:after, .perpetua:before, .reyes:after, .reyes:before, .rise:after, .rise:before, .slumber:after, .slumber:before, .toaster:after, .toaster:before, .walden:after, .walden:before, .willow:after, .willow:before, .xpro2:after, .xpro2:before {\n  content: '';\n  display: block;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  position: absolute;\n  pointer-events: none; }\n\n._1977, .aden, .brooklyn, .clarendon, .earlybird, .gingham, .hudson, .inkwell, .lark, .lofi, .mayfair, .moon, .nashville, .perpetua, .reyes, .rise, .slumber, .toaster, .walden, .willow, .xpro2 {\n  position: relative; }\n\n._1977 img, .aden img, .brooklyn img, .clarendon img, .earlybird img, .gingham img, .hudson img, .inkwell img, .lark img, .lofi img, .mayfair img, .moon img, .nashville img, .perpetua img, .reyes img, .rise img, .slumber img, .toaster img, .walden img, .willow img, .xpro2 img {\n  width: 100%;\n  z-index: 1; }\n\n._1977:before, .aden:before, .brooklyn:before, .clarendon:before, .earlybird:before, .gingham:before, .hudson:before, .inkwell:before, .lark:before, .lofi:before, .mayfair:before, .moon:before, .nashville:before, .perpetua:before, .reyes:before, .rise:before, .slumber:before, .toaster:before, .walden:before, .willow:before, .xpro2:before {\n  z-index: 2; }\n\n._1977:after, .aden:after, .brooklyn:after, .clarendon:after, .earlybird:after, .gingham:after, .hudson:after, .inkwell:after, .lark:after, .lofi:after, .mayfair:after, .moon:after, .nashville:after, .perpetua:after, .reyes:after, .rise:after, .slumber:after, .toaster:after, .walden:after, .willow:after, .xpro2:after {\n  z-index: 3; }\n\n.slumber {\n  -webkit-filter: saturate(0.66) brightness(1.05);\n  filter: saturate(0.66) brightness(1.05); }\n\n.slumber::after {\n  background: rgba(125, 105, 24, 0.5);\n  mix-blend-mode: soft-light; }\n\n.slumber::before {\n  background: rgba(69, 41, 12, 0.4);\n  mix-blend-mode: lighten; }\n\npalette {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.palette-header {\n  width: 100%;\n  height: 5%;\n  padding: 16% 0 0 4em; }\n  .palette-header h1 {\n    font-size: 2.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.palette-container {\n  width: 100%;\n  height: 80%;\n  padding: 1.5em 0 0 4em; }\n\n.palette-menu {\n  width: 100%;\n  height: 3.5em; }\n  .palette-menu li {\n    display: inline-block;\n    padding: .6em;\n    border-bottom: 1px solid transparent; }\n    .palette-menu li .fa {\n      margin: 0 .5em; }\n    .palette-menu li.active {\n      padding: .6em;\n      margin-right: .1em;\n      letter-spacing: .7em;\n      border-bottom-color: #08D9D6; }\n    .palette-menu li:hover {\n      border-bottom-color: #08D9D6;\n      cursor: pointer; }\n\n.palette-body {\n  position: relative;\n  width: 14em;\n  height: 90%;\n  min-height: 400px;\n  overflow-y: scroll; }\n\n.palette-filter-container,\n.palette-adjuster-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n.filter-item {\n  position: relative;\n  height: 7em;\n  padding: 0;\n  font-size: .9em;\n  background-color: #3A4750;\n  overflow: hidden;\n  cursor: pointer; }\n  .filter-item.active, .filter-item:hover {\n    color: #08D9D6; }\n  .filter-item img {\n    width: 100%; }\n\n.filter-name {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  background: rgba(0, 0, 0, 0.5); }\n\n.adjuster-item {\n  height: 4em;\n  line-height: 3em;\n  padding-left: 2em;\n  margin-bottom: 1em;\n  font-size: .8em; }\n  .adjuster-item .adjuster-name {\n    width: 100%;\n    display: inline-block;\n    margin-bottom: .3em; }\n  .adjuster-item .adjuster-qty {\n    float: right;\n    padding-right: 5px; }\n  .adjuster-item input[type=range] {\n    width: 98%;\n    background-color: #4D606E;\n    height: 1px;\n    vertical-align: 1px;\n    -webkit-appearance: none;\n    outline: none;\n    border: none; }\n    .adjuster-item input[type=range]:hover {\n      cursor: pointer; }\n  .adjuster-item input[type=range]::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: .65em;\n    width: .65em;\n    background: #08D9D6;\n    cursor: pointer; }\n\n.resize-scale {\n  overflow: hidden; }\n\n.scale-item {\n  position: relative;\n  height: 5em;\n  margin-bottom: .2em;\n  text-align: center;\n  color: #08D9D6;\n  cursor: pointer; }\n  .scale-item:hover, .scale-item.active {\n    color: #FC5185; }\n  .scale-item .scale-model {\n    width: 100%;\n    height: 4em; }\n  .scale-item .scale-name {\n    line-height: 1em;\n    font-size: .9em;\n    color: inherit; }\n\n.resize-btn-container {\n  margin-top: 1.5em;\n  width: 100%;\n  height: 2em; }\n\n.resize-btn {\n  display: inline-block;\n  height: 2em;\n  line-height: 2em;\n  text-align: center;\n  border: 0;\n  outline: 0;\n  background-color: transparent;\n  transition: all 200ms ease-in; }\n  .resize-btn:hover {\n    cursor: pointer;\n    box-shadow: 2px 3px 6px rgba(10, 10, 10, 0.6); }\n  .resize-btn.check {\n    color: #08D9D6; }\n  .resize-btn.cancel {\n    color: #FC5185; }\n\n.resize-preview {\n  margin-top: 1.5em; }\n", ""]);
 	
 	// exports
 
@@ -1473,10 +1473,16 @@
 	  }, {
 	    key: 'clear',
 	    value: function clear() {
-	      if (document.querySelector('#' + this.id)) {
-	        var $frame = document.querySelector('#' + this.id),
-	            parent = $frame.parentNode;
-	        parent.removeChild($frame);
+	      if (!document.querySelector('#' + this.id)) return;
+	
+	      var $frame = document.querySelector('#' + this.id),
+	          $overlay = document.querySelector('#overlay'),
+	          parent = $frame.parentNode;
+	
+	      parent.removeChild($frame);
+	
+	      if ($overlay) {
+	        parent.removeChild($overlay);
 	      }
 	    }
 	
@@ -1525,9 +1531,39 @@
 	      layerStyle.top = originT + (originH - this.layer.height) / 2 + 'px';
 	      layerStyle.left = originL + (originW - this.layer.width) / 2 + 'px';
 	
+	      this.drawCropImage(this.layer, {
+	        originW: originW,
+	        originH: originH,
+	        cropW: this.layer.width,
+	        cropH: this.layer.height
+	      });
+	
 	      this.drawFrameLine(this.layer);
 	
+	      this.addOverlay(originW, originH);
+	
 	      this.canvas.parentNode.appendChild(this.layer);
+	
+	      return {
+	        layer: this.layer,
+	        originW: originW,
+	        originH: originH,
+	        cropW: this.layer.width,
+	        cropH: this.layer.height
+	      };
+	    }
+	  }, {
+	    key: 'drawCropImage',
+	    value: function drawCropImage(canvas, opts) {
+	      var cropCxt = canvas.getContext('2d'),
+	          originCtx = this.canvas.getContext('2d'),
+	          x = (opts.originW - opts.cropW) / 2,
+	          y = (opts.originH - opts.cropH) / 2;
+	
+	      var originImageData = originCtx.getImageData(x, y, opts.originW, opts.originH);
+	
+	      cropCxt.clearRect(0, 0, opts.cropW, opts.cropH);
+	      cropCxt.putImageData(originImageData, 0, 0);
 	    }
 	  }, {
 	    key: 'drawFrameLine',
@@ -1551,6 +1587,20 @@
 	      cxt.fillRect(w - rW, 0, rW, rW);
 	      cxt.fillRect(w - rW, h - rW, rW, rW);
 	      cxt.fillRect(0, h - rW, rW, rW);
+	    }
+	  }, {
+	    key: 'addOverlay',
+	    value: function addOverlay(w, h) {
+	
+	      if (document.querySelector('#overlay')) return;
+	
+	      this.overlay = this.new('overlay');
+	
+	      var overlayCtx = this.overlay.getContext('2d');
+	      overlayCtx.fillStyle = 'rgba(0, 0, 0, .7)';
+	      overlayCtx.fillRect(0, 0, w, h);
+	
+	      this.canvas.parentNode.appendChild(this.overlay);
 	    }
 	  }]);
 	
@@ -3649,7 +3699,7 @@
 	    this.noise = 0;
 	
 	    this.resizeScales = [{
-	      name: '自定义',
+	      name: '-',
 	      x: 0,
 	      y: 0
 	    }, {
@@ -3679,6 +3729,7 @@
 	      this.activeMenu = type || 'filter';
 	
 	      if (type !== 'resize') {
+	        this.curScale = null;
 	        this.PlotitUtil.removeResizeFrame();
 	      }
 	    }
@@ -3766,8 +3817,30 @@
 	  }, {
 	    key: 'setCanvasScale',
 	    value: function setCanvasScale(scale) {
+	      this.$preview = document.querySelector('#preview') || null;
 	      this.curScale = scale;
-	      this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale);
+	      this.PlotitUtil.processResize(this.PlotitUtil.$canvas, scale, this.$preview);
+	    }
+	  }, {
+	    key: 'checkResize',
+	    value: function checkResize() {
+	      this.curScale = null;
+	      this.PlotitUtil.getResizeFrame();
+	      this.clearPreview();
+	    }
+	  }, {
+	    key: 'cancelResize',
+	    value: function cancelResize() {
+	      this.curScale = null;
+	      this.PlotitUtil.removeResizeFrame();
+	      this.clearPreview();
+	    }
+	  }, {
+	    key: 'clearPreview',
+	    value: function clearPreview() {
+	      if (this.$preview) {
+	        this.$preview.getContext('2d').clearRect(0, 0, this.$preview.width, this.$preview.height);
+	      }
 	    }
 	  }]);
 	
@@ -4227,6 +4300,7 @@
 	        palette.blur = 0;
 	        palette.noise = 0;
 	        palette.curFilter = '';
+	        palette.cancelResize.bind(palette);
 	      }
 	
 	      if (this.isPlot && !isLoading) {
@@ -4825,12 +4899,67 @@
 	    value: function newFrame(canvas, scale) {
 	      this.canvas = canvas;
 	      this.Layer = new _layer2.default(canvas, 'newFrame');
-	      this.layer = this.Layer.addFrame(scale);
+	      this.layerInfo = this.Layer.addFrame(scale);
 	    }
 	  }, {
 	    key: 'removeFrame',
 	    value: function removeFrame() {
-	      this.Layer.clear();
+	      if (this.Layer) {
+	        this.Layer.clear();
+	      }
+	    }
+	  }, {
+	    key: 'getFrame',
+	    value: function getFrame() {
+	      if (this.cropImageData) {
+	        var originW = this.canvas.width,
+	            originH = this.canvas.height,
+	            canvasStyle = this.canvas.style,
+	            originT = parseFloat(canvasStyle.top.replace('px', '')),
+	            originL = parseFloat(canvasStyle.left.replace('px', '')),
+	            cropW = this.cropImageData.width,
+	            cropH = this.cropImageData.height,
+	            originCtx = this.canvas.getContext('2d');
+	
+	        this.canvas.width = cropW;
+	        this.canvas.height = cropH;
+	        originCtx.putImageData(this.cropImageData, 0, 0);
+	
+	        canvasStyle.top = originT + (originH - cropH) / 2 + 'px';
+	        canvasStyle.left = originL + (originW - cropW) / 2 + 'px';
+	
+	        this.removeFrame();
+	      }
+	    }
+	  }, {
+	    key: 'setPreview',
+	    value: function setPreview(canvas) {
+	      var originCtx = this.canvas.getContext('2d'),
+	          previewCtx = canvas.getContext('2d'),
+	          previewW = canvas.width,
+	          cropW = this.layerInfo.cropW,
+	          cropH = this.layerInfo.cropH,
+	          x = (this.layerInfo.originW - cropW) / 2,
+	          y = (this.layerInfo.originH - cropH) / 2;
+	
+	      this.cropImageData = originCtx.getImageData(x, y, cropW, cropH);
+	
+	      canvas.width = 224;
+	      canvas.height = canvas.width / cropW * cropH;
+	
+	      var tempCanvas = document.createElement('canvas'),
+	          tempCtx = tempCanvas.getContext('2d');
+	
+	      tempCanvas.width = cropW;
+	      tempCanvas.height = cropH;
+	      tempCtx.putImageData(this.cropImageData, 0, 0);
+	
+	      var tempImg = new Image(),
+	          tempImgUrl = tempCanvas.toDataURL();
+	
+	      tempImg.src = tempImgUrl;
+	
+	      previewCtx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
 	    }
 	  }]);
 	
@@ -4947,6 +5076,9 @@
 	                      }
 	                  });
 	                  break;
+	                case 'resize':
+	                  console.log(1);
+	                  break;
 	              }
 	            });
 	          }
@@ -5044,11 +5176,18 @@
 	    }
 	  }, {
 	    key: 'processResize',
-	    value: function processResize(canvas, scale) {
+	    value: function processResize(originCanvas, scale, previewCanvas) {
 	      // new layer
-	      _resize2.default.newFrame(canvas, scale);
+	      _resize2.default.newFrame(originCanvas, scale);
 	      // bind Util
 	      _resize2.default.bindUtil(this);
+	      // set Preview
+	      _resize2.default.setPreview(previewCanvas);
+	    }
+	  }, {
+	    key: 'getResizeFrame',
+	    value: function getResizeFrame() {
+	      _resize2.default.getFrame();
 	    }
 	  }, {
 	    key: 'removeResizeFrame',
@@ -29405,7 +29544,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.activeMenu === 'filter' ? 'active' : ''\" ng-click=\"palette.switchTab('filter')\">\n      <i class=\"fa fa-magic fa-fw\"></i>{{palette.activeMenu === 'filter' ? '滤镜' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'adjuster' ? 'active' : ''\" ng-click=\"palette.switchTab('adjuster')\">\n      <i class=\"fa fa-sliders fa-fw\"></i>{{palette.activeMenu === 'adjuster' ? '调节' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'resize' ? 'active' : ''\" ng-click=\"palette.switchTab('resize')\">\n      <i class=\"fa fa-arrows-alt fa-fw\"></i>{{palette.activeMenu === 'resize' ? '剪裁' : ''}}\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.activeMenu === 'filter'\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"palette.activeMenu === 'adjuster'\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-resize-container\" ng-show=\"palette.activeMenu === 'resize'\">\n      <ul class=\"resize-scale\">\n        <li class=\"col-md-6 scale-item\" \n            ng-class=\"palette.curScale.name === s.name ? ' active' : ''\" \n            ng-repeat=\"s in palette.resizeScales\" \n            ng-click=\"palette.setCanvasScale(s)\">\n          <div class=\"scale-model\">\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '自定义'\">\n              <rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" stroke=\"#FFF\" stroke-dasharray=\"5\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '1:1'\">\n              <rect x=\"25\" y=\"30\" width=\"30\" height=\"30\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '4:3'\">\n              <rect x=\"20\" y=\"30\" width=\"40\" height=\"30\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '3:4'\">\n              <rect x=\"25\" y=\"25\" width=\"30\" height=\"40\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>          \n          </div>\n          <span class=\"scale-name\">{{s.name}}</span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.activeMenu === 'filter' ? 'active' : ''\" ng-click=\"palette.switchTab('filter')\">\n      <i class=\"fa fa-magic fa-fw\"></i>{{palette.activeMenu === 'filter' ? '滤镜' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'adjuster' ? 'active' : ''\" ng-click=\"palette.switchTab('adjuster')\">\n      <i class=\"fa fa-sliders fa-fw\"></i>{{palette.activeMenu === 'adjuster' ? '调节' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'resize' ? 'active' : ''\" ng-click=\"palette.switchTab('resize')\">\n      <i class=\"fa fa-arrows-alt fa-fw\"></i>{{palette.activeMenu === 'resize' ? '剪裁' : ''}}\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.activeMenu === 'filter'\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"palette.activeMenu === 'adjuster'\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-resize-container\" ng-show=\"palette.activeMenu === 'resize'\">\n      <ul class=\"resize-scale\">\n        <li class=\"col-md-3 scale-item\" \n            ng-class=\"palette.curScale.name === s.name ? ' active' : ''\" \n            ng-repeat=\"s in palette.resizeScales\" \n            ng-click=\"palette.setCanvasScale(s)\">\n          <div class=\"scale-model\">\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '-'\">\n              <rect x=\"5\" y=\"30\" width=\"15\" height=\"15\" stroke=\"#FFF\" stroke-dasharray=\"5\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '1:1'\">\n              <rect x=\"5\" y=\"30\" width=\"15\" height=\"15\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '4:3'\">\n              <rect x=\"5\" y=\"30\" width=\"20\" height=\"15\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '3:4'\">\n              <rect x=\"5\" y=\"26\" width=\"15\" height=\"20\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>          \n          </div>\n          <span class=\"scale-name\">{{s.name}}</span>\n        </li>\n      </ul>\n      <div class=\"resize-btn-container\" ng-show=\"palette.curScale\">\n        <span class=\"cancel resize-btn col-md-6\" ng-click=\"palette.cancelResize()\"><i class=\"fa fa-remove\"></i></span>\n        <span class=\"check resize-btn col-md-6\" ng-click=\"palette.checkResize()\"><i class=\"fa fa-check\"></i></span>\n      </div>\n      <div class=\"resize-preview\">\n        <canvas id=\"preview\" width=\"100%\" height=\"100%\"></canvas>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 57 */
