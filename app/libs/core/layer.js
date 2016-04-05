@@ -106,8 +106,8 @@ export default class PlotitLayer {
   drawCropImage(canvas, opts) {
     var cropCxt = canvas.getContext('2d'),
         originCtx = this.canvas.getContext('2d'),
-        x = (opts.originW - opts.cropW) / 2,
-        y = (opts.originH - opts.cropH) / 2;
+        x = opts.x || (opts.originW - opts.cropW) / 2,
+        y = opts.y || (opts.originH - opts.cropH) / 2;
 
     var originImageData = originCtx.getImageData(x, y, opts.originW, opts.originH);
 

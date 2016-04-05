@@ -169,6 +169,8 @@ export default class PlotitUtil {
     Resize.bindUtil(this);
     // set Preview
     Resize.setPreview(previewCanvas);
+    // bind mousemove
+    Resize.bindFrame(scale);
   }
 
   getResizeFrame() {

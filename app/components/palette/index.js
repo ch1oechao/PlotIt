@@ -98,7 +98,6 @@ class paletteCtrl {
   }
 
   switchTab(type) {
-    
     this.activeMenu = type || 'filter';
 
     if (type !== 'resize') {
