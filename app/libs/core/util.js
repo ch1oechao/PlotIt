@@ -28,6 +28,8 @@ export default class PlotitUtil {
             panelH = $panel.clientHeight,
             imageW = image.width,
             imageH = image.height,
+            x = 0,
+            y = 0,
             scale;
 
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -37,19 +39,27 @@ export default class PlotitUtil {
         } else {
           scale = imageH / panelH;
         }
-
+        
         imageW = imageW / scale;
         imageH = imageH / scale;
+
+        if (config && config.resize) {
+          imageW = config.resize.w || imageW;
+          imageH = config.resize.h || imageH;
+          x = config.resize.x;
+          y = config.resize.y;
+        }
 
         var dx = (panelW - imageW) / 2,
             dy = (panelH - imageH) / 2;
 
         canvas.width = imageW;
         canvas.height = imageH;
+        canvas.style.position = 'absolute';
         canvas.style.top = dy + 'px';
         canvas.style.left = dx + 'px';
 
-        context.drawImage(image, 0, 0, imageW, imageH);
+        context.drawImage(image, x, y, imageW, imageH, 0, 0, imageW, imageH);
 
         if (config && typeof config === 'object') {
           Object.keys(config).map((item) => {
@@ -67,9 +77,6 @@ export default class PlotitUtil {
                     self.processPixel(i, adjusters[i]);
                   }
                 });
-              break;
-              case 'resize':
-                console.log(1);
               break;
             }
           });
@@ -162,6 +169,10 @@ export default class PlotitUtil {
     }
   }
 
+  processCrop(opts) {
+    Resize.cropImage(this.$canvas, opts);
+  }
+
   processResize(originCanvas, scale, previewCanvas) {
     // new layer
     Resize.newFrame(originCanvas, scale);
@@ -174,7 +185,7 @@ export default class PlotitUtil {
   }
 
   getResizeFrame() {
-    Resize.getFrame();
+    return Resize.getFrame();
   }
 
   removeResizeFrame() {

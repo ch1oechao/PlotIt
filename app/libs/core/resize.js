@@ -6,6 +6,28 @@ class PlotitResize{
     this.util = util;
   }
 
+  cropImage(canvas, opts) {
+    var ctx = canvas.getContext('2d'),
+        ct = parseInt(canvas.style.top.replace('px', '')),
+        cl = parseInt(canvas.style.left.replace('px', '')),
+        cw = canvas.width,
+        ch = canvas.height,
+        x = opts.x,
+        y = opts.y,
+        w = opts.w,
+        h = opts.h;
+
+    var cropImageData = ctx.getImageData(x, y, w, h);
+
+    ctx.putImageData(cropImageData, 0, 0);
+
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.left = (cl + (cw - w) / 2) + 'px';
+    canvas.style.top = (ct + (ch - h) / 2) + 'px';
+
+  }
+
   newFrame(canvas, scale) {
     this.canvas = canvas;
     this.Layer = new Layer(canvas, 'newFrame');
@@ -132,7 +154,8 @@ class PlotitResize{
       canvasStyle.left = originL + (originW - cropW) / 2 + 'px';
 
       this.removeFrame();
-    }
+    }  
+    return this.resizeConfig || {};
   }
 
   setPreview(canvas, x, y) {
@@ -145,6 +168,13 @@ class PlotitResize{
         y = y || (this.layerInfo.originH - cropH) / 2;
 
     this.$preview = canvas;
+    
+    this.resizeConfig = {
+      x: x,
+      y: y,
+      w: cropW,
+      h: cropH
+    };
 
     this.cropImageData = originCtx.getImageData(x, y, cropW, cropH);
 

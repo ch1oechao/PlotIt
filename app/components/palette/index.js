@@ -186,7 +186,7 @@ class paletteCtrl {
 
   checkResize() {
     this.curScale = null;
-    this.PlotitUtil.getResizeFrame();
+    this.resizeConfig = this.PlotitUtil.getResizeFrame();
     this.clearPreview();
   }
 

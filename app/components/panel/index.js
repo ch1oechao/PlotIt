@@ -41,7 +41,7 @@ class panelCtrl {
       var id = item.id,
           pics = this.$rootScope.pics || [];
 
-      if (pics !== []) {
+      if (pics.length) {
         // find from cache
         pics.map((item) => {
           if (item._id === id) {

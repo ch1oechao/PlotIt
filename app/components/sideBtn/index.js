@@ -31,6 +31,7 @@ let sideBtnTpl = () => {
       self.$scope.$watch('palette.blur', self.watchBlur.bind(self));
       self.$scope.$watch('palette.noise', self.watchNoise.bind(self));
       self.$scope.$watch('palette.curFilter', self.watchFilter.bind(self));
+      self.$scope.$watch('palette.resizeConfig', self.watchResize.bind(self));
     }
   }
 };
@@ -46,7 +47,8 @@ class sideBtnCtrl {
     this.isChange = false;
     this.imageConfig = {
       adjusters: {},
-      filter: ''
+      filter: '',
+      resize: {}
     };
   }
 
@@ -76,6 +78,7 @@ class sideBtnCtrl {
       palette.blur = 0;
       palette.noise = 0;
       palette.curFilter = '';
+      palette.resizeConfig = {};
       palette.cancelResize.bind(palette);
     }
 
@@ -123,6 +126,10 @@ class sideBtnCtrl {
     this.imageConfig.filter = val;
   }
 
+  watchResize(val) {
+    this.imageConfig.resize = val;
+  }
+
   getNewImage(val) {
     this.newImage = val;
   }
@@ -132,6 +139,17 @@ class sideBtnCtrl {
       return;
     }
     popover.open();
+  }
+
+  updateImageCfg(curImage, imageCfg) {    
+    var curImageConfig = JSON.parse(curImage.imageConfig || '{}');
+    if (curImageConfig && curImageConfig.resize) {
+      var rCfg = curImageConfig.resize;
+      if (!imageCfg.resize) imageCfg.resize = {};
+      imageCfg.resize.x += rCfg.x;
+      imageCfg.resize.y += rCfg.y;
+    }
+    return JSON.stringify(imageCfg || {});
   }
 
   uploadImage(name) {
@@ -171,7 +189,7 @@ class sideBtnCtrl {
 
           if (res.key === tag + key) {
             var src = QiniuC.config.domain + res.key,
-                imageConfig = JSON.stringify(self.imageConfig || {});
+                imageConfig = self.updateImageCfg(curImage, self.imageConfig);
             // update mongoDB
             self.Service.updatePic({
               id: curImage._id,
