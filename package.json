@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "webpack --progress --colors --watch -d",
-    "build": "webpack --progress -d"
+    "build": "webpack --progress -d",
+    "test": "karma start"
   },
   "dependencies": {
     "angular": "^1.5.0",
@@ -30,6 +31,11 @@
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "ejs": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-mocha": "^0.2.2",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
     "raw-loader": "^0.5.1",
     "reload": "^0.7.0",

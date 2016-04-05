@@ -4,9 +4,9 @@ Online tool for processing picture
 
 ## Dev
 
-Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
+Based on HTML5 Canvas & MEAN (MongoDB / Express / Angular / NodeJS) & Karma
 
-### Complete Function
+### Features
 
 - Upload the local images to Plotit, then these images will be uploaded to Qiniu 
 
@@ -22,7 +22,7 @@ Based on Canvas & MEAN (MongoDB / Express / Angular / NodeJS)
 
 - Share picture to Weibo
 
-### Function under Development
+### Upcoming Features
 
 - Clip
 - Resize

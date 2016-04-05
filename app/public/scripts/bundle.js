@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7f3bbb1964215275b1c8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ed00ba9155dd65df5013"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -576,7 +576,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./app/main.js */30);
-	module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */69);
+	__webpack_require__(/*! webpack-hot-middleware/client?reload=true */70);
+	module.exports = __webpack_require__(/*! ./karma-bundle.js */33);
 
 
 /***/ },
@@ -588,7 +589,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular */ 36);
+	__webpack_require__(/*! ./angular */ 37);
 	module.exports = angular;
 
 /***/ },
@@ -1762,9 +1763,9 @@
 	
 	'use strict';
 	
-	var base64 = __webpack_require__(/*! base64-js */ 39);
-	var ieee754 = __webpack_require__(/*! ieee754 */ 44);
-	var isArray = __webpack_require__(/*! isarray */ 40);
+	var base64 = __webpack_require__(/*! base64-js */ 40);
+	var ieee754 = __webpack_require__(/*! ieee754 */ 45);
+	var isArray = __webpack_require__(/*! isarray */ 41);
 	
 	exports.Buffer = Buffer;
 	exports.SlowBuffer = SlowBuffer;
@@ -3493,11 +3494,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 55);
+	var _index = __webpack_require__(/*! ./index.html */ 56);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 62);
+	__webpack_require__(/*! ./index.scss */ 63);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3611,7 +3612,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 56);
+	var _index = __webpack_require__(/*! ./index.html */ 57);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -3619,7 +3620,7 @@
 	
 	var _plotit2 = _interopRequireDefault(_plotit);
 	
-	__webpack_require__(/*! ./index.scss */ 63);
+	__webpack_require__(/*! ./index.scss */ 64);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -3880,11 +3881,11 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 57);
+	var _index = __webpack_require__(/*! ./index.html */ 58);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 64);
+	__webpack_require__(/*! ./index.scss */ 65);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4084,11 +4085,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 58);
+	var _index = __webpack_require__(/*! ./index.html */ 59);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 65);
+	__webpack_require__(/*! ./index.scss */ 66);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4203,7 +4204,7 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 59);
+	var _index = __webpack_require__(/*! ./index.html */ 60);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
@@ -4211,7 +4212,7 @@
 	
 	var _qiniu2 = _interopRequireDefault(_qiniu);
 	
-	__webpack_require__(/*! ./index.scss */ 66);
+	__webpack_require__(/*! ./index.scss */ 67);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -4475,11 +4476,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _index = __webpack_require__(/*! ./index.html */ 60);
+	var _index = __webpack_require__(/*! ./index.html */ 61);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	__webpack_require__(/*! ./index.scss */ 67);
+	__webpack_require__(/*! ./index.scss */ 68);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -5137,7 +5138,7 @@
 	
 	var _resize2 = _interopRequireDefault(_resize);
 	
-	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 50);
+	var _stackblurCanvas = __webpack_require__(/*! stackblur-canvas */ 51);
 	
 	var _stackblurCanvas2 = _interopRequireDefault(_stackblurCanvas);
 	
@@ -5750,11 +5751,11 @@
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 35);
+	var _angularUiRouter = __webpack_require__(/*! angular-ui-router */ 36);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularRoute = __webpack_require__(/*! angular-route */ 34);
+	var _angularRoute = __webpack_require__(/*! angular-route */ 35);
 	
 	var _angularRoute2 = _interopRequireDefault(_angularRoute);
 	
@@ -5766,11 +5767,11 @@
 	
 	var _main4 = _interopRequireDefault(_main3);
 	
-	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 46);
+	var _ngFileUpload = __webpack_require__(/*! ng-file-upload */ 47);
 	
 	var _ngFileUpload2 = _interopRequireDefault(_ngFileUpload);
 	
-	__webpack_require__(/*! ./public/styles/main.scss */ 68);
+	__webpack_require__(/*! ./public/styles/main.scss */ 69);
 	
 	var _library = __webpack_require__(/*! ./components/library */ 19);
 	
@@ -5844,7 +5845,7 @@
 	
 	  $stateProvider.state('home', {
 	    url: '/home',
-	    template: __webpack_require__(/*! ./views/index.display.html */ 61)
+	    template: __webpack_require__(/*! ./views/index.display.html */ 62)
 	  }).state('plot', {
 	    url: '/plot',
 	    template: __webpack_require__(/*! ./views/index.plot.html */ 18)
@@ -6104,6 +6105,15 @@
 
 /***/ },
 /* 33 */
+/*!*************************!*\
+  !*** ./karma-bundle.js ***!
+  \*************************/
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 34 */
 /*!******************************************!*\
   !*** ./~/angular-route/angular-route.js ***!
   \******************************************/
@@ -7093,7 +7103,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 34 */
+/* 35 */
 /*!**********************************!*\
   !*** ./~/angular-route/index.js ***!
   \**********************************/
@@ -7101,11 +7111,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./angular-route */ 33);
+	__webpack_require__(/*! ./angular-route */ 34);
 	module.exports = 'ngRoute';
 
 /***/ },
-/* 35 */
+/* 36 */
 /*!**********************************************************!*\
   !*** ./~/angular-ui-router/release/angular-ui-router.js ***!
   \**********************************************************/
@@ -9382,7 +9392,7 @@
 	 */$IncludedByStateFilter.$inject=['$state'];function $IncludedByStateFilter($state){var includesFilter=function includesFilter(state,params,options){return $state.includes(state,params,options);};includesFilter.$stateful=true;return includesFilter;}angular.module('ui.router.state').filter('isState',$IsStateFilter).filter('includedByState',$IncludedByStateFilter);})(window,window.angular);
 
 /***/ },
-/* 36 */
+/* 37 */
 /*!******************************!*\
   !*** ./~/angular/angular.js ***!
   \******************************/
@@ -25193,7 +25203,7 @@
 	bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+'';var i=n.indexOf('.');return i==-1?0:n.length-i-1;}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3);}var base=Math.pow(10,v);var f=(n*base|0)%base;return {v:v,f:f};}$provide.value("$locale",{"DATETIME_FORMATS":{"AMPMS":["AM","PM"],"DAY":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"ERANAMES":["Before Christ","Anno Domini"],"ERAS":["BC","AD"],"FIRSTDAYOFWEEK":6,"MONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"SHORTDAY":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"SHORTMONTH":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"STANDALONEMONTH":["January","February","March","April","May","June","July","August","September","October","November","December"],"WEEKENDRANGE":[5,6],"fullDate":"EEEE, MMMM d, y","longDate":"MMMM d, y","medium":"MMM d, y h:mm:ss a","mediumDate":"MMM d, y","mediumTime":"h:mm:ss a","short":"M/d/yy h:mm a","shortDate":"M/d/yy","shortTime":"h:mm a"},"NUMBER_FORMATS":{"CURRENCY_SYM":"$","DECIMAL_SEP":".","GROUP_SEP":",","PATTERNS":[{"gSize":3,"lgSize":3,"maxFrac":3,"minFrac":0,"minInt":1,"negPre":"-","negSuf":"","posPre":"","posSuf":""},{"gSize":3,"lgSize":3,"maxFrac":2,"minFrac":2,"minInt":1,"negPre":'-¤',"negSuf":"","posPre":'¤',"posSuf":""}]},"id":"en-us","localeID":"en_US","pluralCat":function pluralCat(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE;}return PLURAL_CATEGORY.OTHER;}});}]);jqLite(document).ready(function(){angularInit(document,bootstrap);});})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 37 */
+/* 38 */
 /*!******************************!*\
   !*** ./~/ansi-html/index.js ***!
   \******************************/
@@ -25373,7 +25383,7 @@
 	ansiHTML.reset();
 
 /***/ },
-/* 38 */
+/* 39 */
 /*!*******************************!*\
   !*** ./~/ansi-regex/index.js ***!
   \*******************************/
@@ -25387,7 +25397,7 @@
 	};
 
 /***/ },
-/* 39 */
+/* 40 */
 /*!********************************!*\
   !*** ./~/base64-js/lib/b64.js ***!
   \********************************/
@@ -25513,7 +25523,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 40 */
+/* 41 */
 /*!*************************************!*\
   !*** ./~/buffer/~/isarray/index.js ***!
   \*************************************/
@@ -25528,7 +25538,7 @@
 	};
 
 /***/ },
-/* 41 */
+/* 42 */
 /*!**********************************!*\
   !*** ./~/html-entities/index.js ***!
   \**********************************/
@@ -25537,14 +25547,14 @@
 	'use strict';
 	
 	module.exports = {
-	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 43),
-	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 42),
+	  XmlEntities: __webpack_require__(/*! ./lib/xml-entities.js */ 44),
+	  Html4Entities: __webpack_require__(/*! ./lib/html4-entities.js */ 43),
 	  Html5Entities: __webpack_require__(/*! ./lib/html5-entities.js */ 17),
 	  AllHtmlEntities: __webpack_require__(/*! ./lib/html5-entities.js */ 17)
 	};
 
 /***/ },
-/* 42 */
+/* 43 */
 /*!***********************************************!*\
   !*** ./~/html-entities/lib/html4-entities.js ***!
   \***********************************************/
@@ -25699,7 +25709,7 @@
 	module.exports = Html4Entities;
 
 /***/ },
-/* 43 */
+/* 44 */
 /*!*********************************************!*\
   !*** ./~/html-entities/lib/xml-entities.js ***!
   \*********************************************/
@@ -25862,7 +25872,7 @@
 	module.exports = XmlEntities;
 
 /***/ },
-/* 44 */
+/* 45 */
 /*!****************************!*\
   !*** ./~/ieee754/index.js ***!
   \****************************/
@@ -25956,7 +25966,7 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /*!*****************************************************!*\
   !*** ./~/ng-file-upload/dist/ng-file-upload-all.js ***!
   \*****************************************************/
@@ -28721,7 +28731,7 @@
 	}]);
 
 /***/ },
-/* 46 */
+/* 47 */
 /*!***********************************!*\
   !*** ./~/ng-file-upload/index.js ***!
   \***********************************/
@@ -28729,11 +28739,11 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! ./dist/ng-file-upload-all */ 45);
+	__webpack_require__(/*! ./dist/ng-file-upload-all */ 46);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 47 */
+/* 48 */
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -28825,7 +28835,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 49 */
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -28897,7 +28907,7 @@
 	};
 
 /***/ },
-/* 49 */
+/* 50 */
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -28905,11 +28915,11 @@
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 47);
-	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 48);
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 48);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 49);
 
 /***/ },
-/* 50 */
+/* 51 */
 /*!*********************************************!*\
   !*** ./~/stackblur-canvas/src/stackblur.js ***!
   \*********************************************/
@@ -29450,7 +29460,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /*!*******************************!*\
   !*** ./~/strip-ansi/index.js ***!
   \*******************************/
@@ -29458,14 +29468,14 @@
 
 	'use strict';
 	
-	var ansiRegex = __webpack_require__(/*! ansi-regex */ 38)();
+	var ansiRegex = __webpack_require__(/*! ansi-regex */ 39)();
 	
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
 
 /***/ },
-/* 52 */
+/* 53 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/client-overlay.js ***!
   \**************************************************/
@@ -29501,7 +29511,7 @@
 	  document.body.appendChild(clientOverlay);
 	}
 	
-	var ansiHTML = __webpack_require__(/*! ansi-html */ 37);
+	var ansiHTML = __webpack_require__(/*! ansi-html */ 38);
 	var colors = {
 	  reset: ['transparent', 'transparent'],
 	  black: '181818',
@@ -29516,7 +29526,7 @@
 	};
 	ansiHTML.setColors(colors);
 	
-	var Entities = __webpack_require__(/*! html-entities */ 41).AllHtmlEntities;
+	var Entities = __webpack_require__(/*! html-entities */ 42).AllHtmlEntities;
 	var entities = new Entities();
 	
 	exports.showProblems = function showProblems(type, lines) {
@@ -29547,7 +29557,7 @@
 	}
 
 /***/ },
-/* 53 */
+/* 54 */
 /*!**************************************************!*\
   !*** (webpack)-hot-middleware/process-update.js ***!
   \**************************************************/
@@ -29663,7 +29673,7 @@
 	};
 
 /***/ },
-/* 54 */
+/* 55 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -29683,7 +29693,7 @@
 	};
 
 /***/ },
-/* 55 */
+/* 56 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.html ***!
   \*******************************************/
@@ -29692,7 +29702,7 @@
 	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
-/* 56 */
+/* 57 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.html ***!
   \*******************************************/
@@ -29701,7 +29711,7 @@
 	module.exports = "<div class=\"palette-header\">\n  <h1>{{palette.brand}}</h1>\n</div>\n<div class=\"palette-container\">\n  <ul class=\"palette-menu\">\n    <li ng-class=\"palette.activeMenu === 'filter' ? 'active' : ''\" ng-click=\"palette.switchTab('filter')\">\n      <i class=\"fa fa-magic fa-fw\"></i>{{palette.activeMenu === 'filter' ? '滤镜' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'adjuster' ? 'active' : ''\" ng-click=\"palette.switchTab('adjuster')\">\n      <i class=\"fa fa-sliders fa-fw\"></i>{{palette.activeMenu === 'adjuster' ? '调节' : ''}}\n    </li>\n    <li ng-class=\"palette.activeMenu === 'resize' ? 'active' : ''\" ng-click=\"palette.switchTab('resize')\">\n      <i class=\"fa fa-arrows-alt fa-fw\"></i>{{palette.activeMenu === 'resize' ? '剪裁' : ''}}\n    </li>\n  </ul>\n  <div class=\"palette-body\">\n    <div class=\"palette-filter-container\" ng-show=\"palette.activeMenu === 'filter'\">\n      <div class=\"row\">\n        <div class=\"col-md-6 filter-item\" \n             ng-class=\"palette.curFilter === f.processor ? ' active' : ''\"\n             ng-repeat=\"f in palette.filters\" \n             ng-click=\"palette.renderFilter(f.processor)\">\n          <figure ng-class=\"f.processor\">\n            <img height=\"104\" ng-src={{palette.filterImgSrc}}>\n          </figure>\n          <span class=\"filter-name\">{{f.name}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-adjuster-container\" ng-show=\"palette.activeMenu === 'adjuster'\">\n      <div class=\"row\">\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">亮度 <span class=\"adjuster-qty\">{{palette.brightness}}</span></span>\n          <input type=\"range\" step=\"10\" id=\"brightness\" ng-model=\"palette.brightness\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">饱和度 <span class=\"adjuster-qty\">{{palette.saturation}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.saturation\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">对比度 <span class=\"adjuster-qty\">{{palette.contrast}}</span></span>\n          <input type=\"range\" step=\"10\" ng-model=\"palette.contrast\" min=\"-50\" max=\"50\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">褐度 <span class=\"adjuster-qty\">{{palette.sepia}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.sepia\" min=\"0\" max=\"100\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">噪点 <span class=\"adjuster-qty\">{{palette.noise}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.noise\" min=\"0\" max=\"10\" />\n        </div>\n        <div class=\"col-md-12 adjuster-item\">\n          <span class=\"adjuster-name\">模糊 <span class=\"adjuster-qty\">{{palette.blur}}</span></span>\n          <input type=\"range\" step=\"1\" ng-model=\"palette.blur\" min=\"0\" max=\"10\" />\n        </div>\n      </div>\n    </div>\n    <div class=\"palette-resize-container\" ng-show=\"palette.activeMenu === 'resize'\">\n      <ul class=\"resize-scale\">\n        <li class=\"col-md-3 scale-item\" \n            ng-class=\"palette.curScale.name === s.name ? ' active' : ''\" \n            ng-repeat=\"s in palette.resizeScales\" \n            ng-click=\"palette.setCanvasScale(s)\">\n          <div class=\"scale-model\">\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '-'\">\n              <rect x=\"5\" y=\"30\" width=\"15\" height=\"15\" stroke=\"#FFF\" stroke-dasharray=\"5\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '1:1'\">\n              <rect x=\"5\" y=\"30\" width=\"15\" height=\"15\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '4:3'\">\n              <rect x=\"5\" y=\"30\" width=\"20\" height=\"15\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>\n            <svg width=\"100%\" height=\"100%\" ng-show=\"s.name === '3:4'\">\n              <rect x=\"5\" y=\"26\" width=\"15\" height=\"20\" stroke=\"#FFF\" fill=\"transparent\" stroke-width=\"2\" />\n            </svg>          \n          </div>\n          <span class=\"scale-name\">{{s.name}}</span>\n        </li>\n      </ul>\n      <div class=\"resize-preview\">\n        <canvas id=\"preview\" width=\"100%\" height=\"100%\"></canvas>\n      </div>\n      <div class=\"resize-btn-container\" ng-show=\"palette.curScale\">\n        <span class=\"cancel resize-btn col-md-6\" ng-click=\"palette.cancelResize()\"><i class=\"fa fa-remove\"></i></span>\n        <span class=\"check resize-btn col-md-6\" ng-click=\"palette.checkResize()\"><i class=\"fa fa-check\"></i></span>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"palette-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 57 */
+/* 58 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.html ***!
   \*****************************************/
@@ -29710,7 +29720,7 @@
 	module.exports = "<div class=\"panel-container\" ng-controller=\"panelCtrl\">\n  <div class=\"panel-upload\" ng-show=\"!panel.hasImage\">\n    <div ngf-drop ngf-select ng-model=\"panel.files\" class=\"drop-box\" \n        ngf-drag-over-class=\"'dragover'\" ngf-multiple=\"true\" ngf-allow-dir=\"true\"\n        accept=\"image/*,application/pdf\" \n        ngf-pattern=\"'image/*,application/pdf'\">拖拽图片或者点击上传</div>\n    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>\n  </div>\n  <div class=\"panel-canvas\" ng-show=\"panel.hasImage\">\n    <canvas id=\"plotitCanvas\">您的浏览器暂不支持 Canvas</canvas>  \n  </div>\n</div>\n<side-btn side-state=\"plot\"></side-btn>"
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.html ***!
   \*******************************************/
@@ -29719,7 +29729,7 @@
 	module.exports = "<div class=\"popover-container\" ng-if=\"popover.isShow\">\n  <div class=\"popover-box\">\n    <div class=\"popover-header\">\n      <i class=\"fa fa-remove\" ng-click=\"popover.close()\"></i>\n    </div>\n    <div class=\"popover-body\">\n      <div class=\"popover-tip\">{{popover.tip}} ?</div>\n      <div class=\"popover-name\" ng-hide=\"popover.isEditable\" ng-click=\"popover.isEditable = true\">{{popover.curImageName}}</div>\n      <div class=\"popover-edit\" ng-hide=\"!popover.isEditable\">\n        <input class=\"popover-input\" ng-model=\"popover.curImageName\" ng-class=\"popover.isTextError ? ' error' : ''\" /> \n        <i class=\"fa fa-check fa-fw\" ng-click=\"popover.checkName()\" \n                                     ng-class=\"popover.isEditError ? ' error' : ''\"></i>\n      </div>\n    </div>\n    <div class=\"popover-footer\">\n      <span class=\"cancel popover-btn\" ng-click=\"popover.cancel(sideBtn)\">取消</span>\n      <span class=\"check popover-btn\" ng-click=\"popover.check(sideBtn)\">确定</span>\n    </div>\n  </div>\n  <div class=\"popover-overlap\"></div>\n</div>\n "
 
 /***/ },
-/* 59 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.html ***!
   \*******************************************/
@@ -29728,7 +29738,7 @@
 	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-history\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
-/* 60 */
+/* 61 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.html ***!
   \*******************************************/
@@ -29737,7 +29747,7 @@
 	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
-/* 61 */
+/* 62 */
 /*!**************************************!*\
   !*** ./app/views/index.display.html ***!
   \**************************************/
@@ -29746,7 +29756,7 @@
 	module.exports = "<div class=\"app-container\">\n  <library></library>\n  <sidebar></sidebar>\n  <popover></popover>\n</div>\n"
 
 /***/ },
-/* 62 */
+/* 63 */
 /*!*******************************************!*\
   !*** ./app/components/library/index.scss ***!
   \*******************************************/
@@ -29775,7 +29785,7 @@
 	}
 
 /***/ },
-/* 63 */
+/* 64 */
 /*!*******************************************!*\
   !*** ./app/components/palette/index.scss ***!
   \*******************************************/
@@ -29804,7 +29814,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /*!*****************************************!*\
   !*** ./app/components/panel/index.scss ***!
   \*****************************************/
@@ -29833,7 +29843,7 @@
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /*!*******************************************!*\
   !*** ./app/components/popover/index.scss ***!
   \*******************************************/
@@ -29862,7 +29872,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 67 */
 /*!*******************************************!*\
   !*** ./app/components/sideBtn/index.scss ***!
   \*******************************************/
@@ -29891,7 +29901,7 @@
 	}
 
 /***/ },
-/* 67 */
+/* 68 */
 /*!*******************************************!*\
   !*** ./app/components/sidebar/index.scss ***!
   \*******************************************/
@@ -29920,7 +29930,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 69 */
 /*!*************************************!*\
   !*** ./app/public/styles/main.scss ***!
   \*************************************/
@@ -29949,7 +29959,7 @@
 	}
 
 /***/ },
-/* 69 */
+/* 70 */
 /*!******************************************************!*\
   !*** (webpack)-hot-middleware/client.js?reload=true ***!
   \******************************************************/
@@ -29967,7 +29977,7 @@
 	  warn: true
 	};
 	if (true) {
-	  var querystring = __webpack_require__(/*! querystring */ 49);
+	  var querystring = __webpack_require__(/*! querystring */ 50);
 	  var overrides = querystring.parse(__resourceQuery.slice(1));
 	  if (overrides.path) options.path = overrides.path;
 	  if (overrides.timeout) options.timeout = overrides.timeout;
@@ -30035,11 +30045,11 @@
 	
 	}
 	
-	var strip = __webpack_require__(/*! strip-ansi */ 51);
+	var strip = __webpack_require__(/*! strip-ansi */ 52);
 	
 	var overlay;
 	if (typeof document !== 'undefined' && options.overlay) {
-	  overlay = __webpack_require__(/*! ./client-overlay */ 52);
+	  overlay = __webpack_require__(/*! ./client-overlay */ 53);
 	}
 	
 	function problems(type, obj) {
@@ -30056,7 +30066,7 @@
 	  if (overlay) overlay.clear();
 	}
 	
-	var processUpdate = __webpack_require__(/*! ./process-update */ 53);
+	var processUpdate = __webpack_require__(/*! ./process-update */ 54);
 	
 	var customHandler;
 	function processMessage(obj) {
@@ -30088,7 +30098,7 @@
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 54)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?reload=true", __webpack_require__(/*! ./../webpack/buildin/module.js */ 55)(module)))
 
 /***/ }
 /******/ ]);
