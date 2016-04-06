@@ -60,9 +60,7 @@
     }
   };
 
-  module.exports = {
-    pic: PicSchema
-  };
+  module.exports = PicSchema;
 
 })();
  

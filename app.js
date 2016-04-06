@@ -8,9 +8,22 @@ var expressLayout = require('express3-ejs-layout');
 
 var app = express();
 
+// cross domain
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 // mongoBD
 var mongoose = require('mongoose');
-var dbUrl = 'mongodb://localhost/plotit';
+var config = {
+  mongoURI : {
+    'development': 'mongodb://localhost/plotit',
+    'test': 'mongodb://localhost/admin'
+  }
+};
+
+var dbUrl = config.mongoURI[app.settings.env];
 
 mongoose.connect(dbUrl);
 require('./server/model');

@@ -4,6 +4,6 @@
   var mongoose = require('mongoose');
   var Schema = require('./schema');
 
-  module.exports = mongoose.model('Pic', Schema.pic);
+  module.exports = mongoose.model('Pic', Schema);
   
 })();

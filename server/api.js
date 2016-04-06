@@ -81,7 +81,7 @@
 
         Pic.update({_id: _id}, pic, function(err) {
           if (err) {
-          console.log(err);
+            console.log(err);
           }
           res.json({
             success: true
