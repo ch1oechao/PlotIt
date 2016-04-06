@@ -2,7 +2,7 @@ routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 export default function routing($stateProvider, $urlRouterProvider, $locationProvider) {
 
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 
   $urlRouterProvider.when('', '/home');
   $urlRouterProvider.when('/', '/home');

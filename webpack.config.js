@@ -5,7 +5,7 @@ var publicPath = 'http://localhost:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var config = {
-  entry: ['./app/main.js', hotMiddlewareScript, './karma-bundle.js'],
+  entry: ['./app/main.js', hotMiddlewareScript],
   output: {
     filename: 'bundle.js',
     path: path.resolve('./app/public/scripts/'),
