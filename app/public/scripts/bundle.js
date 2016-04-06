@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6d4fe6cbe66fd88a84c4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5ec752dbbfe661323f05"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3574,7 +3574,6 @@
 	      this.Service.findPic(id, function (res) {
 	        if (res) {
 	          _this3.Service.shareToWeibo(res);
-	          // this.Service.shareToWechat();
 	        }
 	      });
 	    }

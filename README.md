@@ -22,12 +22,12 @@ Based on HTML5 Canvas & MEAN (MongoDB / Express / Angular / NodeJS) & Karma
 
 - Share picture to Weibo
 
+- Clip
+
 ### Upcoming Features
 
-- Clip
 - Resize
 - Rotate
-- Share picture to Wechat (maybe...)
 - fix some filters & adjusters
 
 ## Screenshot

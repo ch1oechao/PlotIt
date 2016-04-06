@@ -59,7 +59,6 @@ class libraryCtrl {
     this.Service.findPic(id, (res) => {
       if (res) {
         this.Service.shareToWeibo(res);
-        // this.Service.shareToWechat();
       }
     });
   }
