@@ -39,7 +39,7 @@ export default class PlotitUtil {
         } else {
           scale = imageH / panelH;
         }
-        
+
         imageW = imageW / scale;
         imageH = imageH / scale;
 
@@ -59,7 +59,7 @@ export default class PlotitUtil {
         canvas.style.top = dy + 'px';
         canvas.style.left = dx + 'px';
 
-        context.drawImage(image, x, y, imageW, imageH, 0, 0, imageW, imageH);
+        context.drawImage(image, x, y, canvas.width, canvas.height);
 
         if (config && typeof config === 'object') {
           Object.keys(config).map((item) => {

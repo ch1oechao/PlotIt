@@ -120,6 +120,7 @@
 
   exports.delImageFromQiniu = function(req, res) {
     Pic.findById({_id: req.params.id}, function(err, item) {
+      if (!item) return;
       var tag = 'changed_',
           key = tag + item.key;
       qnServer.deleteFile(key, function(r) {

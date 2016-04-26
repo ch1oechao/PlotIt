@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5ec752dbbfe661323f05"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f87f5198e04a0c2b3285"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -5206,7 +5206,7 @@
 	          canvas.style.top = dy + 'px';
 	          canvas.style.left = dx + 'px';
 	
-	          context.drawImage(image, x, y, imageW, imageH, 0, 0, imageW, imageH);
+	          context.drawImage(image, x, y, canvas.width, canvas.height);
 	
 	          if (config && (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
 	            Object.keys(config).map(function (item) {
