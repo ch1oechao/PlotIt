@@ -179,7 +179,7 @@ class sideBtnCtrl {
       this.Service.genToken((token) => {
 
         // delete changed pic from qiniu
-        this.Service.deletePicFromQiniu(curImage._id);
+        if (curImage.changeSrc) this.Service.deletePicFromQiniu(curImage._id);
         
         var key = curImage.key,
             tag = 'changed_';

@@ -114,7 +114,6 @@ export default class service {
     }
   }
 
-
   deletePic(id, fn) {
     if (id) {
       this.$http.delete('/image/' + id)

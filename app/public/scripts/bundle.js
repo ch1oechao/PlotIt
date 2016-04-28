@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f87f5198e04a0c2b3285"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c3ed798590e6ef3a43cd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4414,7 +4414,7 @@
 	        this.Service.genToken(function (token) {
 	
 	          // delete changed pic from qiniu
-	          _this2.Service.deletePicFromQiniu(curImage._id);
+	          if (curImage.changeSrc) _this2.Service.deletePicFromQiniu(curImage._id);
 	
 	          var key = curImage.key,
 	              tag = 'changed_';
