@@ -1,14 +1,9 @@
 import Base64 from './base64';
+import credentials from '../../credentials';
 
 (function() {
 
-  var config = {
-    ACCESS_KEY: '-L7HvCAanSlX7WOP-9w0UzRmzUddhgC2Sgmj__Km',
-    SECRET_KEY: 'y0DwGOrEO-1sAop0QGpLqI0zXPRGSUQgR8JB7Le1',
-    bucket: 'plotit',
-    uptoken_url: 'uptoken',
-    domain: 'http://7xrwkg.com1.z0.glb.clouddn.com/'
-  };
+  var config = credentials.qiniu;
 
   exports.config = config;
 

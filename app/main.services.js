@@ -1,4 +1,5 @@
 import WX from './libs/wechat.client';
+import credentials from '../credentials';
 
 export default class service {
   constructor($http) {
@@ -143,7 +144,7 @@ export default class service {
   }
 
   shareToWeibo(item) {
-    var appkey = 1976616587,
+    var appkey = credentials.weibo.appkey,
         imageSrc = (item.changeSrc || item.imageSrc) + '?' + (+new Date()),
         title = item.name + ' 分享自#PlotIt#',
         appUrl = 'https://github.com/zchen9/PlotIt/',
@@ -167,11 +168,9 @@ export default class service {
   }
 
   shareToWechat() {
-    var config = {
-      'aid': 'wxf22f393f544c7f24',
-      'ase': '7a478172fdd6c82a80641e913cebeb0d'
-    };
 
+    var config = credentials.wechat;
+    
     var getAccessToken = (config) => {
 
       this.$http({
