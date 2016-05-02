@@ -72,7 +72,7 @@ class panelCtrl {
 
   uploadImageToCanvas(files) {
     var self = this,
-        domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
+        domain = QiniuC.config.domain;
 
     if (files && files.length) {
       // loading image

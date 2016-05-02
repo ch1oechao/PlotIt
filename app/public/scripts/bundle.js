@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8a22a0b5b083f829fcce"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2762f90c01644e6f30c9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3988,7 +3988,7 @@
 	    key: 'uploadImageToCanvas',
 	    value: function uploadImageToCanvas(files) {
 	      var self = this,
-	          domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
+	          domain = _qiniu2.default.config.domain;
 	
 	      if (files && files.length) {
 	        // loading image
