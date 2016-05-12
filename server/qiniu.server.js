@@ -4,16 +4,10 @@
   var qiniu = require('qiniu');
   var client = new qiniu.rs.Client();
 
-  var config = {
-    'bucket': 'plotit',
-    'domain': 'http://7xrwkg.com1.z0.glb.clouddn.com/',
-    'ACCESS_KEY': '-L7HvCAanSlX7WOP-9w0UzRmzUddhgC2Sgmj__Km',
-    'SECRET_KEY': 'y0DwGOrEO-1sAop0QGpLqI0zXPRGSUQgR8JB7Le1'
-  };
+  var config = require('../credentials')['qiniu'];
 
   qiniu.conf.ACCESS_KEY = config.ACCESS_KEY;
   qiniu.conf.SECRET_KEY = config.SECRET_KEY;
-
 
   exports.config = config;
 
@@ -72,7 +66,7 @@
   exports.getDownloadUrl = function(key) {
     var policy = new qiniu.rs.GetPolicy(),
         curTime = +new Date(),
-        url = 'http://7xrwkg.com1.z0.glb.clouddn.com/' + key + '?' + curTime;
+        url = config.domain + key + '?' + curTime;
     // return policy.makeRequest(url);
     return url + '?attname=';
   }

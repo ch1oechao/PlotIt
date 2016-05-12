@@ -87,12 +87,17 @@ class sideBtnCtrl {
           id = paths[paths.length - 1];
       // check the id
       if (id.length === 24) {
-        var pics = this.$rootScope.pics;
-        pics.map((item) => {
-          if (item._id === id) {
-            this.PlotitUtil.renderImage(item.imageSrc);
-          }
-        });
+        if (this.$rootScope.pics) {
+          this.$rootScope.pics.map((item) => {
+            if (item._id === id) {
+              this.PlotitUtil.renderImage(item.imageSrc);
+            }
+          });
+        } else {
+          this.Service.findPic(id, (res) => {
+            this.PlotitUtil.renderImage(res.imageSrc);
+          });
+        }
       }
     }
 
@@ -160,12 +165,17 @@ class sideBtnCtrl {
 
     // check the id
     if (id.length === 24) {
-      var pics = this.$rootScope.pics;
-      pics.map((item) => {
-        if (item._id === id) {
-          curImage = item;
-        }
-      });
+      if (this.$rootScope.pics) {
+        this.$rootScope.pics.map((item) => {
+          if (item._id === id) {
+            curImage = item;
+          }
+        });
+      } else {
+        this.Service.findPic(id, (res) => {
+          curImage = res;
+        });
+      }
     }
 
     // check image
@@ -179,7 +189,7 @@ class sideBtnCtrl {
       this.Service.genToken((token) => {
 
         // delete changed pic from qiniu
-        this.Service.deletePicFromQiniu(curImage._id);
+        if (curImage.changeSrc) this.Service.deletePicFromQiniu(curImage._id);
         
         var key = curImage.key,
             tag = 'changed_';

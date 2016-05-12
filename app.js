@@ -34,8 +34,6 @@ db.once('open', function() {
   console.log('MongoDB is connected !');
 });
 
-var route = require('./server/route');
-
 // webpack
 var webpack = require('webpack'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
@@ -78,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'app/public')));
 app.use(favicon(path.join(__dirname, 'app/public/images', 'favicon.ico')));
 
 //init route
+var route = require('./server/route');
 route(app);
 
 // catch 404 and forward to error handler
