@@ -59,7 +59,7 @@ class panelCtrl {
             self.hasImage = true;
             self.imageConfig = JSON.parse(res.imageConfig || '{}');
             self.curImageSrc = res.imageSrc + '?' + (+new Date());
-            self.curImageName = item.name;
+            self.curImageName = res.name;
             self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);  
           } else {
             // loading err, back to home

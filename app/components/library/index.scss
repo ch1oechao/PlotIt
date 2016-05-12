@@ -7,6 +7,15 @@ library {
   background-color: $second-dark;
 }
 
+.no-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, .6);
+}
+
 .row {
   margin: 0;
 }
