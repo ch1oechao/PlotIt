@@ -46,8 +46,8 @@ export default class PlotitUtil {
         if (config && config.resize) {
           imageW = config.resize.w || imageW;
           imageH = config.resize.h || imageH;
-          x = config.resize.x;
-          y = config.resize.y;
+          x = config.resize.x || 0;
+          y = config.resize.y || 0;
         }
 
         var dx = (panelW - imageW) / 2,
@@ -59,7 +59,11 @@ export default class PlotitUtil {
         canvas.style.top = dy + 'px';
         canvas.style.left = dx + 'px';
 
-        context.drawImage(image, x, y, canvas.width, canvas.height);
+        if (config && config.resize) {
+          context.drawImage(image, x, y, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+        } else {
+          context.drawImage(image, 0, 0, canvas.width, canvas.height); 
+        }
 
         if (config && typeof config === 'object') {
           Object.keys(config).map((item) => {

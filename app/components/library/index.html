@@ -1,14 +1,15 @@
 <div class="library-container">
-  <div class="row">
+<div class="no-item" ng-show="!library.pics.length">图片库是空的，赶紧上传图片吧 🙋</div>
+  <div class="row" ng-show="library.pics.length">
     <div class="col-md-4" ng-repeat="item in library.pics">
       <div class="library-item">
         <img ng-src="{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}"class="item-img">
         <div class="item-detail">
           <p class="item-name" ng-click="library.findImage(item._id)">{{item.name}}</p>
           <div class="item-setting">
-            <i class="fa fa-fw fa-cloud-download" ng-click="library.downloadImage(item._id)"></i>
-            <i class="fa fa-fw fa-trash" ng-click="library.deleteImage(item._id)"></i>
-            <i class="fa fa-fw fa-share-alt" ng-click="library.shareImage(item._id)"></i>
+            <i title="下载图片" class="fa fa-fw fa-cloud-download" ng-click="library.downloadImage(item._id)"></i>
+            <i title="删除图片" class="fa fa-fw fa-trash" ng-click="library.deleteImage(item._id)"></i>
+            <i title="分享图片" class="fa fa-fw fa-share-alt" ng-click="library.shareImage(item._id)"></i>
           </div>
         </div>
       </div>

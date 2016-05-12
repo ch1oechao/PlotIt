@@ -78,10 +78,10 @@ class PlotitResize{
           moveSize = 10,
           cropStyle = $layer.style,
           originStyle = self.canvas.style,
-          cropT = parseFloat(cropStyle.top.replace('px', '')),
-          cropL = parseFloat(cropStyle.left.replace('px', '')),
-          originT = parseFloat(originStyle.top.replace('px', '')),
-          originL = parseFloat(originStyle.left.replace('px', ''));
+          cropT = parseFloat(cropStyle.top.replace('px', '')) || 0,
+          cropL = parseFloat(cropStyle.left.replace('px', '')) || 0,
+          originT = parseFloat(originStyle.top.replace('px', '')) || 0,
+          originL = parseFloat(originStyle.left.replace('px', '')) || 0;
 
       if (isInTheRange(x, y, moveSize) && isDragging) {
 

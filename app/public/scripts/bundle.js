@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8a22a0b5b083f829fcce"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "65e4fe56b426a2c67435"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -918,7 +918,7 @@
 	
 	
 	// module
-	exports.push([module.id, "library {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 564px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  height: 75%;\n  font-weight: 700;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all;\n  z-index: 2; }\n  .item-name:hover {\n    color: #08D9D6; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center;\n  z-index: 4; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
+	exports.push([module.id, "library {\n  position: relative;\n  width: 72%;\n  height: 100%;\n  background-color: #3A4750; }\n\n.no-item {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  font-size: 1.2em;\n  color: rgba(255, 255, 255, 0.6); }\n\n.row {\n  margin: 0; }\n\n.col-md-4 {\n  padding: 0 10px; }\n\n.library-container {\n  width: 86%;\n  height: 84%;\n  max-height: 564px;\n  margin: 8% auto;\n  overflow-y: scroll; }\n\n.library-item {\n  position: relative;\n  margin: 0 auto 18px;\n  height: 170px;\n  background-color: #303841;\n  overflow: hidden;\n  background-color: #303841;\n  background-position: center center;\n  background-size: cover;\n  background-attachment: scroll;\n  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);\n  cursor: pointer; }\n  .library-item:hover .item-detail {\n    opacity: 1; }\n  .library-item:hover .item-img {\n    width: 136%; }\n\n.item-img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 115%;\n  transition: all 120ms linear; }\n\n.item-detail {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  line-height: 3em;\n  opacity: 0;\n  cursor: pointer;\n  background: linear-gradient(to top, #303841, transparent);\n  transition: all 120ms linear; }\n\n.item-name {\n  position: absolute;\n  top: 1.5em;\n  left: 1em;\n  line-height: 1em;\n  width: 80%;\n  height: 75%;\n  font-weight: 700;\n  white-space: normal;\n  word-wrap: break-word;\n  word-break: break-all;\n  z-index: 2; }\n  .item-name:hover {\n    color: #08D9D6; }\n\n.item-setting {\n  position: absolute;\n  bottom: .2em;\n  left: 50%;\n  transform: translateX(-50%);\n  text-align: center;\n  z-index: 4; }\n  .item-setting .fa-fw {\n    margin: 0 .3em;\n    cursor: pointer; }\n    .item-setting .fa-fw:hover {\n      color: #08D9D6; }\n", ""]);
 	
 	// exports
 
@@ -1003,7 +1003,7 @@
 	
 	
 	// module
-	exports.push([module.id, "sidebar {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.sidebar-header {\n  width: 100%;\n  height: 65%;\n  padding: 40% 0 0 3em; }\n  .sidebar-header h1 {\n    font-size: 5.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.sidebar-footer {\n  position: relative;\n  width: 100%;\n  height: 20%; }\n\n.footer-copyright {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  color: #4D606E; }\n", ""]);
+	exports.push([module.id, "sidebar {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  width: 28%;\n  height: 100%;\n  background-color: #303841; }\n\n.sidebar-header {\n  width: 100%;\n  height: 10%;\n  padding: 40% 0 0 3em; }\n  .sidebar-header h1 {\n    font-size: 5.4em;\n    color: #08D9D6;\n    letter-spacing: 2px;\n    font-family: 'Lobster', cursive; }\n\n.sidebar-container {\n  width: 100%;\n  padding: 0 3em;\n  color: rgba(255, 255, 255, 0.8); }\n  .sidebar-container ul {\n    padding: 1em;\n    border-top: 1px dashed currentColor; }\n  .sidebar-container li {\n    line-height: 2em; }\n    .sidebar-container li .fa {\n      margin-right: 1em; }\n\n.sidebar-footer {\n  position: relative;\n  width: 100%;\n  height: 20%; }\n\n.footer-copyright {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  color: #4D606E; }\n", ""]);
 	
 	// exports
 
@@ -3974,7 +3974,7 @@
 	              self.hasImage = true;
 	              self.imageConfig = JSON.parse(res.imageConfig || '{}');
 	              self.curImageSrc = res.imageSrc + '?' + +new Date();
-	              self.curImageName = item.name;
+	              self.curImageName = res.name;
 	              self.PlotitUtil.renderImage(res.imageSrc, self.imageConfig);
 	            } else {
 	              // loading err, back to home
@@ -3988,7 +3988,7 @@
 	    key: 'uploadImageToCanvas',
 	    value: function uploadImageToCanvas(files) {
 	      var self = this,
-	          domain = 'http://7xrwkg.com1.z0.glb.clouddn.com/';
+	          domain = _qiniu2.default.config.domain;
 	
 	      if (files && files.length) {
 	        // loading image
@@ -4333,12 +4333,17 @@
 	            id = paths[paths.length - 1];
 	        // check the id
 	        if (id.length === 24) {
-	          var pics = this.$rootScope.pics;
-	          pics.map(function (item) {
-	            if (item._id === id) {
-	              _this.PlotitUtil.renderImage(item.imageSrc);
-	            }
-	          });
+	          if (this.$rootScope.pics) {
+	            this.$rootScope.pics.map(function (item) {
+	              if (item._id === id) {
+	                _this.PlotitUtil.renderImage(item.imageSrc);
+	              }
+	            });
+	          } else {
+	            this.Service.findPic(id, function (res) {
+	              _this.PlotitUtil.renderImage(res.imageSrc);
+	            });
+	          }
 	        }
 	      }
 	    }
@@ -4419,12 +4424,17 @@
 	
 	      // check the id
 	      if (id.length === 24) {
-	        var pics = this.$rootScope.pics;
-	        pics.map(function (item) {
-	          if (item._id === id) {
-	            curImage = item;
-	          }
-	        });
+	        if (this.$rootScope.pics) {
+	          this.$rootScope.pics.map(function (item) {
+	            if (item._id === id) {
+	              curImage = item;
+	            }
+	          });
+	        } else {
+	          this.Service.findPic(id, function (res) {
+	            curImage = res;
+	          });
+	        }
 	      }
 	
 	      // check image
@@ -5009,10 +5019,10 @@
 	            moveSize = 10,
 	            cropStyle = $layer.style,
 	            originStyle = self.canvas.style,
-	            cropT = parseFloat(cropStyle.top.replace('px', '')),
-	            cropL = parseFloat(cropStyle.left.replace('px', '')),
-	            originT = parseFloat(originStyle.top.replace('px', '')),
-	            originL = parseFloat(originStyle.left.replace('px', ''));
+	            cropT = parseFloat(cropStyle.top.replace('px', '')) || 0,
+	            cropL = parseFloat(cropStyle.left.replace('px', '')) || 0,
+	            originT = parseFloat(originStyle.top.replace('px', '')) || 0,
+	            originL = parseFloat(originStyle.left.replace('px', '')) || 0;
 	
 	        if (isInTheRange(x, y, moveSize) && isDragging) {
 	
@@ -5217,8 +5227,8 @@
 	          if (config && config.resize) {
 	            imageW = config.resize.w || imageW;
 	            imageH = config.resize.h || imageH;
-	            x = config.resize.x;
-	            y = config.resize.y;
+	            x = config.resize.x || 0;
+	            y = config.resize.y || 0;
 	          }
 	
 	          var dx = (panelW - imageW) / 2,
@@ -5230,7 +5240,11 @@
 	          canvas.style.top = dy + 'px';
 	          canvas.style.left = dx + 'px';
 	
-	          context.drawImage(image, x, y, canvas.width, canvas.height);
+	          if (config && config.resize) {
+	            context.drawImage(image, x, y, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+	          } else {
+	            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+	          }
 	
 	          if (config && (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
 	            Object.keys(config).map(function (item) {
@@ -29713,7 +29727,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"library-container\">\n  <div class=\"row\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
+	module.exports = "<div class=\"library-container\">\n<div class=\"no-item\" ng-show=\"!library.pics.length\">图片库是空的，赶紧上传图片吧 🙋</div>\n  <div class=\"row\" ng-show=\"library.pics.length\">\n    <div class=\"col-md-4\" ng-repeat=\"item in library.pics\">\n      <div class=\"library-item\">\n        <img ng-src=\"{{item.changeSrc || item.imageSrc}}?imageView2/2/w/500/?{{library.curTime}}\"class=\"item-img\">\n        <div class=\"item-detail\">\n          <p class=\"item-name\" ng-click=\"library.findImage(item._id)\">{{item.name}}</p>\n          <div class=\"item-setting\">\n            <i title=\"下载图片\" class=\"fa fa-fw fa-cloud-download\" ng-click=\"library.downloadImage(item._id)\"></i>\n            <i title=\"删除图片\" class=\"fa fa-fw fa-trash\" ng-click=\"library.deleteImage(item._id)\"></i>\n            <i title=\"分享图片\" class=\"fa fa-fw fa-share-alt\" ng-click=\"library.shareImage(item._id)\"></i>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<side-btn side-state=\"display\"></side-btn>\n "
 
 /***/ },
 /* 57 */
@@ -29749,7 +29763,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebtn add\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-history\"></i>\n</div>\n<div ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
+	module.exports = "<div class=\"sidebtn add\" title=\"上传图片\" ng-show=\"!sideBtn.isPlot\" ng-click=\"sideBtn.turnToCanvas()\">\n  <i class=\"fa fa-plus\"></i>\n</div>\n<div title=\"完成编辑\"\n     class=\"sidebtn complete\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.updateImage(panel.isLoading, popover)\">\n  <i class=\"fa fa-check\" ng-if=\"!panel.isLoading\"></i>\n  <i class=\"fa fa-spinner fa-pulse\" ng-if=\"panel.isLoading\"></i>\n</div>\n<div title=\"一键还原\"\n     ng-class=\"panel.isLoading ? 'sidebtn undo disable' : 'sidebtn undo'\" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.undoImage(panel.isLoading, palette)\">\n  <i class=\"fa fa-history\"></i>\n</div>\n<div title=\"返回主页\"\n     ng-class=\"panel.isLoading ? 'sidebtn back disable' : 'sidebtn back' \" \n     ng-show=\"sideBtn.isPlot\" \n     ng-click=\"sideBtn.turnToHome(panel.isLoading)\">\n  <i class=\"fa fa-home\"></i>\n</div>\n"
 
 /***/ },
 /* 61 */
@@ -29758,7 +29772,7 @@
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
+	module.exports = "<div class=\"sidebar-header\">\n  <h1>{{sidebar.brand}}</h1>\n</div>\n<div class=\"sidebar-container\">\n  <ul>\n    <li><i class=\"fa fa-sliders fa-fw\"></i>基础调节</li>\n    <li><i class=\"fa fa-magic fa-fw\"></i>添加滤镜</li>\n    <li><i class=\"fa fa-arrows-alt fa-fw\"></i>比例剪裁</li>\n  </ul>\n</div>\n<div class=\"sidebar-footer\">\n  <p class=\"footer-copyright\">&copy; 2016 zchen9</p>\n</div>\n"
 
 /***/ },
 /* 62 */
